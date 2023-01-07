@@ -5,3 +5,11 @@ To use this notebook you need to have the following installed:
 - pytorch
 - torchvision
 - matplotlib
+
+# Next steps:
+1. Model für RESNET50 finden
+2. Basic Analysis of the model
+3. Roar Lesen
+4. Manuell Saliency maps ausprogrammieren
+5. Captum ausprobieren
+6. Vo
