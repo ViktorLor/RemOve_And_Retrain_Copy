@@ -44,14 +44,15 @@ def generate_masks( mask):
 	
 	# convert the mask to a 1 channel image
 	mask = mask[0].sum(dim=0).detach().numpy()
+
 	# create mask 1 with 70% of the pixels blacked out
 	# create mask 2 with 50% of the pixels blacked out
 	# create mask 3 with 30% of the pixels blacked out
 
 	mask1 = mask.copy()
-	mask1 = mask1 > 0.01
+	mask1 = mask1 > 0.001
 	mask2 = mask.copy()
-	mask2 = mask2 > 0.03
+	mask2 = mask2 > 0.01
 	mask3 = mask.copy()
 	mask3 = mask3 > 0.05
 
@@ -110,7 +111,11 @@ if __name__ == '__main__':
 	imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
 	
 	from PIL import Image
-	
+
+	import time
+
+	# time
+	start = time.time()
 	img_path = r'C:\Users\Vik\Documents\4. Private\01. University\2022_Sem5\Intepretable_AI\datasets\imagenet1000samples\n01491361_tiger_shark.JPEG'
 	img = Image.open(img_path)
 	
@@ -146,6 +151,9 @@ if __name__ == '__main__':
 	masked_img1 = apply_mask_to_image(orig_img.clone(), masks[0])
 	masked_img2 = apply_mask_to_image(orig_img.clone(), masks[1])
 	masked_img3 = apply_mask_to_image(orig_img.clone(), masks[2])
+	# stop time
+	end = time.time()
+	print("Time elapsed: ", end - start)
 	orig_img = orig_img[0].permute(1, 2, 0)
 	# plot masked img in shape 3*244*244
 	fig, axs = plt.subplots(2, 2)
