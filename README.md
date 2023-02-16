@@ -26,7 +26,7 @@ The implementation varies from the original paper as I am using pytorch and capt
 The architecture was chosen to be the ResNet18 model because it is easier.
 
 - Model: ResNet18, https://arxiv.org/abs/1512.03385
-- Dataset: ImageNet, http://www.image-net.org/ 
+- Dataset: ImageNet, http://www.image-net.org/ Downloaded with: kaggle competitions download -c imagenet-object-localization-challenge
 
 Roar constists of 3 steps:
 

@@ -5,14 +5,18 @@
 The executable part of this file is used to test the functions. For the actual use of the functions,
 please import the functions from this file."""
 
-
 # Integrated Gradients, Gradient Saliency, Guide Backpropagation are used to generate saliency maps
 
 from captum.attr import IntegratedGradients, GuidedBackprop
 from matplotlib.colors import LinearSegmentedColormap
 import torch
 import numpy as np
+from PIL import Image
 
+import torchvision
+import torchvision.transforms as transforms
+import torch.nn.functional as F
+import json
 
 def get_saliency_image(model, y, image, saliency_method):
     """generates saliency image.
@@ -59,7 +63,7 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
         k = 0
         threshold = threshold * 224 * 224  # maximum pixels blurred
 
-        while (k < threshold):
+        while (k < threshold - 0.01): #0.01 is a balancing term to avoid iteration errors
             threshold_parameter = threshold_parameter * 0.33
             # Loop through all channels with a threshold and blure those pixels. If the threshold is not reached,
             # increase the threshold
@@ -73,7 +77,7 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
                 total_mask = total_mask > 0
                 k = total_mask.sum()
                 if k > threshold:
-                    #print(k/(224*224), threshold/(224*224))
+                    # print(k/(224*224), threshold/(224*224))
                     break
 
         # save the total mask
@@ -100,18 +104,57 @@ def apply_mask_to_image(image, mask: np.array):
     return image
 
 
+def calculate_saliency_map(model, image_path, thresholds=None, cuda=True):
+    """
+    :param model: model to compute saliency maps.
+    :param image_path: path to the image
+    :param thresholds: thresholds to use for the saliency mask
+    :return: a image with the blocked out saliency mask
+    """
+
+    img = Image.open(image_path)
+    mean = [0.485, 0.456, 0.406]
+
+    # Transformer always stays the same
+    transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    transformed_img = torch.unsqueeze(transform(img), 0)
+    device = torch.device("cuda" if cuda else "cpu")
+    transformed_img = transformed_img.to(device)
+
+    output = model(transformed_img)
+    output = F.softmax(output, dim=1)
+    _, pred_label_idx = torch.topk(output, 1)
+
+    saliency_map = get_saliency_image(model, pred_label_idx, transformed_img, "integrated_gradients")
+
+    masks, masks_len = generate_masks(saliency_map, thresholds=[0.3, 0.5, 0.7])
+
+    return masks, masks_len
+
+# Windows
+project_path = r'C:\Users\Vik\Documents\4. Private\01. University\2022_Sem5\Intepretable_AI'
+# Linux
+# project_path = r'/home/viktorl/Intepretable_AI_PR_Loreth/'
+
 if __name__ == '__main__':
+
+    print(torch.cuda.memory_summary(device=None, abbreviated=False))
     plot = True
     print("Running saliency Helper by vlo to test the functions")
 
-    # test the functions
-    import torch
-    import torchvision
-    import torchvision.transforms as transforms
-    import torch.nn.functional as F
-    import json
+
+    # use gpu if available
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print("Using device: ", device)
 
     model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
+    model.to(device)
     model.eval()
 
     mean = [0.485, 0.456, 0.406]
@@ -125,17 +168,18 @@ if __name__ == '__main__':
     ])
 
     # load imagenet_labels
-    with open(
-            '/datasets/imagenet_class_index.json') as f:
+    with open(project_path + '/datasets/imagenet_class_index.json') as f:
         imagenet_labels = json.load(f)
     imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
 
     from PIL import Image
 
     img_path = r'/datasets/imagenet1000samples/n01491361_tiger_shark.JPEG'
-    img = Image.open(img_path)
+    img = Image.open(project_path + img_path)
 
     transformed_img = transform(img)
+    #send to cuda
+    transformed_img = transformed_img.to(device)
 
     input_img = torch.unsqueeze(transformed_img, 0)
 
@@ -181,7 +225,7 @@ if __name__ == '__main__':
     if plot:
         # apply all masks to img
         img_list = []
-        for i,mask in enumerate(masks):
+        for i, mask in enumerate(masks):
             img_list.append(apply_mask_to_image(orig_img.clone(), masks[i]))
 
         orig_img = orig_img[0].permute(1, 2, 0)
