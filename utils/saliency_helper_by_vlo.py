@@ -12,11 +12,12 @@ from matplotlib.colors import LinearSegmentedColormap
 import torch
 import numpy as np
 from PIL import Image
-
+import os
 import torchvision
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 import json
+
 
 def get_saliency_image(model, y, image, saliency_method):
     """generates saliency image.
@@ -63,27 +64,17 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
         k = 0
         threshold = threshold * 224 * 224  # maximum pixels blurred
 
-        while (k < threshold - 0.01): #0.01 is a balancing term to avoid iteration errors
-            threshold_parameter = threshold_parameter * 0.33
-            # Loop through all channels with a threshold and blure those pixels. If the threshold is not reached,
-            # increase the threshold
-
-            for i in range(3):
-                tmp_mask = mask[i] > threshold_parameter
-                # add tmp_mask to total_mask
-
-                total_mask += tmp_mask
-                # convert total_mask to boolean
-                total_mask = total_mask > 0
-                k = total_mask.sum()
-                if k > threshold:
-                    # print(k/(224*224), threshold/(224*224))
-                    break
+        # get the topk pixels
+        indices = torch.topk(mask, int(threshold)) # out is a boolean mask
+        total_mask[indices] = 1
 
         # save the total mask
         mask_list.append(total_mask)
 
     return mask_list, len(thresholds)
+
+
+
 
 
 def apply_mask_to_image(image, mask: np.array):
@@ -104,7 +95,7 @@ def apply_mask_to_image(image, mask: np.array):
     return image
 
 
-def calculate_saliency_map(model, image_path, thresholds=None, cuda=True):
+def calculate_saliency_map(model, image_path, thresholds=None, cuda=True, return_mask=False, project_path=None):
     """
     :param model: model to compute saliency maps.
     :param image_path: path to the image
@@ -112,7 +103,7 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=True):
     :return: a image with the blocked out saliency mask
     """
 
-    img = Image.open(image_path)
+    img = Image.open(project_path + '/' + image_path)
     mean = [0.485, 0.456, 0.406]
 
     # Transformer always stays the same
@@ -133,9 +124,21 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=True):
 
     saliency_map = get_saliency_image(model, pred_label_idx, transformed_img, "integrated_gradients")
 
-    masks, masks_len = generate_masks(saliency_map, thresholds=[0.3, 0.5, 0.7])
+    masks, masks_len = generate_masks(saliency_map, thresholds=thresholds)
 
-    return masks, masks_len
+    if return_mask:
+        return masks, masks_len
+    else:
+        # apply mask to image
+        for i, mask in enumerate(masks):
+            new_img = apply_mask_to_image(transformed_img.clone(), masks[i])
+            # save new image as jpeg
+            new_img = new_img.permute(1, 2, 0)
+            new_img = new_img.cpu().numpy()
+            new_img = Image.fromarray((new_img * 255).astype(np.uint8))
+            #save img as jpeg in folder threshold
+            new_img.save(project_path + '/ILSVRC' + str(int(thresholds[i]*100)) +'/' + image_path)
+
 
 # Windows
 project_path = r'C:\Users\Vik\Documents\4. Private\01. University\2022_Sem5\Intepretable_AI'
@@ -147,7 +150,6 @@ if __name__ == '__main__':
     print(torch.cuda.memory_summary(device=None, abbreviated=False))
     plot = True
     print("Running saliency Helper by vlo to test the functions")
-
 
     # use gpu if available
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -178,7 +180,7 @@ if __name__ == '__main__':
     img = Image.open(project_path + img_path)
 
     transformed_img = transform(img)
-    #send to cuda
+    # send to cuda
     transformed_img = transformed_img.to(device)
 
     input_img = torch.unsqueeze(transformed_img, 0)

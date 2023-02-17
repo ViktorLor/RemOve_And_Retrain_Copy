@@ -18,43 +18,41 @@ import torch
 import numpy as np
 import torch.distributed as dist
 from torch.multiprocessing import Process
+from PIL import Image
 
 # run saliency_helper for all images in path
 
 # LINUX PATH
-#path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/ILSVRC/Data/CLS-LOC/val'
-#Windows path:
+# path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/ILSVRC/Data/CLS-LOC/val'
+# Windows path:
 path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
+device = "cpu"
+
 world_size = 1
 
 torch.cuda.empty_cache()
 torch.cuda.synchronize()
 
-thresholds = [0.3, 0.5, 0.7]
+thresholds = [0.3, 0.5, 0.7, 0.9]
 
 model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
 model.to(device)
 model.eval()
+
 images = os.listdir(path)
 
-for image in images:
-    masks, masks_len = sal_help.calculate_saliency_map(model, path + '/' + image, thresholds=thresholds)
+for i in range(len(thresholds)):
+    if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i] * 100))):
+        os.makedirs(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
 
-    # if dir does not exist, create it
-    for i in range(len(masks)):
-        if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i]*100))):
-            os.makedirs(path + '/ILSVRC' + str(int(thresholds[i]*100)))
+for i, image in enumerate(images):
+    sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=False,
+                                                       project_path=path)
 
+    if i % 10 == 0:
+        print(i, " Image done")
 
-    for i in range(len(masks)):
-        # convert mask to np array
-        masks[i] = masks[i].numpy()
-        # save masks
-        np.save(path + '\\ILSVRC' + str(int(thresholds[i]*100)) + '\\' + image[:-5], masks[i])
-    print("Image done")
-
-
-#%%
+# %%
