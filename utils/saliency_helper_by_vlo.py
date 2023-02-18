@@ -107,7 +107,7 @@ def apply_mask_to_image(image, mask: np.array):
     return image
 
 
-def calculate_saliency_map(model, image_path, thresholds=None, cuda=True, return_mask=False, project_path=None):
+def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, return_mask=False, project_path=None):
     """
     :param model: model to compute saliency maps.
     :param image_path: path to the image
@@ -125,7 +125,7 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=True, return
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
-    device = torch.device("cuda" if cuda else "cpu")
+    device = torch.device("cuda" if cuda == 'cuda' else "cpu")
 
     transformed_img = torch.unsqueeze(transform(img), 0)
     transformed_img = transformed_img.to(device)

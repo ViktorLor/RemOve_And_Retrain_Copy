@@ -23,9 +23,9 @@ from PIL import Image
 # run saliency_helper for all images in path
 
 # LINUX PATH
-# path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/ILSVRC/Data/CLS-LOC/val'
+path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/food-101/images'
 # Windows path:
-path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
+#path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
@@ -59,7 +59,7 @@ if config == 'food101':
                 os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
 
 for i, image in enumerate(images):
-    sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=False,
+    sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
                                     project_path=path)
 
     if i % 100 == 0:
