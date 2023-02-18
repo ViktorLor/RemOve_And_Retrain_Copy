@@ -25,7 +25,7 @@ from PIL import Image
 # LINUX PATH
 path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/food-101/images'
 # Windows path:
-#path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
+# path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
@@ -49,20 +49,23 @@ if config == 'ImageNet':
         if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i] * 100))):
             os.makedirs(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
 
+    for i, image in enumerate(images):
+        sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
+                                        project_path=path)
+    if i % 10 == 0:
+        print(i, " Image done")
+
 if config == 'food101':
     folders = os.listdir(path)
-    images = []
     for folder in folders:
         images.append(os.listdir(path + '/' + folder))
+        images = []
         for i in range(len(thresholds)):
             if not os.path.exists(path + '/' + folder + str(int(thresholds[i] * 100))):
                 os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
 
-for i, image in enumerate(images):
-    sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
-                                    project_path=path)
-
-    if i % 100 == 0:
-        print(i, " Image done")
+        for i, image in enumerate(images):
+            sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
+                                            project_path=path + '/' + folder)
 
 # %%

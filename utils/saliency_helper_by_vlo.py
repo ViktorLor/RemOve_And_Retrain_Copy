@@ -150,7 +150,7 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, retur
             new_img = new_img.cpu().detach().numpy()
             # save new_img as jpeg file
             new_img = Image.fromarray((new_img * 255).astype(np.uint8))
-            new_img.save(project_path + '/ILSVRC' + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
+            new_img.save(project_path + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
 
 
 # Windows
