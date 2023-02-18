@@ -59,11 +59,11 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
 
     # add constant 0.003 to each pixel, so it's positive
     mask = mask + 0.003
-
+    device = cuda = torch.device('cuda')
     # loop over all channels with a threshold until we achieve the desired threshold
     for threshold in thresholds:
         threshold_parameter = 1.01
-        total_mask = torch.zeros((224, 224)).bool()
+        total_mask = torch.zeros((224, 224)).bool().to(device)
         k = 0
         threshold = threshold * 224 * 224  # maximum pixels blurred
         while (k < threshold - 0.01):  # 0.01 is a balancing term to avoid iteration errors
@@ -99,8 +99,9 @@ def apply_mask_to_image(image, mask: np.array):
     # return image
     image = image[0]
     image = image.permute(1, 2, 0)
-
-    image[mask] = torch.tensor([0.485, 0.456, 0.406])
+    device = torch.device('cuda')
+    
+    image[mask] = torch.tensor([0.485, 0.456, 0.406]).to(device)
 
     image = image.permute(2, 0, 1)
 
@@ -125,7 +126,7 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, retur
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
-    device = torch.device("cuda" if cuda == 'cuda' else "cpu")
+    device = torch.device("cuda")
 
     transformed_img = torch.unsqueeze(transform(img), 0)
     transformed_img = transformed_img.to(device)

@@ -57,9 +57,8 @@ if config == 'ImageNet':
 
 if config == 'food101':
     folders = os.listdir(path)
-    for folder in folders:
-        images.append(os.listdir(path + '/' + folder))
-        images = []
+    for z,folder in enumerate(folders):
+        images = os.listdir(path + '/' + folder)
         for i in range(len(thresholds)):
             if not os.path.exists(path + '/' + folder + str(int(thresholds[i] * 100))):
                 os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
@@ -68,4 +67,6 @@ if config == 'food101':
             sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
                                             project_path=path + '/' + folder)
 
+            if i%100 == 0:
+                print(i, z, "image done", len(folders))
 # %%
