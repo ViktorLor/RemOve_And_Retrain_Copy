@@ -29,8 +29,6 @@ path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepr
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
-device = 'cpu'
-world_size = 1
 
 torch.cuda.empty_cache()
 torch.cuda.synchronize()
@@ -41,20 +39,30 @@ model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.
 model.to(device)
 model.eval()
 
-images = os.listdir(path)
+config = 'ImageNet'
+config = 'food101'
 
-for i in range(len(thresholds)):
-    if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i] * 100))):
-        os.makedirs(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
-    else:
-        # delete folders
-        os.remove(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
+# create folders for the datasets
+if config == 'ImageNet':
+    images = os.listdir(path)
+    for i in range(len(thresholds)):
+        if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i] * 100))):
+            os.makedirs(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
 
-for i, image in enumerate(images[0:10]):
+if config == 'food101':
+    folders = os.listdir(path)
+    images = []
+    for folder in folders:
+        images.append(os.listdir(path + '/' + folder))
+        for i in range(len(thresholds)):
+            if not os.path.exists(path + '/' + folder + str(int(thresholds[i] * 100))):
+                os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
+
+for i, image in enumerate(images):
     sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=False,
                                     project_path=path)
 
-    if i % 10 == 0:
+    if i % 100 == 0:
         print(i, " Image done")
 
 # %%
