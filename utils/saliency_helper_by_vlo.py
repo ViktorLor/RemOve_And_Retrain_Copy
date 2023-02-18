@@ -57,16 +57,32 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
     mask = mask[0]
     mask_list = []
 
+    # add constant 0.003 to each pixel, so it's positive
+    mask = mask + 0.003
+
     # loop over all channels with a threshold until we achieve the desired threshold
     for threshold in thresholds:
-        threshold_parameter = 1
-        total_mask = torch.zeros((224, 224))
+        threshold_parameter = 1.01
+        total_mask = torch.zeros((224, 224)).bool()
         k = 0
         threshold = threshold * 224 * 224  # maximum pixels blurred
+        while (k < threshold - 0.01):  # 0.01 is a balancing term to avoid iteration errors
+            threshold_parameter = threshold_parameter * 0.8
+            # Loop through all channels with a threshold and blure those pixels. If the threshold is not reached,
+            # increase the threshold
 
-        # get the topk pixels
-        indices = torch.topk(mask, int(threshold)) # out is a boolean mask
-        total_mask[indices] = 1
+            for i in range(3):
+                tmp_mask = mask[i] > threshold_parameter
+                # add tmp_mask to total_mask
+
+                total_mask += tmp_mask
+                # convert total_mask to boolean
+                total_mask = total_mask > 0
+                k = total_mask.sum()
+                if k > threshold:
+                    # print(k/(224*224), threshold/(224*224))
+
+                    break
 
         # save the total mask
         mask_list.append(total_mask)
@@ -74,24 +90,20 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
     return mask_list, len(thresholds)
 
 
-
-
-
 def apply_mask_to_image(image, mask: np.array):
     # convert True values to ImgNet mean
-    # image = 1 *3*224*224
+    # image = 3*224*224
     # mask = 224*224
     # if mask is true, replace the pixel with the mean
     # if mask is false, keep the pixel
     # return image
-
-    # apply mask to image
     image = image[0]
     image = image.permute(1, 2, 0)
 
     image[mask] = torch.tensor([0.485, 0.456, 0.406])
 
     image = image.permute(2, 0, 1)
+
     return image
 
 
@@ -113,9 +125,9 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=True, return
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
+    device = torch.device("cuda" if cuda else "cpu")
 
     transformed_img = torch.unsqueeze(transform(img), 0)
-    device = torch.device("cuda" if cuda else "cpu")
     transformed_img = transformed_img.to(device)
 
     output = model(transformed_img)
@@ -132,12 +144,13 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=True, return
         # apply mask to image
         for i, mask in enumerate(masks):
             new_img = apply_mask_to_image(transformed_img.clone(), masks[i])
-            # save new image as jpeg
+            # save new image np file
+
             new_img = new_img.permute(1, 2, 0)
-            new_img = new_img.cpu().numpy()
+            new_img = new_img.cpu().detach().numpy()
+            # save new_img as jpeg file
             new_img = Image.fromarray((new_img * 255).astype(np.uint8))
-            #save img as jpeg in folder threshold
-            new_img.save(project_path + '/ILSVRC' + str(int(thresholds[i]*100)) +'/' + image_path)
+            new_img.save(project_path + '/ILSVRC' + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
 
 
 # Windows

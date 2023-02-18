@@ -29,14 +29,13 @@ path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepr
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
-device = "cpu"
-
+device = 'cpu'
 world_size = 1
 
 torch.cuda.empty_cache()
 torch.cuda.synchronize()
 
-thresholds = [0.3, 0.5, 0.7, 0.9]
+thresholds = [0.3, 0.5, 0.7]
 
 model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
 model.to(device)
@@ -47,10 +46,13 @@ images = os.listdir(path)
 for i in range(len(thresholds)):
     if not os.path.exists(path + '/ILSVRC' + str(int(thresholds[i] * 100))):
         os.makedirs(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
+    else:
+        # delete folders
+        os.remove(path + '/ILSVRC' + str(int(thresholds[i] * 100)))
 
-for i, image in enumerate(images):
+for i, image in enumerate(images[0:10]):
     sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=False,
-                                                       project_path=path)
+                                    project_path=path)
 
     if i % 10 == 0:
         print(i, " Image done")
