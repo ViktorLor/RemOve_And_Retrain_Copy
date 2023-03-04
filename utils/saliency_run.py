@@ -64,8 +64,14 @@ if config == 'food101':
                 os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
 
         for i, image in enumerate(images):
-            sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
-                                            project_path=path + '/' + folder)
+            try:
+                sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
+                                                project_path=path + '/' + folder)
+            except:
+                print("Error with image: ", image)
+                #write to logfile
+                with open("logfile.txt", "a") as logfile:
+                    logfile.write("Error with image: " + image)
 
             if i%100 == 0:
                 print(i, z, "image done", len(folders))

@@ -117,6 +117,8 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, retur
     """
 
     img = Image.open(project_path + '/' + image_path)
+    # use mean of food101 dataset
+
     mean = [0.485, 0.456, 0.406]
 
     # Transformer always stays the same
@@ -124,7 +126,7 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, retur
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
     ])
     device = torch.device("cuda")
 
@@ -180,7 +182,7 @@ if __name__ == '__main__':
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
     ])
 
     # load imagenet_labels
