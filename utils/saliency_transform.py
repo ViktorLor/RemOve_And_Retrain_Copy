@@ -1,5 +1,19 @@
 # coding=utf-8
 # Copyright 2023 Viktor Loreth
+"""
+food_101_params = {
+    'train_batch_size': 256,
+    'num_train_images': 75750,
+    'num_eval_images': 25250,
+    'num_label_classes': 101,
+    'num_train_steps': 20000,
+    'base_learning_rate': 0.7,
+    'weight_decay': 0.0001,
+    'eval_batch_size': 256,
+    'mean_rgb': [0.561, 0.440, 0.312],
+    'stddev_rgb': [0.252, 0.256, 0.259]
+}
+"""
 
 """Saliency helper library to compute and pre-process saliency heatmaps.
 The executable part of this file is used to test the functions. For the actual use of the functions,
@@ -119,14 +133,15 @@ def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, retur
     img = Image.open(project_path + '/' + image_path)
     # use mean of food101 dataset
 
-    mean = [0.485, 0.456, 0.406]
-
+    # used for food101
+    mean = [0.561, 0.440, 0.312]
+    std  = [0.252, 0.256, 0.259]
     # Transformer always stays the same
     transform = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
+        transforms.Normalize(mean=mean, std=std)
     ])
     device = torch.device("cuda")
 

@@ -1,5 +1,5 @@
-from saliency_helper_by_vlo import generate_masks
-from saliency_helper_by_vlo import apply_mask_to_image
+from saliency_transform import generate_masks
+from saliency_transform import apply_mask_to_image
 import torch
 # generate 3x224x224 random image
 

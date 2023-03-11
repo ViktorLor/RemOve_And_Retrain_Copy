@@ -3,7 +3,7 @@ Created on Mon Nov  4 14:50:00 2019
 
 Author: Viktor Loreth
 
-This file is used to run the saliency_helper_by_vlo.py file on all images in a given path.
+This file is used to run the saliency_transform.py file on all images in a given path.
 It is used to generate the saliency maps for the images in the ILSVRC dataset.
 The files are saved in a folder called ILSVRC30, ILSVRC50, ILSVRC70 respectively.
 
@@ -11,7 +11,7 @@ Right now we only run it on the validation set, but it can be easily adapted to 
 """
 import torchvision
 
-import saliency_helper_by_vlo as sal_help
+import saliency_transform as sal_help
 import sys
 import os
 import torch
