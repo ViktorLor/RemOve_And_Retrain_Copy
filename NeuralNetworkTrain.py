@@ -50,8 +50,8 @@ test_size = len(MyDataSet) - train_size
 train_dataset, test_dataset = torch.utils.data.random_split(MyDataSet, [train_size, test_size])
 
 # Create the dataloaders
-train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=256, shuffle=True)
+train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True).to('cuda')
+test_loader = DataLoader(test_dataset, batch_size=256, shuffle=True).to('cuda')
 # optimizer
 optimizer = optim.SGD(model.parameters(), lr=0.7, momentum=0.9, weight_decay=0.0001)
 # loss function
@@ -69,7 +69,7 @@ test_acc = []
 
 for epoch in range(1):
     for i, data in enumerate(train_loader):
-        inputs, labels = data.to('cuda')
+        inputs, labels = data
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = criterion(outputs, labels)
