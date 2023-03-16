@@ -55,7 +55,8 @@ test_loader = DataLoader(test_dataset, batch_size=256, shuffle=True)
 # optimizer
 optimizer = optim.SGD(model.parameters(), lr=0.7, momentum=0.9, weight_decay=0.0001)
 # loss function
-criterion = nn.CrossEntropyLoss()
+criterion = nn.CrossEntropyLoss().to('cuda')
+#send all  to gpu
 
 
 # train network
