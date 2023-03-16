@@ -69,7 +69,7 @@ test_acc = []
 
 for epoch in range(1):
     for i, data in enumerate(train_loader):
-        inputs, labels = data
+        inputs, labels = data.to('cuda')
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = criterion(outputs, labels)
