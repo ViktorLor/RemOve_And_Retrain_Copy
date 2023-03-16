@@ -31,6 +31,8 @@ from torch.utils.data import Dataset
 
 # load resNet50 model with pretrained weights from ImageNet
 model = torchvision.models.resnet50(pretrained=True)
+#send model togpu
+model.to('cuda')
 # create a transformer to normalize the data
 transformer = transforms.Compose([
     transforms.Resize(256),
@@ -40,7 +42,7 @@ transformer = transforms.Compose([
 ])
 
 # load the dataset
-MyDataSet = torchvision.datasets.Food101(root='./data', download=False, transform=transformer)
+MyDataSet = torchvision.datasets.Food101(root='./Data', download=False, transform=transformer)
 
 # Split the dataset into train and test
 train_size = int(0.8 * len(MyDataSet))
@@ -54,6 +56,7 @@ test_loader = DataLoader(test_dataset, batch_size=256, shuffle=True)
 optimizer = optim.SGD(model.parameters(), lr=0.7, momentum=0.9, weight_decay=0.0001)
 # loss function
 criterion = nn.CrossEntropyLoss()
+
 
 # train network
 
@@ -85,6 +88,8 @@ for epoch in range(1):
 with torch.no_grad():
     for i, data in enumerate(test_loader):
         inputs, labels = data
+        # send data to gpu
+        inputs = inputs.to('cuda')
         outputs = model(inputs)
         loss = criterion(outputs, labels)
         test_loss.append(loss.item())
