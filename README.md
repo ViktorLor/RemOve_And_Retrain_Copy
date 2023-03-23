@@ -11,10 +11,6 @@ Download some images to test saliency maps. I personally used following images:
 
 # Papers used in this notebook:
 A Benchmark for Interpretability Methods in Deep Neural Networks (https://arxiv.org/abs/1806.10758)
-Deep Residual Learning for Image Recognition (https://arxiv.org/abs/1512.03385)
-
-# Code used and copied from the following sources:
-Extracting the ImageNetData https://github.com/pytorch/examples/blob/main/imagenet/extract_ILSVRC.sh
 
 
 # Roar Implementation
@@ -23,20 +19,27 @@ The implementation varies from the original paper as I am using pytorch and capt
 
 ## Architecture:
 
-The architecture was chosen to be the ResNet18 model because it is easier.
+The architecture was chosen to be the ResNet50 model because it is easier.
 
-- Model: ResNet18, https://arxiv.org/abs/1512.03385
-- Dataset: ImageNet, http://www.image-net.org/ Downloaded with: kaggle competitions download -c imagenet-object-localization-challenge
+- Model: ResNet50, https://arxiv.org/abs/1512.03385
+- Dataset: Food101
 
 Roar constists of 3 steps:
 
-1. Train a classification model on original dataset. -> Done using the ResNET 18 weights.
+1. Train a classification model on original dataset. -> Done using the ResNET 50 weights.
 2. Use the trained model to extract attribution maps for each image.
 3. Retrain the model on the original dataset with the attribution maps as additional features. 
 
-## TODO from a code perspective
-
-- Extract the attribution maps for each image. Integrated Gradients, Gradient Saliency, Guide Backpropagation
-- Retrain the model on the original dataset with the attribution maps blanked out as additional features.
-- Calculate the accuracy of the model on the retrained model.
-
+## Model Parameters for Food 101:
+    food_101_params = {
+        'train_batch_size': 256,
+        'num_train_images': 75750,
+        'num_eval_images': 25250,
+        'num_label_classes': 101,
+        'num_train_steps': 20000,
+        'base_learning_rate': 0.7,
+        'weight_decay': 0.0001,
+        'eval_batch_size': 256,
+        'mean_rgb': [0.561, 0.440, 0.312],
+        'stddev_rgb': [0.252, 0.256, 0.259]
+    }
