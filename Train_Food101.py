@@ -31,20 +31,20 @@ transformer = transforms.Compose([
 
 # Load the Food 101 dataset
 train_dataset = torchvision.datasets.Food101(root='./Data', transform=transformer)
-
+print("Loaded Dataset")
 # Split the dataset into train and validation
 train_size = int(0.8 * len(train_dataset))
 val_size = len(train_dataset) - train_size
 train_dataset, val_dataset = torch.utils.data.random_split(train_dataset, [train_size, val_size])
 
 # Create dataloaders for training and validation data
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=256, shuffle=True)
-val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=256, shuffle=False)
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=64, shuffle=False)
 
 # Load the pre-trained ResNet50 model
-model = models.resnet50(pretrained=True)
+model = models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
 
-
+print("Loaded Weights")
 # Replace the last layer with a new fully connected layer
 num_ftrs = model.fc.in_features
 model.fc = nn.Linear(num_ftrs, 101)
@@ -56,6 +56,7 @@ model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.7, momentum=0.9, weight_decay=0.0001)
 
+print("started training model")
 
 # Train the model
 num_epochs = 10
