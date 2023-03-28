@@ -30,7 +30,7 @@ transformer = transforms.Compose([
 
 
 # Load the Food 101 dataset
-train_dataset = torchvision.datasets.Food101(root='./Data', transform=transformer)
+train_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer)
 print("Loaded Dataset")
 # Split the dataset into train and validation
 train_size = int(0.8 * len(train_dataset))
