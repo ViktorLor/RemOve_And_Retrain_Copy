@@ -1,5 +1,5 @@
 
-datasets
+data/imagnet_samples
 .idea
 archive/*
 utils/kaggle.json

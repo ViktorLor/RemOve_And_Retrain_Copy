@@ -25,7 +25,7 @@ from PIL import Image
 # LINUX PATH
 path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/food-101/images'
 # Windows path:
-# path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\datasets\\imagenet1000samples'
+# path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\imagnet_samples\\imagenet1000samples'
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
@@ -42,7 +42,7 @@ model.eval()
 config = 'ImageNet'
 config = 'food101'
 
-# create folders for the datasets
+# create folders for the imagnet_samples
 if config == 'ImageNet':
     images = os.listdir(path)
     for i in range(len(thresholds)):

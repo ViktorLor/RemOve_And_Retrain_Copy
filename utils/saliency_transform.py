@@ -201,13 +201,13 @@ if __name__ == '__main__':
     ])
 
     # load imagenet_labels
-    with open(project_path + '/datasets/imagenet_class_index.json') as f:
+    with open(project_path + '/imagnet_samples/imagenet_class_index.json') as f:
         imagenet_labels = json.load(f)
     imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
 
     from PIL import Image
 
-    img_path = r'/datasets/imagenet1000samples/n01491361_tiger_shark.JPEG'
+    img_path = r'/imagnet_samples/imagenet1000samples/n01491361_tiger_shark.JPEG'
     img = Image.open(project_path + img_path)
 
     transformed_img = transform(img)

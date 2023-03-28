@@ -1,0 +1,10 @@
+Accuracy of     0 : 100 %
+Accuracy of     1 : 97 %
+Accuracy of     2 : 95 %
+Accuracy of     3 : 96 %
+Accuracy of     4 : 100 %
+Accuracy of     5 : 92 %
+Accuracy of     6 : 96 %
+Accuracy of     7 : 100 %
+Accuracy of     8 : 98 %
+Accuracy of     9 : 97 %

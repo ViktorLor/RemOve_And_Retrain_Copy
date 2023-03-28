@@ -43,3 +43,5 @@ Roar constists of 3 steps:
         'mean_rgb': [0.561, 0.440, 0.312],
         'stddev_rgb': [0.252, 0.256, 0.259]
     }
+
+# Batches die prozessed werden;
