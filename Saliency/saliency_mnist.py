@@ -19,8 +19,8 @@ import numpy as np
 import time
 sys.path.insert(0, '../Training')
 
-# do it once for path training and path testing
-
+# torch seed
+torch.manual_seed(0)
 
 # Windows path:
 pathtrain = 'C:\\Users\Vik\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\data\\MNIST\\mod_imagestrain'
@@ -34,7 +34,7 @@ for path in [pathtrain, pathtest]:
 	torch.cuda.empty_cache()
 	torch.cuda.synchronize()
 	
-	thresholds = [0.1, 0.5, 0.9]
+	thresholds = [0.1, 0.3, 0.5]
 	
 	model = Net()
 	model.load_state_dict(torch.load('../models/mnist/original_net.pth'))
@@ -86,27 +86,29 @@ for path in [pathtrain, pathtest]:
 			# save the 0 image in folder 0
 			torchvision.utils.save_image(img, path + f'\\0\\{label}\\{i}.png')
 			
-			# calculate the integrated gradients
+			
+			
 			ig = IntegratedGradients(model)
 			# plot the saliency map ig
 			ig_attr = ig.attribute(img.unsqueeze(0), target=label)
 			# flatten ig_attr to 1D
-			ig_attr_flat = ig_attr.view(-1)
+			ig_attr_flat = torch.abs(ig_attr.view(-1))
+
 			
-			# create maska dns end to device
-			mask = torch.zeros(28, 28, dtype=torch.bool).to(device)
 			# find topk indices of most important pixels of ig_attr_flat
-			indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat) * 0.9))[1]
+			indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat) * 0.6))[1]
 			
 			for ii in range(len(thresholds)):
+				mask = torch.zeros(28, 28, dtype=torch.bool).to(device)
+				indices_tmp = indices.clone()
 				# copy the original image
 				img_masked = img.clone()
 				# split up indices to only take the top threshold % of pixels
-				indices = indices[:int(len(ig_attr_flat) * thresholds[ii])]
+				indices_tmp = indices_tmp[:int(len(ig_attr_flat) * thresholds[ii])]
 				
-				indices = torch.stack((indices // 28, indices % 28), dim=1)
+				indices_tmp = torch.stack((indices_tmp // 28, indices_tmp % 28), dim=1)
 				
-				for idx in indices:
+				for idx in indices_tmp:
 					mask[idx[0], idx[1]] = True
 				
 				# set the pixels of the image to mean value of MNIST numbers
