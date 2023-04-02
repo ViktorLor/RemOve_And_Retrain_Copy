@@ -37,7 +37,7 @@ if __name__ == "__main__":
 	torch.manual_seed(0)
 	
 	# define threshold
-	thresholds = [0.1, 0.5, 0.9]
+	thresholds = [0.1, 0.3, 0.5]
 	
 	# Define the transform to apply to the input images, transform the tensor to a 2d images
 	# normalize the images and add a channel dimension which is needed for the CNN
@@ -46,8 +46,16 @@ if __name__ == "__main__":
 		 transforms.Normalize((0.1307,), (0.3081,)),
 		 transforms.Lambda(lambda x: x[0].unsqueeze(0))])
 	
+	# if models folder does not exist, create it
+	import os
+	
+	if not os.path.exists('../models/mnist'):
+		os.makedirs('../models/mnist')
+	else:
+		print("Models folder already exists")
+		exit(1)
 	for threshold in thresholds:
-		
+		print(f"Training for threshold {threshold}")
 		# Load the training and testing data
 		# the format in the txt file is: index, label
 		# the images are in the folder: ../data/MNIST/mod_imagestrain/threshold

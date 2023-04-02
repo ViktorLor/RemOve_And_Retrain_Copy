@@ -68,7 +68,8 @@ for path in [pathtrain, pathtest]:
 			# generate a folder for each class
 			for i in range(10):
 				os.mkdir(path + f'\\{threshold}\\{i}')
-	
+	else:
+		exit(1)
 	print("Folders created")
 	# open a logfile to save the labels
 	with open(path + '\\labels.txt', 'w') as f:
