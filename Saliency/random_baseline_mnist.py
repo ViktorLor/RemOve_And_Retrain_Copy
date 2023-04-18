@@ -18,6 +18,7 @@ sys.path.append("C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem
 from Train_MNIST2 import Net
 import numpy as np
 import time
+import random
 
 # torch seed
 torch.manual_seed(0)
@@ -73,20 +74,19 @@ for path in [pathtrain, pathtest]:
 			f.write(f'{i}, {label} \n')
 			
 			# create empty 28x28 image
-			img_masked = torch.zeros(28, 28)
-			# generate indices for the pixels to be masked
-			indices = torch.randperm(28 * 28)[:int(28 * 28 * 0.9)]
+			
+			# convert to torch
 			
 			for ii in range(len(thresholds)):
 				img_tmp = img.clone()
-				
-				num_pixels = int(28 * 28 * (thresholds[ii]))
-				
-				# generate indices by taking the first num_pixels indices
-				indices = torch.randperm(28 * 28)[:num_pixels]
-				
-				# set the selected pixels to 1
-				img_masked.view(-1)[indices] = 1
+				img_masked = torch.zeros(28, 28)
+				all_indices = [(i, j) for i in range(28) for j in range(28)]
+				indices = random.sample(all_indices, k=int(thresholds[ii] * len(all_indices)))
+				# convert indices to torch
+				indices = torch.tensor(indices)
+				# use indices to mask the img
+				img_masked[indices[:, 0], indices[:, 1]] = 1
+				# print
 				
 				# set the pixels of the image to mean value of MNIST numbers
 				img_tmp = img_tmp * (1 - img_masked) + img_masked * 0.1307
@@ -95,9 +95,8 @@ for path in [pathtrain, pathtest]:
 				torchvision.utils.save_image(img_tmp, path + f'\\{thresholds[ii]}\\{label}\\{i}.png')
 			
 			# track progress
-			if i % 1000 == 0:
+			if i % 1000 == 0 and i != 0:
 				print(f'{i} images processed')
 				# print timer progress
 				print(f'{time.time() - start} seconds per image')
-	
 	print("success")

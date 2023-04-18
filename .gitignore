@@ -4,3 +4,7 @@ data/imagnet_samples
 archive/*
 archive/kaggle.json
 data
+models/mnist/integrated_gradients/models
+*.pyc
+*.pth
+*_accuracy.txt

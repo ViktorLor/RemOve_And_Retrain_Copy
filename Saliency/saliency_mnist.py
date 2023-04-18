@@ -37,7 +37,7 @@ for path in [pathtrain, pathtest]:
 	thresholds = [0.1, 0.3, 0.5,0.7,0.9]
 	
 	model = Net()
-	model.load_state_dict(torch.load('../models/mnist/original_net.pth'))
+	model.load_state_dict(torch.load('../models/mnist/integrated_gradients/models/original_net.pth'))
 	model.to(device)
 	model.eval()
 	

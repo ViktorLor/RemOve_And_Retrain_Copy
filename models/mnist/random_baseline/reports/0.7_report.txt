@@ -1,0 +1,31 @@
+Accuracy of run 0: 90.50%
+Accuracy of run 1: 90.20%
+Accuracy of run 2: 91.90%
+Accuracy of run 3: 90.90%
+Accuracy of run 4: 91.00%
+Standard deviation of run accuracy: 0.58%
+Mean accuracy for all runs combined: 90.90%
+
+Mean accuracy per class:
+Class 0: 95.80%
+Class 1: 95.40%
+Class 2: 92.20%
+Class 3: 86.00%
+Class 4: 90.00%
+Class 5: 91.80%
+Class 6: 94.00%
+Class 7: 93.80%
+Class 8: 85.20%
+Class 9: 84.80%
+
+Standard deviation per class:
+Class 0: 1.60%
+Class 1: 0.80%
+Class 2: 3.66%
+Class 3: 3.95%
+Class 4: 2.76%
+Class 5: 2.32%
+Class 6: 1.79%
+Class 7: 1.47%
+Class 8: 3.06%
+Class 9: 4.87%
