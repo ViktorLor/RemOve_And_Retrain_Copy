@@ -12,7 +12,11 @@ import itertools
 import torch
 import torchvision
 from torchvision import transforms
+import sys
+# import train
+sys.path.insert(0, '../Training')
 
+from Training.Train_MNIST import Net
 # define the function to plot the confusion matrix
 def plot_confusion_matrix(cm, classes,threshold,
                           normalize=False,
@@ -28,13 +32,15 @@ def plot_confusion_matrix(cm, classes,threshold,
 	:param cmap:
 	:return:
 	"""
+	
 	if normalize:
+		# convert Tesnor to numpy array
+		cm = cm.numpy()
 		cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
 		print("Normalized confusion matrix")
 	else:
 		print('Confusion matrix, without normalization')
 		
-	print(cm)
 	
 	plt.imshow(cm, interpolation='nearest', cmap=cmap)
 	plt.title(title)
@@ -54,13 +60,14 @@ def plot_confusion_matrix(cm, classes,threshold,
 	plt.ylabel('True label')
 	plt.xlabel('Predicted label')
 	# save the figure
-	plt.savefig(f'../results/mnist/confusion_matrix_{threshold}.png')
+	plt.savefig(f'../models/mnist/confusion_matrix_{threshold}.png')
+	plt.close()
 	
 
 path = '../models/mnist'
 
 # load the models
-thresholds = [0.1, 0.3, 0.5]
+thresholds = [0.1, 0.3, 0.5,0.7, 0.9]
 
 transform = transforms.Compose(
 	[transforms.ToTensor(),
@@ -68,9 +75,15 @@ transform = transforms.Compose(
 	 transforms.Lambda(lambda x: x[0].unsqueeze(0))])
 
 for threshold in thresholds:
-	# load models from folder
-	model = torch.load(path + f'\\{threshold}_model.pth')
-	model.eval()
+	# load weights
+	weights = torch.load(path + f'\\{threshold}_net.pth')
+	
+	# define the model
+	model = Net()
+	# load the weights
+	model.load_state_dict(weights)
+	
+	
 	# load testdata
 	testset = torchvision.datasets.ImageFolder(root=f'../data/MNIST/mod_imagestest/{threshold}',
 	                                           transform=transform)
@@ -94,14 +107,15 @@ for threshold in thresholds:
 		# update the confusion matrix
 		for t, p in zip(labels.view(-1), predicted.view(-1)):
 			confusion_matrix[t.long(), p.long()] += 1
-		# update the accuracy
-		accuracy += torch.sum((predicted == labels).float())
-		# update the number of images
-		for l in labels:
-			n_images[l] += 1
+		# update the accuracy in %
+		for i in range(len(labels)):
+			n_images[labels[i]] += 1
+			if labels[i] == predicted[i]:
+				accuracy[labels[i]] += 1
+
 	
-	# calculate the accuracy of each class
-	accuracy = accuracy / n_images
+	# calculate the accuracy in %
+	accuracy = accuracy / n_images * 100
 	# calculate the average accuracy
 	avg_accuracy = torch.mean(accuracy)
 	# calculate the standard deviation
@@ -114,5 +128,6 @@ for threshold in thresholds:
 		f.write(f'Average accuracy: {avg_accuracy}\n')
 		
 	# plot the confusion matrix
-	plot_confusion_matrix(confusion_matrix, range(10), threshold)
+	if True:
+		plot_confusion_matrix(confusion_matrix, range(10), threshold, normalize=True)
 	

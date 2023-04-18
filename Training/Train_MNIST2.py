@@ -33,11 +33,14 @@ class Net(nn.Module):
 
 if __name__ == "__main__":
 	
+	#device
+	device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+	
 	# define seed
 	torch.manual_seed(0)
 	
 	# define threshold
-	thresholds = [0.1, 0.3, 0.5]
+	thresholds = [0.1, 0.3, 0.5, 0.7, 0.9]
 	
 	# Define the transform to apply to the input images, transform the tensor to a 2d images
 	# normalize the images and add a channel dimension which is needed for the CNN
@@ -52,8 +55,11 @@ if __name__ == "__main__":
 	if not os.path.exists('../models/mnist'):
 		os.makedirs('../models/mnist')
 	else:
+		
 		print("Models folder already exists")
-		exit(1)
+		if input("Do you want to continue? (y/n)") == "n":
+			exit(1)
+		
 	for threshold in thresholds:
 		print(f"Training for threshold {threshold}")
 		# Load the training and testing data
@@ -75,13 +81,19 @@ if __name__ == "__main__":
 		net = Net()
 		criterion = nn.CrossEntropyLoss()
 		optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+		#send to device
+		net.to(device)
 		
 		print("Start Trainign")
 		# Train the CNN for 10 epochs
 		for epoch in range(10):
 			running_loss = 0.0
 			for i, data in enumerate(trainloader, 0):
+				# get the inputs
 				inputs, labels = data
+				inputs = inputs.to(device)
+				labels = labels.to(device)
+				# zero the parameter gradients
 				optimizer.zero_grad()
 				outputs = net(inputs)
 				loss = criterion(outputs, labels)
@@ -101,6 +113,8 @@ if __name__ == "__main__":
 		with torch.no_grad():
 			for data in testloader:
 				images, labels = data
+				images = images.to(device)
+				labels = labels.to(device)
 				outputs = net(images)
 				_, predicted = torch.max(outputs, 1)
 				c = (predicted == labels).squeeze()
