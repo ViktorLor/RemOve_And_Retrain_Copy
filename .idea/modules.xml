@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file:////wsl.localhost/Ubuntu/home/vik/DeepRL/.idea/DeepRL.iml" filepath="//wsl.localhost/Ubuntu/home/vik/DeepRL/.idea/DeepRL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../DeepReinforcementLearning/.idea/DeepReinforcementLearning.iml" filepath="$PROJECT_DIR$/../DeepReinforcementLearning/.idea/DeepReinforcementLearning.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Intepretable_AI.iml" filepath="$PROJECT_DIR$/.idea/Intepretable_AI.iml" />
     </modules>
   </component>

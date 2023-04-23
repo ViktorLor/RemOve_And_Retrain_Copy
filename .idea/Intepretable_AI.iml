@@ -4,6 +4,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.9 (reex)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="DeepReinforcementLearning" />
+    <orderEntry type="module" module-name="DeepRL" />
   </component>
   <component name="PyNamespacePackagesService">
     <option name="namespacePackageFolders">
