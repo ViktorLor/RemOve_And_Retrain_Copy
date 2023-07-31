@@ -17,6 +17,7 @@ from captum.attr import IntegratedGradients
 from Training.Train_MNIST import Net
 import numpy as np
 import time
+
 sys.path.insert(0, '../Training')
 
 # torch seed
@@ -34,7 +35,7 @@ for path in [pathtrain, pathtest]:
 	torch.cuda.empty_cache()
 	torch.cuda.synchronize()
 	
-	thresholds = [0.1, 0.3, 0.5,0.7,0.9]
+	thresholds = [0.1, 0.3, 0.5, 0.7, 0.9]
 	
 	model = Net()
 	model.load_state_dict(torch.load('../models/mnist/integrated_gradients/models/original_net.pth'))
@@ -75,7 +76,7 @@ for path in [pathtrain, pathtest]:
 	with open(path + '\\labels.txt', 'w') as f:
 		# iterate over all images in the trainset
 		for i in range(len(trainset)):
-			#start timer
+			# start timer
 			start = time.time()
 			# get the image an the label
 			img, label = trainset[i]
@@ -87,14 +88,11 @@ for path in [pathtrain, pathtest]:
 			# save the 0 image in folder 0
 			torchvision.utils.save_image(img, path + f'\\0\\{label}\\{i}.png')
 			
-			
-			
 			ig = IntegratedGradients(model)
 			# plot the saliency map ig
 			ig_attr = ig.attribute(img.unsqueeze(0), target=label)
 			# flatten ig_attr to 1D
 			ig_attr_flat = torch.abs(ig_attr.view(-1))
-
 			
 			# find topk indices of most important pixels of ig_attr_flat
 			indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat) * 0.91))[1]
@@ -120,7 +118,7 @@ for path in [pathtrain, pathtest]:
 			# track progress
 			if i % 1000 == 0:
 				print(f'{i} images processed')
-				#print timer progress
+				# print timer progress
 				print(f'{time.time() - start} seconds per image')
 	
 	print("success")

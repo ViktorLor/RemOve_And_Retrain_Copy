@@ -3,7 +3,9 @@ Created on Mon Nov  4 14:50:00 2019
 
 Author: Viktor Loreth
 
-This file is used to create a random baseline for the saliency maps.
+This file is used to create a random baseline for the saliency maps. The output are images with a random mask applied
+which masks x% of the image. The images are saved in the folder ../data/MNIST/randombaseline_imagestest and
+../data/MNIST/randombaseline_imagestrain.
 
 """
 import sys
@@ -16,6 +18,7 @@ from captum.attr import IntegratedGradients
 # load model from ../Training/Train_Mnist.py
 sys.path.append("C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\Training")
 from Train_MNIST2 import Net
+
 import numpy as np
 import time
 import random
@@ -73,9 +76,6 @@ for path in [pathtrain, pathtest]:
 			# save the label in the logfile and end the line
 			f.write(f'{i}, {label} \n')
 			
-			# create empty 28x28 image
-			
-			# convert to torch
 			
 			for ii in range(len(thresholds)):
 				img_tmp = img.clone()

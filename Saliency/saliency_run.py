@@ -24,6 +24,7 @@ from PIL import Image
 
 # LINUX PATH
 path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/food-101/images'
+
 # Windows path:
 # path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\imagnet_samples\\imagenet1000samples'
 

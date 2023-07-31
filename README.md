@@ -24,7 +24,7 @@ The architecture was chosen to be the ResNet50 model because it is easier.
 - Model: ResNet50, https://arxiv.org/abs/1512.03385
 - Dataset: Food101
 
-Roar constists of 3 steps:
+Roar consists of 3 steps:
 
 1. Train a classification model on original dataset. -> Done using the ResNET 50 weights.
 2. Use the trained model to extract attribution maps for each image.
@@ -44,4 +44,34 @@ Roar constists of 3 steps:
         'stddev_rgb': [0.252, 0.256, 0.259]
     }
 
-# Batches die prozessed werden;
+
+The project is saved in following structure:
+
+1. archive
+    - contains deprecated code and playgrounds
+2. data
+    - contains the datasets for the project
+    - the datasets are not included in the repository, they need to be downloaded
+    - the altered datasets are saved in the respective folder
+    - data/mnist
+      - mod_imagestest: modified mnist test dataset. saved with 0.1, 0,3, 0.5, 0.7, 0.9
+      - mod_imagestrain: modified mnist training dataset
+      - mod_randomtest: randomly modified mnist test dataset
+      - mod_randomtrain: randomly modified mnist training dataset
+      - raw: original data downloaded
+3. DatasetandMaskLoadingCalculatinons
+    - Contains scripts to load the datasets and applying the mask on the fly and calculations
+4. Feedback
+    - contains the feedback for the project report
+5. Latex
+    - contains the latex files for the project report
+6. models
+    - contains the models and the respective accuracy and loss plots
+7. Papers
+    - contains the papers used for the project
+8. Reporting
+   - contains additional scripts to generate plots and accuracy tables
+9. Saliency
+    - Is used to create the saliency blocked images for the datasets -> Old Approach which saves all images 
+10. Training
+    - contains the training scripts for the models

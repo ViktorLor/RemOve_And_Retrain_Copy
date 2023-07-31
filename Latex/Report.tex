@@ -24,50 +24,80 @@ viktor.loreth@protonmail.com}
 \maketitle
 
 \begin{abstract}
-This report investigates the use of saliency maps in deep learning for image recognition and evaluates the effectiveness of the integrated gradient method for identifying important pixels in the MNIST dataset. In current deep learning models, it is often challenging to understand the decision-making process, making saliency maps a popular method for interpreting the importance of input features. "Remove and Retrain" tries to solve this problem by offering a numerical evaluation method. 
+This report investigates the use of attribution maps in deep learning for image recognition and evaluates the effectiveness of the integrated gradient method for identifying important pixels in the MNIST dataset. In current deep learning models, it is often challenging to understand the decision-making process, making attribution maps a popular method for interpreting the importance of input features. "Remove and Retrain" offers a numerical evaluation method to evaluate attribution maps.
 \end{abstract}
 
 
 \section{Scientific Motivation and Goal}
-Artificial neural networks have become increasingly complex in recent years, with the rise of deep learning leading to models with billions of parameters. These models have been successful in achieving state-of-the-art results on various tasks, including image recognition, natural language processing, and speech recognition. However, as these models become more complex, they also become more difficult to interpret. Creating accurate saliency maps is not a trivial task, particularly for complex models with many parameters. Several methods have been proposed for generating saliency maps, including gradient-based methods, perturbation-based methods, and activation-based methods. The effectiveness of these methods can vary depending on the model architecture, the input data, and the specific task. Evaluating saliency methods is not easy due to the lack of a ground truth or reference saliency map to compare against. This is because there are often multiple valid interpretations of a given input, and what might be salient to one observer may not be salient to another. Remove and Retrain is the state of the art method to evaluate saliency maps.
+Artificial neural networks have become increasingly complex in recent years, with the rise of deep learning leading to models with billions of parameters. These models have been successful in achieving state-of-the-art results on various tasks, including image recognition, natural language processing, and speech recognition. However, as these models become more complex, they also become more difficult to interpret. Creating accurate attribution maps is not a trivial task, particularly for complex models with many parameters. A well-defined attribution map highlights crucial inputs while presenting the model's response in a human-readable format. Several methods have been proposed for generating attribution maps, including gradient-based methods \cite{1_Integrated Gradient}, perturbation-based methods \cite{2_Perturbation}, and activation-based methods\cite{3_Activation}. The effectiveness of these methods can vary depending on the model architecture, the input data, and the specific task. Evaluating attribution maps is not easy due to the lack of a ground truth or reference attribution maps to compare against. Remove and Retrain is the state of the art method to evaluate attribution maps. In this report, the method is applied for Integrated Gradients on the MNIST dataset. The goal is to evaluate Integrated Gradients and reconstruct the results from the original ROAR paper.
 
 
 \subsection{Trying out various methods}
 
-At the beginning of this project, several datasets were considered for training saliency models, including ImageNet, Food101, and MNIST. The sheer size of ImageNet\cite{ImageNet} presented significant computational challenges, as creating a baseline and altered datasets alone required saving a big amount of data. Additionally, generating saliency maps for this dataset and training the resNet50 model 50 times would have been too expensive considering the scope of the project.
- While Food101 offered a more manageable 50GB of data, generating saliency maps using resNET50\cite{ResNet50} and training the models took too long for the available hardware. Ultimately, the MNIST dataset\cite{MNIST} was selected for its ease of training, ease of creating other datasets, and the potential for rapid results.
+At the beginning of this project, several datasets were considered for applying ROAR, including ImageNet, Food101, and MNIST. The sheer size of ImageNet\cite{4_ImageNet} presented significant computational challenges, as creating a baseline and altered datasets alone required saving a big amount of data. Additionally, generating attribution maps for this dataset and training the resNet50 \cite{5_ResNet50} model 50 times would have been too expensive considering the scope of the project.
+While Food101\cite{6_Food101} offered a more manageable 50GB of data, generating attribution maps using resNET50 and training the models took too long for the available hardware. Ultimately, the MNIST dataset\cite{7_MNIST} was selected for its ease of training, ease of creating other datasets, and the potential for rapid results.
+
+\section{Theoretical Background}
+One fundamental challenge rating attribution maps is the lack of a ground truth for comparison. ROAR proposes a numerical solution to evaluate attribution maps. 
+RoaR \cite{8_RoaR} works as follows:
+\begin{enumerate}
+	\item[1.)] Selection of the most important pixels from an attribution map\\
+	An attribution map provides a mapping to the most important pixels. Those pixels are ranked based on their importance. Depending on the algorithm, different values differ on the importance. In the case of Integrated Gradient, the pixels with the highest absolute values are considered the most important.
+	\item[2.)] Replacement of x\% of the pixels with the mean value\\
+	In the Roar algorithm, 0.1, 0.3, 0.5, 0.7 or 0.9 \% of the most important pixels are identified and replaced by the mean value. Both the training and the testing data undergo this process.
+	\item[3.)] Retraining the model using the modified dataset\\
+	To ensure the consistency of the model, retraining is necessary. Afterwards, the model is evaluated using several seed runs on the test set. The same split should be used for all runs.
+	This is crucial, because the training data and the test data must be drawn from the same distribution. Without retraining the model this property is ignored.
+	\item[4.)] Comparison of the attribution map with a random baseline \\
+	For each training setup, respectively with 0.1, 0.3, 0.5, 0.7 or 0.9 \% pixels replaced, a random baseline is considered. The random baseline also replaces the same percentage of pixels. The random baseline is expected to perform worse than a sophisticated method.
+	\item[5.)] Evaluation \\
+	An attribution method is deemed effective, if it consistently outperforms the random baseline across various setups.
+\end{enumerate}
+
 
 \section{Training}
-
 \subsection{Training the model}
-The model used in this study is a simple convolutional neural network architecture consisting of two convolutional layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. Across five separate runs, the model achieved an average accuracy of 98\% on the test data.
+The model used in this report is a simple convolution neural network architecture consisting of two convolution layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and a SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of 97.4\% with a standard deviation of 0.4\% on the test data.
 
-\subsection{Dataset preparation and Splitting}\label{AA}
-The dataset used in this report was normalized using the mean and standard deviation, and was split using the PyTorch library's default splitting method. The cross entropy loss was selected. The same dataset split was used for all training iterations to ensure consistency in the results.
+\subsection{Data set preparation and Splitting}\label{AA}
 
-\section{Retraining on saliency maps}
+The MNIST data set consists of 10 classes and 70.000 different images. It was chosen, because it is easy to evaluate the effectiveness of integrated gradients and ROAR: a) The importance of the pixels is clear from a human perspective. b) The model required to achieve a solid performance is very modest and speeds up the retraining. c) The information loss in retraining is clearly see able in the pictures.\\ Furthermore, it is a small, usable data set. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in the gray-scale.
+The data set used in this report was normalized using the mean and standard deviation, and was split using the PyTorch library's default splitting method (60.000 images for the training data, 10.000 images for the test data). The training data was shuffled randomly using the inbuilt functions.  Cross entropy loss was selected for training runs. The same data set split was used for all training runs to ensure consistency in the results.
 
-\subsection{Generating the new datasets}
-To evaluate the performance of various datasets, the integrated gradient method was utilized. A set of thresholds was defined, and the x\% most significant pixels were replaced with the mean value of the MNIST dataset. The saliency maps were utilized to identify the most critical pixels by evaluating their absolute values and selecting the highest ones. The implementation was done using the captum library.
 
-\begin{enumerate}
-	    \item[1.)] Replacement with the mean value
-	
-	To ensure that replacing a pixel is meaningful for any kind of pixel the mean value is taken. By taken any other value which is closer to black or white pixels, removing the respective pixel does not change the picture.
-	
-		\item[2.)] Why retraining is required
-	
-	One main property of machine learning is that the training data and the test data must be drawn from the same distribution. Without retraining the model this property is ignored as mentioned in \cite{RoaR}.
-	
-\end{enumerate}
+\subsection{Example of the new dataset}
+
+In Figure 1 the difference between Integrated Gradients and the Random Baseline is visible. In the first row the random baseline is visible, in the second row Integrated Gradients is shown. [0.1,0.3,0.5,0.7,0.9\%] of the pixels are blacked out (left to right).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/IGvsRandom.png}
+	\caption{Integrated Gradients and Random Baseline Comparison}
+	\label{fig:igvsR}
+\end{figure}
+
+ As visible by human intuition, Integrated Gradients is appearing to perform better over all thresholds. The model is expected to perform worse following retraining.
 
 \subsection{Retraining upon the new datasets}
 
-To ensure that the model learns consistently, the same split and learning parameters were utilized as in the standard case to retrain the model on the new dataset. An unweighted network was created and then retrained for each training run. In order to validate the results and minimize the impact of random seed initialization, the training was performed with 5 different seeds and 5 models were created.
+To ensure that the model learns consistently, the same split and learning parameters were utilized as in the standard case to retrain the model on the new data set. An untrained network was created and then retrained for each training run. In order to validate the results and minimize the impact of random seed initialization, the training was performed with 5 different seeds and 5 models were created. In the Appendix the exact results can be found. 
+
+\subsection{Advantages and Disadvantages of the setup}
+
+Because of the small size of the data set and the limited amount of classes, training a model is fast and effective. \\
+One disadvantage is the limited generalization of this setup for other datasets and models. The majority of use cases primarily involve working with images in the RGB color space, utilizing deep learning models that are often more complex, and dealing with a larger number of distinct classes. Furthermore, the pixels itself are blurred on their importance. In RGB images 3 channels are combined, which make attribution maps more difficult to compute and understand. 
+
 
 \section{Results}
 
-To compare the effectiveness of the saliency map, it was compared to a random baseline, which masked x\% of the pixels randomly.
+To compare the effectiveness of the attribution map, it was compared to a random baseline, which masked x\% of the pixels randomly. The expected result is a consistently higher accuracy in the random baseline vs the Integrated Gradients. This should show in any \% of pixels blocked out.
+If an attribution maps blocks out sufficiently enough pixels which are informative for the model, then the accuracy should decline. The random baseline should, in comparison, find less important pixels more frequently and therefore have a higher accuracy.
+
+
+\subsection{Interpretation of results}
+
+In Fig 2 it is shown that Integrated Gradients learns significantly worse than the Random Baseline and at 90\% of the pixels removed the performance is as good as a random guess: 10\%. This implies that Integrated Gradient is a better attribution map than the random baseline.
+
 
 \begin{figure}[h]
 	\centering
@@ -75,6 +105,11 @@ To compare the effectiveness of the saliency map, it was compared to a random ba
 	\caption{Mean Accuracy vs Threshold}
 	\label{fig:mean_accuracy}
 \end{figure}
+
+
+\newpage
+
+The increasing standard deviation (Table 1) indicates that the model can no longer learn reliably, suggesting that it is identifying arbitrary new structures in the images that it interprets incorrectly. While adjusting the learning parameters may improve scores, it is clear that accuracy is lower than at other thresholds.
 
 \begin{table}[ht]
 	\centering
@@ -91,26 +126,64 @@ To compare the effectiveness of the saliency map, it was compared to a random ba
 	\label{tab:std_deviation}
 \end{table}
 
-In this plot one can see that Integrated Gradients learns significantly worse than the Random Baseline and at 90\% of the pixels removed the performance is as good as a random guess: 10\%.
+In the Appendix the precision of the models are presented. For the integrated gradient method there exist a higher standard deviation and a lower precision, which means that the models are not able to learn reliably anymore. On the other hand, the random baseline still has a very good performance even after removing 90\% of the pixels.
 
 
+\subsection{Are the results meaningful?}
 
-\subsection{Interpretation of results}
+Due to the fact, that the accuracy declines so slowly, it is unclear if the results given are really meaningful. Furthermore, there is no real threshold. To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors should be considered \cite{8_RoaR}:
 
-The rising standard deviation indicates that the model is not able to learn reliably anymore. This implies that the model finds arbitrary new structures in the images which is interpreted wrongly. The learning parameters could be adapted to improve the scores, but it is clear that the accuracy is lower than in the other thresholds.
-\\
-In the Appendix the precision of the models are shown. For the integrated gradient method there exist a higher std deviations and lower precision, which means that the models are not able to learn reli anymore.
 
-The RoaR method can effectively proof for the MNIST dataset if integrated gradients do indeed show important pixels. Contrary to the results in \cite{RoaR}, Integrated Gradient is successfully finding meaningful pictures. This could be due to the huge size of the ResNET50 model, but more investigation is needed to make a proper statement.
+\begin{enumerate}
+	\item[1.)] Input dimensions are removed and the accuracy drops:
+	
+	The removed input were informative for the model and their absence reduces the ability of the model to identify the right class.
+	
+	\item[2.)] We remove inputs and the accuracy does not drop.
+	\\
+	(a)  It is possible that the removed input dimensions were not important for the model's decision-making process. The attribution map failed to identify important features, such as pixels on the image borders in the case of MNIST.
+	(b) The input could be redundant and the information be reconstructed using other available inputs. In the scenario where nine white surrounding pixels are white and one blurred pixel is in the middle, the network still recognizes the blurred features, even if it is removed from the input.
+\end{enumerate}
+
+The ROAR method effectively demonstrates the better performance of Integrated Gradients as an attribution map against a random baseline on the MNIST dataset. Contrary to the results in \cite{8_RoaR}, Integrated Gradient is successfully finding meaningful pixels. This may be attributed to the large size of the ResNET50 model, but more investigation is needed to make a proper statement. 
 
 
 \begin{thebibliography}{00}
-\bibitem{RoaR} Sara Hooker, Dumitru Erhan, Pieter-Jan Kindermans and Been Kim, ``A Benchmark for Interpretability Methods in Deep Neural Networks'' Google Brain, 33rd Conference on Neural Information Processing Systems (NeurIPS 2019), 5 Nov 2019.
-\bibitem{Integrated Gradient} Mukund Sundararajan, Ankur Taly and Quiqi Yan,``Axiomatic Attribution for Deep Networks'', Proceedings of the 34 th International Conference on Machine Learning, Sydney, Australia, PMLR 70, 2017. 
-\bibitem{MNIST} L. Deng, "The MNIST Database of Handwritten Digit Images for Machine Learning Research [Best of the Web]," in IEEE Signal Processing Magazine, vol. 29, no. 6, pp. 141-142, Nov. 2012, doi: 10.1109/MSP.2012.2211477.
-\bibitem{ResNet50} Kaiming He, Xiangyu Zhang, Shaoqing Ren and  Jian Sun, ``Deep Residual Learning for Image Recognition'', 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), June 2016 
-\bibitem{ImageNet} Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li and Li Fei-Fei, ``ImageNet: A Large-Scale Hierarchical Image Database'', IEEE Conference on Computer Vision and Pattern Recognition 2009
-\bibitem{Food101} Lukas Bossard, Guillaumin Matthieu and Luc Van Gool, ``Food-101 -- Mining Discriminative Components with Random Forests'', IEuropean Conference on Computer Vision 2014
+	
+\bibitem{1_Integrated Gradient} M. Sundararajan, A. Taly, and Q. Yan, "Axiomatic Attribution for Deep Networks," in \textit{Proceedings of the 34th International Conference on Machine Learning, {ICML} 2017, Sydney, NSW, Australia, 6-11 August 2017}, pp. 3319-3328, 2017. Available: http://proceedings.mlr.press/v70/sundararajan17a.html
+	
+\bibitem{2_Perturbation} 
+Ribeiro, M. T., Singh, S., Guestrin C., "Why Should {I} Trust You?": Explaining the Predictions of Any Classifier", Proceedings of the 22nd {ACM} {SIGKDD} International Conference on Knowledge Discovery and Data Mining, San Francisco, CA, USA, August
+13-17, 2016, Available: https://doi.org/10.1145/2939672.2939778
+
+\bibitem{3_Activation} 
+Ramprasaath R. Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh and Dhruv Batr, "Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization", Int. J. Comput. Vis., Vol: 128, 336--359, 2020, Available: https://doi.org/10.1007/s11263-019-01228-7
+
+\bibitem{4_ImageNet} J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "ImageNet: A large-scale hierarchical image database," in \textit{2009 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR 2009), 20-25 June 2009, Miami, Florida, USA}, pp. 248-255, 2009. doi: 10.1109/CVPR.2009.5206848. Available: https://doi.org/10.1109/CVPR.2009.5206848
+
+\bibitem{5_ResNet50} K. He, X. Zhang, S. Ren, and J. Sun, "Deep Residual Learning for Image Recognition," in \textit{2016 IEEE Conference on Computer Vision and Pattern Recognition, CVPR 2016, Las Vegas, NV, USA, June 27-30, 2016}, pp. 770-778, 2016. doi: 10.1109/CVPR.2016.90. Available: https://doi.org/10.1109/CVPR.2016.90
+
+\bibitem{6_Food101} L. Bossard, M. Guillaumin, and L. Van Gool, "Food-101 - Mining Discriminative Components with Random Forests," in \textit{Computer Vision - ECCV 2014 - 13th European Conference, Zurich, Switzerland, September 6-12, 2014, Proceedings, Part VI}, pp. 446-461, 2014. doi: 10.1007/978-3-319-10599-4\_29. Available: https://doi.org/10.1007/978-3-319-10599-4\_29
+
+
+
+\bibitem{7_MNIST} 
+L. Deng, "The {MNIST} Database of Handwritten Digit Images for Machine Learning Research [Best of the Web]," \textit{IEEE Signal Process. Mag.}, vol. 29, no. 6, pp. 141-142, 2012. doi: 10.1109/MSP.2012.2211477. Available: https://doi.org/10.1109/MSP.2012.2211477
+	
+\bibitem{8_RoaR} S. Hooker, D. Erhan, P.-J. Kindermans, and B. Kim, "A Benchmark for Interpretability Methods in Deep Neural Networks," in \textit{Advances in Neural Information Processing Systems 32: Annual Conference on Neural Information Processing Systems 2019, NeurIPS 2019, December 8-14, 2019, Vancouver, BC, Canada}, H. M. Wallach et al. (Eds.), pp. 9734-9745, 2019. Available: https://proceedings.neurips.cc/paper/2019/hash/fe4b8556000d0f0cae99d\\aa5c5c5a410-Abstract.html
+% To reformat
+
+
+
+
+
+
+
+
+
+
+
+
 \end{thebibliography}
 \onecolumn
 \newpage

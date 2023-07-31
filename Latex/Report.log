@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.10)  23 APR 2023 15:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.10)  8 MAY 2023 14:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -321,18 +321,75 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-<figs/mean_accuracy_vs_threshold.png, id=9, 462.528pt x 346.896pt>
-File: figs/mean_accuracy_vs_threshold.png Graphic file (type png)
-<use figs/mean_accuracy_vs_threshold.png>
-Package pdftex.def Info: figs/mean_accuracy_vs_threshold.png  used on input lin
-e 74.
-(pdftex.def)             Requested size: 258.0pt x 193.50879pt.
+<figs/IGvsRandom.png, id=9, 1133.73563pt x 313.17pt>
+File: figs/IGvsRandom.png Graphic file (type png)
+<use figs/IGvsRandom.png>
+Package pdftex.def Info: figs/IGvsRandom.png  used on input line 74.
+(pdftex.def)             Requested size: 258.0pt x 71.26778pt.
 
 Overfull \hbox (6.0pt too wide) in paragraph at lines 74--75
  [][] 
  []
 
-[2 <./figs/mean_accuracy_vs_threshold.png>]
+<figs/mean_accuracy_vs_threshold.png, id=10, 462.528pt x 346.896pt>
+File: figs/mean_accuracy_vs_threshold.png Graphic file (type png)
+<use figs/mean_accuracy_vs_threshold.png>
+Package pdftex.def Info: figs/mean_accuracy_vs_threshold.png  used on input lin
+e 104.
+(pdftex.def)             Requested size: 258.0pt x 193.50879pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 104--105
+ [][] 
+ []
+
+[2 <./figs/IGvsRandom.png> <./figs/mean_accuracy_vs_threshold.png>]
+Underfull \hbox (badness 6125) in paragraph at lines 153--154
+[]\OT1/ptm/m/n/8 M. Sun-darara-jan, A. Taly, and Q. Yan, "Ax-iomatic At-tri-bu-
+
+ []
+
+
+Underfull \hbox (badness 4940) in paragraph at lines 153--154
+\OT1/ptm/m/n/8 tion for Deep Net-works," in \OT1/ptm/m/it/8 Pro-ceed-ings of th
+e 34th In-ter-
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 153--154
+\OT1/ptm/m/it/8 na-tional Con-fer-ence on Ma-chine Learn-ing, ICML 2017, Syd-ne
+y,
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 162--163
+\OT1/ptm/m/n/8 "Im-a-geNet: A large-scale hi-er-ar-chi-cal im-age database," in
+ \OT1/ptm/m/it/8 2009
+ []
+
+
+Underfull \hbox (badness 5231) in paragraph at lines 173--175
+\OT1/ptm/m/n/8 mark for In-ter-pretabil-ity Meth-ods in Deep Neu-ral Net-works,
+"
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 173--175
+\OT1/ptm/m/n/8 in \OT1/ptm/m/it/8 Ad-vances in Neu-ral In-for-ma-tion Pro-cess-
+ing Sys-tems 32: An-
+ []
+
+
+Underfull \hbox (badness 3148) in paragraph at lines 173--175
+\OT1/ptm/m/it/8 NeurIPS 2019, De-cem-ber 8-14, 2019, Van-cou-ver, BC, Canada\OT
+1/ptm/m/n/8 ,
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 173--175
+\OT1/ptm/m/n/8 H. M. Wal-lach et al. (Eds.), pp. 9734-9745, 2019. Avail-able:
+ []
+
+[3]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -344,26 +401,26 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
+[4
 
 ] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 4236 strings out of 475385
- 67453 string characters out of 2777851
- 439287 words of memory out of 3000000
- 25581 multiletter control sequences out of 15000+600000
- 508515 words of font info for 107 fonts, out of 8000000 for 9000
+ 4248 strings out of 475385
+ 67690 string characters out of 2777851
+ 439302 words of memory out of 3000000
+ 25591 multiletter control sequences out of 15000+600000
+ 509651 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,62p,1189b,333s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 55i,11n,62p,1434b,333s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/bas
 e/8r.enc}<C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb
 8a.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8
 a.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.
 pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.p
 fb>
-Output written on Report.pdf (3 pages, 92902 bytes).
+Output written on Report.pdf (4 pages, 121557 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
+ 40 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

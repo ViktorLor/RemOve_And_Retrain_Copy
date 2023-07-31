@@ -18,7 +18,8 @@ torch.manual_seed(0)
 
 # Set device to GPU if available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
+# Not enough memory on GPu, so use CPU
+device = torch.device("cpu")
 # Define transforms for training and validation data
 transformer = transforms.Compose([
     transforms.Resize(256),
@@ -62,6 +63,8 @@ print("started training model")
 num_epochs = 10
 for epoch in range(num_epochs):
     running_loss = 0.0
+    # print epoch
+    print("Epoch: ", epoch+1)
     for i, data in enumerate(train_loader, 0):
         # Get the inputs and labels
         inputs, labels = data
@@ -78,7 +81,7 @@ for epoch in range(num_epochs):
 
         # Print statistics
         running_loss += loss.item()
-        if i % 100 == 99:
+        if i % 10 == 9:
             print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
             running_loss = 0.0
 

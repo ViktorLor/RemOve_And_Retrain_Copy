@@ -1,5 +1,6 @@
 """
-Trains MNIST on a modified dataset with missing pixels
+Trains MNIST on a modified dataset with missing pixels.
+The outputs are 5*5 models, one for each threshold and 5 for each run to get a better estimate of the accuracy.
 
 """
 

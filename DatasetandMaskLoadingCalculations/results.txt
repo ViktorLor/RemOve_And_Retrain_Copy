@@ -1,0 +1,6 @@
+Date: 2023-07-31 09:42:52.565036
+Number of batches: 100
+Method 1: Time to load 13 batches of images(batchsize=64) to gpu using a simple dataloader: 42.27475333213806 s
+Method 2: Time to load 13 batches of images(batchsize=64) to gpu using a simple dataloader and applying the mask: 42.7700777053833 s
+Method 3: Time to load 13 batches of images(batchsize=64) to gpu using a simple dataloader and applying the mask on the gpu: 38.00499105453491 s
+Method 4: Time to load 13 batches of images(batchsize=64) to gpu using a simple dataloader and applying the mask and the mask generation operation on the gpu: 38.23656940460205 s

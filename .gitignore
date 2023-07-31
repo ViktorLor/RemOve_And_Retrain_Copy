@@ -8,3 +8,6 @@ models/mnist/integrated_gradients/models
 *.pyc
 *.pth
 *_accuracy.txt
+*.pt
+*.dat
+*.png
