@@ -14,7 +14,7 @@ import torch
 from torchvision import transforms
 from captum.attr import IntegratedGradients
 # load model from ../Training/Train_Mnist.py
-from Training.Train_MNIST import Net
+from Training.Train_MNIST_SimpleCNN_original_Dataset import Net
 import numpy as np
 import time
 

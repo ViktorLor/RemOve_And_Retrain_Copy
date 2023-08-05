@@ -82,7 +82,7 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
         threshold = threshold * 224 * 224  # maximum pixels blurred
         while (k < threshold - 0.01):  # 0.01 is a balancing term to avoid iteration errors
             threshold_parameter = threshold_parameter * 0.8
-            # Loop through all channels with a threshold and blure those pixels. If the threshold is not reached,
+            # Loop through all channels with a threshold and blur those pixels. If the threshold is not reached,
             # increase the threshold
 
             for i in range(3):

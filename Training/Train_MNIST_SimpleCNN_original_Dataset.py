@@ -1,7 +1,7 @@
 """
 Trains MNIST on the official dataset. The model is saved in the models folder.
 Does 5 evaluations.
-Only 1 model is saved, as having multiple models doesn't really make sense. Please check the results to investigate strange behaviour.
+Only 1 model is saved.
 """
 
 import torch

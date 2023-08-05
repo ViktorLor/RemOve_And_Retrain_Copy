@@ -75,3 +75,8 @@ The project is saved in following structure:
     - Is used to create the saliency blocked images for the datasets -> Old Approach which saves all images 
 10. Training
     - contains the training scripts for the models
+
+
+# Using the project to generate the models:
+
+1. 

@@ -13,7 +13,7 @@ from torchvision import models
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def generate_masks(dataset_size, name,  image_size=224, memmap=False, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9]):
+def generate_masks(dataset_size, name, image_size=224, memmap=False, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9]):
 	"""
 	
 	:param dataset_size: how many masks to create
@@ -25,7 +25,8 @@ def generate_masks(dataset_size, name,  image_size=224, memmap=False, thresholds
 	"""
 	
 	if memmap:
-		masks_memmap = np.memmap(f"random_indices/{name}.dat", dtype=np.uint8, mode='w+', shape=(dataset_size, image_size, image_size))
+		masks_memmap = np.memmap(f"random_indices/{name}.dat", dtype=np.uint8, mode='w+',
+		                         shape=(dataset_size, image_size, image_size))
 		
 		for x in range(dataset_size):
 			mask_tmp = np.random.rand(image_size, image_size).flatten()
@@ -70,7 +71,8 @@ def generate_masks(dataset_size, name,  image_size=224, memmap=False, thresholds
 	
 	print("Masks created")
 
-def generate_singular_masks(dataset_size,  image_size=224, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9]):
+
+def generate_singular_masks(dataset_size, name, image_size=224, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9]):
 	"""
 	This is purely for testing purposes. It generates masks with names 0 to dataset_size.
 	:param dataset_size:
@@ -96,11 +98,11 @@ def generate_singular_masks(dataset_size,  image_size=224, thresholds=[0.1, 0.3,
 			
 			mask[indices_to_fill[:, 0], indices_to_fill[:, 1]] += 1
 		
-		torch.save(mask, f"mask_train/{x}.pt")
+		torch.save(mask, f"{name}/{x}.pt")
 		
 		if x % 1000 == 0:
 			print(f"Generated {x} masks")
-	
+
 
 class DatasetwithMask(torch.utils.data.Dataset):
 	def __init__(self, dataset, masks):
@@ -119,6 +121,30 @@ class DatasetwithMask(torch.utils.data.Dataset):
 	def __getitem__(self, idx):
 		image, label = self.dataset[idx]
 		mask = self.masks[idx]
+		
+		if self.transform:
+			image = self.transform(image)
+		
+		return image, mask, label
+
+
+class DatasetSingular(torch.utils.data.Dataset):
+	def __init__(self, dataset, flag):
+		self.dataset = dataset
+		self.transform = transforms.Compose([
+			transforms.Resize(256),
+			transforms.CenterCrop(224),
+			transforms.ToTensor(),
+			transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
+		])
+		self.flag = flag
+	def __len__(self):
+		return len(self.dataset)
+	
+	def __getitem__(self, idx):
+		image, label = self.dataset[idx]
+
+		mask = torch.load(f"mask_{self.flag}/{idx}.pt")
 		
 		if self.transform:
 			image = self.transform(image)
