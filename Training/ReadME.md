@@ -9,6 +9,6 @@ Trains the model on the original MNIST dataset. The model is saved in the folder
 After generating the altered dataset, this file trains the model on the altered dataset. The model is saved in the folder models/mnist/{
 method}/models/{threshold}_{1-5}_net.pth
 
-3. Train_RESNET50_Food101_original_Dataset
+3. Train_Food101_ResNet50_original_Dataset
 
 Trains the ResNET50 model on the original dataset.

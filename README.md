@@ -79,4 +79,10 @@ The project is saved in following structure:
 
 # Using the project to generate the models:
 
-1. 
+1. Train the ResNET50 model on the original dataset. Training/Train_{dataset}_{model}_original_Dataset
+2. Check the generated accuracy in models/{dataset}/original_accuracy.png
+3. Generate the saliency maps for the dataset. Saliency/saliency_{dataset}.
+4. Check if the files are generated correctly in data/{dataset}/mod_images{train_test}/{0-0.9}
+5. Train the model on the modified dataset. Training/Train_{dataset}_{model}_5times_thresholdblock
+6. Check the generated accuracy in models/{dataset}/{method}/{0.1-0.9}_accuracy.txt
+7. Generate Plots and Reports as needed in Reporting
