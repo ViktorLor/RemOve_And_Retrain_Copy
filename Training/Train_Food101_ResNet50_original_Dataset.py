@@ -39,10 +39,17 @@ print("Test Dataset: ", len(test_dataset))
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=32, shuffle=False)
 
-# Load a randomly initialized ResNet50 model
+# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 model = models.resnet50()
-# weights are initialied by drawing weights from a zero mean gaussian with mü=0 and sigma=0.01
-model.parameters().data.normal_(0, 0.01)
+
+
+def initialize_weights(module, mean=0, std=0.01):
+	if isinstance(module, torch.nn.Conv2d) or isinstance(module, torch.nn.Linear):
+		torch.nn.init.normal_(module.weight, mean, std)
+		if module.bias is not None:
+			torch.nn.init.zeros_(module.bias)
+
+model.apply(lambda module: initialize_weights(module, mean=0, std=0.01))
 
 print("Model Initialized")
 # Replace the last layer with a new fully connected layer
