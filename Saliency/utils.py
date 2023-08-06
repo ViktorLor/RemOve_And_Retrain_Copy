@@ -73,7 +73,7 @@ def generate_masks(mask: torch.Tensor, thresholds=None):
 
     # add constant 0.003 to each pixel, so it's positive
     mask = mask + 0.003
-    device = cuda = torch.device('cuda')
+    device =  torch.device('cuda')
     # loop over all channels with a threshold until we achieve the desired threshold
     for threshold in thresholds:
         threshold_parameter = 1.01

@@ -3,7 +3,7 @@ Created on Mon Nov  4 14:50:00 2019
 
 Author: Viktor Loreth
 
-This file is used to run the saliency_transform.py file on all images in a given path.
+This file is used to run the utils.py file on all images in a given path.
 It is used to generate the saliency maps for the images in the ILSVRC dataset.
 The files are saved in a folder called ILSVRC30, ILSVRC50, ILSVRC70 respectively.
 
@@ -11,7 +11,7 @@ Right now we only run it on the validation set, but it can be easily adapted to 
 """
 import torchvision
 
-import saliency_transform as sal_help
+import utils as sal_help
 import sys
 import os
 import torch
@@ -20,13 +20,10 @@ import torch.distributed as dist
 from torch.multiprocessing import Process
 from PIL import Image
 
-# run saliency_helper for all images in path
-
 # LINUX PATH
 path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Dataset/food-101/images'
 
-# Windows path:
-# path = 'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\imagnet_samples\\imagenet1000samples'
+
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
