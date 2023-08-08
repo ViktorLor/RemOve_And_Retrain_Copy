@@ -210,7 +210,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 				img_data = transformer(img_data)
 				generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
 				                                   image_size=224,
-				                                   test=True, saveaspng=saveaspng)
+				                                   test=test, saveaspng=saveaspng)
 			
 			except Exception as e:
 				print(e)
