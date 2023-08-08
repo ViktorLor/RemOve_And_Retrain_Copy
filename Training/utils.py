@@ -135,7 +135,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
 					running_loss = 0.0
 				
-				if i == 100:
+				if i == 100 and epoch == 0:
 					# print how long the training will take for 1 epoch
 					end = time.time()
 					print("Estimated training time for 1 epoch: ", (len(data_loader) / 100) * (end - start) / 60,
@@ -158,15 +158,15 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					# continue training
 					exit(1)
 			
-			if epoch == 0:
-				end = time.time()
-				print("Estimated training time: ", (end - start) * num_epochs / 60, " minutes")
-				print("Training will be done at: ", time.ctime(end + (end - start) * num_epochs))
-				# ask if you want to continue training
-				answer = input("Do you want to continue training? (y/n)")
-				if answer == "n":
-					print("Training stopped")
-					exit(1)
+		if epoch == 0:
+			end = time.time()
+			print("Estimated training time: ", (end - start) * num_epochs / 60, " minutes")
+			print("Training will be done at: ", time.ctime(end + (end - start) * num_epochs))
+			# ask if you want to continue training
+			answer = input("Do you want to continue training? (y/n)")
+			if answer == "n":
+				print("Training stopped")
+				exit(1)
 		
 		print('Finished Training')
 		
