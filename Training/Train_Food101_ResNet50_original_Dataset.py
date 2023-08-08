@@ -33,14 +33,15 @@ transformer = transforms.Compose([
 
 # Load the Food 101 dataset train and test with the original split of the dataset
 train_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="train")
-test_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="test")
+
 print("Loaded Dataset")
 print("Train Dataset: ", len(train_dataset))
-print("Test Dataset: ", len(test_dataset))
+print("Size should be: ", 75750)
 
 # Fully builds a trained model and saves it.
 utils.training_food101(train_dataset, 'orginal_ResNet50', device, shuffle=True, seed=0)
 
+del train_dataset
 # Load the trained model:
 model = models.resnet50()
 # Replace the last layer with a new fully connected layer
@@ -50,5 +51,8 @@ model.fc = nn.Linear(num_ftrs, 101)
 model.load_state_dict(torch.load('../models/food101/original_ResNet50.pth'))
 model.eval()
 
-utils.test_food101(test_dataset, model, device, result_file='original_results.txt', shuffle=False, seed=0)
+test_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="test")
+print("Test Dataset: ", len(test_dataset))
+print("Size should be: ", 25250)
 
+utils.test_food101(test_dataset, model, device, result_file='original_results.txt', shuffle=False, seed=0)

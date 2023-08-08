@@ -175,6 +175,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			os.makedirs('../models/food101')
 		
 		# save the model
+		
 		torch.save(model.state_dict(), '../models/food101/', save_file + '.pth')
 		print("Model saved")
 		return
@@ -187,6 +188,7 @@ def test_food101(dataset, model, device, result_file, shuffle=True, seed=0):
 	# test the model and the accuracy
 	correct = [0 for i in range(101)]
 	total = [0 for i in range(101)]
+	
 	
 	with torch.no_grad():
 		for data in data_loader:
@@ -215,3 +217,6 @@ def initialize_weights(module, mean=0, std=0.01):
 		torch.nn.init.normal_(module.weight, mean, std)
 		if module.bias is not None:
 			torch.nn.init.zeros_(module.bias)
+
+
+	
