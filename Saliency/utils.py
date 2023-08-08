@@ -36,7 +36,8 @@ import time
 import PIL
 
 
-def generate_random_masks_3D(dataset_size, path_to_dataset, save_folder, images_to_copy='images', image_size=224, saveaspng=False):
+def generate_random_masks_3D(dataset_size, path_to_dataset, save_folder, images_to_copy='images', image_size=224,
+                             saveaspng=False):
 	"""
 	Generate random indce masks which block out [0.1,0.3,0.5,0.7,0.9%] of the image.
 
@@ -251,12 +252,11 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 	new_indices = np.unravel_index(indices, (3, image_size, image_size))
 	# convert tuple to numpy array
 	new_indices = np.array(new_indices)
-
-
+	
 	for threshold in [0.1, 0.3, 0.5, 0.7, 0.9]:
 		# get array of indices to fill
-		indices_to_fill = new_indices[:, :int(224*224*3 * threshold)]
-
+		indices_to_fill = new_indices[:, :int(224 * 224 * 3 * threshold)]
+		
 		mask[indices_to_fill[0], indices_to_fill[1], indices_to_fill[2]] += 1
 	
 	# save mask as torch tensor compressed
@@ -267,8 +267,6 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 		tmp_array.save(path_to_dataset + f'indices_to_block\\{method}\\{folder}\\{img_name[:-4]}.png')
 	else:
 		torch.save(mask, path_to_dataset + f'indices_to_block\\{method}\\{folder}\\{img_name[:-4]}.pt')
-	
-	
 
 
 def get_saliency_image(model, y, image, saliency_method):
@@ -295,176 +293,3 @@ def get_saliency_image(model, y, image, saliency_method):
 	else:
 		raise ValueError("No saliency method method matched. Verification of"
 		                 "input needed")
-
-
-#### OLD CODE ####
-
-def apply_mask_to_image(image, mask: np.array):
-	# convert True values to ImgNet mean
-	# image = 3*224*224
-	# mask = 224*224
-	# if mask is true, replace the pixel with the mean
-	# if mask is false, keep the pixel
-	# return image
-	image = image[0]
-	image = image.permute(1, 2, 0)
-	device = torch.device('cpu')
-	
-	image[mask] = torch.tensor([0.485, 0.456, 0.406]).to(device)
-	
-	image = image.permute(2, 0, 1)
-	
-	return image
-
-
-def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, return_mask=False, project_path=None):
-	"""
-	:param model: model to compute saliency maps.
-	:param image_path: path to the image
-	:param thresholds: thresholds to use for the saliency mask
-	:return: a image with the blocked out saliency mask
-	"""
-	
-	img = Image.open(project_path + '/' + image_path)
-	# use mean of food101 dataset
-	
-	# used for food101
-	mean = [0.561, 0.440, 0.312]
-	std = [0.252, 0.256, 0.259]
-	# Transformer always stays the same
-	transform = transforms.Compose([
-		transforms.Resize(256),
-		transforms.CenterCrop(224),
-		transforms.ToTensor(),
-		transforms.Normalize(mean=mean, std=std)
-	])
-	device = torch.device("cpu")
-	
-	transformed_img = torch.unsqueeze(transform(img), 0)
-	transformed_img = transformed_img.to(device)
-	
-	output = model(transformed_img)
-	output = F.softmax(output, dim=1)
-	_, pred_label_idx = torch.topk(output, 1)
-	
-	saliency_map = get_saliency_image(model, pred_label_idx, transformed_img, "integrated_gradients")
-	
-	masks, masks_len = generate_masks(saliency_map, thresholds=thresholds)
-	
-	if return_mask:
-		return masks, masks_len
-	else:
-		# apply mask to image
-		for i, mask in enumerate(masks):
-			new_img = apply_mask_to_image(transformed_img.clone(), masks[i])
-			# save new image np file
-			
-			new_img = new_img.permute(1, 2, 0)
-			new_img = new_img.cpu().detach().numpy()
-			# save new_img as jpeg file
-			new_img = Image.fromarray((new_img * 255).astype(np.uint8))
-			new_img.save(project_path + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
-
-
-# Windows
-project_path = r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data'
-# Linux
-# project_path = r'/home/viktorl/Intepretable_AI_PR_Loreth/'
-
-if __name__ == '__main__':
-	
-	plot = True
-	print("Running saliency Helper by vlo to test the functions")
-	
-	# use gpu if available
-	device = torch.device("cpu")
-	print("Using device: ", device)
-	
-	model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
-	model.to(device)
-	model.eval()
-	
-	mean = [0.485, 0.456, 0.406]
-	
-	# Transformer always stays the same
-	transform = transforms.Compose([
-		transforms.Resize(256),
-		transforms.CenterCrop(224),
-		transforms.ToTensor(),
-		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
-	])
-	
-	# load imagenet_labels
-	with open(project_path + '/imagnet_samples/imagenet_class_index.json') as f:
-		imagenet_labels = json.load(f)
-	imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
-	
-	from PIL import Image
-	
-	img_path = r'/imagnet_samples/imagenet1000samples/n01491361_tiger_shark.JPEG'
-	img = Image.open(
-		r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data\imagnet_samples\imagenet1000samples\n01440764_tench.JPEG')
-	
-	transformed_img = transform(img)
-	
-	input_img = torch.unsqueeze(transformed_img, 0)
-	
-	orig_img = input_img.clone()
-	# set model to evaluation mode and run img
-	model.eval()
-	output = model(input_img)
-	output = F.softmax(output, dim=1)
-	prediction_score, pred_label_idx = torch.topk(output, 1)
-	
-	# plot orig img
-	plt.imshow(orig_img[0].permute(1, 2, 0))
-	plt.show()
-	
-	if plot:
-		print('Predicted:', pred_label_idx.item(), 'with score:', prediction_score.item())
-		print('Predicted:', imagenet_labels[pred_label_idx.item()])
-	
-	# get saliency map
-	saliency_map = get_saliency_image(model, pred_label_idx, input_img, "integrated_gradients")
-	
-	# generate mask
-	masks, masks_len = generate_masks(saliency_map, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9])
-	# display masks
-	if plot:
-		for i in range(masks_len):
-			plt.imshow(masks[i])
-			plt.show()
-	
-	# concatenate masks and save them
-	if False:
-		masks = torch.stack(masks)
-		torch.save(masks, f'C:\\Users\\Vik\Documents\\4. Private\\01. University\\2022_Sem6\\Intepretable_AI\\masks.pt')
-		print("File saved")
-	### Code is redundant and just for displaying the masks! ###
-	
-	if plot:
-		print("nice")
-		# apply all masks to img
-		img_list = []
-		for i, mask in enumerate(masks):
-			img_list.append(apply_mask_to_image(orig_img.clone(), masks[i]))
-		
-		orig_img = orig_img[0].permute(1, 2, 0)
-		# plot masked img in shape 3*244*244
-		fig, axs = plt.subplots(2, 3)
-		axs[0, 0].imshow(orig_img)
-		axs[0, 0].set_title('Original Image')
-		axs[0, 1].imshow(img_list[0].permute(1, 2, 0))
-		axs[0, 1].set_title('Masked Image 10%')
-		axs[1, 0].imshow(img_list[1].permute(1, 2, 0))
-		axs[1, 0].set_title('Masked Image 30%')
-		axs[1, 1].imshow(img_list[2].permute(1, 2, 0))
-		axs[1, 1].set_title('Masked Image 50%')
-		axs[0, 2].imshow(img_list[3].permute(1, 2, 0))
-		axs[0, 2].set_title('Masked Image 70%')
-		axs[1, 2].imshow(img_list[4].permute(1, 2, 0))
-		axs[1, 2].set_title('Masked Image 90%')
-		
-		plt.show()
-		print("Green means the pixel is important and blocked out.")
-# %%

@@ -3,6 +3,8 @@ Training the ResNet-50 model on the Food-101 dataset.
 
 Parameters used: https://github.com/google-research/google-research/blob/master/interpretability_benchmark/train_resnet.py#L113
 
+30h Training by now.
+Probably possible to crease batch size to increase speed; -> But then paper is not completely reproducible
 """
 
 import torch
@@ -105,6 +107,7 @@ for epoch in range(num_epochs):
 				# print how long the training will take for 1 epoch
 				end = time.time()
 				print("Estimated training time for 1 epoch: ", (len(train_loader) / 100) * (end - start) / 60, " minutes")
+				print("Estimate training for 90 epochs: ", (len(train_loader) / 100) * (end - start) / 60 * 90, " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 		
 		except:
