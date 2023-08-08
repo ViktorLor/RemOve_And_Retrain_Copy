@@ -31,247 +31,440 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 import json
+import matplotlib.pyplot as plt
+import time
+import PIL
+
+
+def generate_random_masks_3D(dataset_size, path_to_dataset, save_folder, images_to_copy='images', image_size=224, saveaspng=False):
+	"""
+	Generate random indce masks which block out [0.1,0.3,0.5,0.7,0.9%] of the image.
+
+	:param dataset_size: how many masks to create
+	:param image_size: which shape the masks should have [224,224]
+	:return:
+
+	"""
+	
+	# Define the values and their respective probabilities
+	values = [0, 1, 2, 3, 4, 5]
+	percentages = [0.1, 0.2, 0.2, 0.2, 0.2, 0.1]
+	
+	# Calculate the number of elements based on percentages
+	total_elements = 3 * image_size * image_size  # You can adjust this to your desired array size
+	element_counts = np.round(np.array(percentages) * total_elements).astype(int)
+	element_counts[0] -= 1  # Make sure the sum of the element counts equals the total elements
+	element_counts[-1] -= 1
+	print(element_counts.sum())
+	
+	# find all folders in the dataset
+	folders = [f for f in os.listdir(path_to_dataset + images_to_copy) if not f.startswith('.')]
+	
+	for folder in folders:
+		start = time.time()
+		# generate folder if it does not exist
+		if not os.path.exists(path_to_dataset + save_folder + folder):
+			os.makedirs(path_to_dataset + save_folder + folder)
+		# find all images in the folder
+		images = [f for f in os.listdir(path_to_dataset + images_to_copy + '/' + folder) if not f.startswith('.')]
+		
+		# Create the deterministic array
+		random_array = np.concatenate(
+			[np.full(count, value, dtype=np.uint8) for value, count in zip(values, element_counts)])
+		
+		for image in images:
+			# Shuffle the array to ensure randomness
+			np.random.shuffle(random_array)
+			
+			# conver np array to 3x224x224 array
+			tmp_array = np.reshape(random_array, (3, image_size, image_size))
+			# save array as tensor
+			tmp_array = torch.from_numpy(tmp_array)
+			
+			# save tensor
+			if saveaspng:
+				tmp_array = tmp_array.numpy()
+				tmp_array = np.transpose(tmp_array, (1, 2, 0))
+				tmp_array = PIL.Image.fromarray(tmp_array)
+				tmp_array.save(path_to_dataset + save_folder + folder + '/' + image[:-4] + '.png')
+			else:
+				torch.save(tmp_array, path_to_dataset + save_folder + folder + '/' + image[:-4] + '.pt')
+		
+		print("Folder " + folder + " done.")
+		print("Time elapsed: " + str(time.time() - start) + " seconds.")
+		if folder == 'apple_pie':
+			print("Time for 1001 sets: " + str((time.time() - start) * 101 / 60) + " minutes.")
+			
+			print("You want to continue? [y/n]")
+			choice = input().lower()
+			if choice == 'n':
+				exit(1)
+	
+	print("Finished generating random masks.")
+	
+	return
+
+
+def generate_random_masks_3D_memmap(dataset_size, path_to_dataset, save_file, image_size=224):
+	"""
+	Generate random indce masks which block out [0.1,0.3,0.5,0.7,0.9%] of the image. Saves in a memmap file.
+	:param dataset_size:
+	:param path_to_dataset:
+	:param save_file:
+	:param image_size:
+	:return:
+
+	NOT TESTED YET; NOT SURE IF IT WORKS; IS FASTER BUT COSTS MORE MEMORY
+	"""
+	
+	masks_memmap = np.memmap(f"{path_to_dataset}/{save_file}.dat", dtype=np.uint8, mode='w+',
+	                         shape=(dataset_size, image_size, image_size))
+	
+	# Define the values and their respective probabilities
+	values = [0, 1, 2, 3, 4, 5]
+	percentages = [0.1, 0.2, 0.2, 0.2, 0.2, 0.1]
+	
+	# Calculate the number of elements based on percentages
+	total_elements = 3 * image_size * image_size  # You can adjust this to your desired array size
+	element_counts = np.round(np.array(percentages) * total_elements).astype(int)
+	element_counts[0] -= 1  # Make sure the sum of the element counts equals the total elements
+	element_counts[-1] -= 1
+	print(element_counts.sum())
+	
+	# Create the deterministic array
+	random_array = np.concatenate(
+		[np.full(count, value, dtype=np.uint8) for value, count in zip(values, element_counts)])
+	
+	start = time.time()
+	for x in range(dataset_size):
+		
+		np.random.shuffle(random_array)
+		masks_memmap[x] = np.reshape(random_array, (3, image_size, image_size))
+		
+		if x == 1000:
+			print("Time elapsed: " + str(time.time() - start) + " seconds.")
+			print("Total time for 1001 sets: " + str((time.time() - start) * 101 / 60) + " minutes.")
+		
+		if x % 1000 == 0:
+			print(f"Generated {x} masks")
+
+
+def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, test=True, saveaspng=False):
+	"""
+	Right now works only for food101 dataset
+	
+	:param model:
+	:param method:
+	:param path_to_dataset:
+	:param image_size:
+	:return:
+	"""
+	if test:
+		print("TEST MODE IS ON!!! USING RANDOM MASKS! IF YOU HAVE A FUNCTIONAL MODEL, TURN TEST MODE OFF!")
+	
+	# Check if torch is available
+	use_cuda = torch.cuda.is_available()
+	device = torch.device("cuda" if use_cuda else "cpu")
+	print(device)
+	torch.cuda.empty_cache()
+	torch.cuda.synchronize()
+	
+	thresholds = [0.1, 0.3, 0.5, 0.7, 0.9]
+	
+	# Load the model
+	model.to(device)
+	model.eval()
+	
+	# Define the transform to apply to the input images
+	transformer = transforms.Compose([
+		transforms.Resize(256),
+		transforms.CenterCrop(224),
+		transforms.ToTensor(),
+		transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
+	])
+	
+	# load metadata to convert label to names
+	with open(path_to_dataset + '\\meta\\classes.txt', 'r') as f:
+		classes = f.readlines()
+		classes = [c.replace('\n', '') for c in classes]
+		# replace space with underscore
+		classes = [c.replace(' ', '_') for c in classes]
+	
+	# create a folder for each class
+	for c in classes:
+		os.makedirs(path_to_dataset + f'indices_to_block\\{method}\\{c}', exist_ok=True)
+	
+	### load images
+	# find all folders in the dataset
+	folders = [f for f in os.listdir(path_to_dataset + 'images') if not f.startswith('.')]
+	
+	for z, folder in enumerate(folders):
+		images = os.listdir(path_to_dataset + 'images/' + folder)
+		label = classes.index(folder)
+		for i, image in enumerate(images):
+			start = time.time()
+			try:
+				
+				img_data = Image.open(path_to_dataset + 'images\\' + folder + '\\' + image)
+				img_data = transformer(img_data)
+				generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
+				                                   image_size=224,
+				                                   test=True, saveaspng=saveaspng)
+			
+			except Exception as e:
+				print(e)
+				print("Error with image: ", image)
+				# write to logfile
+				with open("logfile.txt", "a") as logfile:
+					logfile.write("Error with image: " + image)
+			
+			if i % 100 == 0:
+				print(i, z, "image done", len(folders))
+			
+			if i == 1000:
+				print("Time elapsed: " + str(time.time() - start) + " seconds.")
+				print("Total time for 1001 sets: " + str((time.time() - start) * 101 / 60) + " minutes.")
+				print("Do you want to continue? (y/n)")
+				choice = input().lower()
+				if choice == 'n':
+					exit(1)
+
+
+def generate_singular_saliency_3D_mask(img, label, model, method, path_to_dataset, folder, img_name, image_size=224,
+                                       test=True, saveaspng=False):
+	if test == False:
+		
+		ig = IntegratedGradients(model)
+		# get the ig_attr for the image
+		ig_attr = ig.attribute(img.unsqueeze(0), target=label)
+		# flatten ig_attr to 1D array = 244*224*3
+		ig_attr_flat = torch.abs(ig_attr).flatten()
+		mask = torch.zeros_like(ig_attr, dtype=torch.uint8)
+	else:
+		
+		ig_attr_flat = torch.abs(torch.rand((image_size * image_size * 3)))
+		mask = torch.zeros((3, image_size, image_size), dtype=torch.uint8)
+	
+	# find topk indices of most important pixels of ig_attr_flat
+	indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat)))[1]
+	
+	new_indices = np.unravel_index(indices, (3, image_size, image_size))
+	# convert tuple to numpy array
+	new_indices = np.array(new_indices)
+
+
+	for threshold in [0.1, 0.3, 0.5, 0.7, 0.9]:
+		# get array of indices to fill
+		indices_to_fill = new_indices[:, :int(224*224*3 * threshold)]
+
+		mask[indices_to_fill[0], indices_to_fill[1], indices_to_fill[2]] += 1
+	
+	# save mask as torch tensor compressed
+	if saveaspng:
+		tmp_array = mask.numpy()
+		tmp_array = np.transpose(tmp_array, (1, 2, 0))
+		tmp_array = PIL.Image.fromarray(tmp_array)
+		tmp_array.save(path_to_dataset + f'indices_to_block\\{method}\\{folder}\\{img_name[:-4]}.png')
+	else:
+		torch.save(mask, path_to_dataset + f'indices_to_block\\{method}\\{folder}\\{img_name[:-4]}.pt')
+	
+	
 
 
 def get_saliency_image(model, y, image, saliency_method):
-    """generates saliency image.
-        Args:
-          model: model to compute saliency maps.
-          y: the pre-softmax activation we want to assess attribution with respect to.
-          image: float32 image tensor with size [1, None, None].
-          saliency_method: string indicating saliency map type to generate.
-        Returns:
-          a saliency map and a smoothed saliency map.
-        Raises:
-          ValueError: if the saliency_method string does not match any included method
-        """
+	"""generates saliency image.
+		Args:
+		  model: model to compute saliency maps.
+		  y: the pre-softmax activation we want to assess attribution with respect to.
+		  image: float32 image tensor with size [1, None, None].
+		  saliency_method: string indicating saliency map type to generate.
+		Returns:
+		  a saliency map and a smoothed saliency map.
+		Raises:
+		  ValueError: if the saliency_method string does not match any included method
+		"""
+	
+	if saliency_method == "integrated_gradients":
+		integrated_placeholder = IntegratedGradients(model)
+		return integrated_placeholder.attribute(image, target=y)
+	
+	elif saliency_method == "guided_backprop":
+		gb_placeholder = GuidedBackprop(model)
+		return gb_placeholder.attribute(image, target=y)
+	
+	else:
+		raise ValueError("No saliency method method matched. Verification of"
+		                 "input needed")
 
-    if saliency_method == "integrated_gradients":
-        integrated_placeholder = IntegratedGradients(model)
-        return integrated_placeholder.attribute(image, target=y)
 
-    elif saliency_method == "guided_backprop":
-        gb_placeholder = GuidedBackprop(model)
-        return gb_placeholder.attribute(image, target=y)
-
-    else:
-        raise ValueError("No saliency method method matched. Verification of"
-                         "input needed")
-
-
-def generate_masks(mask: torch.Tensor, thresholds=None):
-    """
-    :param thresholds: thresholds to use for the saliency mask
-    :param mask: saliency mask
-    :param threshold: how much of the image should be blacked out (0.5 = 50%)
-    :return: a image with the blocked out saliency mask
-    """
-
-    # convert mask to single channel
-    mask = mask[0]
-    mask_list = []
-
-    # add constant 0.003 to each pixel, so it's positive
-    mask = mask + 0.003
-    device =  torch.device('cuda')
-    # loop over all channels with a threshold until we achieve the desired threshold
-    for threshold in thresholds:
-        threshold_parameter = 1.01
-        total_mask = torch.zeros((224, 224)).bool().to(device)
-        k = 0
-        threshold = threshold * 224 * 224  # maximum pixels blurred
-        while (k < threshold - 0.01):  # 0.01 is a balancing term to avoid iteration errors
-            threshold_parameter = threshold_parameter * 0.8
-            # Loop through all channels with a threshold and blur those pixels. If the threshold is not reached,
-            # increase the threshold
-
-            for i in range(3):
-                tmp_mask = mask[i] > threshold_parameter
-                # add tmp_mask to total_mask
-
-                total_mask += tmp_mask
-                # convert total_mask to boolean
-                total_mask = total_mask > 0
-                k = total_mask.sum()
-                if k > threshold:
-                    # print(k/(224*224), threshold/(224*224))
-
-                    break
-
-        # save the total mask
-        mask_list.append(total_mask)
-
-    return mask_list, len(thresholds)
-
+#### OLD CODE ####
 
 def apply_mask_to_image(image, mask: np.array):
-    # convert True values to ImgNet mean
-    # image = 3*224*224
-    # mask = 224*224
-    # if mask is true, replace the pixel with the mean
-    # if mask is false, keep the pixel
-    # return image
-    image = image[0]
-    image = image.permute(1, 2, 0)
-    device = torch.device('cuda')
-    
-    image[mask] = torch.tensor([0.485, 0.456, 0.406]).to(device)
-
-    image = image.permute(2, 0, 1)
-
-    return image
+	# convert True values to ImgNet mean
+	# image = 3*224*224
+	# mask = 224*224
+	# if mask is true, replace the pixel with the mean
+	# if mask is false, keep the pixel
+	# return image
+	image = image[0]
+	image = image.permute(1, 2, 0)
+	device = torch.device('cpu')
+	
+	image[mask] = torch.tensor([0.485, 0.456, 0.406]).to(device)
+	
+	image = image.permute(2, 0, 1)
+	
+	return image
 
 
 def calculate_saliency_map(model, image_path, thresholds=None, cuda=False, return_mask=False, project_path=None):
-    """
-    :param model: model to compute saliency maps.
-    :param image_path: path to the image
-    :param thresholds: thresholds to use for the saliency mask
-    :return: a image with the blocked out saliency mask
-    """
-
-    img = Image.open(project_path + '/' + image_path)
-    # use mean of food101 dataset
-
-    # used for food101
-    mean = [0.561, 0.440, 0.312]
-    std  = [0.252, 0.256, 0.259]
-    # Transformer always stays the same
-    transform = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=mean, std=std)
-    ])
-    device = torch.device("cuda")
-
-    transformed_img = torch.unsqueeze(transform(img), 0)
-    transformed_img = transformed_img.to(device)
-
-    output = model(transformed_img)
-    output = F.softmax(output, dim=1)
-    _, pred_label_idx = torch.topk(output, 1)
-
-    saliency_map = get_saliency_image(model, pred_label_idx, transformed_img, "integrated_gradients")
-
-    masks, masks_len = generate_masks(saliency_map, thresholds=thresholds)
-
-    if return_mask:
-        return masks, masks_len
-    else:
-        # apply mask to image
-        for i, mask in enumerate(masks):
-            new_img = apply_mask_to_image(transformed_img.clone(), masks[i])
-            # save new image np file
-
-            new_img = new_img.permute(1, 2, 0)
-            new_img = new_img.cpu().detach().numpy()
-            # save new_img as jpeg file
-            new_img = Image.fromarray((new_img * 255).astype(np.uint8))
-            new_img.save(project_path + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
+	"""
+	:param model: model to compute saliency maps.
+	:param image_path: path to the image
+	:param thresholds: thresholds to use for the saliency mask
+	:return: a image with the blocked out saliency mask
+	"""
+	
+	img = Image.open(project_path + '/' + image_path)
+	# use mean of food101 dataset
+	
+	# used for food101
+	mean = [0.561, 0.440, 0.312]
+	std = [0.252, 0.256, 0.259]
+	# Transformer always stays the same
+	transform = transforms.Compose([
+		transforms.Resize(256),
+		transforms.CenterCrop(224),
+		transforms.ToTensor(),
+		transforms.Normalize(mean=mean, std=std)
+	])
+	device = torch.device("cpu")
+	
+	transformed_img = torch.unsqueeze(transform(img), 0)
+	transformed_img = transformed_img.to(device)
+	
+	output = model(transformed_img)
+	output = F.softmax(output, dim=1)
+	_, pred_label_idx = torch.topk(output, 1)
+	
+	saliency_map = get_saliency_image(model, pred_label_idx, transformed_img, "integrated_gradients")
+	
+	masks, masks_len = generate_masks(saliency_map, thresholds=thresholds)
+	
+	if return_mask:
+		return masks, masks_len
+	else:
+		# apply mask to image
+		for i, mask in enumerate(masks):
+			new_img = apply_mask_to_image(transformed_img.clone(), masks[i])
+			# save new image np file
+			
+			new_img = new_img.permute(1, 2, 0)
+			new_img = new_img.cpu().detach().numpy()
+			# save new_img as jpeg file
+			new_img = Image.fromarray((new_img * 255).astype(np.uint8))
+			new_img.save(project_path + str(int(thresholds[i] * 100)) + '/' + image_path[:-5] + '.jpeg')
 
 
 # Windows
-project_path = r'C:\Users\Vik\Documents\4. Private\01. University\2022_Sem5\Intepretable_AI'
+project_path = r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data'
 # Linux
 # project_path = r'/home/viktorl/Intepretable_AI_PR_Loreth/'
 
 if __name__ == '__main__':
-
-    print(torch.cuda.memory_summary(device=None, abbreviated=False))
-    plot = True
-    print("Running saliency Helper by vlo to test the functions")
-
-    # use gpu if available
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    print("Using device: ", device)
-
-    model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
-    model.to(device)
-    model.eval()
-
-    mean = [0.485, 0.456, 0.406]
-
-    # Transformer always stays the same
-    transform = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
-    ])
-
-    # load imagenet_labels
-    with open(project_path + '/imagnet_samples/imagenet_class_index.json') as f:
-        imagenet_labels = json.load(f)
-    imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
-
-    from PIL import Image
-
-    img_path = r'/imagnet_samples/imagenet1000samples/n01491361_tiger_shark.JPEG'
-    img = Image.open(project_path + img_path)
-
-    transformed_img = transform(img)
-    # send to cuda
-    transformed_img = transformed_img.to(device)
-
-    input_img = torch.unsqueeze(transformed_img, 0)
-
-    orig_img = input_img.clone()
-    # set model to evaluation mode and run img
-    model.eval()
-    output = model(input_img)
-    output = F.softmax(output, dim=1)
-    prediction_score, pred_label_idx = torch.topk(output, 1)
-
-    if plot:
-        print('Predicted:', pred_label_idx.item(), 'with score:', prediction_score.item())
-        print('Predicted:', imagenet_labels[pred_label_idx.item()])
-
-    import matplotlib.pyplot as plt
-
-    # get saliency map
-    saliency_map = get_saliency_image(model, pred_label_idx, input_img, "integrated_gradients")
-
-    # set variable to plot
-    if plot:
-        # plot saliency map
-        plt.imshow(saliency_map[0].permute(1, 2, 0))
-        # plot pixel weight bar
-        plt.colorbar()
-        plt.show()
-
-    # generate mask
-    masks, masks_len = generate_masks(saliency_map, thresholds=[0.3, 0.5, 0.7])
-    # display masks
-    if plot:
-        for i in range(masks_len):
-            plt.imshow(masks[i])
-            plt.show()
-
-    # concatenate masks and save them
-    if False:
-        masks = torch.stack(masks)
-        torch.save(masks, f'C:\\Users\\Vik\Documents\\4. Private\\01. University\\2022_Sem5\\Intepretable_AI\\masks.pt')
-        print("File saved")
-    ### Code is redundant and just for displaying the masks! ###
-
-    if plot:
-        # apply all masks to img
-        img_list = []
-        for i, mask in enumerate(masks):
-            img_list.append(apply_mask_to_image(orig_img.clone(), masks[i]))
-
-        orig_img = orig_img[0].permute(1, 2, 0)
-        # plot masked img in shape 3*244*244
-        fig, axs = plt.subplots(2, 2)
-        axs[0, 0].imshow(orig_img)
-        axs[0, 0].set_title('Original Image')
-        axs[0, 1].imshow(img_list[0].permute(1, 2, 0))
-        axs[0, 1].set_title('Masked Image 30%')
-        axs[1, 0].imshow(img_list[1].permute(1, 2, 0))
-        axs[1, 0].set_title('Masked Image 50%')
-        axs[1, 1].imshow(img_list[2].permute(1, 2, 0))
-        axs[1, 1].set_title('Masked Image 70%')
-
-        print("Green means the pixel is important and blocked out.")
+	
+	plot = True
+	print("Running saliency Helper by vlo to test the functions")
+	
+	# use gpu if available
+	device = torch.device("cpu")
+	print("Using device: ", device)
+	
+	model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
+	model.to(device)
+	model.eval()
+	
+	mean = [0.485, 0.456, 0.406]
+	
+	# Transformer always stays the same
+	transform = transforms.Compose([
+		transforms.Resize(256),
+		transforms.CenterCrop(224),
+		transforms.ToTensor(),
+		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.232, 0.228, 0.226])
+	])
+	
+	# load imagenet_labels
+	with open(project_path + '/imagnet_samples/imagenet_class_index.json') as f:
+		imagenet_labels = json.load(f)
+	imagenet_labels = {int(k): v for k, v in imagenet_labels.items()}
+	
+	from PIL import Image
+	
+	img_path = r'/imagnet_samples/imagenet1000samples/n01491361_tiger_shark.JPEG'
+	img = Image.open(
+		r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data\imagnet_samples\imagenet1000samples\n01440764_tench.JPEG')
+	
+	transformed_img = transform(img)
+	
+	input_img = torch.unsqueeze(transformed_img, 0)
+	
+	orig_img = input_img.clone()
+	# set model to evaluation mode and run img
+	model.eval()
+	output = model(input_img)
+	output = F.softmax(output, dim=1)
+	prediction_score, pred_label_idx = torch.topk(output, 1)
+	
+	# plot orig img
+	plt.imshow(orig_img[0].permute(1, 2, 0))
+	plt.show()
+	
+	if plot:
+		print('Predicted:', pred_label_idx.item(), 'with score:', prediction_score.item())
+		print('Predicted:', imagenet_labels[pred_label_idx.item()])
+	
+	# get saliency map
+	saliency_map = get_saliency_image(model, pred_label_idx, input_img, "integrated_gradients")
+	
+	# generate mask
+	masks, masks_len = generate_masks(saliency_map, thresholds=[0.1, 0.3, 0.5, 0.7, 0.9])
+	# display masks
+	if plot:
+		for i in range(masks_len):
+			plt.imshow(masks[i])
+			plt.show()
+	
+	# concatenate masks and save them
+	if False:
+		masks = torch.stack(masks)
+		torch.save(masks, f'C:\\Users\\Vik\Documents\\4. Private\\01. University\\2022_Sem6\\Intepretable_AI\\masks.pt')
+		print("File saved")
+	### Code is redundant and just for displaying the masks! ###
+	
+	if plot:
+		print("nice")
+		# apply all masks to img
+		img_list = []
+		for i, mask in enumerate(masks):
+			img_list.append(apply_mask_to_image(orig_img.clone(), masks[i]))
+		
+		orig_img = orig_img[0].permute(1, 2, 0)
+		# plot masked img in shape 3*244*244
+		fig, axs = plt.subplots(2, 3)
+		axs[0, 0].imshow(orig_img)
+		axs[0, 0].set_title('Original Image')
+		axs[0, 1].imshow(img_list[0].permute(1, 2, 0))
+		axs[0, 1].set_title('Masked Image 10%')
+		axs[1, 0].imshow(img_list[1].permute(1, 2, 0))
+		axs[1, 0].set_title('Masked Image 30%')
+		axs[1, 1].imshow(img_list[2].permute(1, 2, 0))
+		axs[1, 1].set_title('Masked Image 50%')
+		axs[0, 2].imshow(img_list[3].permute(1, 2, 0))
+		axs[0, 2].set_title('Masked Image 70%')
+		axs[1, 2].imshow(img_list[4].permute(1, 2, 0))
+		axs[1, 2].set_title('Masked Image 90%')
+		
+		plt.show()
+		print("Green means the pixel is important and blocked out.")
 # %%

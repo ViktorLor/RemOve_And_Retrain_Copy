@@ -104,7 +104,7 @@ for epoch in range(num_epochs):
 			if i == 100:
 				# print how long the training will take for 1 epoch
 				end = time.time()
-				print("Estimated training time for 1 epoch: ", len(train_loader) / 100 * (end - start) / 60, " minutes")
+				print("Estimated training time for 1 epoch: ", (len(train_loader) / 100) * (end - start) / 60, " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 		
 		except:
@@ -116,7 +116,7 @@ for epoch in range(num_epochs):
 				torch.save(optimizer.state_dict(), '../models/food101/ResNet50_Food101_original_aborted_optimizer.pth')
 				torch.save(scheduler.state_dict(), '../models/food101/ResNet50_Food101_original_aborted_scheduler.pth')
 			# continue training
-			continue
+			exit(1)
 	
 	if epoch == 0:
 		end = time.time()

@@ -1,16 +1,26 @@
 
-from PIL import Image
+# import libraries
+import os
 import numpy as np
-# Load image from path
-path = r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data\food-101\indices_to_block\random_baseline\apple_pie\134.png'
+import PIL
+from PIL import Image
+import torch
+import matplotlib.pyplot as plt
 
-image = Image.open(path)
+path = r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\data\food-101\indices_to_block\integrated_gradient\apple_pie\101251.pt'
 
-# Convert image to numpy array
-image = np.array(image)
+# torch tensor laod from path
+image_array = torch.load(path)
 
-# load unique values
-unique_values = np.unique(image, return_counts=True)
+print(image_array.shape)
 
-# print unique values
-print(unique_values)
+for i in [0,1,2]:
+	print(torch.unique(image_array[i], return_counts=True))
+	
+
+
+
+#plt.imshow(image_array)
+#plt.show()
+
+exit(1)
