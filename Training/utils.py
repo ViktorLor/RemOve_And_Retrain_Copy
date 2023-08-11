@@ -79,10 +79,18 @@ class Food101MaskDataset(torch.utils.data.Dataset):
 
 
 def training_food101(dataset, save_file, device, shuffle=True, seed=0):
+	# check if folder ../models/food101 exists
+	if not os.path.exists('../models/food101'):
+		os.makedirs('../models/food101')
+	
 	# Set seed for reproducibility
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
-	data_loader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=shuffle)
+	
+
+	batch_size = 128
+	data_loader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=shuffle, num_workers=4, pin_memory=True,
+	                                          prefetch_factor=4)
 	
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 	model = models.resnet50()
@@ -100,7 +108,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Define the loss function and optimizer
 	criterion = nn.CrossEntropyLoss()
 	
-	optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.0001)
+	learning_rate = 0.7 * (batch_size / 256)
+	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
 	print("started training model")
@@ -157,7 +166,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					           '_aborted_scheduler.pth')
 					# continue training
 					exit(1)
-			
+		
 		if epoch == 0:
 			end = time.time()
 			print("Estimated training time: ", (end - start) * num_epochs / 60, " minutes")
@@ -169,10 +178,6 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				exit(1)
 		
 		print('Finished Training')
-		
-		# check if folder ../models/food101 exists
-		if not os.path.exists('../models/food101'):
-			os.makedirs('../models/food101')
 		
 		# save the model
 		
@@ -188,7 +193,6 @@ def test_food101(dataset, model, device, result_file, shuffle=True, seed=0):
 	# test the model and the accuracy
 	correct = [0 for i in range(101)]
 	total = [0 for i in range(101)]
-	
 	
 	with torch.no_grad():
 		for data in data_loader:
@@ -217,6 +221,3 @@ def initialize_weights(module, mean=0, std=0.01):
 		torch.nn.init.normal_(module.weight, mean, std)
 		if module.bias is not None:
 			torch.nn.init.zeros_(module.bias)
-
-
-	
