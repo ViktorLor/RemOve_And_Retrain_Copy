@@ -89,7 +89,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	
 
 	batch_size = 128
-	data_loader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=shuffle, num_workers=4, pin_memory=True,
+	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4, pin_memory=True,
 	                                          prefetch_factor=4)
 	
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
