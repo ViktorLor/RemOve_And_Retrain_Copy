@@ -87,10 +87,10 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-
 	batch_size = 64
-	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=6, pin_memory=True,
-	                                          prefetch_factor=6)
+	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
+	                                          pin_memory=True,
+	                                          prefetch_factor=4)
 	
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 	model = models.resnet50()
@@ -140,7 +140,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				
 				# Print statistics
 				running_loss += loss.item()
-				if i % 10 == 0 and i != 0:  # print every 10 mini-batches
+				if i % 20 == 0 and i != 0:  # print every 10 mini-batches
 					print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
 					running_loss = 0.0
 				
