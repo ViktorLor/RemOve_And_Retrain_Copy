@@ -168,23 +168,13 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					# continue training
 					exit(1)
 		
-		if epoch == 0:
-			end = time.time()
-			print("Estimated training time: ", (end - start) * num_epochs / 60, " minutes")
-			print("Training will be done at: ", time.ctime(end + (end - start) * num_epochs))
-			# ask if you want to continue training
-			answer = input("Do you want to continue training? (y/n)")
-			if answer == "n":
-				print("Training stopped")
-				exit(1)
-		
-		print('Finished Training')
-		
-		# save the model
-		
-		torch.save(model.state_dict(), '../models/food101/', save_file + '.pth')
-		print("Model saved")
-		return
+	print('Finished Training')
+	
+	# save the model
+	
+	torch.save(model.state_dict(), '../models/food101/', save_file + '.pth')
+	print("Model saved")
+	return
 
 
 def test_food101(dataset, model, device, result_file, shuffle=True, seed=0):
