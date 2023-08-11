@@ -33,19 +33,30 @@ transformer = transforms.Compose([
 
 food101path = '../data/food-101'
 # threshold: threshold: >4.5: 10%, 3.5: 30%, 2.5: 50%, 1.5: 70%, 0.5: 90%,masked
-threshold = 4.5
-train_dataset = utils.Food101MaskDataset(data_folder_images=food101path + '/images/',
-                                         data_folder_mask=food101path + '/indices_to_block/random_baseline/',
-                                         meta_file=food101path + '/meta/train.txt',
-                                         threshold=threshold, transform=transformer)
+threshold_to_string = {4.5: "10%", 3.5: "30%", 2.5: "50%", 1.5: "70%", 0.5: "90%"}
+for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
+	for i in range(5):
+		# create dir
+		if not os.path.exists('../models/food101/' + threshold_to_string[threshold]):
+			os.makedirs('../models/food101/' + threshold_to_string[threshold])
+		
+		train_dataset = utils.Food101MaskDataset(data_folder_images=food101path + '/images/',
+		                                         data_folder_mask=food101path + '/indices_to_block/random_baseline/',
+		                                         meta_file=food101path + '/meta/train.txt',
+		                                         threshold=threshold, transform=transformer)
+		
+		print("Train Dataset: ", len(train_dataset))
+		print("Size should be: ", 75750)
+		
+		utils.training_food101(train_dataset, threshold_to_string[threshold] + f'Resnet_50_run_{i}', device,
+		                       shuffle=True, seed=0)
+	
+	del train_dataset
 
+exit(1)
 
-print("Train Dataset: ", len(train_dataset))
-print("Size should be: ", 75750)
+## TODO NOT IMPLEMENTED YET
 
-utils.training_food101(train_dataset, '10_ResNet50_Food101', device, shuffle=True, seed=0)
-
-del train_dataset
 # Load the trained model:
 model = models.resnet50()
 # Replace the last layer with a new fully connected layer
