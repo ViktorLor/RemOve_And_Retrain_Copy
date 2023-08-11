@@ -48,8 +48,8 @@ for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
 		print("Train Dataset: ", len(train_dataset))
 		print("Size should be: ", 75750)
 		
-		utils.training_food101(train_dataset, threshold_to_string[threshold] + f'Resnet_50_run_{i}', device,
-		                       shuffle=True, seed=0)
+		utils.training_food101(train_dataset, threshold_to_string[threshold] + f'/Resnet_50_run_{i}', device,
+		                       shuffle=True, seed=i)
 	
 	del train_dataset
 

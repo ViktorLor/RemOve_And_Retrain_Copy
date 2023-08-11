@@ -50,26 +50,6 @@ if param1 == 'integrated_gradient':
 	model.eval()
 	utils.generate_saliency_masks_3D(model, 'integrated_gradient', path, 224, True, saveaspng=True)
 	
-	
-	"""
-		for z, folder in enumerate(folders):
-		images = os.listdir(path + '/' + folder)
-		for i in range(len(thresholds)):
-			if not os.path.exists(path + '/' + folder + str(int(thresholds[i] * 100))):
-				os.makedirs(path + '/' + folder + str(int(thresholds[i] * 100)))
-		
-		for i, image in enumerate(images):
-			try:
-				sal_help.calculate_saliency_map(model, image, thresholds=thresholds, cuda=use_cuda,
-				                                project_path=path + '/' + folder)
-			except:
-				print("Error with image: ", image)
-				# write to logfile
-				with open("logfile.txt", "a") as logfile:
-					logfile.write("Error with image: " + image)
-			
-			if i % 100 == 0:
-				print(i, z, "image done", len(folders))
-	"""
+
 
 # %%

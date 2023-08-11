@@ -93,13 +93,6 @@ def generate_random_masks_3D(dataset_size, path_to_dataset, save_folder, images_
 		
 		print("Folder " + folder + " done.")
 		print("Time elapsed: " + str(time.time() - start) + " seconds.")
-		if folder == 'apple_pie':
-			print("Time for 1001 sets: " + str((time.time() - start) * 101 / 60) + " minutes.")
-			
-			print("You want to continue? [y/n]")
-			choice = input().lower()
-			if choice == 'n':
-				exit(1)
 	
 	print("Finished generating random masks.")
 	
