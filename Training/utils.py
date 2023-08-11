@@ -87,7 +87,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-	batch_size = 128
+	batch_size = 80 # 80 seems to fit in the memory of the GPU
 	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
 	                                          pin_memory=True,
 	                                          prefetch_factor=4)
