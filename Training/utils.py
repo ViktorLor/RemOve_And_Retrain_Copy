@@ -87,7 +87,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-	batch_size = 64
+	batch_size = 128
 	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
 	                                          pin_memory=True,
 	                                          prefetch_factor=4)
@@ -153,8 +153,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					      " minutes")
 					print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 			
-			except:
+			except Exception as e:
 				# write in log file that error occured
+				print(e)
 				with open('../models/food101/' + save_file + '_training_log.txt', 'a') as f:
 					f.write("Error in epoch: " + str(epoch) + " batch: " + str(i) + "\n")
 					# save model, optimizer and scheduler
