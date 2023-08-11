@@ -31,7 +31,7 @@ transformer = transforms.Compose([
 	transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
 ])
 
-food101path = '../data/food-101'
+food101path = '../Data/food-101'
 # threshold: threshold: >4.5: 10%, 3.5: 30%, 2.5: 50%, 1.5: 70%, 0.5: 90%,masked
 threshold_to_string = {4.5: "10%", 3.5: "30%", 2.5: "50%", 1.5: "70%", 0.5: "90%"}
 for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
