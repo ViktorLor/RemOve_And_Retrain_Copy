@@ -108,7 +108,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Define the loss function and optimizer
 	criterion = nn.CrossEntropyLoss()
 	
-	learning_rate = 0.7 * (batch_size / 256)
+	learning_rate = 0.1 * (batch_size / 256)
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
@@ -116,6 +116,10 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	start = time.time()
 	# Train the model
 	num_epochs = 90
+	
+	# save model
+	torch.save('../models/food101/' + model.state_dict(), save_file)
+	exit()
 	
 	for epoch in range(num_epochs):
 		running_loss = 0.0

@@ -39,7 +39,7 @@ print("Train Dataset: ", len(train_dataset))
 print("Size should be: ", 75750)
 
 # Fully builds a trained model and saves it.
-utils.training_food101(train_dataset, 'orginal_ResNet50', device, shuffle=True, seed=0)
+utils.training_food101(train_dataset, 'orginal_ResNet50.pth', device, shuffle=True, seed=0)
 
 del train_dataset
 # Load the trained model:
