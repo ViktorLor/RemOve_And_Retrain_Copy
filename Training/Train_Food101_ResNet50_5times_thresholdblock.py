@@ -31,24 +31,27 @@ transformer = transforms.Compose([
 	transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
 ])
 
+folder = 'random_baseline'
+
 food101path = '../Data/food-101'
 # threshold: threshold: >4.5: 10%, 3.5: 30%, 2.5: 50%, 1.5: 70%, 0.5: 90%,masked
-threshold_to_string = {4.5: "10%", 3.5: "30%", 2.5: "50%", 1.5: "70%", 0.5: "90%"}
+threshold_to_string = {4.5: "10", 3.5: "30", 2.5: "50", 1.5: "70", 0.5: "90"}
 for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
 	for i in range(5):
 		# create dir
-		if not os.path.exists('../models/food101/' + threshold_to_string[threshold]):
-			os.makedirs('../models/food101/' + threshold_to_string[threshold])
+		if not os.path.exists('../models/food101/' + folder + '/' + threshold_to_string[threshold]):
+			os.makedirs('../models/food101/' + folder + '/' + threshold_to_string[threshold])
 		
 		train_dataset = utils.Food101MaskDataset(data_folder_images=food101path + '/images/',
-		                                         data_folder_mask=food101path + '/indices_to_block/random_baseline/',
+		                                         data_folder_mask=food101path + '/indices_to_block/' + folder + '/',
 		                                         meta_file=food101path + '/meta/train.txt',
 		                                         threshold=threshold, transform=transformer)
 		
 		print("Train Dataset: ", len(train_dataset))
 		print("Size should be: ", 75750)
 		
-		utils.training_food101(train_dataset, threshold_to_string[threshold] + f'/Resnet_50_run_{i}', device,
+		utils.training_food101(train_dataset, folder + '/' + threshold_to_string[threshold] + f'/Resnet_50_run_{i}',
+		                       device,
 		                       shuffle=True, seed=i)
 	
 	del train_dataset
