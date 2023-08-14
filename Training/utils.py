@@ -118,7 +118,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	num_epochs = 90
 	
 	# save model
-	torch.save('../models/food101/' + model.state_dict(), save_file)
+	torch.save( model.state_dict(),'../models/food101/' + save_file)
 	exit()
 	
 	for epoch in range(num_epochs):
