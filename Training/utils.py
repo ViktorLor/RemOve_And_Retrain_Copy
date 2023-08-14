@@ -87,7 +87,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-	batch_size = 80 # 80 seems to fit in the memory of the GPU
+	batch_size = 80  # 80 seems to fit in the memory of the GPU
 	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
 	                                          pin_memory=True,
 	                                          prefetch_factor=4)
@@ -117,14 +117,13 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Train the model
 	num_epochs = 90
 	
-	# save model
-	torch.save( model.state_dict(),'../models/food101/' + save_file)
-	exit()
-	
+	accuracies = []
 	for epoch in range(num_epochs):
 		running_loss = 0.0
 		# print epoch
 		print("Epoch: ", epoch + 1)
+		
+		accuracies.append([])
 		
 		for i, data in enumerate(data_loader, 0):
 			try:
@@ -138,6 +137,10 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				# Forward + backward + optimize
 				outputs = model(inputs)
 				loss = criterion(outputs, labels)
+				# log accuracy
+				_, predicted = torch.max(outputs.data, 1)
+				accuracies[epoch].append((predicted == labels).sum().item() / batch_size)
+				
 				loss.backward()
 				optimizer.step()
 				scheduler.step()
@@ -146,6 +149,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				running_loss += loss.item()
 				if i % 20 == 0 and i != 0:  # print every 10 mini-batches
 					print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+					# print accuracy
+					print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
 					running_loss = 0.0
 				
 				if i == 100 and epoch == 0:
@@ -156,6 +161,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
 					      " minutes")
 					print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+					
+					
 			
 			except Exception as e:
 				# write in log file that error occured
@@ -172,11 +179,19 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 					# continue training
 					exit(1)
 		
+		# save accuracy and loss in log file
+		with open('../models/food101/' + save_file + '_training_log.txt', 'a') as f:
+			f.write("Epoch: " + str(epoch) + "\n")
+			f.write("Accuracy: " + str(sum(accuracies[epoch]) / len(accuracies[epoch])) + "\n")
+			f.write("Loss: " + str(running_loss / 100) + "\n")
+			f.write("Time: " + str(time.ctime()) + "\n")
+			f.write("\n")
+			
 	print('Finished Training')
 	
 	# save the model
 	
-	torch.save(model.state_dict(), '../models/food101/', save_file + '.pth')
+	torch.save(model.state_dict(), '../models/food101/' + save_file + '.pth')
 	print("Model saved")
 	return
 
