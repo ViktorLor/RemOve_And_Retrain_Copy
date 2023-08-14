@@ -117,6 +117,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Train the model
 	num_epochs = 90
 	
+	torch.save(model.state_dict(), '../models/food101/' + save_file + '.pth')
+	
+	exit(1)
 	accuracies = []
 	for epoch in range(num_epochs):
 		running_loss = 0.0
