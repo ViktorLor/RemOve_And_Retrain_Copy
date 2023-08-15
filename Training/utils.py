@@ -184,7 +184,6 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			f.write("Epoch: " + str(epoch) + "\n")
 			f.write("Accuracy: " + str(sum(accuracies[epoch]) / len(accuracies[epoch])) + "\n")
 			f.write("Loss: " + str(running_loss / 100) + "\n")
-			f.write("Time: " + str(time.ctime()) + "\n")
 			f.write("\n")
 			
 	print('Finished Training')

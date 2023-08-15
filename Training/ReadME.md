@@ -12,3 +12,10 @@ method}/models/{threshold}_{1-5}_net.pth
 3. Train_Food101_ResNet50_original_Dataset
 
 Trains the ResNET50 model on the original dataset.
+
+
+
+## To Know about Learning parameters:
+
+LR= 0.1 -> 13 % accuracy
+LR= 0.05 -> 27% accuracy

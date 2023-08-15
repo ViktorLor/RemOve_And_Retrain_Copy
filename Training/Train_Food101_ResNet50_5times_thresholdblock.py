@@ -56,25 +56,25 @@ for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
 	
 	del train_dataset
 
-exit(1)
 
-## TODO NOT IMPLEMENTED YET
-
-# Load the trained model:
-model = models.resnet50()
-# Replace the last layer with a new fully connected layer
-num_ftrs = model.fc.in_features
-model.fc = nn.Linear(num_ftrs, 101)
-
-model.load_state_dict(torch.load('../models/food101/10_ResNet50_Food101.pth'))
-model.eval()
-
-test_dataset = utils.Food101MaskDataset(data_folder_images=food101path + '/images/',
-                                        data_folder_mask=food101path + '/indices_to_block/random_baseline/',
-                                        meta_file=food101path + '/meta/test.txt',
-                                        threshold=threshold, transform=transformer)
-
-print("Test Dataset: ", len(test_dataset))
-print("Size should be: ", 25250)
-
-utils.test_food101(test_dataset, model, device, result_file='10_ResNet50_food101_results.txt', shuffle=False, seed=0)
+for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:
+	for i in range(5):
+		
+		# Load the trained model:
+		model = models.resnet50()
+		# Replace the last layer with a new fully connected layer
+		num_ftrs = model.fc.in_features
+		model.fc = nn.Linear(num_ftrs, 101)
+		
+		model.load_state_dict(torch.load('../models/food101/10_ResNet50_Food101.pth'))
+		model.eval()
+		
+		test_dataset = utils.Food101MaskDataset(data_folder_images=food101path + '/images/',
+		                                        data_folder_mask=food101path + '/indices_to_block/random_baseline/',
+		                                        meta_file=food101path + '/meta/test.txt',
+		                                        threshold=threshold, transform=transformer)
+		
+		print("Test Dataset: ", len(test_dataset))
+		print("Size should be: ", 25250)
+		
+		utils.test_food101(test_dataset, model, device, result_file='10_ResNet50_food101_results.txt', shuffle=False, seed=0)
