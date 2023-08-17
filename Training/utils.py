@@ -91,12 +91,12 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	
 	batch_size = 64  # 80 seems to fit in the memory of the GPU
 	traindata_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
-	                                          pin_memory=True,
-	                                          prefetch_factor=4)
+	                                               pin_memory=True,
+	                                               prefetch_factor=4)
 	
 	testdata_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4,
-	                                          pin_memory=True,
-	                                          prefetch_factor=4)
+	                                              pin_memory=True,
+	                                              prefetch_factor=4)
 	
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 	model = models.resnet50()
@@ -166,7 +166,8 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 				running_loss = 0.0
 				# print accuracy and loss to tensorboard
 				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(traindata_loader) + i)
-				writer.add_scalar('Accuracy/train_p_batch', accuracies_train[epoch][-1], epoch * len(traindata_loader) + i)
+				writer.add_scalar('Accuracy/train_p_batch', accuracies_train[epoch][-1],
+				                  epoch * len(traindata_loader) + i)
 			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
@@ -192,23 +193,22 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 				accuracies_test[epoch].append((predicted == labels).sum().item() / batch_size)
 				loss = criterion(outputs, labels)
 				run_loss_test.append(loss.item())
-				
 		
 		# print accuracy and loss to tensorboard, every epoch
 		writer.add_scalar('Accuracy/test_p_epoch', sum(accuracies_test[epoch]) / len(accuracies_test[epoch]), epoch)
 		writer.add_scalar(f'Loss/test_p_epoch', sum(run_loss_test) / len(run_loss_test), epoch)
-		
-		
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
 		writer = csv.writer(f)
 		
 		# write header
-		writer.writerow(['epoch', 'accuracy_train','accuracy_test', 'loss'])
+		writer.writerow(['epoch', 'accuracy_train', 'accuracy_test', 'loss'])
 		for i in range(len(accuracies_train)):
 			writer.writerow(
-				[i, sum(accuracies_train[i]) / len(accuracies_train[i]), sum(running_losses[i]) / len(running_losses[i])])
+				[i, sum(accuracies_train[i]) / len(accuracies_train[i]),
+				 sum(accuracies_test[i]) / len(accuracies_test[i]),
+				 sum(running_losses[i]) / len(running_losses[i])])
 	
 	# save tensorboard file
 	writer.close()
