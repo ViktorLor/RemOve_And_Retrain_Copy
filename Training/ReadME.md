@@ -24,5 +24,20 @@ Trains the ResNET50 model on the original dataset.
 
 ## what needs to be added?
 
-- superfit one minibatch
 - look deep into paper and code
+- superfit one minibatch
+
+
+
+
+### How to run Tensorboard:
+
+1. SSH with port forwarding
+
+ssh -L 16006:127.0.0.1:6006 viktorl@student2.cp.jku.at
+
+2. Run tensorboard from ~/Intepretable_AI_Loreth/models/food101/runs_original
+
+ tensorboard --logdir= . --host=localhost --port=6006
+ 
+3. Start program and open in browser
