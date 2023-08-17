@@ -61,7 +61,7 @@ model.to(device)
 # Define the loss function and optimizer
 criterion = nn.CrossEntropyLoss()
 
-initial_learning_rate = 0.7
+initial_learning_rate = 0.07
 # training steps 20000
 learning_rate = initial_learning_rate * float(batch_size) / 256  # adjusting according to the paper
 optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
