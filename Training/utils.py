@@ -116,7 +116,6 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
-	
 	print("started training model")
 	start = time.time()
 	# Train the model
@@ -162,9 +161,6 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				# print accuracy and loss to tensorboard
 				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(data_loader) + i)
 				writer.add_scalar('Accuracy/train_p_batch', accuracies[epoch][-1], epoch * len(data_loader) + i)
-				
-				
-				
 			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
@@ -176,7 +172,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 		
 		# print accuracy and loss to tensorboard, every epoch
-		writer.add_scalar(f'Loss/train_p_epoch', running_loss, epoch)
+		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
 		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies[epoch]) / len(accuracies[epoch]), epoch)
 	
 	# save accuracy and loss in csv file
@@ -189,11 +185,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			writer.writerow(
 				[i, sum(accuracies[i]) / len(accuracies[i]), sum(running_losses[i]) / len(running_losses[i])])
 	
-	
 	# save tensorboard file
 	writer.close()
-
-
 	
 	print('Finished Training')
 	# save the model
