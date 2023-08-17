@@ -166,9 +166,11 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
 				      " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
-		
+				
+			writer.add_scalar('Loss/train', running_loss, epoch)
+			
 		running_losses.append(running_loss)
-		writer.add_scalar('Loss/train', running_loss, epoch)
+		
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
