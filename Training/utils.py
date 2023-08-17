@@ -94,7 +94,6 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	                                               pin_memory=True,
 	                                               prefetch_factor=4)
 	
-
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 	model = models.resnet50()
 	# Replace the last layer with a new fully connected layer
@@ -164,23 +163,22 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(traindata_loader) + i)
 				writer.add_scalar('Accuracy/train_p_batch', accuracies_train[epoch][-1],
 				                  epoch * len(traindata_loader) + i)
-			
-			if i == 100 and epoch == 0:
-				# print how long the training will take for 1 epoch
-				end = time.time()
-				print("Estimated training time for 1 epoch: ", (len(traindata_loader) / 100) * (end - start) / 60,
-				      " minutes")
-				print("Estimate training for 90 epochs: ", (len(traindata_loader) / 100) * (end - start) / 60 * 90,
-				      " minutes")
-				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+				
+				if epoch == 0:
+					# print how long the training will take for 1 epoch
+					end = time.time()
+					print("Estimated training time for 1 epoch: ", (len(traindata_loader) / 100) * (end - start) / 60,
+					      " minutes")
+					print("Estimate training for 90 epochs: ", (len(traindata_loader) / 100) * (end - start) / 60 * 90,
+					      " minutes")
+					print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+					
 		# update learning rate
 		scheduler.step()
 		
 		# print accuracy and loss to tensorboard, every epoch
 		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
 		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies_train[epoch]) / len(accuracies_train[epoch]), epoch)
-
-		
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
