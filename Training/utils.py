@@ -157,6 +157,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 			
 			if i % 100 == 0 and i != 0:  # print every 20 mini-batches
 				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+				print('[%d, %5d] accuracy: %.3f' % (epoch + 1, i + 1, accuracies_train[epoch][-1]))
 				running_losses[epoch].append(running_loss / 100)
 				running_loss = 0.0
 				# print accuracy and loss to tensorboard
@@ -164,7 +165,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 				writer.add_scalar('Accuracy/train_p_batch', accuracies_train[epoch][-1],
 				                  epoch * len(traindata_loader) + i)
 				
-				if epoch == 0:
+				if  i == 100 and epoch == 0:
 					# print how long the training will take for 1 epoch
 					end = time.time()
 					print("Estimated training time for 1 epoch: ", (len(traindata_loader) / 100) * (end - start) / 60,
@@ -172,7 +173,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 					print("Estimate training for 90 epochs: ", (len(traindata_loader) / 100) * (end - start) / 60 * 90,
 					      " minutes")
 					print("1 epoch will be done at: ", time.ctime(end + (end - start)))
-					
+		
 		# update learning rate
 		scheduler.step()
 		
