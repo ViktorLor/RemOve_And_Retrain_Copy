@@ -23,6 +23,7 @@ torch.manual_seed(0)
 # Set device to GPU if available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("Device: ", device)
+
 # Define transforms for training and validation data
 transformer = transforms.Compose([
 	transforms.Resize(256),
@@ -39,16 +40,18 @@ print("Train Dataset: ", len(train_dataset))
 print("Size should be: ", 75750)
 
 # Fully builds a trained model and saves it.
-utils.training_food101(train_dataset, 'original_ResNet50', device, shuffle=True, seed=0)
+utils.training_food101(train_dataset, 'original_ResNet50_lr_0_7', device, shuffle=True, seed=0)
 
 del train_dataset
+
+exit(1)
 # Load the trained model:
 model = models.resnet50()
 # Replace the last layer with a new fully connected layer
 num_ftrs = model.fc.in_features
 model.fc = nn.Linear(num_ftrs, 101)
 
-model.load_state_dict(torch.load('../models/food101/original_ResNet50.pth'))
+model.load_state_dict(torch.load('../models/food101/original_ResNet50_lr_0_7.pth'))
 model.eval()
 
 test_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="test")

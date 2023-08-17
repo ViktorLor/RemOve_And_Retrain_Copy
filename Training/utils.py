@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 import torch.optim as optim
 import torch.nn as nn
 from torchvision import models
-
+import csv
 import os
 import time
 import numpy as np
@@ -108,7 +108,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Define the loss function and optimizer
 	criterion = nn.CrossEntropyLoss()
 	
-	learning_rate = 0.1 * (batch_size / 256)
+	initial_learning_rate = 0.7
+	learning_rate = initial_learning_rate * (batch_size / 256)
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
@@ -118,74 +119,60 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	num_epochs = 90
 	
 	accuracies = []
+	running_loss = []
 	for epoch in range(num_epochs):
-		running_loss = 0.0
+		
 		# print epoch
 		print("Epoch: ", epoch + 1)
-		
+		running_loss.append([])
 		accuracies.append([])
 		
 		for i, data in enumerate(data_loader, 0):
-			try:
-				# Get the inputs and labels
-				inputs, labels = data
-				inputs, labels = inputs.to(device), labels.to(device)
-				
-				# Zero the parameter gradients
-				optimizer.zero_grad()
-				
-				# Forward + backward + optimize
-				outputs = model(inputs)
-				loss = criterion(outputs, labels)
-				# log accuracy
-				_, predicted = torch.max(outputs.data, 1)
-				accuracies[epoch].append((predicted == labels).sum().item() / batch_size)
-				
-				loss.backward()
-				optimizer.step()
-				scheduler.step()
-				
-				# Print statistics
-				running_loss += loss.item()
-				if i % 20 == 0 and i != 0:  # print every 10 mini-batches
-					print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
-					# print accuracy
-					print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
-					running_loss = 0.0
-				
-				if i == 100 and epoch == 0:
-					# print how long the training will take for 1 epoch
-					end = time.time()
-					print("Estimated training time for 1 epoch: ", (len(data_loader) / 100) * (end - start) / 60,
-					      " minutes")
-					print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
-					      " minutes")
-					print("1 epoch will be done at: ", time.ctime(end + (end - start)))
-					
-					
 			
-			except Exception as e:
-				# write in log file that error occured
-				print(e)
-				with open('../models/food101/' + save_file + '_training_log.txt', 'a') as f:
-					f.write("Error in epoch: " + str(epoch) + " batch: " + str(i) + "\n")
-					# save model, optimizer and scheduler
-					torch.save(model.state_dict(), '../models/food101/' + save_file + '_aborted.pth')
-					torch.save(optimizer.state_dict(),
-					           '../models/food101/' + save_file + '_aborted_optimizer.pth')
-					torch.save(scheduler.state_dict(),
-					           '../models/food101/' + save_file +
-					           '_aborted_scheduler.pth')
-					# continue training
-					exit(1)
+			# Get the inputs and labels
+			inputs, labels = data
+			inputs, labels = inputs.to(device), labels.to(device)
+			
+			# Zero the parameter gradients
+			optimizer.zero_grad()
+			
+			# Forward + backward + optimize
+			outputs = model(inputs)
+			loss = criterion(outputs, labels)
+			# log accuracy
+			_, predicted = torch.max(outputs.data, 1)
+			accuracies[epoch].append((predicted == labels).sum().item() / batch_size)
+			
+			loss.backward()
+			optimizer.step()
+			scheduler.step()
+			
+			# Print statistics
+			running_loss += loss.item()
+			if i % 20 == 0 and i != 0:  # print every 10 mini-batches
+				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+				# print accuracy
+				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
+				running_loss = 0.0
+			
+			if i == 100 and epoch == 0:
+				# print how long the training will take for 1 epoch
+				end = time.time()
+				print("Estimated training time for 1 epoch: ", (len(data_loader) / 100) * (end - start) / 60,
+				      " minutes")
+				print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
+				      " minutes")
+				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+	
+	# save accuracy and loss in csv file
+	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
+		writer = csv.writer(f)
 		
-		# save accuracy and loss in log file
-		with open('../models/food101/' + save_file + '_training_log.txt', 'a') as f:
-			f.write("Epoch: " + str(epoch) + "\n")
-			f.write("Accuracy: " + str(sum(accuracies[epoch]) / len(accuracies[epoch])) + "\n")
-			f.write("Loss: " + str(running_loss / 100) + "\n")
-			f.write("\n")
-			
+		# write header
+		writer.writerow(['epoch', 'accuracy', 'loss'])
+		for i in range(len(accuracies)):
+			writer.writerow([i, sum(accuracies[i]) / len(accuracies[i]), sum(running_loss[i]) / len(running_loss[i])])
+	
 	print('Finished Training')
 	# save the model
 	

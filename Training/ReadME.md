@@ -19,3 +19,11 @@ Trains the ResNET50 model on the original dataset.
 
 LR= 0.1 -> 13 % accuracy
 LR= 0.05 -> 27% accuracy
+LR= 0.01 -> 7.8% accuracy
+
+# 20000 training steps
+
+
+### To try:
+- Minibatch
+- Tensorboard, Accuracy, Loss
