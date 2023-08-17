@@ -110,7 +110,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	criterion = nn.CrossEntropyLoss()
 	
 	initial_learning_rate = 0.7
-	learning_rate = initial_learning_rate * float(batch_size) / 32  # adjusting according to the paper
+	learning_rate = initial_learning_rate * float(batch_size) / 256  # adjusting according to the paper
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
