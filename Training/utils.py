@@ -131,7 +131,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	accuracies_train = []
 	accuracies_test = []
 	running_losses = []
-	run_loss_test = []
+
 	for epoch in range(num_epochs):
 		running_losses.append([])
 		# print epoch
@@ -184,6 +184,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
 		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies_train[epoch]) / len(accuracies_train[epoch]), epoch)
 		accuracies_test.append([])
+		
 		with torch.no_grad():
 			for data in testdata_loader:
 				images, labels = data
@@ -191,11 +192,9 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 				outputs = model(images)
 				_, predicted = torch.max(outputs.data, 1)
 				accuracies_test[epoch].append((predicted == labels).sum().item() / batch_size)
-
 		
 		# print accuracy and loss to tensorboard, every epoch
 		writer.add_scalar('Accuracy/test_p_epoch', sum(accuracies_test[epoch]) / len(accuracies_test[epoch]), epoch)
-		writer.add_scalar(f'Loss/test_p_epoch', sum(run_loss_test) / len(run_loss_test), epoch)
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
