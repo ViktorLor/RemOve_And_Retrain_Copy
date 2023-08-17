@@ -124,7 +124,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 		
 		# print epoch
 		print("Epoch: ", epoch + 1)
-		running_loss.append([])
+		running_loss.append([0.0])
 		accuracies.append([])
 		
 		for i, data in enumerate(data_loader, 0):
