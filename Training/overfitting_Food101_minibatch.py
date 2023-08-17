@@ -40,8 +40,6 @@ print("Loaded Dataset")
 print("Train Dataset: ", len(train_dataset))
 print("Size should be: ", 75750)
 
-
-
 batch_size = 64  # 80 seems to fit in the memory of the GPU
 data_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4,
                                           pin_memory=True,
@@ -80,13 +78,12 @@ accuracy = 0
 
 for i, data in enumerate(data_loader, 0):
 	for epoch in range(num_epochs):
-
+		
 		# print epoch
 		print("Epoch: ", epoch + 1)
-
+		
 		running_loss = 0.0
 		
-			
 		# Get the inputs and labels
 		inputs, labels = data
 		inputs, labels = inputs.to(device), labels.to(device)
@@ -108,22 +105,17 @@ for i, data in enumerate(data_loader, 0):
 		# Print statistics
 		running_loss += loss.item()
 		
-		if(accuracy == 1):
+		if (accuracy == 1):
 			print("Accuracy: ", accuracy)
 			print("Epoch: ", epoch + 1)
 			exit(1)
 		
-		if i % 20 == 0 and i != 0:  # print every 20 mini-batches
-			#print running loss
-			print('[%d, %5d] loss: %.3f' %
-			      (epoch + 1, i + 1, running_loss / 20))
-			running_loss = 0.0
-			# print accuracy
-			print("Accuracy: ", accuracy)
-			accuracy = 0.0
-		
-
-	break
+		# print running loss
+		print('[%d, %5d] loss: %.3f' %
+		      (epoch + 1, i + 1, running_loss))
+		running_loss = 0.0
+		# print accuracy
+		print("Accuracy: ", accuracy)
+		accuracy = 0.0
 	
-
-
+	break
