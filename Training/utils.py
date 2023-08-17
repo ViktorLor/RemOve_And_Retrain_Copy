@@ -87,7 +87,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-	batch_size = 64  # 80 seems to fit in the memory of the GPU
+	batch_size = 80  # 80 seems to fit in the memory of the GPU
 	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
 	                                          pin_memory=True,
 	                                          prefetch_factor=4)
@@ -109,7 +109,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	criterion = nn.CrossEntropyLoss()
 	
 	initial_learning_rate = 0.7
-	learning_rate = initial_learning_rate * (batch_size / 256)
+	learning_rate = initial_learning_rate * 2
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
