@@ -95,7 +95,6 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	                                               prefetch_factor=4)
 	
 	testdata_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4,
-	                                              pin_memory=True,
 	                                              prefetch_factor=4)
 	
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
@@ -131,7 +130,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	accuracies_train = []
 	accuracies_test = []
 	running_losses = []
-
+	
 	for epoch in range(num_epochs):
 		running_losses.append([])
 		# print epoch
