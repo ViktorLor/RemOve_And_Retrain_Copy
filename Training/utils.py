@@ -94,9 +94,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	                                               pin_memory=True,
 	                                               prefetch_factor=4)
 	
-	testdata_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4,
-	                                              prefetch_factor=4)
-	
+
 	# Load a randomly initialized ResNet50 model with mü = 0 and σ = 0.01
 	model = models.resnet50()
 	# Replace the last layer with a new fully connected layer
@@ -128,7 +126,6 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	writer = SummaryWriter(log_dir='../models/food101/runs_original/')
 	
 	accuracies_train = []
-	accuracies_test = []
 	running_losses = []
 	
 	for epoch in range(num_epochs):
@@ -182,18 +179,8 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 		# print accuracy and loss to tensorboard, every epoch
 		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
 		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies_train[epoch]) / len(accuracies_train[epoch]), epoch)
-		accuracies_test.append([])
+
 		
-		with torch.no_grad():
-			for data in testdata_loader:
-				images, labels = data
-				images, labels = images.to(device), labels.to(device)
-				outputs = model(images)
-				_, predicted = torch.max(outputs.data, 1)
-				accuracies_test[epoch].append((predicted == labels).sum().item() / batch_size)
-		
-		# print accuracy and loss to tensorboard, every epoch
-		writer.add_scalar('Accuracy/test_p_epoch', sum(accuracies_test[epoch]) / len(accuracies_test[epoch]), epoch)
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
