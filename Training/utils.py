@@ -175,9 +175,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				      " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 		
-		running_losses.append(running_loss)
-		
-		writer.add_scalar('Loss/train', running_loss / 20, epoch * len(data_loader))
+		# print accuracy and loss to tensorboard, every epoch
+		writer.add_scalar(f'Loss/train_p_epoch', running_loss, epoch)
+		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies[epoch]) / len(accuracies[epoch]), epoch)
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
@@ -192,13 +192,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	
 	# save tensorboard file
 	writer.close()
-	# save tensorboard plots
-	# plot accuracy
-	plt.plot(np.arange(1, num_epochs + 1), [sum(accuracies[i]) / len(accuracies[i]) for i in range(num_epochs)])
-	plt.xlabel('Epoch')
-	plt.ylabel('Accuracy')
-	plt.title('Accuracy over Epochs')
-	plt.savefig('../models/food101/' + save_file + '_accuracy.png')
+
 
 	
 	print('Finished Training')

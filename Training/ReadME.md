@@ -15,15 +15,11 @@ Trains the ResNET50 model on the original dataset.
 
 
 
-## To Know about Learning parameters:
 
-LR= 0.1 -> 13 % accuracy
-LR= 0.05 -> 27% accuracy
-LR= 0.01 -> 7.8% accuracy
 
 # 20000 training steps
 
 
-### To try:
-- Minibatch
-- Tensorboard, Accuracy, Loss
+### What was tried already?
+
+- Trying different learning rates: {0.1: 13%, 0.05: 27%, 0.01:7.8%}
