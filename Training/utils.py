@@ -119,16 +119,16 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	num_epochs = 90
 	
 	accuracies = []
-	running_loss = []
+	running_losses = []
 	for epoch in range(num_epochs):
 		
 		# print epoch
 		print("Epoch: ", epoch + 1)
-		running_loss.append(0.0)
+		running_losses.append([])
 		accuracies.append([])
 		
 		for i, data in enumerate(data_loader, 0):
-			
+			running_loss = 0.0
 			# Get the inputs and labels
 			inputs, labels = data
 			inputs, labels = inputs.to(device), labels.to(device)
@@ -148,13 +148,13 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			scheduler.step()
 			
 			# Print statistics
-			running_loss[i] += loss.item()
+			running_loss += loss.item()
 			if i % 20 == 0 and i != 0:  # print every 10 mini-batches
-				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss[i] / 20))
+				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
 				# print accuracy
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
-				running_loss[i] = 0.0
-			
+				running_losses[epoch].append(running_loss / 20)
+				
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
 				end = time.time()
@@ -163,6 +163,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
 				      " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+		
+		
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
@@ -171,7 +173,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 		# write header
 		writer.writerow(['epoch', 'accuracy', 'loss'])
 		for i in range(len(accuracies)):
-			writer.writerow([i, sum(accuracies[i]) / len(accuracies[i]), sum(running_loss[i]) / len(running_loss[i])])
+			writer.writerow([i, sum(accuracies[i]) / len(accuracies[i]), sum(running_losses[i]) / len(running_losses[i])])
 	
 	print('Finished Training')
 	# save the model
