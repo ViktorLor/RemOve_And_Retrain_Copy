@@ -15,6 +15,7 @@ import os
 import time
 import numpy as np
 from PIL import Image
+from torch.utils.tensorboard import SummaryWriter
 
 
 # Mask Dataset which loads data from Food101 and additionally loads the masks and applies them to the images
@@ -87,7 +88,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	torch.manual_seed(seed)
 	# Create dataloaders for training data
 	
-	batch_size = 80  # 80 seems to fit in the memory of the GPU
+	batch_size = 64  # 80 seems to fit in the memory of the GPU
 	data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=4,
 	                                          pin_memory=True,
 	                                          prefetch_factor=4)
@@ -109,7 +110,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	criterion = nn.CrossEntropyLoss()
 	
 	initial_learning_rate = 0.7
-	learning_rate = initial_learning_rate * float(batch_size) / 32
+	learning_rate = initial_learning_rate * float(batch_size) / 32  # adjusting according to the paper
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
@@ -117,6 +118,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	start = time.time()
 	# Train the model
 	num_epochs = 90
+	
+	writer = SummaryWriter('../models/food101/runs_original/')
 	
 	accuracies = []
 	running_losses = []
@@ -148,12 +151,12 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			
 			# Print statistics
 			running_loss += loss.item()
+			
 			if i % 20 == 0 and i != 0:  # print every 10 mini-batches
 				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
 				# print accuracy
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
 				running_losses[epoch].append(running_loss / 20)
-				running_loss = 0.0
 			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
@@ -165,6 +168,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
 		
 		running_losses.append(running_loss)
+		writer.add_scalar('Loss/train', running_loss, epoch)
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
