@@ -16,6 +16,7 @@ import time
 import numpy as np
 from PIL import Image
 from torch.utils.tensorboard import SummaryWriter
+import matplotlib.pyplot as plt
 
 
 # Mask Dataset which loads data from Food101 and additionally loads the masks and applies them to the images
@@ -187,6 +188,18 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 		for i in range(len(accuracies)):
 			writer.writerow(
 				[i, sum(accuracies[i]) / len(accuracies[i]), sum(running_losses[i]) / len(running_losses[i])])
+	
+	
+	# save tensorboard file
+	writer.close()
+	# save tensorboard plots
+	# plot accuracy
+	plt.plot(np.arange(1, num_epochs + 1), [sum(accuracies[i]) / len(accuracies[i]) for i in range(num_epochs)])
+	plt.xlabel('Epoch')
+	plt.ylabel('Accuracy')
+	plt.title('Accuracy over Epochs')
+	plt.savefig('../models/food101/' + save_file + '_accuracy.png')
+
 	
 	print('Finished Training')
 	# save the model
