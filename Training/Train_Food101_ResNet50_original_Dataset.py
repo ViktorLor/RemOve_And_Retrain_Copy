@@ -45,6 +45,8 @@ utils.training_food101(train_dataset, 'original_ResNet50_lr_0_7', device, shuffl
 del train_dataset
 
 exit(1)
+
+
 # Load the trained model:
 model = models.resnet50()
 # Replace the last layer with a new fully connected layer

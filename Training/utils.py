@@ -126,9 +126,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 		print("Epoch: ", epoch + 1)
 		running_losses.append([])
 		accuracies.append([])
-		
+		running_loss = 0.0
 		for i, data in enumerate(data_loader, 0):
-			running_loss = 0.0
+			
 			# Get the inputs and labels
 			inputs, labels = data
 			inputs, labels = inputs.to(device), labels.to(device)
@@ -153,7 +153,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
 				# print accuracy
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
-				running_losses[epoch].append(running_loss / 20)
+				running_losses[epoch].append(running_loss)
 				
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
