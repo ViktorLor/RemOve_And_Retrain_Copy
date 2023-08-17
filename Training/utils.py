@@ -158,10 +158,10 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
 				running_losses[epoch].append(running_loss / 20)
 				# print running loss and accuracy to tensorboard, every 20 mini-batches
-				
+				writer.add_scalar('Loss/train', running_loss / 20, epoch * len(data_loader) + i)
 				running_loss = 0.0
 				# add running loss to tensorboard
-				writer.add_scalar('Loss/train', running_loss / 20, epoch * len(data_loader) + i)
+				
 			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
