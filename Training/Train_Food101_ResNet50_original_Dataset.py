@@ -44,13 +44,8 @@ print("Size should be: ", 75750)
 # Fully builds a trained model and saves it.
 utils.training_food101(train_dataset, test_dataset, 'original_ResNet50_lr_0_7', device, shuffle=True, seed=0)
 
-del train_dataset
-
 
 exit(1)
 
 
-
-
-#model.load_state_dict(torch.load('../models/food101/original_ResNet50_lr_0_7.pth'))
 
