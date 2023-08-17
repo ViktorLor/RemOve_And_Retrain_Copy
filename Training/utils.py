@@ -121,7 +121,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	accuracies = []
 	running_losses = []
 	for epoch in range(num_epochs):
-		
+		running_losses.append([])
 		# print epoch
 		print("Epoch: ", epoch + 1)
 		accuracies.append([])
@@ -152,8 +152,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
 				# print accuracy
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
-				running_losses[epoch].append(running_loss)
-				
+				running_losses[epoch].append(running_loss / 20)
+				running_loss = 0.0
+			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
 				end = time.time()
@@ -162,9 +163,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
 				      " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
-				
-		running_losses.append(running_loss)
 		
+		running_losses.append(running_loss)
 	
 	# save accuracy and loss in csv file
 	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
@@ -173,7 +173,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 		# write header
 		writer.writerow(['epoch', 'accuracy', 'loss'])
 		for i in range(len(accuracies)):
-			writer.writerow([i, sum(accuracies[i]) / len(accuracies[i]), running_losses[i]])
+			writer.writerow(
+				[i, sum(accuracies[i]) / len(accuracies[i]), sum(running_losses[i]) / len(running_losses[i])])
 	
 	print('Finished Training')
 	# save the model
