@@ -7,6 +7,9 @@
     <orderEntry type="module" module-name="DeepReinforcementLearning" />
     <orderEntry type="module" module-name="DeepRL" />
   </component>
+  <component name="PyDocumentationSettings">
+    <option name="renderExternalDocumentation" value="true" />
+  </component>
   <component name="PyNamespacePackagesService">
     <option name="namespacePackageFolders">
       <list>

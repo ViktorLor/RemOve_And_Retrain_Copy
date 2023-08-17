@@ -116,6 +116,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
 	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
 	
+	
 	print("started training model")
 	start = time.time()
 	# Train the model
@@ -154,17 +155,15 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			# Print statistics
 			running_loss += loss.item()
 			
-			if i % 20 == 0 and i != 0:  # print every 10 mini-batches
+			if i % 20 == 0 and i != 0:  # print every 20 mini-batches
 				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
-				# print accuracy
-				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
 				running_losses[epoch].append(running_loss / 20)
-				# print running loss and accuracy to tensorboard, every 20 mini-batches ,to visualize the process
-				writer.add_scalar(f'Loss/train', running_loss / 20, epoch * len(data_loader) + i)
-				writer.add_scalar('Accuracy/train', sum(accuracies[epoch]) / len(accuracies[epoch]),
-				                  epoch * len(data_loader) + i)
 				running_loss = 0.0
-				# add running loss to tensorboard
+				# print accuracy and loss to tensorboard
+				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(data_loader) + i)
+				writer.add_scalar('Accuracy/train_p_batch', accuracies[epoch][-1], epoch * len(data_loader) + i)
+				
+				
 				
 			
 			if i == 100 and epoch == 0:

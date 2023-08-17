@@ -19,7 +19,7 @@ Trains the ResNET50 model on the original dataset.
 
 # What was tried already?
 
-- Trying different learning rates: {0.1: 13%, 0.05: 27%, 0.01:7.8%}
+- Trying different learning rates: {0.7:,0.1: 13%, 0.05: 27%, 0.01:7.8%}
 - Tensorboard curves
 
 ## what needs to be added?
