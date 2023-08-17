@@ -99,7 +99,8 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Replace the last layer with a new fully connected layer
 	num_ftrs = model.fc.in_features
 	model.fc = nn.Linear(num_ftrs, 101)
-	
+	# set model to training mode
+	model.train()
 	model.apply(lambda module: initialize_weights(module, mean=0, std=0.01))
 	
 	print("Model Initialized")
@@ -110,7 +111,7 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 	# Define the loss function and optimizer
 	criterion = nn.CrossEntropyLoss()
 	
-	initial_learning_rate = 0.7
+	initial_learning_rate = 0.07
 	# training steps 20000
 	learning_rate = initial_learning_rate * float(batch_size) / 256  # adjusting according to the paper
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
@@ -149,14 +150,14 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			
 			loss.backward()
 			optimizer.step()
-			scheduler.step()
+			
 			
 			# Print statistics
 			running_loss += loss.item()
 			
-			if i % 20 == 0 and i != 0:  # print every 20 mini-batches
-				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 20))
-				running_losses[epoch].append(running_loss / 20)
+			if i % 100 == 0 and i != 0:  # print every 20 mini-batches
+				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+				running_losses[epoch].append(running_loss / 100)
 				running_loss = 0.0
 				# print accuracy and loss to tensorboard
 				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(data_loader) + i)
@@ -170,6 +171,9 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 				print("Estimate training for 90 epochs: ", (len(data_loader) / 100) * (end - start) / 60 * 90,
 				      " minutes")
 				print("1 epoch will be done at: ", time.ctime(end + (end - start)))
+		
+		#update learning rate
+		scheduler.step()
 		
 		# print accuracy and loss to tensorboard, every epoch
 		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
