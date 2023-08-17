@@ -148,12 +148,12 @@ def training_food101(dataset, save_file, device, shuffle=True, seed=0):
 			scheduler.step()
 			
 			# Print statistics
-			running_loss += loss.item()
+			running_loss[i] += loss.item()
 			if i % 20 == 0 and i != 0:  # print every 10 mini-batches
-				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss[i] / 20))
 				# print accuracy
 				print("Accuracy: ", sum(accuracies[epoch]) / len(accuracies[epoch]))
-				running_loss = 0.0
+				running_loss[i] = 0.0
 			
 			if i == 100 and epoch == 0:
 				# print how long the training will take for 1 epoch
