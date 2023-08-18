@@ -131,8 +131,6 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	
 	accuracies_train = []
 	running_losses = []
-	accuracies_test = []
-	losses_test = []
 	
 	for epoch in range(num_epochs):
 		running_losses.append([])
@@ -190,33 +188,26 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 		writer.add_scalar(f'Loss/train_p_epoch', sum(running_losses[epoch]) / len(running_losses[epoch]), epoch)
 		writer.add_scalar('Accuracy/train_p_epoch', sum(accuracies_train[epoch]) / len(accuracies_train[epoch]), epoch)
 		
-		# Test the model
+		total_correct = 0
+		total_loss = 0
+		
+		model.eval()
 		with torch.no_grad():
-			accuracies_test.append([])
-			losses_test.append([])
 			for i, data in enumerate(testdata_loader, 0):
 				images, labels = data
 				images, labels = images.to(device), labels.to(device)
 				outputs = model(images)
+				loss = criterion(outputs, labels)
+				total_loss += loss.item()
+				
 				_, predicted = torch.max(outputs.data, 1)
-				accuracies_test[epoch].append((predicted == labels).sum().item() / batch_size)
-				losses_test[epoch].append(criterion(outputs, labels).item())
+				total_correct += (predicted == labels).sum().item()
 			
-			writer.add_scalar('Accuracy/test_p_epoch', sum(accuracies_test[epoch]) / len(accuracies_test[epoch]),
+			writer.add_scalar('Accuracy/test_p_epoch', total_correct / len(test_dataset),
 			                  epoch)
-			writer.add_scalar('Loss/test_p_epoch', sum(losses_test[epoch]) / len(losses_test[epoch]), epoch)
-	
-	# save accuracy and loss in csv file
-	with open('../models/food101/' + save_file + f'_training_log.txt', 'csv') as f:
-		writer = csv.writer(f)
-		
-		# write header
-		writer.writerow(['epoch', 'accuracy_train', 'accuracy_test', 'loss'])
-		for i in range(len(accuracies_train)):
-			writer.writerow(
-				[i, sum(accuracies_train[i]) / len(accuracies_train[i]),
-				 sum(accuracies_test[i]) / len(accuracies_test[i]),
-				 sum(running_losses[i]) / len(running_losses[i])])
+			writer.add_scalar('Loss/test_p_epoch', total_loss / len(test_dataset),
+			                  epoch)
+		model.train()
 	
 	# save tensorboard file
 	writer.close()
