@@ -161,10 +161,10 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 			running_loss += loss.item()
 			
 			if i % 100 == 0 and i != 0:  # print every 20 mini-batches
-				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
+				print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / batch_size / 100))
 				print('[%d, %5d] accuracy: %.3f' % (
 					epoch + 1, i + 1, sum(accuracies_train[epoch]) / len(accuracies_train[epoch])))
-				running_losses[epoch].append(running_loss / 100)
+				running_losses[epoch].append(running_loss / batch_size / 100)
 				running_loss = 0.0
 				# print accuracy and loss to tensorboard
 				writer.add_scalar(f'Loss/train_p_batch', running_losses[epoch][-1], epoch * len(traindata_loader) + i)
