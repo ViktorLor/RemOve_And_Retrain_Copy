@@ -120,12 +120,12 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	# training steps 20000
 	learning_rate = initial_learning_rate * float(batch_size) / 256  # adjusting according to the paper
 	optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0001)
-	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60, 80], gamma=0.1)
+	scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30], gamma=0.1)
 	
 	print("started training model")
 	start = time.time()
 	# Train the model
-	num_epochs = 90
+	num_epochs = 31
 	
 	writer = SummaryWriter(log_dir='../models/food101/runs_original/')
 	
@@ -209,10 +209,13 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 			                  epoch)
 		model.train()
 	
+	
 	# save tensorboard file
 	writer.close()
 	
 	print('Finished Training')
+	
+	
 	# save the model
 	
 	torch.save(model.state_dict(), '../models/food101/' + save_file + '.pth')
