@@ -1,6 +1,9 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Structure of the thesis}{1}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Fundamental theory}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}abc}{2}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}abc}{2}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.1}Different types of AI-Interpretability Methods}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Evaluation of Interpretation methods}{2}{section.2.2}%
+\contentsline {section}{\numberline {2.3}RoAR}{2}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Related Work}{2}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Project work}{3}{chapter.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

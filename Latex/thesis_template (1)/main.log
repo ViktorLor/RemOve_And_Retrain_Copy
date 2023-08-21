@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  14 AUG 2023 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  21 AUG 2023 09:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1523,33 +1523,34 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              a package that still implements the
 (scrbook)              deprecated \float@addtolist interface.
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
+(Font)              `T1/Roboto-LF/bold/n' on input line 9.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
+(Font)              scaled to size 14.4pt on input line 9.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 12.
+Package pdftex.def Info: cover/jkuen.png  used on input line 20.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 [1
 
 
 ]
 chapter 2.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
-(Font)              `T1/Roboto-LF/bold/n' on input line 14.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
-(Font)              scaled to size 14.4pt on input line 14.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
-(Font)              `T1/Roboto-LF/bold/n' on input line 16.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
-(Font)              scaled to size 12.0pt on input line 16.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 19.
+Package pdftex.def Info: cover/jkuen.png  used on input line 47.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.19 \chapter
+l.47 \chapter
              {Project work} [2
 
 ]
@@ -1571,15 +1572,15 @@ Package logreq Info: Writing requests to 'MAIN.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32116 strings out of 475891
- 671888 string characters out of 5772857
- 1924222 words of memory out of 5000000
- 52493 multiletter control sequences out of 15000+600000
- 633136 words of font info for 93 fonts, out of 8000000 for 9000
+ 32109 strings out of 475891
+ 671464 string characters out of 5772857
+ 1925222 words of memory out of 5000000
+ 52484 multiletter control sequences out of 15000+600000
+ 627915 words of font info for 91 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,23n,106p,10902b,2457s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-pdfTeX warning (dest): name{subsection.2.0.1} has been referenced but does not 
+pdfTeX warning (dest): name{subsection.2.1.1} has been referenced but does not 
 exist, replaced by a fixed one
 
 <C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/Roboto-Bl
@@ -1587,9 +1588,9 @@ ack.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/R
 oboto-Bold.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/r
 oboto/Roboto-Regular.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/palatino/uplr8a.pfb>
-Output written on MAIN.pdf (8 pages, 109519 bytes).
+Output written on MAIN.pdf (8 pages, 113145 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
+ 75 words of extra memory for PDF output out of 10000 (max. 10000000)
 

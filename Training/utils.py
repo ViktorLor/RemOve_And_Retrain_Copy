@@ -131,6 +131,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	
 	accuracies_train = []
 	running_losses = []
+	accuracies_test = []
 	
 	for epoch in range(num_epochs):
 		running_losses.append([])
@@ -207,8 +208,10 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 			                  epoch)
 			writer.add_scalar('Loss/test_p_epoch', total_loss / len(test_dataset),
 			                  epoch)
+			accuracies_test.append(total_correct / len(test_dataset))
 		model.train()
 	
+
 	
 	# save tensorboard file
 	writer.close()
@@ -219,6 +222,15 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	# save the model
 	
 	torch.save(model.state_dict(), '../models/food101/' + save_file + '.pth')
+	
+	# save results in csv file
+	with open('../models/food101/runs_original/' + save_file + '.csv', 'w', newline='') as csvfile:
+		writer = csv.writer(csvfile, delimiter=',')
+		writer.writerow(['epoch', 'train_loss', 'train_accuracy', 'test_accuracy'])
+		for i in range(num_epochs):
+			writer.writerow([i, sum(running_losses[i]) / len(running_losses[i]),
+			                 sum(accuracies_train[i]) / len(accuracies_train[i]), accuracies_test[i]])
+	
 	print("Model saved")
 	return
 
