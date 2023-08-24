@@ -243,7 +243,8 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 	
 	# save mask as png or pt
 	if saveaspng:
-		tmp_array = mask.numpy()
+		# send mask to cpu
+		tmp_array = mask.cpu().numpy()
 		tmp_array = np.transpose(tmp_array, (1, 2, 0))
 		tmp_array = PIL.Image.fromarray(tmp_array)
 		tmp_array.save(path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.png')
