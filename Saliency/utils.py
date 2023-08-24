@@ -167,6 +167,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 	
 	# Load the model
 	model.eval()
+	model.to(device)
 	
 	# Define the transform to apply to the input images
 	transformer = transforms.Compose([
@@ -199,11 +200,12 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			
 			img_data = Image.open(path_to_dataset + 'images/' + folder + '/' + image)
 			img_data = transformer(img_data)
-			
-			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
+			#send img_data to device
+			img_data = img_data.to(device)
+			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,device,
 			                                   image_size=224, test=test, saveaspng=saveaspng)
 			
-			if i % 100 == 0:
+			if i % 10 == 0:
 				print(i, z, "image done", len(folders))
 			
 			if i == 1000:
