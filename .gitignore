@@ -10,6 +10,11 @@ models/mnist/*
 *.pt
 *.dat
 *.png
+1.pth
+2.pth
+3.pth
+4.pth
+
 
 *.acn
 *.acr
