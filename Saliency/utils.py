@@ -199,6 +199,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			
 			img_data = Image.open(path_to_dataset + 'images/' + folder + '/' + image)
 			img_data = transformer(img_data)
+			
 			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
 			                                   image_size=224, test=test, saveaspng=saveaspng)
 			
@@ -243,9 +244,9 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 		tmp_array = mask.numpy()
 		tmp_array = np.transpose(tmp_array, (1, 2, 0))
 		tmp_array = PIL.Image.fromarray(tmp_array)
-		tmp_array.save(path_to_dataset + f'indices_to_block/{method}/{folder}//{img_name[:-4]}.png')
+		tmp_array.save(path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.png')
 	else:
-		torch.save(mask, path_to_dataset + f'indices_to_block//{method}//{folder}//{img_name[:-4]}.pt')
+		torch.save(mask, path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.pt')
 
 
 def get_saliency_image(model, y, image, saliency_method):
