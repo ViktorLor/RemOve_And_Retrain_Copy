@@ -200,7 +200,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			
 			img_data = Image.open(path_to_dataset + 'images/' + folder + '/' + image)
 			img_data = transformer(img_data)
-			#send img_data to device
+			# send img_data to device
 			img_data = img_data.to(device)
 			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
 			                                   image_size=224, test=test, saveaspng=saveaspng)
@@ -222,16 +222,16 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 		ig_attr = ig.attribute(img.unsqueeze(0), target=label)
 		# flatten ig_attr to 1D array = 244*224*3
 		ig_attr_flat = torch.abs(ig_attr).flatten()
-		mask = torch.zeros((3, image_size, image_size), dtype=torch.uint8)
+		mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
 	else:
 		
 		ig_attr_flat = torch.abs(torch.rand((image_size * image_size * 3)))
-		mask = torch.zeros((3, image_size, image_size), dtype=torch.uint8)
+		mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
 	
 	# find topk indices of most important pixels of ig_attr_flat
 	indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat)))[1]
 	
-	new_indices = np.unravel_index(indices, (3, image_size, image_size))
+	new_indices = np.unravel_index(indices.cpu(), (3, image_size, image_size))
 	# convert tuple to numpy array
 	new_indices = np.array(new_indices)
 	
@@ -244,12 +244,12 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 	# save mask as png or pt
 	if saveaspng:
 		# send mask to cpu
-		tmp_array = mask.cpu().numpy()
+		tmp_array = mask
 		tmp_array = np.transpose(tmp_array, (1, 2, 0))
 		tmp_array = PIL.Image.fromarray(tmp_array)
 		tmp_array.save(path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.png')
 	else:
-		torch.save(mask, path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.pt')
+		torch.save(torch.Tensor(mask), path_to_dataset + f'indices_to_block/{method}/{folder}/{img_name[:-4]}.pt')
 
 
 def get_saliency_image(model, y, image, saliency_method):
