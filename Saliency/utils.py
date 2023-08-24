@@ -197,20 +197,11 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 		label = classes.index(folder)
 		for i, image in enumerate(images):
 			start = time.time()
-			try:
-				
-				img_data = Image.open(path_to_dataset + 'images\\' + folder + '\\' + image)
-				img_data = transformer(img_data)
-				generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
-				                                   image_size=224,
-				                                   test=test, saveaspng=saveaspng)
 			
-			except Exception as e:
-				print(e)
-				print("Error with image: ", image)
-				# write to logfile
-				with open("logfile.txt", "a") as logfile:
-					logfile.write("Error with image: " + image)
+			img_data = Image.open(path_to_dataset + 'images\\' + folder + '\\' + image)
+			img_data = transformer(img_data)
+			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
+			                                   image_size=224, test=test, saveaspng=saveaspng)
 			
 			if i % 100 == 0:
 				print(i, z, "image done", len(folders))
@@ -218,10 +209,6 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			if i == 1000:
 				print("Time elapsed: " + str(time.time() - start) + " seconds.")
 				print("Total time for 1001 sets: " + str((time.time() - start) * 101 / 60) + " minutes.")
-				print("Do you want to continue? (y/n)")
-				choice = input().lower()
-				if choice == 'n':
-					exit(1)
 
 
 def generate_singular_saliency_3D_mask(img, label, model, method, path_to_dataset, folder, img_name, image_size=224,
@@ -233,7 +220,7 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 		ig_attr = ig.attribute(img.unsqueeze(0), target=label)
 		# flatten ig_attr to 1D array = 244*224*3
 		ig_attr_flat = torch.abs(ig_attr).flatten()
-		mask = torch.zeros_like(ig_attr, dtype=torch.uint8)
+		mask = torch.zeros((3, image_size, image_size), dtype=torch.uint8)
 	else:
 		
 		ig_attr_flat = torch.abs(torch.rand((image_size * image_size * 3)))
@@ -252,7 +239,7 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
 		
 		mask[indices_to_fill[0], indices_to_fill[1], indices_to_fill[2]] += 1
 	
-	# save mask as torch tensor compressed
+	# save mask as png or pt
 	if saveaspng:
 		tmp_array = mask.numpy()
 		tmp_array = np.transpose(tmp_array, (1, 2, 0))
