@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  21 AUG 2023 09:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  21 AUG 2023 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -850,18 +850,6 @@ Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
 Package scrlayer-scrpage Warning: replacing deprecated \clearscrheadfoot by
 (scrlayer-scrpage)                \clearpairofpagestyles on input line 82.
 
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.87 	\cfoot*{\name
-                   }
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
@@ -1325,90 +1313,24 @@ Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count480
 ))
+\openout2 = `cover/coversheet.aux'.
+
+(cover/coversheet.tex
 LaTeX Font Info:    Trying to load font information for T1+Roboto-LF on input l
-ine 153.
+ine 9.
+
 (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/roboto\t1roboto-lf.fd
 File: T1Roboto-LF.fd 2019/12/11 (autoinst) Font definitions for T1/Roboto-LF.
 )
 LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
-(Font)              `T1/Roboto-LF/regular/n' on input line 153.
+(Font)              `T1/Roboto-LF/regular/n' on input line 9.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 153.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
-(Font)              `T1/Roboto-LF/regular/n' on input line 153.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
-(Font)              scaled to size 8.0pt on input line 153.
-LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 1
-53.
-
-(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ppl.fd
-File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
-)
-LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-153.
-
-(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlzplm.fd
-File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
-)
-LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-153.
-
-(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omszplm.fd
-File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
-)
-LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-153.
-
-(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxzplm.fd
-File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
-)
-LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-153.
-
-(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1zplm.fd
-File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-)
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 153.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 153.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 153.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 153.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 153.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 153.
-<cover/jkuen.png, id=3, 506.693pt x 248.93pt>
-File: cover/jkuen.png Graphic file (type png)
-<use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 153.
-(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-
-
-Package scrlayer-scrpage Warning: \headheight to low.
-(scrlayer-scrpage)                At least 45.39096pt needed,
-(scrlayer-scrpage)                but only 17.0pt found.
-(scrlayer-scrpage)                I'll enlarge \headheight, for further
-(scrlayer-scrpage)                processing, but you should do this yourself,
-(scrlayer-scrpage)                e.g., setting geometry's option
-(scrlayer-scrpage)                `head=45.39096pt'.
-(scrlayer-scrpage)                I'll also decrease \topmargin on input line 1
-53.
-
-
-Overfull \vbox (28.39096pt too high) has occurred while \output is active []
-
-LaTeX Info: Completed page discarded.
-\openout2 = `cover/coversheet.aux'.
-
-
-(cover/coversheet.tex
+(Font)              scaled to size 10.95pt on input line 9.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
 (Font)              `T1/Roboto-LF/regular/n' on input line 10.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
 (Font)              scaled to size 10.0pt on input line 10.
+<cover/jkuen.png, id=3, 506.693pt x 248.93pt>
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 15.
@@ -1425,7 +1347,7 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/black/n' will be
 (Font)              scaled to size 10.0pt on input line 77.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/black/n' will be
 (Font)              scaled to size 28.0pt on input line 84.
-<cover/arr.png, id=6, 441.5697pt x 396.0396pt>
+<cover/arr.png, id=5, 441.5697pt x 396.0396pt>
 File: cover/arr.png Graphic file (type png)
 <use cover/arr.png>
 Package pdftex.def Info: cover/arr.png  used on input line 86.
@@ -1439,13 +1361,8 @@ Overfull \hbox (106.21082pt too wide) in paragraph at lines 108--154
 [][]  
  []
 
-[2
-
-
-
-{C:/Users/Vik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Vik/Ap
-pData/Local/Programs/MiKTeX/fonts/enc/dvips/roboto/rbto_b5rac7.enc} <./cover/jk
-uen.png> <./cover/arr.png>] (frontmatter.tex
+LaTeX Info: Completed page discarded.
+(frontmatter.tex
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
 (Font)              `T1/Roboto-LF/bold/n' on input line 4.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
@@ -1460,18 +1377,83 @@ Overfull \hbox (88.44029pt too wide) in paragraph at lines 7--8
 he elec-tron-i-cally sub-mit-ted text doc-u-ment. 
  []
 
+LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
+(Font)              `T1/Roboto-LF/regular/n' on input line 21.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
+(Font)              scaled to size 8.0pt on input line 21.
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 2
+1.
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ppl.fd
+File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
+)
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
+21.
+
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
+21.
+
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
+21.
+
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
+21.
+
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 21.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 21.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 21.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 21.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 21.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 21.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 21.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+
+
+Package scrlayer-scrpage Warning: \headheight to low.
+(scrlayer-scrpage)                At least 45.39096pt needed,
+(scrlayer-scrpage)                but only 17.0pt found.
+(scrlayer-scrpage)                I'll enlarge \headheight, for further
+(scrlayer-scrpage)                processing, but you should do this yourself,
+(scrlayer-scrpage)                e.g., setting geometry's option
+(scrlayer-scrpage)                `head=45.39096pt'.
+(scrlayer-scrpage)                I'll also decrease \topmargin on input line 2
+1.
+
+
+Overfull \vbox (28.39096pt too high) has occurred while \output is active []
+
+
 [1
 
 
 
 
-{C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 23--27
-
+{C:/Users/Vik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Vik/Ap
+pData/Local/Programs/MiKTeX/fonts/enc/dvips/roboto/rbto_b5rac7.enc}{C:/Users/Vi
+k/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./cover/jkuen.png
+>]
+Overfull \hbox (17.48578pt too wide) in paragraph at lines 23--26
+\T1/ppl/m/n/10.95 Further re-search is needed on how to cor-rectly eval-u-ate i
+n-ter-pretabil-ity meth-ods. 
  []
 
 )
@@ -1483,9 +1465,9 @@ Package pdftex.def Info: cover/jkuen.png  used on input line 164.
 
 ] (MAIN.toc
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 3.
+(Font)              scaled to size 11.40997pt on input line 2.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 3.
+(Font)              scaled to size 11.40997pt on input line 2.
 )
 \tf@toc=\write5
 \openout5 = `MAIN.toc'.
@@ -1524,47 +1506,118 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              deprecated \float@addtolist interface.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--12
 
  []
 
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
-(Font)              `T1/Roboto-LF/bold/n' on input line 9.
+(Font)              `T1/Roboto-LF/bold/n' on input line 17.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
-(Font)              scaled to size 14.4pt on input line 9.
+(Font)              scaled to size 14.4pt on input line 17.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 20.
+Package pdftex.def Info: cover/jkuen.png  used on input line 29.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 [1
 
 
 ]
 chapter 2.
+
+Overfull \hbox (1.167pt too wide) in paragraph at lines 32--34
+\T1/ppl/m/n/10.95 In su-per-vised ma-chine learn-ing, there ex-ist in-her-ent i
+n-ter-pretable mod-els and so called black boxes.
+ []
+
+
+Overfull \hbox (28.1076pt too wide) in paragraph at lines 43--44
+\T1/ppl/m/n/10.95 They can show a cor-re-la-tion be-tween sin-gu-lar or mul-ti-
+ple fea-tures and an out-come. 
+ []
+
+LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
+(Font)              `T1/Roboto-LF/bold/n' on input line 48.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
+(Font)              scaled to size 12.0pt on input line 48.
+
+Overfull \hbox (48.79248pt too wide) in paragraph at lines 50--51
+\T1/ppl/m/n/10.95 Advantages: For small mod-els, few fea-tures, all de-scribed 
+mod-els of-fer a good so-lu-tion. 
+ []
+
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 47.
+Package pdftex.def Info: cover/jkuen.png  used on input line 77.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.47 \chapter
-             {Project work} [2
+[2
 
 ]
+<figs/FeatureVisualization.png, id=109, 1030.60031pt x 320.69812pt>
+File: figs/FeatureVisualization.png Graphic file (type png)
+<use figs/FeatureVisualization.png>
+Package pdftex.def Info: figs/FeatureVisualization.png  used on input line 86.
+(pdftex.def)             Requested size: 426.79134pt x 132.8034pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--93
+
+ []
+
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 93.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[3 <./figs/FeatureVisualization.png>]
+Overfull \hbox (23.93599pt too wide) in paragraph at lines 108--109
+[]\T1/ppl/m/n/10.95 Different meth-ods have been pro-posed, which in-volve re-m
+ov-ing pix-els [[]8[]] and [[]5[]]. 
+ []
+
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 129.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[4]
 chapter 3.
 )
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 177.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
- [3
+ [5
 
-] 
+]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+79.
+ (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Overfull \hbox (1.27109pt too wide) in paragraph at lines 180--180
+[]\T1/ppl/m/n/10.95 Giles Hooker. ^^P  Dis-cov-er-ing ad-di-tive struc-ture in 
+black box func-tions^^Q. In: Aug. 2004, pp. 575^^U
+ []
+
+
+Overfull \hbox (1.20082pt too wide) in paragraph at lines 180--180
+[]\T1/ppl/m/n/10.95 Sara Hooker et al. \T1/ppl/m/it/10.95 A Bench-mark for In-t
+er-pretabil-ity Meth-ods in Deep Neu-ral Net-works\T1/ppl/m/n/10.95 . 2019. arX
+iv:
+ []
+
+
 AED: lastpage setting LastPage
-(MAIN.aux (cover/coversheet.aux))
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 183.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[6
+
+
+] (MAIN.aux (cover/coversheet.aux))
 Package rerunfilecheck Info: File `MAIN.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'MAIN.run.xml'.
@@ -1572,25 +1625,22 @@ Package logreq Info: Writing requests to 'MAIN.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32109 strings out of 475891
- 671464 string characters out of 5772857
- 1925222 words of memory out of 5000000
- 52484 multiletter control sequences out of 15000+600000
- 627915 words of font info for 91 fonts, out of 8000000 for 9000
+ 32452 strings out of 475891
+ 679193 string characters out of 5772857
+ 1931222 words of memory out of 5000000
+ 52790 multiletter control sequences out of 15000+600000
+ 636313 words of font info for 94 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,23n,106p,10902b,2457s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{subsection.2.1.1} has been referenced but does not 
-exist, replaced by a fixed one
-
-<C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/Roboto-Bl
-ack.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/R
-oboto-Bold.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/r
-oboto/Roboto-Regular.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type
-1/urw/palatino/uplr8a.pfb>
-Output written on MAIN.pdf (8 pages, 113145 bytes).
+ <C:\Users\Vik\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt10
+95.pk><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/Rob
+oto-Bold.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/rob
+oto/Roboto-Regular.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/
+urw/palatino/uplr8a.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1
+/urw/palatino/uplri8a.pfb>
+Output written on MAIN.pdf (10 pages, 1534561 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 287 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 184 words of extra memory for PDF output out of 10000 (max. 10000000)
 

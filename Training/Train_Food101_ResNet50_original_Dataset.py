@@ -32,6 +32,7 @@ transformer = transforms.Compose([
 	transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
 ])
 
+
 # Load the Food 101 dataset train and test with the original split of the dataset
 train_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="train")
 test_dataset = torchvision.datasets.Food101(root='../Data', transform=transformer, download=True, split="test")

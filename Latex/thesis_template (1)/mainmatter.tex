@@ -4,51 +4,159 @@
 %%%%%%%%%%%%%%%%
 \chapter{Introduction}
 
-Artificial Intelligence is playing an increasing role in our world. Automotive driving, [Various other technologies] are being developed continuously.\\
+Artificial Intelligence has been developing rapidly in the last years. In today's modern era of mobile phones and computers, there has been a hugely increased volume of available data, which can be used through modern algorithm to improve the efficiency. Especially Deep Neural Networks have been gaining popularity due to the increasingly available computational power. The success of deep neural networks began in 2012, when the ImageNet classification challenge was won by a deep learning approach. In modern devices several AI-algorithms are already being used and in the future years AI-Algorithms will play an even more important role.
+\\
+
+The biggest problem of Artificial Intelligence Methods is the lack of interpretation methods. While there exist many interpretation methods, there is no reliable truth. Especially in the domain of image, with technologies as automated driving and face recognition, evaluation methods are required. By now, we do not understand why a neural network makes a decision: It could be because of the background, a side object in the picture a high lighting in the image. Interpretability methods try to solve this problem by giving pixels an importance value, how much they influence the decision of the neural network.
+\\
+
+
+
+
 
 \section{Structure of the thesis}
 
-- Worüber geht es in der Thesis [Interpreatbility of AI models,]\\
-- Die Thesis fasst zusammen, was sind Interpretability Methoden, was für Arten gibt es, wie werden Sie angewandt?\\
-Struktur erklären [Was wird in dieser Bachelorarbeit besprochen?]
+\begin{enumerate}
+	\item First of all, modern machine learning algorithms are summarized and categorized into inherent interpretability and Not inherent
+\item Ad-Hoc interprability  methods: An Overview
+\item Evaluation of Post-Hoc Interpretation Methods
+\item Applying ROAR to Food101: A Practical example
+\end{enumerate}
+
+
 
 %%%%%%%%%%%%%%%%
-\chapter{Fundamental theory}
+\chapter{Machine Learning and their Interpretability}
 
-\section{AI-Interpretability Methods}
 
-%- Feature Importance methods [Permutation Importance, Feature contribution]
-% Model Specific Methods [Partial Dependence Plots,Individual Confdience Plots;
-% LIME: Localy faithful explanations
-% Shapoley values
-% Atttention maps
-% Acitvation Maximization and Feature visulaization
-% Saliency Maps and Gradient based methods
-% Rule Based Edxplanations
-% Counterfactual explanations
-% Explanation by example
-% adhoc metthods
+In supervised machine learning, there exist inherent interpretable models and so called black boxes. 
+Inherent models as decision trees, decision rules, random forest and linear regression are interpretable by nature, as they learn rules which can be observed.
 
-\section{Ad-hoc-methods}
+There also exist agnostic methods, which can be applied on any possible algorithm. There exist global methods, which try to explain the whole model and local methods, which try to explain the differences of 2 classes or just one area of the input.
+
+
+
+
+
+\section{Global Model-Agnostic Methods}
+
+Global model-agnostic methods describe expected outcomes based on the distribution of the data. They can show a correlation between singular or multiple features and an outcome.
+
+An example offer partial dependency plots \cite{PDP}, Accumulated Local Effect (ALE) Plot \cite{apley2019visualizing}, Feature Interaction \cite{inglis2021visualizing}, Functional Anova \cite{FA1} \&\cite{FA2}, Permutation Feature Importance \cite{fisher2019models}, Global Surrogate and Prototype \& Criticism \cite{pac}.
+
+
+\subsection{Advantages, Disadvantages and Criticism}
+
+Advantages: For small models, few features, all described models offer a good solution.
+
+Disadvantages: Limited scale for deep neural networks.
+
+
+%Kritik: https://arxiv.org/pdf/2105.03287.pdf
+
+
+\section{Local Model-Agnostic Methods}
+
+To explain individual predictions, Local model-agnostic methods are used. A single outcome is correlated to some features and explain the model.
+
+Several methods exist: 
+Individual conditional expectation curves
+Local surrogate models
+Scoped rules (anchors)
+Counterfactual explanations
+Shapley values
+SHAP
+
+\section{Neural Network Interpretation}
+
+In the domain of NLP and Computer Vision deep learning is very successful. By passing the data input through many layers of multiplication with learned weights and non-linear transformations a prediction is made. This can, depending on the task, include LSTMs and Convolution layers. Because there are millions of mathematical operations made in a single predictions, humans have no change to follow the exact mapping. To understand predictions, we would have to make sense of the hundreds different kernels and weights. To evaluate the behavior and predictions of Deep Neural networks, specific interpretation methods are needed, which take care of the pixel attribution.
+\\
+Model-agnostic methods such as local models and global surrogate can be used to make sense of neural networks, but it makes sense to consider interpretation methods which were specifically designed for neural networks. The weights and kernels saved in the hidden layers can be used as additional information to evaluate the algorithm. Additionally, the gradients can be analyzed more effectively.
+\\
+Because images and natural text are saved in a highly dimensional format, if converted to tabular form, most interpretation methods are not able to be used. Special neural network interpretation as described in the next chapter try to solve this problem.
+
+\subsection{Feature visualization and Network Dissection}
+
+Neural networks as big unit are not understandable for humans. Network dissection tries to abstract singular layers and link them to concepts.
+
+The high-level features are linked to concepts, as visible in \ref{fig:feature-visualization}. The image is transformed every time it passes a constitutional layer. In each convolutional layer, the network learns new and increasingly complex features. Using fully connected layers, the transformed image information turns into a prediction.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/FeatureVisualization}
+	\caption{Feature Visualization https://distill.pub/2017/feature-visualization/}
+	\label{fig:feature-visualization}
+\end{figure}
+
+An example is visible in the image. Firstly, the convolutional layers learn simple features as edges and simple textures. then it learns textures and patterns. At the deepest convolutional layers, parts and objects are learned. Those object information are then passed to the hidden layers.
+\\
+
+The feature visualization can be done through optimizing the activation of a singular unit. This is a single neuron. This can done in 2 methods: Either by finding the training image which maximizes the activation or by using prelabeled other images. To consider is also: Maximizing and minimizing here has the same effect.
+Using training data has the problem that if more than one object is visible, it is unclear which object is responsible for the maximization. Because of this, using prelabeled data is prefered.
+
 
 \subsection{Saliency Maps}
 
-\subsection{adhoc methods}
+\subsection{Integrated gradients}
+
+
+\section{Evaluation of post-hoc interpretability methods}
+
+Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this is not a scientific statement and can also not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
+
+
+Different methods have been proposed, which involve removing pixels \cite{hooker2019benchmark} and \cite{gupta2022new}.
 
 
 
-\section{Evaluation of Interpretation methods}
 
-\section{RoAR}
+\subsection{A benchmark for interpretability methods in deep neural networks: RoaR}
+
+RoaR is a algorithm which estimates the effectiveness of saliency maps. This is done, by removing supposedly informative features from the input and observing the reaction of the neural network.
 
 
-\section{Related Work}
+\subsection{New Definitions and Evaluations for Saliency Methods: Staying intrinsic, complete and sound}
 
+Sics does effectively the same as roar, but instead of removing the most important pixels, it removes all not important pixels.
+
+
+\subsection{Sanity checks for Saliency maps}
+
+
+
+\subsection{Comparison of the Evaluation Methods \& critique}
+
+
+
+%https://proceedings.neurips.cc/paper_files/paper/2018/file/294a8ed24b1ad22ec2e7efea049b8737-Paper.pdf
+%https://proceedings.neurips.cc/paper_files/paper/2022/file/d6383e7643415842b48a5077a1b09c98-Paper-Conference.pdf
 
 
 %%%%%%%%%%%%%%%%
-\chapter{Project work}
+\chapter{Project work} % 4 pages
 
+\section{Project Goal}
+
+\subsection{Summary}
+
+\subsection{Project Setup}
+\subsection{Results and Plots}
+
+\subsection{Discussion of results}
+
+%Goal of the project
+%Summary
+
+%Eplaining the setup
+%Plots to visualize the method
+
+%Training results
+%Results for different options
+%Plots to visualize changes
+
+%Discussion of results
+
+% finding the parameters was done by a grid search and looking at the overfitting chart.
 
 %%%%%
 

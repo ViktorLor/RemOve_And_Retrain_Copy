@@ -16,5 +16,388 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{adebayo2020sanity}{misc}{}
+      \name{author}{6}{}{%
+        {{hash=13c8415286093e947788ee180780fd7a}{%
+           family={Adebayo},
+           familyi={A\bibinitperiod},
+           given={Julius},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4f550339f0337905aa634f39e1ba4833}{%
+           family={Gilmer},
+           familyi={G\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5cb8bde1cea7b52d8f0be2812f15dee9}{%
+           family={Muelly},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=e771760b6d0d33f8b4dfd907d8d57ac2}{%
+           family={Hardt},
+           familyi={H\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a11a6718c039f3e3f3f31167e5094c10}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Been},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{eb99efa7fab5a2d6b81f774831a06990}
+      \strng{fullhash}{512d3819219d4fad97c50708eff1b5bd}
+      \strng{bibnamehash}{eb99efa7fab5a2d6b81f774831a06990}
+      \strng{authorbibnamehash}{eb99efa7fab5a2d6b81f774831a06990}
+      \strng{authornamehash}{eb99efa7fab5a2d6b81f774831a06990}
+      \strng{authorfullhash}{512d3819219d4fad97c50708eff1b5bd}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CV}
+      \field{eprinttype}{arXiv}
+      \field{title}{Sanity Checks for Saliency Maps}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 1810.03292
+      \endverb
+    \endentry
+    \entry{apley2019visualizing}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=30a40196e25005697515f35d84dc7f7c}{%
+           family={Apley},
+           familyi={A\bibinitperiod},
+           given={Daniel\bibnamedelima W.},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=1c6c475d2747a6f8212d083ea1306a75}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Jingyu},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{fullhash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{bibnamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authorbibnamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authornamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authorfullhash}{413798db00a1ae1fe2ab08260ee163d9}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ME}
+      \field{eprinttype}{arXiv}
+      \field{title}{Visualizing the Effects of Predictor Variables in Black Box Supervised Learning Models}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1612.08468
+      \endverb
+    \endentry
+    \entry{fisher2019models}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=2192f8db2c823a87cfb84943a5f2d4ad}{%
+           family={Fisher},
+           familyi={F\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ed6b4fef67abb4c043b72d1843b36826}{%
+           family={Rudin},
+           familyi={R\bibinitperiod},
+           given={Cynthia},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f3c8643c576bade6dbc125562e719399}{%
+           family={Dominici},
+           familyi={D\bibinitperiod},
+           given={Francesca},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \strng{fullhash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \strng{bibnamehash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \strng{authorbibnamehash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \strng{authornamehash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \strng{authorfullhash}{e59b4766ec41e8b0d9aab47cb9e69274}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ME}
+      \field{eprinttype}{arXiv}
+      \field{title}{All Models are Wrong, but Many are Useful: Learning a Variable's Importance by Studying an Entire Class of Prediction Models Simultaneously}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1801.01489
+      \endverb
+    \endentry
+    \entry{PDP}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=8f2353d8bd52671f86aa78fc7988dace}{%
+           family={Greenwell},
+           familyi={G\bibinitperiod},
+           given={Brandon\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=875fd7d9d59f22eedd281afda2214154}{%
+           family={Boehmke},
+           familyi={B\bibinitperiod},
+           given={Bradley\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=f99b712d266219ffc1f96515c3c469ca}{%
+           family={McCarthy},
+           familyi={M\bibinitperiod},
+           given={Andrew\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{fullhash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{bibnamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authorbibnamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authornamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authorfullhash}{b9763a04ab15138c35e1fce714255f23}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ML}
+      \field{eprinttype}{arXiv}
+      \field{title}{A Simple and Effective Model-Based Variable Importance Measure}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1805.04755
+      \endverb
+    \endentry
+    \entry{gupta2022new}{misc}{}
+      \name{author}{5}{}{%
+        {{hash=a2ff3c006858b53effc07a47283e62a7}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Arushi},
+           giveni={A\bibinitperiod}}}%
+        {{hash=df0d188817eb59196f20b391c4e5080f}{%
+           family={Saunshi},
+           familyi={S\bibinitperiod},
+           given={Nikunj},
+           giveni={N\bibinitperiod}}}%
+        {{hash=145b386d4b07f0686b5a79467863bf18}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Dingli},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4842e97a9933135ceb9c94e51b7d1a3e}{%
+           family={Lyu},
+           familyi={L\bibinitperiod},
+           given={Kaifeng},
+           giveni={K\bibinitperiod}}}%
+        {{hash=8e08b59145b9531815169c7ed0a0b055}{%
+           family={Arora},
+           familyi={A\bibinitperiod},
+           given={Sanjeev},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{f680420795a3205fe11fb01ac4e6dcf2}
+      \strng{fullhash}{97cd6223b7c595a7eaadabeabe99ac7a}
+      \strng{bibnamehash}{f680420795a3205fe11fb01ac4e6dcf2}
+      \strng{authorbibnamehash}{f680420795a3205fe11fb01ac4e6dcf2}
+      \strng{authornamehash}{f680420795a3205fe11fb01ac4e6dcf2}
+      \strng{authorfullhash}{97cd6223b7c595a7eaadabeabe99ac7a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ML}
+      \field{eprinttype}{arXiv}
+      \field{title}{New Definitions and Evaluations for Saliency Methods: Staying Intrinsic, Complete and Sound}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2211.02912
+      \endverb
+    \endentry
+    \entry{FA1}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=2d5f544f57b73ede4f1b7e3946bd9607}{%
+           family={Hooker},
+           familyi={H\bibinitperiod},
+           given={Giles},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{fullhash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{bibnamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authorbibnamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authornamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authorfullhash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \field{extraname}{1}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{KDD-2004 - Proceedings of the Tenth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}
+      \field{month}{08}
+      \field{title}{Discovering additive structure in black box functions}
+      \field{year}{2004}
+      \field{pages}{575\bibrangedash 580}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/1014052.1014122
+      \endverb
+    \endentry
+    \entry{FA2}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2d5f544f57b73ede4f1b7e3946bd9607}{%
+           family={Hooker},
+           familyi={H\bibinitperiod},
+           given={Giles},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{fullhash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{bibnamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authorbibnamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authornamehash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \strng{authorfullhash}{2d5f544f57b73ede4f1b7e3946bd9607}
+      \field{extraname}{2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational and Graphical Statistics}
+      \field{title}{Generalized Functional ANOVA Diagnostics for High-Dimensional Functions of Dependent Variables}
+      \field{volume}{16}
+      \field{year}{2007}
+      \field{pages}{709\bibrangedash 732}
+      \range{pages}{24}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:10727333
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:10727333
+      \endverb
+    \endentry
+    \entry{hooker2019benchmark}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=c26c60500cfffd20972310345c0a7a96}{%
+           family={Hooker},
+           familyi={H\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8bbc4c5d96f205bada839e74e0202146}{%
+           family={Erhan},
+           familyi={E\bibinitperiod},
+           given={Dumitru},
+           giveni={D\bibinitperiod}}}%
+        {{hash=7f7e0a5910ade4b14a74f3a61e46f917}{%
+           family={Kindermans},
+           familyi={K\bibinitperiod},
+           given={Pieter-Jan},
+           giveni={P\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=a11a6718c039f3e3f3f31167e5094c10}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Been},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{3bc11656c63d85bc2a12756f55343c65}
+      \strng{fullhash}{326c128766c7358c30a3b7181540caca}
+      \strng{bibnamehash}{3bc11656c63d85bc2a12756f55343c65}
+      \strng{authorbibnamehash}{3bc11656c63d85bc2a12756f55343c65}
+      \strng{authornamehash}{3bc11656c63d85bc2a12756f55343c65}
+      \strng{authorfullhash}{326c128766c7358c30a3b7181540caca}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{A Benchmark for Interpretability Methods in Deep Neural Networks}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1806.10758
+      \endverb
+    \endentry
+    \entry{inglis2021visualizing}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=d932f4f351ff39abc923b7b6ee5691eb}{%
+           family={Inglis},
+           familyi={I\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=43584e9ac8a1910a4488b1a3a5c2663b}{%
+           family={Parnell},
+           familyi={P\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=525e84aa7b8df2ce995d36cf1263c2f8}{%
+           family={Hurley},
+           familyi={H\bibinitperiod},
+           given={Catherine},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \strng{fullhash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \strng{bibnamehash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \strng{authorbibnamehash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \strng{authornamehash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \strng{authorfullhash}{5e1f5bedfd652bdb22979e3dced269e9}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.CO}
+      \field{eprinttype}{arXiv}
+      \field{title}{Visualizing Variable Importance and Variable Interaction Effects in Machine Learning Models}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 2108.04310
+      \endverb
+    \endentry
+    \entry{pac}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a11a6718c039f3e3f3f31167e5094c10}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Been},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a3d9b23b97482af55601d7db22cbf99e}{%
+           family={Khanna},
+           familyi={K\bibinitperiod},
+           given={Rajiv},
+           giveni={R\bibinitperiod}}}%
+        {{hash=36de36165fdc06c581efd1c44425c9bf}{%
+           family={Koyejo},
+           familyi={K\bibinitperiod},
+           given={Oluwasanmi},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English (US)}%
+      }
+      \strng{namehash}{beee909ea79860f7bd7fcefb33c72971}
+      \strng{fullhash}{beee909ea79860f7bd7fcefb33c72971}
+      \strng{bibnamehash}{beee909ea79860f7bd7fcefb33c72971}
+      \strng{authorbibnamehash}{beee909ea79860f7bd7fcefb33c72971}
+      \strng{authornamehash}{beee909ea79860f7bd7fcefb33c72971}
+      \strng{authorfullhash}{beee909ea79860f7bd7fcefb33c72971}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Example-based explanations are widely used in the effort to improve the interpretability of highly complex distributions. However, prototypes alone are rarely sufficient to represent the GIST of the complexity. In order for users to construct better mental models and understand complex data distributions, we also need criticism to explain what are not captured by prototypes. Motivated by the Bayesian model criticism framework, we develop MMD-critic which efficiently learns prototypes and criticism, designed to aid human interpretability. A human subject pilot study shows that the MMD-critic selects prototypes and criticism that are useful to facilitate human understanding and reasoning. We also evaluate the prototypes selected by MMD-critic via a nearest prototype classifier, showing competitive performance compared to baselines.}
+      \field{issn}{1049-5258}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{note}{30th Annual Conference on Neural Information Processing Systems, NIPS 2016 ; Conference date: 05-12-2016 Through 10-12-2016}
+      \field{title}{Examples are not enough, learn to criticize! Criticism for interpretability}
+      \field{year}{2016}
+      \field{pages}{2288\bibrangedash 2296}
+      \range{pages}{9}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
