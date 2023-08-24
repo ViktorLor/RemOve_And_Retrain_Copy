@@ -16,6 +16,7 @@ from torchvision import models
 import os
 import time
 import utils
+import sys
 
 # define seed
 torch.manual_seed(0)
@@ -31,7 +32,12 @@ transformer = transforms.Compose([
 	transforms.Normalize(mean=[0.561, 0.440, 0.312], std=[0.252, 0.256, 0.259])
 ])
 
-folder = 'integrated_gradient'
+# Load first parameter "generate_random_masks"
+# either "random_baseline" or "integrated_gradient"
+folder = sys.argv[1]
+print(folder)
+
+
 
 food101path = '../Data/food-101'
 # threshold: threshold: >4.5: 10%, 3.5: 30%, 2.5: 50%, 1.5: 70%, 0.5: 90%,masked
