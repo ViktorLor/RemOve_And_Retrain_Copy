@@ -178,7 +178,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 	])
 	
 	# load metadata to convert label to names
-	with open(path_to_dataset + '\\meta\\classes.txt', 'r') as f:
+	with open(path_to_dataset + 'meta/classes.txt', 'r') as f:
 		classes = f.readlines()
 		classes = [c.replace('\n', '') for c in classes]
 		# replace space with underscore
