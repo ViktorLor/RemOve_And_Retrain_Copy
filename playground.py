@@ -11,7 +11,9 @@ path = '/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/indices_to_block/i
 
 #load image
 img = Image.open(path)
-#display image on console
+#display image on terminal
 plt.imshow(img)
 plt.show()
 
+while(True):
+	pass
