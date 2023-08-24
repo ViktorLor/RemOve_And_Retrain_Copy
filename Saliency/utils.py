@@ -202,7 +202,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			img_data = transformer(img_data)
 			#send img_data to device
 			img_data = img_data.to(device)
-			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,device,
+			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
 			                                   image_size=224, test=test, saveaspng=saveaspng)
 			
 			if i % 10 == 0:
