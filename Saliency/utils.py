@@ -186,7 +186,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 	
 	# create a folder for each class
 	for c in classes:
-		os.makedirs(path_to_dataset + f'indices_to_block\\{method}\\{c}', exist_ok=True)
+		os.makedirs(path_to_dataset + f'indices_to_block/{method}/{c}', exist_ok=True)
 	
 	### load images
 	# find all folders in the dataset
@@ -198,7 +198,7 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 		for i, image in enumerate(images):
 			start = time.time()
 			
-			img_data = Image.open(path_to_dataset + 'images\\' + folder + '\\' + image)
+			img_data = Image.open(path_to_dataset + 'images/' + folder + '/' + image)
 			img_data = transformer(img_data)
 			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
 			                                   image_size=224, test=test, saveaspng=saveaspng)
