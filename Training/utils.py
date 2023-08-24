@@ -127,7 +127,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	# Train the model
 	num_epochs = 31
 	
-	writer = SummaryWriter(log_dir='../models/food101/runs_original/')
+	writer = SummaryWriter(log_dir='../models/food101/logs/')
 	
 	accuracies_train = []
 	running_losses = []
@@ -224,7 +224,7 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 	torch.save(model.state_dict(), '../models/food101/' + save_file + '.pth')
 	
 	# save results in csv file
-	with open('../models/food101/runs_original/' + save_file + '.csv', 'w', newline='') as csvfile:
+	with open('../models/food101/' + save_file + '.csv', 'w', newline='') as csvfile:
 		writer = csv.writer(csvfile, delimiter=',')
 		writer.writerow(['epoch', 'train_loss', 'train_accuracy', 'test_accuracy'])
 		for i in range(num_epochs):
