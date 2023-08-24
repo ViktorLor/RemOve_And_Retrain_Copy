@@ -10,7 +10,6 @@ models/mnist/*
 *.pt
 *.dat
 *.png
-*.pth
 
 *.acn
 *.acr
