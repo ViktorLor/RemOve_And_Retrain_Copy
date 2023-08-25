@@ -4,23 +4,32 @@
 %%%%%%%%%%%%%%%%
 \chapter{Introduction}
 
-Artificial Intelligence has been developing rapidly in the last years. In today's modern era of mobile phones and computers, there has been a hugely increased volume of available data, which can be used through modern algorithm to improve the efficiency. Especially Deep Neural Networks have been gaining popularity due to the increasingly available computational power. The success of deep neural networks began in 2012, when the ImageNet classification challenge was won by a deep learning approach. In modern devices several AI-algorithms are already being used and in the future years AI-Algorithms will play an even more important role.
+Artificial Intelligence (AI) has undergone rapid development in the last years. In today's modern era of mobile phones and computers, algorithm's are used on a daily basis to have quick access to information and improve the efficiency of the daily life.
+
+While various Algorithms (e.g.: Decision Trees, Linear Regression, Support Vector Machines, etc.), which are understandable by design, have been developed, the spotlight has turned to Deep Neural Networks(DNN). This shift is attributed to the increase in computational power and the exponential increase in available data. Despite their remarkable accuracy, DNN remain opaque black-boxes, which we are struggling to understand. Nevertheless, the immense improvement in performance and their ability to handle massive datasets have led to widespread adoption in contemporary devices. It is predicted, that algorithms which are based on Neural Networks will be becoming increasingly popular in the next years.
+\\\\
+However, one of the primary difficulties with Neural Networks is the lack of reliable interpretation techniques. Numerous interpretation methods exist, yet a universally reliable method remains missing. Particularly in the domain of image analysis, encompassing critical applications like automated driving and facial recognition, no solution is present. The decision-making rationale of neural networks remain unclear, attributed to factors like background elements, peripheral objects or lighting conditions.
+Efforts to address this issue have given rise to saliency methods, aiming to assign significance values to pixels and represent their importance on neural network decisions.
 \\
-
-The biggest problem of Artificial Intelligence Methods is the lack of interpretation methods. While there exist many interpretation methods, there is no reliable truth. Especially in the domain of image, with technologies as automated driving and face recognition, evaluation methods are required. By now, we do not understand why a neural network makes a decision: It could be because of the background, a side object in the picture a high lighting in the image. Interpretability methods try to solve this problem by giving pixels an importance value, how much they influence the decision of the neural network.
-\\
-
-
+Another alternative option to mitigate the black-box nature of  algorithms involves employing model-agnostic methods. These methods offer an computational linkage between inputs and outputs, irrespective which model is used. Although highly effective for smaller datasets, they begin to struggle as the data size and their complexity increases. Because of this, they do not offer a reliable way to quickly make Neural Networks interpretable.
+\\\\
+In light of these prevalent problems, the object of this thesis is to recapitulate the existing model-agnostic methods and offer an overview of interpretation methods for Neural networks. Emphasis is placed on the evaluation of post-hoc Interpretability techniques, forecasting potential future developments and focusing on the strengths and weaknesses of distinct  techniques. Concluding the theoretical segment, a practical demonstration showcasing the application of ROAR is shown. 
 
 
 
+
+
+
+\newpage
 \section{Structure of the thesis}
 
 \begin{enumerate}
-	\item First of all, modern machine learning algorithms are summarized and categorized into inherent interpretability and Not inherent
-\item Ad-Hoc interprability  methods: An Overview
-\item Evaluation of Post-Hoc Interpretation Methods
-\item Applying ROAR to Food101: A Practical example
+	\item The first part presents a comprehensive overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without.
+	\item Subsequent sections delve into interpretability, emphasizing global model-agnostic techniques. These methods offer insights into overall model behavior, regardless of algorithm specifics. 
+	\item In parallel with the discussion on global methods, the focus shifts to local model-agnostic approaches. These strategies inspect individual predictions, enhancing the understanding of model decision-making at a granular level.
+	\item Additionally, in the domain of interpretability techniques for Neural Networks, the paper explores ad-hoc methods for Neural Networks.
+	\item After introducing existing interpretation methods, the paper's focus transitions to evaluating post-hoc interpretation methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
+	\item To exemplify the discussed concepts, the practical application of the ROAR framework using the Food101 dataset and MNIST dataset is presented. This real-world instance illustrates effective employment of interpretability techniques in image recognition.
 \end{enumerate}
 
 
@@ -29,53 +38,162 @@ The biggest problem of Artificial Intelligence Methods is the lack of interpreta
 \chapter{Machine Learning and their Interpretability}
 
 
-In supervised machine learning, there exist inherent interpretable models and so called black boxes. 
-Inherent models as decision trees, decision rules, random forest and linear regression are interpretable by nature, as they learn rules which can be observed.
+This paper focuses on two types of machine learning methods: Unsupervised and Supervised. However, we'll only look at supervised methods here because interpreting unsupervised methods works differently at a basic level.
 
-There also exist agnostic methods, which can be applied on any possible algorithm. There exist global methods, which try to explain the whole model and local methods, which try to explain the differences of 2 classes or just one area of the input.
+In supervised machine learning, there are several base methods of classification. They are shortly introduced.
+
+\section{Supervised Methods}
+
+This section analyzes the base functionality of each singular model. Furthermore, an analysis of the interpretability from a human perspective is made. Methods are developing rapidly, therefore only the most common methods are included.
+
+\subsection{Linear Models}
+When it comes to predicting outcomes, a simple method is to use a linear regression model. This model predicts by adding up different features, each multiplied by a weight. The linear nature of this model makes it easy to understand. Mathematically, the predictive output, denoted as $\hat{y}$, is  captured in the equation:
+
+$$ \hat{y}= \alpha_0 + \alpha_1 x_0 + \alpha_2 x_1 +... +\alpha_n x_{n-1} + \epsilon$$
+
+The alphas $\alpha_i$ indicate the significance of each feature. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline.  The noise $\epsilon$ encapsulates the inevitable errors stemming from inherent non-linearity in real-world dynamics or measurement inaccuracies.
+\\
+To train model, the MSE-Loss or the absolute loss can be applied. When using regularization methods, the absolute loss is taken to be more resilient to outliers.
+$$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+$$ \text{ABS} = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i$$
+\\
+The interpretability of the model is very simple. The factors are given through the coefficient matrix. Each feature has a distinctive importance to the model and it can be seen easily how important each factor is, when the data is normalized. 
+
+$$ \alpha = \begin{bmatrix}
+	\alpha_0 & \\
+	\alpha_1 & \\
+	... & \\
+	\alpha_n &
+\end{bmatrix}
+$$
+
+To customize the model and avoid over-fitting, regularization methods as Lasso-Regularization (L1) and Ridge-Regularization (L2) can be applied. The parameter lambda can be fine tuned.
+
+$$\text{Lasso Loss} = \text{Loss} + \lambda_1 \sum_{i=1}^{p} |{\alpha}_i|$$
+
+Lasso regularization is particularly useful when you want to emphasize a subset of relevant features or when dealing with multicollinearity issues. By encouraging certain coefficients to become zero, Lasso can lead to a more interpretable and sparse model.
+
+$$\text{Ridge Loss} = \text{Loss} + \lambda_2 \sum_{i=1}^{p} {\alpha}_i^2$$
+
+Ridge regularization is particularly effective when dealing with multicollinearity (highly correlated features) and helps prevent over-fitting by keeping the coefficients from taking large values. It doesn't force coefficients to be exactly zero, but it pushes them towards zero, striking a balance between fitting the data and preventing over-fitting.
+
+Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships. Using an regularization term does not have a effect on the interpretability.
+
+
+\subsection{Distance-Based methods}
+K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. One can argue, that KNN is interpretable by the fact, that it just describes if there are similar samples. 
+
+Support Vector Machines (SVM) aim to find a hyperplane that maximizes the margin between different classes of data points.
+
+$$\text{Minimize } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i$$
+
+$$\text{Subject to } y_i (w \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
+
+With using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable.
+
+
+\subsection{Decision Tree-Based Methods}
+
+Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. One disadvantage is the lack of smoothness. If one boundary is reached, the model classification changes.
+
+Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. But it suffers from being less interpretable. Using special techniques like SHAP values or partial dependence trees can make them more understandable.
+
+Gradient boosting like XGBoost, LightGBM and CatBoost are similar to random forest and decision trees, but with differential learned weights for each decision. They suffer from the same interpretability issues as random  forests.
+
+\subsection{Probabilistic Methods}
+
+Logistic Regression, a classic classification technique, and Naive Bayes, rooted in Bayesian principles, offer unique perspectives on model interpretability. Much like Decision Trees based on minimizing the Gini-index, these methods hold inherent interpretability due to their fundamental concepts. However, they possess nuances that influence their ease of understanding.
+
+Logistic Regression's interpretability springs from its linear nature and probabilistic foundation. Coefficients associated with features serve as clear indicators of influence. Positive coefficients denote a positive relationship, while negative coefficients signify the opposite. The magnitude of coefficients reveals the strength of the relationship. This inherent linearity promotes transparency but may falter when dealing with non-linear relationships.
+
+Naive Bayes, grounded in probability theory, facilitates understandable reasoning. Conditional probabilities for features given the class illuminate the likelihood of feature occurrences within specific classes. Feature independence assumption simplifies computations, making probabilities intuitive. However, the "naive" assumption might not align with real-world relationships, presenting interpretability challenges.
+
+Yet, as with Decision Trees, model complexity can hamper interpretability. Deeper Logistic Regression models may obscure transparency as intricate interactions emerge. Likewise, the simplicity of Naive Bayes might not capture complex data relationships.
+
+\subsection{Neural Networks}
+
+The rise of neural networks and their strong predictive power makes them a common choice for classification task. But as they increase in size, understandability by taking a look at the weights becomes impossible. Special interpretability methods considering the learned weights are looked in detail in \ref{sec:nni}.
+
+\subsection{Discriminant Analysis, LDA, QDA}
 
 
 
+Discriminant Analysis, encompassing Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA), offers a distinctive approach to classification tasks. In this section, we delve into the interpretability of these methods, comparing their strengths and limitations.
 
+Understanding Discriminant Analysis:
+
+Discriminant Analysis is designed to find the optimal boundaries that separate classes. Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA) extend this concept with varying degrees of complexity.
+
+Interpretability of Linear Discriminant Analysis (LDA):
+
+LDA focuses on projecting data onto a lower-dimensional space while maximizing class separability. This inherently linear approach simplifies interpretation.
+
+Projection and Decision Boundaries: The projection aims to maximize the distance between class means while minimizing the variance within each class. Decision boundaries emerge as linear lines or planes. This linearity enhances interpretability by offering clear visual separations.
+
+Feature Importance: LDA computes linear coefficients for features that contribute to separating classes. These coefficients offer insights into feature significance.
+
+Class Means: The class means' positions and distances provide insights into how classes are distributed in the projected space.
+
+Interpretability of Quadratic Discriminant Analysis (QDA):
+
+QDA relaxes the assumption of equal covariances across classes, accommodating quadratic relationships. While more flexible, it introduces complexity that can affect interpretability.
+
+Quadratic Decision Boundaries: QDA's quadratic decision boundaries allow capturing more intricate class relationships. However, these boundaries might not be as straightforward to interpret as LDA's linear counterparts.
+
+Covariance Matrices: The separate covariance matrices for each class reflect their distinct data distributions. Analyzing these matrices can provide insights into how features contribute to class separability.
+
+Trade-offs and Techniques:
+
+While LDA promotes interpretability through its linear projections and decision boundaries, QDA's increased flexibility might challenge transparency. The choice between the two depends on the trade-off between interpretability and the model's ability to capture complex relationships.
+
+Both LDA and QDA can benefit from techniques like feature importance analysis, visualization of decision boundaries, and examination of class means. However, QDA's additional complexity might necessitate more advanced visualization techniques.
+
+In summary, Discriminant Analysis, LDA, and QDA offer varying degrees of interpretability. LDA's linear approach enhances understanding, while QDA's flexibility introduces nuanced insights at the cost of increased complexity. Techniques that aid interpretation, such as visualizations and feature analyses, empower users to extract meaningful insights from these classification methodologies.
+
+
+\chapter{Interpretation of models}
+
+In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models.
 
 \section{Global Model-Agnostic Methods}
 
 Global model-agnostic methods describe expected outcomes based on the distribution of the data. They can show a correlation between singular or multiple features and an outcome.
 
-An example offer partial dependency plots \cite{PDP}, Accumulated Local Effect (ALE) Plot \cite{apley2019visualizing}, Feature Interaction \cite{inglis2021visualizing}, Functional Anova \cite{FA1} \&\cite{FA2}, Permutation Feature Importance \cite{fisher2019models}, Global Surrogate and Prototype \& Criticism \cite{pac}.
+%\subsection{Partial dependency plots}
+%
+%\subsection{Accumulated Local Effect}
+%
+%\subsection{Feature Interaction}
+%
+%\subsection{Functional Anova}
+%
+%\subsection{Permutation Feature Importance}
+%
+%\subsection{Global Surrogate}
+%
+%\subsection{Prototype \& Criticism}
 
-
-\subsection{Advantages, Disadvantages and Criticism}
-
-Advantages: For small models, few features, all described models offer a good solution.
-
-Disadvantages: Limited scale for deep neural networks.
-
-
-%Kritik: https://arxiv.org/pdf/2105.03287.pdf
 
 
 \section{Local Model-Agnostic Methods}
 
 To explain individual predictions, Local model-agnostic methods are used. A single outcome is correlated to some features and explain the model.
 
-\subsection{Local surrogate models}
-
-Local surrogate models explain part of the models.
-
-\subsection{Scoped Rules (Anchors)}
-
-\subsection{Individual conditional expectation curves}
-
-\subsection{Counterfactual explanations}
-
-\subsection{Shapley Values}
-
-\subsection{SHAP}
+%\subsection{Local surrogate models}
+%
+%\subsection{Scoped Rules (Anchors)}
+%
+%\subsection{Individual conditional expectation curves}
+%
+%\subsection{Counterfactual explanations}
+%
+%\subsection{Shapley Values}
+%
+%\subsection{SHAP}
 
 
 \section{Neural Network Interpretation}
-
+\label{sec:nni}
 In the domain of NLP and Computer Vision deep learning is very successful. By passing the data input through many layers of multiplication with learned weights and non-linear transformations a prediction is made. This can, depending on the task, include LSTMs and Convolution layers. Because there are millions of mathematical operations made in a single predictions, humans have no change to follow the exact mapping. To understand predictions, we would have to make sense of the hundreds different kernels and weights. To evaluate the behavior and predictions of Deep Neural networks, specific interpretation methods are needed, which take care of the pixel attribution.
 \\
 Model-agnostic methods such as local models and global surrogate can be used to make sense of neural networks, but it makes sense to consider interpretation methods which were specifically designed for neural networks. The weights and kernels saved in the hidden layers can be used as additional information to evaluate the algorithm. Additionally, the gradients can be analyzed more effectively.
@@ -104,36 +222,44 @@ Using training data has the problem that if more than one object is visible, it 
 
 \subsection{Saliency Maps}
 
+Saliency maps are visualizations that highlight the regions of an input image that have the most significant impact on a model's output. By revealing the areas that strongly influence a prediction, saliency maps bridge the gap between the model's "black-box" nature and human understanding.
+
+
 \subsection{Integrated gradients and Grad-CAM}
 
+Gradient-based saliency methods tap into the gradients of the model's output with respect to the input data. The magnitudes of these gradients represent the importance of each input pixel in influencing the prediction. Common techniques, like Grad-CAM (Gradient-weighted Class Activation Mapping), amplify this understanding by overlaying saliency maps on the original image.
 
-
-
-\section{Evaluation of post-hoc interpretability methods}
+\chapter{Evaluation of post-hoc interpretability methods}
 
 Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this is not a scientific statement and can also not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
 
 
-Different methods have been proposed, which involve removing pixels \cite{hooker2019benchmark} and \cite{gupta2022new}.
-
-
-
-
-\subsection{A benchmark for interpretability methods in deep neural networks: RoaR}
+\section{A benchmark for interpretability methods in deep neural networks}
 
 RoaR is a algorithm which estimates the effectiveness of saliency maps. This is done, by removing supposedly informative features from the input and observing the reaction of the neural network.
 
-
-\subsection{New Definitions and Evaluations for Saliency Methods: Staying intrinsic, complete and sound}
-
-Sics does effectively the same as roar, but instead of removing the most important pixels, it removes all not important pixels.
+As shown in the paper, KAR seems to be a bad method to evaluate the efficiency.
 
 
-\subsection{Sanity checks for Saliency maps}
+\section{New Definitions and Evaluations for Saliency Methods: Staying intrinsic, complete and sound \cite{gupta2022new}}
 
 
 
-\subsection{Comparison of the Evaluation Methods \& critique}
+Explaining Completeness:
+
+Logical reasoning: All correct statements are proveable. Example: The dog is responsible for the nets output as 
+dog. 
+
+Soundness: Incorrect statements cannot be proved. Example: The sun is responsible for the nets output as dog.
+
+
+
+
+\section{Sanity checks for Saliency maps}
+
+
+
+\section{Comparison of the Evaluation Methods \& critique}
 
 While the described methods both offer a numerical evaluation method, they do still lack a clear evaluation structure. They show, that some evaluation methods are indeed correct, but they still suffer ambuigity from different datasets.
 

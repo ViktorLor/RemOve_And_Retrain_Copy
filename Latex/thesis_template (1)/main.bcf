@@ -2352,16 +2352,9 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">literature.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">PDP</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">apley2019visualizing</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">inglis2021visualizing</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">FA1</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">FA2</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">fisher2019models</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">pac</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">adebayo2020sanity</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">hooker2019benchmark</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">gupta2022new</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">adebayo2020sanity</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">gupta2022new</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">hooker2019benchmark</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
