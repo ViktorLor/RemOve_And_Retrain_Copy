@@ -59,13 +59,20 @@ Disadvantages: Limited scale for deep neural networks.
 
 To explain individual predictions, Local model-agnostic methods are used. A single outcome is correlated to some features and explain the model.
 
-Several methods exist: 
-Individual conditional expectation curves
-Local surrogate models
-Scoped rules (anchors)
-Counterfactual explanations
-Shapley values
-SHAP
+\subsection{Local surrogate models}
+
+Local surrogate models explain part of the models.
+
+\subsection{Scoped Rules (Anchors)}
+
+\subsection{Individual conditional expectation curves}
+
+\subsection{Counterfactual explanations}
+
+\subsection{Shapley Values}
+
+\subsection{SHAP}
+
 
 \section{Neural Network Interpretation}
 
@@ -97,7 +104,9 @@ Using training data has the problem that if more than one object is visible, it 
 
 \subsection{Saliency Maps}
 
-\subsection{Integrated gradients}
+\subsection{Integrated gradients and Grad-CAM}
+
+
 
 
 \section{Evaluation of post-hoc interpretability methods}
@@ -126,35 +135,35 @@ Sics does effectively the same as roar, but instead of removing the most importa
 
 \subsection{Comparison of the Evaluation Methods \& critique}
 
+While the described methods both offer a numerical evaluation method, they do still lack a clear evaluation structure. They show, that some evaluation methods are indeed correct, but they still suffer ambuigity from different datasets.
 
 
-%https://proceedings.neurips.cc/paper_files/paper/2018/file/294a8ed24b1ad22ec2e7efea049b8737-Paper.pdf
-%https://proceedings.neurips.cc/paper_files/paper/2022/file/d6383e7643415842b48a5077a1b09c98-Paper-Conference.pdf
 
 
 %%%%%%%%%%%%%%%%
 \chapter{Project work} % 4 pages
 
-\section{Project Goal}
 
-\subsection{Summary}
+\section{Project Goal}
+In RoaR\cite{hooker2019benchmark} the paper does not list the standard deviation of the trained nets. We expect to validate the results by achieving similar results.
+
+As training 25 image nets requires high computational power we do not have right now, we limited our research to evaluating food-101 using only 2 interpretation methods and comparing it to the baseline.
+
+
+Additionally, we also add a mini evaluation using the MNIST dataset.
+
+
 
 \subsection{Project Setup}
+
+
+
+
 \subsection{Results and Plots}
 
 \subsection{Discussion of results}
 
-%Goal of the project
-%Summary
 
-%Eplaining the setup
-%Plots to visualize the method
-
-%Training results
-%Results for different options
-%Plots to visualize changes
-
-%Discussion of results
 
 % finding the parameters was done by a grid search and looking at the overfitting chart.
 

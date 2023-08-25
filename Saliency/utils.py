@@ -199,7 +199,13 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 			start = time.time()
 			
 			img_data = Image.open(path_to_dataset + 'images/' + folder + '/' + image)
-			img_data = transformer(img_data)
+			try:
+				img_data = transformer(img_data)
+			except:
+				# write in log file
+				with open(path_to_dataset + 'log.txt', 'a') as f:
+					f.write(f'Error in {folder}/{image}\n')
+				continue
 			# send img_data to device
 			img_data = img_data.to(device)
 			generate_singular_saliency_3D_mask(img_data, label, model, method, path_to_dataset, folder, image,
