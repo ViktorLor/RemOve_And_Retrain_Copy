@@ -44,7 +44,7 @@ if folder != "random_baseline" and folder != "integrated_gradient":
 food101path = '../Data/food-101'
 # threshold: threshold: >4.5: 10%, 3.5: 30%, 2.5: 50%, 1.5: 70%, 0.5: 90%,masked
 threshold_to_string = {4.5: "10", 3.5: "30", 2.5: "50", 1.5: "70", 0.5: "90"}
-for threshold in [2.5,1.5,0.5]:  # add 3.5 and 4.5 if successful
+for threshold in [4.5, 3.5, 2.5, 1.5, 0.5]:  # add 3.5 and 4.5 if successful
 	for i in range(5):
 		# create dir
 		if not os.path.exists('../models/food101/' + folder + '/' + threshold_to_string[threshold]):
