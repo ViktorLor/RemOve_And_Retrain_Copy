@@ -1,7 +1,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Feature Visualization https://distill.pub/2017/feature-visualization/}}{9}{figure.3.1}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Feature Visualization \blx@tocontentsinit {0}\cite {olah2017feature}}}{8}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Activation Maximization \blx@tocontentsinit {0}\cite {olah2017feature}}}{9}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Saliency Map - Source: https://captum.ai/tutorials/Resnet\_TorchVision\_Interpret}}{10}{figure.3.3}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

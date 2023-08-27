@@ -68,9 +68,9 @@ class Food101MaskDataset(torch.utils.data.Dataset):
 		mean_1, mean_2, mean_3 = 0.485, 0.456, 0.406
 		
 		# Apply mask to image . the division by 255 is necessary because the mask is saved as a png file and therefore has values between 0 and 255.
-		image[0, :, :] = torch.where(mask[0, :, :] > (self.threshold / 255), image[0, :, :], torch.tensor(mean_1))
-		image[1, :, :] = torch.where(mask[1, :, :] > (self.threshold / 255), image[1, :, :], torch.tensor(mean_2))
-		image[2, :, :] = torch.where(mask[2, :, :] > (self.threshold / 255), image[2, :, :], torch.tensor(mean_3))
+		image[0, :, :] = torch.where(mask[0, :, :] < (self.threshold / 255), image[0, :, :], torch.tensor(mean_1))
+		image[1, :, :] = torch.where(mask[1, :, :] < (self.threshold / 255), image[1, :, :], torch.tensor(mean_2))
+		image[2, :, :] = torch.where(mask[2, :, :] < (self.threshold / 255), image[2, :, :], torch.tensor(mean_3))
 		
 		# TO control if the mask is applied correctly
 		# import matplotlib.pyplot as plt

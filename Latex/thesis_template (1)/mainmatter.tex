@@ -6,14 +6,14 @@
 
 Artificial Intelligence (AI) has undergone rapid development in the last years. In today's modern era of mobile phones and computers, algorithm's are used on a daily basis to have quick access to information and improve the efficiency of the daily life.
 
-While various Algorithms (e.g.: Decision Trees, Linear Regression, Support Vector Machines, etc.), which are understandable by design, have been developed, the spotlight has turned to Deep Neural Networks(DNN). This shift is attributed to the increase in computational power and the exponential increase in available data. Despite their remarkable accuracy, DNN remain opaque black-boxes, which we are struggling to understand. Nevertheless, the immense improvement in performance and their ability to handle massive datasets have led to widespread adoption in contemporary devices. It is predicted, that algorithms which are based on Neural Networks will be becoming increasingly popular in the next years.
+While various Algorithms (e.g.: Decision Trees, Linear Regression, Support Vector Machines, etc.), which are comprehensible by design, have been developed, the spotlight has turned to Deep Neural Networks(DNN). This shift is attributed to the increase in computational power and the exponential increase in accessible data. Despite their remarkable accuracy, DNN remain opaque black-boxes, which we  struggle to understand. Nevertheless, the immense improvement in performance and their ability to handle massive datasets have led to widespread adoption in contemporary devices. It is predicted, that algorithms based on Neural Networks will be becoming increasingly popular in the next years.
 \\\\
 However, one of the primary difficulties with Neural Networks is the lack of reliable interpretation techniques. Numerous interpretation methods exist, yet a universally reliable method remains missing. Particularly in the domain of image analysis, encompassing critical applications like automated driving and facial recognition, no solution is present. The decision-making rationale of neural networks remain unclear, attributed to factors like background elements, peripheral objects or lighting conditions.
-Efforts to address this issue have given rise to saliency methods, aiming to assign significance values to pixels and represent their importance on neural network decisions.
+Efforts to address this issue have given rise to gradient methods, aiming to assign significance values to pixels and represent their importance on neural network decisions.
 \\
 Another alternative option to mitigate the black-box nature of  algorithms involves employing model-agnostic methods. These methods offer an computational linkage between inputs and outputs, irrespective which model is used. Although highly effective for smaller datasets, they begin to struggle as the data size and their complexity increases. Because of this, they do not offer a reliable way to quickly make Neural Networks interpretable.
 \\\\
-In light of these prevalent problems, the object of this thesis is to recapitulate the existing model-agnostic methods and offer an overview of interpretation methods for Neural networks. Emphasis is placed on the evaluation of post-hoc Interpretability techniques, forecasting potential future developments and focusing on the strengths and weaknesses of distinct  techniques. Concluding the theoretical segment, a practical demonstration showcasing the application of ROAR is shown. 
+In light of these prevalent problems, the object of this thesis is to recapitulate interpretation algorithms Neural networks in computer vision.  Emphasis is placed on the evaluation of post-hoc interpretability techniques, forecasting potential future developments and focusing on the strengths and weaknesses of distinct  techniques. Concluding the theoretical segment, a practical demonstration showcasing the application of ROAR is shown. 
 
 
 
@@ -24,12 +24,11 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \section{Structure of the thesis}
 
 \begin{enumerate}
-	\item The first part presents a comprehensive overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without.
-	\item Subsequent sections delve into interpretability, emphasizing global model-agnostic techniques. These methods offer insights into overall model behavior, regardless of algorithm specifics. 
-	\item In parallel with the discussion on global methods, the focus shifts to local model-agnostic approaches. These strategies inspect individual predictions, enhancing the understanding of model decision-making at a granular level.
-	\item Additionally, in the domain of interpretability techniques for Neural Networks, the paper explores ad-hoc methods for Neural Networks.
+	\item The first part presents a overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to show why interpretation methods are required.
+	\item Subsequent sections delve into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behavior, regardless of algorithm specifics.   
+	\item Additionally, in the domain of interpretability techniques for Neural Networks, the paper explores ad-hoc methods for Neural Networks. Features visualization and Gradient-focused methods are explained.
 	\item After introducing existing interpretation methods, the paper's focus transitions to evaluating post-hoc interpretation methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
-	\item To exemplify the discussed concepts, the practical application of the ROAR framework using the Food101 dataset and MNIST dataset is presented. This real-world instance illustrates effective employment of interpretability techniques in image recognition.
+	\item To exemplify the discussed concepts, the practical application of the ROAR methodology using the food101 data set \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented. This real-world instance illustrates effective employment of interpretability techniques in image recognition.
 \end{enumerate}
 
 
@@ -40,7 +39,7 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 
 This paper focuses on two types of machine learning methods: Unsupervised and Supervised. However, we'll only look at supervised methods here because interpreting unsupervised methods works differently at a basic level.
 
-In supervised machine learning, there are several base methods of classification. They are shortly introduced.
+In supervised machine learning, there are several base methods of classification. They are shortly introduced and analyzed for their interpretability. This should give readers a simply structure on why this research is needed.
 
 \section{Supervised Methods}
 
@@ -49,7 +48,7 @@ This section analyzes the base functionality of each singular model. Furthermore
 \subsection{Linear Models}
 When it comes to predicting outcomes, a simple method is to use a linear regression model. This model predicts by adding up different features, each multiplied by a weight. The linear nature of this model makes it easy to understand. Mathematically, the predictive output, denoted as $\hat{y}$, is  captured in the equation:
 
-$$ \hat{y}= \alpha_0 + \alpha_1 x_0 + \alpha_2 x_1 +... +\alpha_n x_{n-1} + \epsilon$$
+$$ \hat{y}= \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 +... +\alpha_n x_{n} + \epsilon$$
 
 The alphas $\alpha_i$ indicate the significance of each feature. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline.  The noise $\epsilon$ encapsulates the inevitable errors stemming from inherent non-linearity in real-world dynamics or measurement inaccuracies.
 \\
@@ -67,21 +66,20 @@ $$ \alpha = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-To customize the model and avoid over-fitting, regularization methods as Lasso-Regularization (L1) and Ridge-Regularization (L2) can be applied. The parameter lambda can be fine tuned.
+%To customize the model and avoid over-fitting, regularization methods as Lasso-Regularization (L1) and Ridge-Regularization (L2) can be applied. The parameter lambda can be fine tuned.
+%
+%$$\text{Lasso Loss} = \text{Loss} + \lambda_1 \sum_{i=1}^{p} |{\alpha}_i|$$
+%
+%Lasso regularization is particularly useful when you want to emphasize a subset of relevant features or when dealing with multicollinearity issues. By encouraging certain coefficients to become zero, Lasso can lead to a more interpretable and sparse model.
+%
+%$$\text{Ridge Loss} = \text{Loss} + \lambda_2 \sum_{i=1}^{p} {\alpha}_i^2$$
+%
+%Ridge regularization is particularly effective when dealing with multicollinearity (highly correlated features) and helps prevent over-fitting by keeping the coefficients from taking large values. It doesn't force coefficients to be exactly zero, but it pushes them towards zero, striking a balance between fitting the data and preventing over-fitting.
 
-$$\text{Lasso Loss} = \text{Loss} + \lambda_1 \sum_{i=1}^{p} |{\alpha}_i|$$
-
-Lasso regularization is particularly useful when you want to emphasize a subset of relevant features or when dealing with multicollinearity issues. By encouraging certain coefficients to become zero, Lasso can lead to a more interpretable and sparse model.
-
-$$\text{Ridge Loss} = \text{Loss} + \lambda_2 \sum_{i=1}^{p} {\alpha}_i^2$$
-
-Ridge regularization is particularly effective when dealing with multicollinearity (highly correlated features) and helps prevent over-fitting by keeping the coefficients from taking large values. It doesn't force coefficients to be exactly zero, but it pushes them towards zero, striking a balance between fitting the data and preventing over-fitting.
-
-Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships. Using an regularization term does not have a effect on the interpretability.
-
+Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships and small datasets. In the domain of image recognition it is not applicable.
 
 \subsection{Distance-Based methods}
-K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. One can argue, that KNN is interpretable by the fact, that it just describes if there are similar samples. 
+K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. One can argue, that KNN is interpretable by the fact, that it just describes if there are similar samples. However KNN also struggles with big datasets.
 
 Support Vector Machines (SVM) aim to find a hyperplane that maximizes the margin between different classes of data points.
 
@@ -89,149 +87,166 @@ $$\text{Minimize } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i$$
 
 $$\text{Subject to } y_i (w \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
 
-With using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable.
+With using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable. SVM also struggles with big datasets. Therefore also SVM is not applicable for image datasets.
 
 
 \subsection{Decision Tree-Based Methods}
 
 Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. One disadvantage is the lack of smoothness. If one boundary is reached, the model classification changes.
 
-Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. But it suffers from being less interpretable. Using special techniques like SHAP values or partial dependence trees can make them more understandable.
+Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. But it suffers from being less interpretable. Using special techniques like SHAP values \cite{lundberg2017unified} or partial dependence trees can make them more understandable.
 
 Gradient boosting like XGBoost, LightGBM and CatBoost are similar to random forest and decision trees, but with differential learned weights for each decision. They suffer from the same interpretability issues as random  forests.
 
-\subsection{Probabilistic Methods}
+While decision tree-based methods can be applied for image classification, their accuracy is poor.
 
-Logistic Regression, a classic classification technique, and Naive Bayes, rooted in Bayesian principles, offer unique perspectives on model interpretability. Much like Decision Trees based on minimizing the Gini-index, these methods hold inherent interpretability due to their fundamental concepts. However, they possess nuances that influence their ease of understanding.
+\subsection{Computational intensive optimization Problems, LDA, QDA}
 
-Logistic Regression's interpretability springs from its linear nature and probabilistic foundation. Coefficients associated with features serve as clear indicators of influence. Positive coefficients denote a positive relationship, while negative coefficients signify the opposite. The magnitude of coefficients reveals the strength of the relationship. This inherent linearity promotes transparency but may falter when dealing with non-linear relationships.
+LDA (Linear Discriminant Analysis):
+LDA aims to maximize the distance between classes while minimizing the variance within each class.
+It assumes that the data within each class follows a multivariate normal distribution with equal covariance matrices across all classes.
+LDA is useful when there's a linear separation between classes in the feature space.
+It can be effective when the class distributions are well-separated.
 
-Naive Bayes, grounded in probability theory, facilitates understandable reasoning. Conditional probabilities for features given the class illuminate the likelihood of feature occurrences within specific classes. Feature independence assumption simplifies computations, making probabilities intuitive. However, the "naive" assumption might not align with real-world relationships, presenting interpretability challenges.
+QDA (Quadratic Discriminant Analysis):
+QDA is an extension of LDA that relaxes the assumption of equal covariance matrices across classes.
+It allows each class to have its own covariance matrix, which can capture more complex relationships between features.
+QDA is suitable when the class distributions have different covariance structures or when the assumption of equal covariance is not met.
 
-Yet, as with Decision Trees, model complexity can hamper interpretability. Deeper Logistic Regression models may obscure transparency as intricate interactions emerge. Likewise, the simplicity of Naive Bayes might not capture complex data relationships.
+Both LDA and QDA have been applied to image recognition tasks with varying degrees of success. Their performance can be influenced by factors such as the amount of training data available, the choice of features, and the complexity of the underlying data distribution.
+
+%Belhumeur, P. N., Hespanha, J. P., & Kriegman, D. J. (1997). Eigenfaces vs. Fisherfaces: Recognition Using Class Specific Linear Projection. IEEE Transactions on Pattern Analysis and Machine Intelligence, 19(7), 711–720.
+%Fukunaga, K. (1990). Introduction to Statistical Pattern Recognition (2nd ed.). Academic Press.
+%Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.). Springer.
 
 \subsection{Neural Networks}
 
-The rise of neural networks and their strong predictive power makes them a common choice for classification task. But as they increase in size, understandability by taking a look at the weights becomes impossible. Special interpretability methods considering the learned weights are looked in detail in \ref{sec:nni}.
-
-\subsection{Discriminant Analysis, LDA, QDA}
+The rise of neural networks and their strong predictive power makes them a common choice for classification task. But as they increase in size, understandability by taking a look at the weights becomes impossible. With the rise of CNN in 2012  \cite{krizhevsky2012} Neural Networks have become state of art for image prediction. Special interpretability methods considering the learned weights are looked in detail in \ref{sec:nni}.
 
 
+\chapter{Interpretation of Image Recognition Neural Networks}
 
-Discriminant Analysis, encompassing Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA), offers a distinctive approach to classification tasks. In this section, we delve into the interpretability of these methods, comparing their strengths and limitations.
-
-Understanding Discriminant Analysis:
-
-Discriminant Analysis is designed to find the optimal boundaries that separate classes. Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA) extend this concept with varying degrees of complexity.
-
-Interpretability of Linear Discriminant Analysis (LDA):
-
-LDA focuses on projecting data onto a lower-dimensional space while maximizing class separability. This inherently linear approach simplifies interpretation.
-
-Projection and Decision Boundaries: The projection aims to maximize the distance between class means while minimizing the variance within each class. Decision boundaries emerge as linear lines or planes. This linearity enhances interpretability by offering clear visual separations.
-
-Feature Importance: LDA computes linear coefficients for features that contribute to separating classes. These coefficients offer insights into feature significance.
-
-Class Means: The class means' positions and distances provide insights into how classes are distributed in the projected space.
-
-Interpretability of Quadratic Discriminant Analysis (QDA):
-
-QDA relaxes the assumption of equal covariances across classes, accommodating quadratic relationships. While more flexible, it introduces complexity that can affect interpretability.
-
-Quadratic Decision Boundaries: QDA's quadratic decision boundaries allow capturing more intricate class relationships. However, these boundaries might not be as straightforward to interpret as LDA's linear counterparts.
-
-Covariance Matrices: The separate covariance matrices for each class reflect their distinct data distributions. Analyzing these matrices can provide insights into how features contribute to class separability.
-
-Trade-offs and Techniques:
-
-While LDA promotes interpretability through its linear projections and decision boundaries, QDA's increased flexibility might challenge transparency. The choice between the two depends on the trade-off between interpretability and the model's ability to capture complex relationships.
-
-Both LDA and QDA can benefit from techniques like feature importance analysis, visualization of decision boundaries, and examination of class means. However, QDA's additional complexity might necessitate more advanced visualization techniques.
-
-In summary, Discriminant Analysis, LDA, and QDA offer varying degrees of interpretability. LDA's linear approach enhances understanding, while QDA's flexibility introduces nuanced insights at the cost of increased complexity. Techniques that aid interpretation, such as visualizations and feature analyses, empower users to extract meaningful insights from these classification methodologies.
-
-
-\chapter{Interpretation of models}
-
-In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models.
+In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models. We only introduce evaluation methods, which are used to analyze neural networks.
 
 \section{Global Model-Agnostic Methods}
 
 Global model-agnostic methods describe expected outcomes based on the distribution of the data. They can show a correlation between singular or multiple features and an outcome.
 
-%\subsection{Partial dependency plots}
-%
-%\subsection{Accumulated Local Effect}
-%
-%\subsection{Feature Interaction}
-%
-%\subsection{Functional Anova}
-%
-%\subsection{Permutation Feature Importance}
-%
-%\subsection{Global Surrogate}
-%
-%\subsection{Prototype \& Criticism}
+A quick evaluation on applicability for Neural Networks is done:
 
+\begin{enumerate}
+	\item \textbf{Partial Dependency Plots:} Partial Dependency Plots (PDP) are easy to interpret but using it with several features becomes increasingly difficult. Therefore, using a PDP is not possible in Neural Networks.
+	\item \textbf{Accumulated Local Effects:} Accumulated Local Effects (ALE) are an an advancement of PDP. While it solves some problems PDP suffers from, it can't be applied to a Neural Network because of the complexity of the datasets.
+	\item \textbf{Feature Interaction:} Feature Interaction also analyzes how features correlate. Doesn't work due to the same problem of the complexity of the dataset.
+	\item \textbf{Functional Decomposition:} Functional Decomposition is commonly used in Neural Networks. See Chapter \ref{sec:network_dissection}.
+	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is regularly used in visual machine learning tasks.
+	\item \textbf{Prototype and Criticism:} Prototype and Criticism is used as adversial attacks in Neural Networks.
+	
+\end{enumerate}
 
 
 \section{Local Model-Agnostic Methods}
 
 To explain individual predictions, Local model-agnostic methods are used. A single outcome is correlated to some features and explain the model.
 
-%\subsection{Local surrogate models}
-%
-%\subsection{Scoped Rules (Anchors)}
-%
-%\subsection{Individual conditional expectation curves}
-%
-%\subsection{Counterfactual explanations}
-%
-%\subsection{Shapley Values}
-%
-%\subsection{SHAP}
+
+\begin{enumerate}
+	\item \textbf{LIME: Local Interpretablle Model-agnostic Explanations:} Lime generates locally faithful explanations by training interpretable models on perterurbed instances of the original data.
+	\item \textbf{Local surrogate models:} Local surrogate models can be programmed to select a singular instance to explain.
+	\item \textbf{Scoped Rules (Anchors):} Find so called anchors to explain the predictions.
+	\item \textbf{Individual conditional expectation curves:} Practically not useful in image recognition, as the computation is too high.
+	\item \textbf{Counterfactual explanations:} Try to find a change while still resembling the original image.
+	\item \textbf{SHAPly:} Calculate SHAP values for an image prediction to determine how each pixel contributes to the prediction's deviation from the average prediction across all images.
+	Positive SHAP values indicate pixels that push the prediction up, while negative values indicate pixels that pull it down.
+\end{enumerate}
+
 
 
 \section{Neural Network Interpretation}
 \label{sec:nni}
-In the domain of NLP and Computer Vision deep learning is very successful. By passing the data input through many layers of multiplication with learned weights and non-linear transformations a prediction is made. This can, depending on the task, include LSTMs and Convolution layers. Because there are millions of mathematical operations made in a single predictions, humans have no change to follow the exact mapping. To understand predictions, we would have to make sense of the hundreds different kernels and weights. To evaluate the behavior and predictions of Deep Neural networks, specific interpretation methods are needed, which take care of the pixel attribution.
+In the domain of Natural Language Processing (NLP) and Computer Vision, Deep Learning has proven very successful. By passing the input data through a sequence of layers, characterized by matrix-multiplications with kernel weights and nonlinear transformations functions, a prediction is computed. Depending on the specific task, additional elements like Long Short-Time Memory(LSTM) layers and Convolutional layers (CNN) are utilized. Given the immense amount of mathematical operations underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
+Recognizing that it's impossible for humans to grasp millions of weights, the demand for evaluation methods is high. To assess the behavior and predictions of Deep Neural networks, specific interpretation methods were developed. These methods calculate the likelihood of an input entry being responsible for the result.
+\\\\
+While model-agnostic methods offer an approach to understand Neural Networks, the sheer size of the data used to train and test Neural Networks make this task extremely hard. For instance, an image with the dimensions of 3x224x224, as commonly encountered in Food-101,the data entries exceed 150.000. In NLP tasks, where vocabularies often encompass around 20.000 words, the computational complexity renders most model-agnostic techniques as too expensive.
 \\
-Model-agnostic methods such as local models and global surrogate can be used to make sense of neural networks, but it makes sense to consider interpretation methods which were specifically designed for neural networks. The weights and kernels saved in the hidden layers can be used as additional information to evaluate the algorithm. Additionally, the gradients can be analyzed more effectively.
+In the pursuit of comprehending the complex dynamics of Deep Neural Networks it makes sense to utilize the underlying weights in the model. The information saved in the hidden layers  as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well.
+In the following subsections several concepts for understanding Deep Neural Networks are introduced. 
+
+
+\subsection{Feature visualization and Network Dissection \cite{olah2017feature}}
+\label{sec:network_dissection}
+Modern Neural Networks like ResNet50 or Bard consist of several million layers. Network dissection attempts to overcome this challenge by breaking down separate layers and connecting them with ideas. 
+
+The higher-level features in these networks relate to clear concepts, shown in Figure \ref{fig:feature-visualization}. As the input image moves through layers, it changes at each layer. In each convolutional layer, the network gains new and more complex features. The smooth joining of fully connected layers then changes image-based data into predictions.
 \\
-Because images and natural text are saved in a highly dimensional format, if converted to tabular form, most interpretation methods are not able to be used. Special neural network interpretation as described in the next chapter try to solve this problem.
-
-\subsection{Feature visualization and Network Dissection}
-
-Neural networks as big unit are not understandable for humans. Network dissection tries to abstract singular layers and link them to concepts.
-
-The high-level features are linked to concepts, as visible in \ref{fig:feature-visualization}. The image is transformed every time it passes a constitutional layer. In each convolutional layer, the network learns new and increasingly complex features. Using fully connected layers, the transformed image information turns into a prediction.
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/FeatureVisualization}
-	\caption{Feature Visualization https://distill.pub/2017/feature-visualization/}
+	\caption{Feature Visualization \cite{olah2017feature}}
 	\label{fig:feature-visualization}
 \end{figure}
-
-An example is visible in the image. Firstly, the convolutional layers learn simple features as edges and simple textures. then it learns textures and patterns. At the deepest convolutional layers, parts and objects are learned. Those object information are then passed to the hidden layers.
 \\
+The image explains this process. The first convolutional layers find simple features like edges and basic textures. Later, they recognize more detailed patterns. The deepest layers learn about parts and objects. This object information passes to the other hidden layers, which then finally make a prediction.
 
-The feature visualization can be done through optimizing the activation of a singular unit. This is a single neuron. This can done in 2 methods: Either by finding the training image which maximizes the activation or by using prelabeled other images. To consider is also: Maximizing and minimizing here has the same effect.
-Using training data has the problem that if more than one object is visible, it is unclear which object is responsible for the maximization. Because of this, using prelabeled data is prefered.
+In the pursuit of understanding feature visualization, the focus lies on the activation of a single unit within the neural network. This involves maximizing the activation of a specific neuron, mathematically speaking (Visible in \ref*{fig:optimization}). There are two methods for achieving this. First, we can make use of the training image that triggers the highest activation. Yet, this approach faces a significant problem. When an image contains multiple objects, it's hard to pinpoint which object causes the activation. Because of this an alternative route is adopted: generating new images from random noise. This is accomplished through methods like Generative Adversarial Networks (GANs) or other diffusion-based techniques.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/ab}
+	\caption{Activation Maximization \cite{olah2017feature}}
+	\label{fig:optimization}
+\end{figure}
+
+Advantages of Feature Visualization:
+\begin{enumerate}
+	\item \textbf{Initial Model Insights:} Feature visualization offer an initial view into a model's behavior, improving the understanding of its inner layers.
+	\item \textbf{Enhanced Domain Understanding:} It has the potential to enrich domain understanding by aligning learned features with domain-specific knowledge. An example can be seen in the medical industry
+	\item \textbf{Debugging and Improvement:} Feature visualization assists in debugging and refining models, contributing to their overall performance enhancement.
+\end{enumerate}
+
+Disadvantages of Feature Visualization:
+\begin{enumerate}
+	\item \textbf{Unclear Decision-Making:} While activations are evident, understanding the meaning behind them and how they contribute to decision-making remains challenging.
+	\item \textbf{Subjective Interpretation:} The interpretation of visualized features can be subjective, potentially leading to differing conclusions among observers.
+	\item \textbf{Limited Applicability to Visual Data:} Feature visualization's applicability is  limited to visual data types.
+\end{enumerate}
 
 
 \subsection{Saliency Maps}
 
 Saliency maps are visualizations that highlight the regions of an input image that have the most significant impact on a model's output. By revealing the areas that strongly influence a prediction, saliency maps bridge the gap between the model's "black-box" nature and human understanding.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/SaliencyExample}
+	\caption{Saliency Map - Source: https://captum.ai/tutorials/Resnet\_TorchVision\_Interpret}
+	\label{fig:saliency}
+\end{figure}
 
-\subsection{Integrated gradients and Grad-CAM}
+Saliency maps are commonly calculated using SHAP \cite{lundberg2017unified} or gradient methods. Saliency maps provide a direct and intuitive way to understand which parts of an input data are influencing a model's decision. The main difficulty is the generation of reliable saliency maps.
 
-Gradient-based saliency methods tap into the gradients of the model's output with respect to the input data. The magnitudes of these gradients represent the importance of each input pixel in influencing the prediction. Common techniques, like Grad-CAM (Gradient-weighted Class Activation Mapping), amplify this understanding by overlaying saliency maps on the original image.
+
+\subsection{Gradient-focused methods}
+\label{IG}
+
+Option 1: Vanilla Gradient \& DeconvNet
+
+Vanilla Gradient \cite{simonyan2014deep} focuses on computing the gradients of the network.
+A forward pass of an image is generated. The gradients of the class score is computed. Then the gradients are visualized. When ReLU is used and the gradients are negative, then information is lost. 
+Deconv Net \cite{zeiler2013visualizing} takes care of this problem.
+
+
+Option 2: Grad-CAM \& Guided Grad-CAM
+
+Grad-CAM only takes care of non-CNN maps.
+Guided Grad-CAM computes Grad-CaAM with another method to have a better localization
+
+
+
 
 \chapter{Evaluation of post-hoc interpretability methods}
 
-Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this is not a scientific statement and can also not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
+Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this is not a scientific statem<ent and can also not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
 
 
 \section{A benchmark for interpretability methods in deep neural networks}
@@ -273,7 +288,7 @@ While the described methods both offer a numerical evaluation method, they do st
 \section{Project Goal}
 In RoaR\cite{hooker2019benchmark} the paper does not list the standard deviation of the trained nets. We expect to validate the results by achieving similar results.
 
-As training 25 image nets requires high computational power we do not have right now, we limited our research to evaluating food-101 using only 2 interpretation methods and comparing it to the baseline.
+As training 25 image nets requires high computational power we do not have right now, we limited our research to evaluating food-101 \cite{bossard14} using only 2 interpretation methods and comparing it to the baseline.
 
 
 Additionally, we also add a mini evaluation using the MNIST dataset.

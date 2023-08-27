@@ -18,10 +18,10 @@ from PIL import Image
 import utils as utils
 
 # LINUX PATH
-path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/'
+#path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/'
 
 # WINDOWS PATH
-# path = f'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\data\\food101\\'
+path = f'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\data\\food-101\\'
 
 if not os.path.exists(path + 'indices_to_block/'):
 	os.makedirs(path + '/indices_to_block/', exist_ok=True)
