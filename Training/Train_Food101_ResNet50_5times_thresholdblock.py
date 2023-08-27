@@ -37,7 +37,7 @@ transformer = transforms.Compose([
 folder = sys.argv[1]
 print(folder)
 
-if folder != "random_baseline" and folder != "integrated_gradient":
+if folder != "random_baseline" and folder != "integrated_gradient" and folder != "guided_backprop":
 	print("Wrong input")
 	exit()
 

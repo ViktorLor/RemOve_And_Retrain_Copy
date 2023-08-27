@@ -35,7 +35,7 @@ torch.cuda.synchronize()
 # Load first parameter "generate_random_masks"
 param1 = sys.argv[1]
 print(param1)
-if param1 == 'generate_random_masks':
+if param1 == 'random_baseline':
 	
 	if not os.path.exists(path + 'indices_to_block/random_baseline/'):
 		os.makedirs(path + 'indices_to_block/random_baseline/')
@@ -60,3 +60,23 @@ if param1 == 'integrated_gradient':
 	utils.generate_saliency_masks_3D(model, 'integrated_gradient', path, 224, test=False, saveaspng=True)
 
 # %%
+
+if param1 == 'guided_backprop':
+	
+	if not os.path.exists(path + 'indices_to_block/guided_backprop/'):
+		os.makedirs(path + 'indices_to_block/guided_backprop/')
+	
+	# load weights
+	model = torchvision.models.resnet50()
+	# Replace the last layer with a new fully connected layer
+	num_ftrs = model.fc.in_features
+	model.fc = nn.Linear(num_ftrs, 101)
+	# load weights from file
+	model.load_state_dict(torch.load(
+		r'/home/viktorl/Intepretable_AI_PR_Loreth/models/food101/runs_original/original_ResNet50_lr_0_7_0.pth'))
+	
+	model.eval()
+	utils.generate_saliency_masks_3D(model, 'guided_backprop', path, 224, test=False, saveaspng=True)
+
+# %%
+
