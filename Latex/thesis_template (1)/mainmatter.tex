@@ -24,11 +24,11 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \section{Structure of the thesis}
 
 \begin{enumerate}
-	\item The first part presents a overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to show why interpretation methods are required.
+	\item The first part presents a overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition tasks.
 	\item Subsequent sections delve into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behavior, regardless of algorithm specifics.   
 	\item Additionally, in the domain of interpretability techniques for Neural Networks, the paper explores ad-hoc methods for Neural Networks. Features visualization and Gradient-focused methods are explained.
 	\item After introducing existing interpretation methods, the paper's focus transitions to evaluating post-hoc interpretation methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
-	\item To exemplify the discussed concepts, the practical application of the ROAR methodology using the food101 data set \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented. This real-world instance illustrates effective employment of interpretability techniques in image recognition.
+	\item To exemplify the discussed concepts, the practical application of the ROAR methodology using the food101 data set \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented. This real-world instance illustrates the current state of art of interpretability techniques in image recognition.
 \end{enumerate}
 
 
@@ -37,13 +37,15 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \chapter{Machine Learning and their Interpretability}
 
 
-This paper focuses on two types of machine learning methods: Unsupervised and Supervised. However, we'll only look at supervised methods here because interpreting unsupervised methods works differently at a basic level.
 
-In supervised machine learning, there are several base methods of classification. They are shortly introduced and analyzed for their interpretability. This should give readers a simply structure on why this research is needed.
 
-\section{Supervised Methods}
+Before going into detail into the different methods of interpretability an overview of current supervised machine learning is given. With those examples, it should be explained why interpretability is necessary.
 
-This section analyzes the base functionality of each singular model. Furthermore, an analysis of the interpretability from a human perspective is made. Methods are developing rapidly, therefore only the most common methods are included.
+\section{Supervised Machine Learning}
+
+In supervised machine learning, there are several base methods of classification. They are shortly introduced and analyzed for their interpretability. This should give readers a simply structure on why this research is needed. This section analyzes the base functionality of each singular model. Furthermore, an analysis of the interpretability from a human perspective is made. Methods are developing rapidly, therefore only the most common methods are included.
+\\
+There are several methods on how algorithms can be classified in their interpretability: Algorithm Transparency: How does the algorithm learn the model from the data? What relationships can it learn? \cite{molnar2022} A linear regression model using least squares method is easier to understand than a deep learning model. Pushing a gradient through a network with millions of weights is less well understood and considered less transparent.
 
 \subsection{Linear Models}
 When it comes to predicting outcomes, a simple method is to use a linear regression model. This model predicts by adding up different features, each multiplied by a weight. The linear nature of this model makes it easy to understand. Mathematically, the predictive output, denoted as $\hat{y}$, is  captured in the equation:
@@ -66,20 +68,11 @@ $$ \alpha = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-%To customize the model and avoid over-fitting, regularization methods as Lasso-Regularization (L1) and Ridge-Regularization (L2) can be applied. The parameter lambda can be fine tuned.
-%
-%$$\text{Lasso Loss} = \text{Loss} + \lambda_1 \sum_{i=1}^{p} |{\alpha}_i|$$
-%
-%Lasso regularization is particularly useful when you want to emphasize a subset of relevant features or when dealing with multicollinearity issues. By encouraging certain coefficients to become zero, Lasso can lead to a more interpretable and sparse model.
-%
-%$$\text{Ridge Loss} = \text{Loss} + \lambda_2 \sum_{i=1}^{p} {\alpha}_i^2$$
-%
-%Ridge regularization is particularly effective when dealing with multicollinearity (highly correlated features) and helps prevent over-fitting by keeping the coefficients from taking large values. It doesn't force coefficients to be exactly zero, but it pushes them towards zero, striking a balance between fitting the data and preventing over-fitting.
 
-Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships and small datasets. In the domain of image recognition it is not applicable.
+Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships and small datasets. One can use advanced techniques like L1 and L2 regularization \cite{jerome2010} to achieve regularization against outliers and in case of correlation between factors. In the domain of image recognition it is not applicable.
 
 \subsection{Distance-Based methods}
-K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. One can argue, that KNN is interpretable by the fact, that it just describes if there are similar samples. However KNN also struggles with big datasets.
+K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. However KNN is inherently easy to understand, as it simply looks for the most similar samples. One is able to visualize fewer features or use clustering algorithms to reduce the dimensionality, but the relationship between input and output is unclear. KNN also struggles with many features, therefore it is not recommended.
 
 Support Vector Machines (SVM) aim to find a hyperplane that maximizes the margin between different classes of data points.
 
@@ -87,12 +80,20 @@ $$\text{Minimize } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i$$
 
 $$\text{Subject to } y_i (w \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
 
-With using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable. SVM also struggles with big datasets. Therefore also SVM is not applicable for image datasets.
+By using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable. SVM also struggles with big datasets. Therefore also SVM is not a good choice for image classification.
 
 
 \subsection{Decision Tree-Based Methods}
 
-Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. One disadvantage is the lack of smoothness. If one boundary is reached, the model classification changes.
+Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. An example for the titanic dataset is visible in \ref{fig:decision_tree} Their bad generalization method gave rise to ensemble methods.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=80mm]{figs/Decision_Tree}
+	\caption{Decision Tree Example: By Gilgoldm - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=90405437}
+	\label{fig:decision_tree}
+\end{figure}
+ 
 
 Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. But it suffers from being less interpretable. Using special techniques like SHAP values \cite{lundberg2017unified} or partial dependence trees can make them more understandable.
 
@@ -100,24 +101,9 @@ Gradient boosting like XGBoost, LightGBM and CatBoost are similar to random fore
 
 While decision tree-based methods can be applied for image classification, their accuracy is poor.
 
-\subsection{Computational intensive optimization Problems, LDA, QDA}
+\subsection{LDA, QDA}
 
-LDA (Linear Discriminant Analysis):
-LDA aims to maximize the distance between classes while minimizing the variance within each class.
-It assumes that the data within each class follows a multivariate normal distribution with equal covariance matrices across all classes.
-LDA is useful when there's a linear separation between classes in the feature space.
-It can be effective when the class distributions are well-separated.
-
-QDA (Quadratic Discriminant Analysis):
-QDA is an extension of LDA that relaxes the assumption of equal covariance matrices across classes.
-It allows each class to have its own covariance matrix, which can capture more complex relationships between features.
-QDA is suitable when the class distributions have different covariance structures or when the assumption of equal covariance is not met.
-
-Both LDA and QDA have been applied to image recognition tasks with varying degrees of success. Their performance can be influenced by factors such as the amount of training data available, the choice of features, and the complexity of the underlying data distribution.
-
-%Belhumeur, P. N., Hespanha, J. P., & Kriegman, D. J. (1997). Eigenfaces vs. Fisherfaces: Recognition Using Class Specific Linear Projection. IEEE Transactions on Pattern Analysis and Machine Intelligence, 19(7), 711–720.
-%Fukunaga, K. (1990). Introduction to Statistical Pattern Recognition (2nd ed.). Academic Press.
-%Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.). Springer.
+% TODO, Add LDA and QDA
 
 \subsection{Neural Networks}
 
@@ -126,13 +112,11 @@ The rise of neural networks and their strong predictive power makes them a commo
 
 \chapter{Interpretation of Image Recognition Neural Networks}
 
-In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models. We only introduce evaluation methods, which are used to analyze neural networks.
+In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models. Only evaluation methods which are commonly used for neural networks are introduced.
 
 \section{Global Model-Agnostic Methods}
 
 Global model-agnostic methods describe expected outcomes based on the distribution of the data. They can show a correlation between singular or multiple features and an outcome.
-
-A quick evaluation on applicability for Neural Networks is done:
 
 \begin{enumerate}
 	\item \textbf{Partial Dependency Plots:} Partial Dependency Plots (PDP) are easy to interpret but using it with several features becomes increasingly difficult. Therefore, using a PDP is not possible in Neural Networks.
@@ -140,7 +124,7 @@ A quick evaluation on applicability for Neural Networks is done:
 	\item \textbf{Feature Interaction:} Feature Interaction also analyzes how features correlate. Doesn't work due to the same problem of the complexity of the dataset.
 	\item \textbf{Functional Decomposition:} Functional Decomposition is commonly used in Neural Networks. See Chapter \ref{sec:network_dissection}.
 	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is regularly used in visual machine learning tasks.
-	\item \textbf{Prototype and Criticism:} Prototype and Criticism is used as adversial attacks in Neural Networks.
+	\item \textbf{Prototype and Criticism:} Prototype and Criticism is used as adversarial attacks in Neural Networks.
 	
 \end{enumerate}
 
@@ -169,11 +153,11 @@ Recognizing that it's impossible for humans to grasp millions of weights, the de
 \\\\
 While model-agnostic methods offer an approach to understand Neural Networks, the sheer size of the data used to train and test Neural Networks make this task extremely hard. For instance, an image with the dimensions of 3x224x224, as commonly encountered in Food-101,the data entries exceed 150.000. In NLP tasks, where vocabularies often encompass around 20.000 words, the computational complexity renders most model-agnostic techniques as too expensive.
 \\
-In the pursuit of comprehending the complex dynamics of Deep Neural Networks it makes sense to utilize the underlying weights in the model. The information saved in the hidden layers  as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well.
+In the pursuit of comprehending the complexity of Deep Neural Networks it makes sense to utilize the  weights in the model. The information saved in the hidden layers  as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well.
 In the following subsections several concepts for understanding Deep Neural Networks are introduced. 
 
 
-\subsection{Feature visualization and Network Dissection \cite{olah2017feature}}
+\subsection{Feature visualization and Network Dissection \cite{olah2017feature} }
 \label{sec:network_dissection}
 Modern Neural Networks like ResNet50 or Bard consist of several million layers. Network dissection attempts to overcome this challenge by breaking down separate layers and connecting them with ideas. 
 
@@ -188,7 +172,7 @@ The higher-level features in these networks relate to clear concepts, shown in F
 \\
 The image explains this process. The first convolutional layers find simple features like edges and basic textures. Later, they recognize more detailed patterns. The deepest layers learn about parts and objects. This object information passes to the other hidden layers, which then finally make a prediction.
 
-In the pursuit of understanding feature visualization, the focus lies on the activation of a single unit within the neural network. This involves maximizing the activation of a specific neuron, mathematically speaking (Visible in \ref*{fig:optimization}). There are two methods for achieving this. First, we can make use of the training image that triggers the highest activation. Yet, this approach faces a significant problem. When an image contains multiple objects, it's hard to pinpoint which object causes the activation. Because of this an alternative route is adopted: generating new images from random noise. This is accomplished through methods like Generative Adversarial Networks (GANs) or other diffusion-based techniques.
+Feature visualization is based on activating one kernel in the network. This involves maximizing the activation of a specific neuron (Visible in \ref*{fig:optimization}). There are two methods for achieving this. First, we can make use of the training image that triggers the highest activation. Yet, this approach faces a significant problem. When an image contains multiple objects, it's hard to pinpoint which object causes the activation. Because of this an alternative route is adopted: generating new images from random noise. This is accomplished through methods like Generative Adversarial Networks (GANs) or other diffusion-based techniques.
 
 \begin{figure}[h!]
 	\centering
@@ -229,50 +213,185 @@ Saliency maps are commonly calculated using SHAP \cite{lundberg2017unified} or g
 \subsection{Gradient-focused methods}
 \label{IG}
 
-Option 1: Vanilla Gradient \& DeconvNet
 
-Vanilla Gradient \cite{simonyan2014deep} focuses on computing the gradients of the network.
-A forward pass of an image is generated. The gradients of the class score is computed. Then the gradients are visualized. When ReLU is used and the gradients are negative, then information is lost. 
-Deconv Net \cite{zeiler2013visualizing} takes care of this problem.
+Vanilla Gradient focuses on computing the gradients of the network. A forward pass of an image is generated. The gradients of the class score is computed. Then the gradients are visualized.
+This method has 2 problems: When ReLU is used and the gradients are negative, then information is lost. Furthermore, in pooling layers, there are no gradients and the information is lost. 
+\\
+Deconv Net \cite{Zeiler2011AdaptiveDN} takes care of the gradient problem of Pooling and Convolutional Layers. Unpooling is done by recording the maxima in a set of switch variables. This preserves the initial structure of the stimulus. 
+To obtain valid feature reconstructions, the reconstructed signal is passed through a relu non-linearity.
+The filtering using learned weights is done using transposed version of the same filter, applied to the rectified maps. This is similar to flipping the filter vertically and horizontally.
+
+% TODO add maths from original paper? Add Pictures to make clear?
+
 
 
 Option 2: Grad-CAM \& Guided Grad-CAM
 
-Grad-CAM only takes care of non-CNN maps.
-Guided Grad-CAM computes Grad-CaAM with another method to have a better localization
+Grad-CAM provides visual explanations for CNN decisions. The goal is to understand at which parts of an image a convolutional layer looks for a certain classification. Grad-CAM analyzes which regions are activated in the feature maps of the last convolutional layer. The main problem of grad-CAM is that it's not very exact. Through the CNN's it's unclear which pixels are exactly responsible.
+
+Guided Grad-CAM computes Grad-CAM with another method to have a better localization. It's basically multiplied with another method to achieve stable results.
+
+% TODO Explain Grad Cam and Guided Grad CAM, add mathematical example if needed
+
+% TODO add Guided Backprop
+
+% Add SmoothGrad
 
 
+Option 3: Top-Down Neural Attention by Excitation Backprop \cite{article}
+
+
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/TopDown}
+	\caption{CNN classifier's top-down attention map \cite{article}}
+	\label{fig:topdown}
+\end{figure}
+
+By calculating the importance of a neuron set and saving it during the computational step, the gradient step can be combined with the importance and localize exact objects.
+The probabilistic WTA formulation produce well-normalized attention maps that enable direct subtraction.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/DeterministicWTA}
+	\caption{Identifying task-relevant neurons in the network. The red shading of a dot indicates its relative likelihood of winning against the other ones in the same layer. \cite{article}}
+	\label{fig:taskrelevant}
+\end{figure}
 
 
 \chapter{Evaluation of post-hoc interpretability methods}
 
-Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this is not a scientific statem<ent and can also not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
+Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this can not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
+
+\section{Evaluation metrics, ground truths \cite{gupta2022new}}
+
+Different evaluation methods exist to evaluate saliency methods. Evaluations can be extrinsic \cite{gupta2022new}, involving human evaluations and comparing the results to certain ground truth explanations \cite{article}. Intrinsic methods use computations involving the net itself and the saliency map, without human evaluation or retraining a net. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using the original trained model.  E.g.\cite{dabkowski2017real} These methods suffer from violating one key assumption in machine learning: the training and evaluation data must come from the same distribution. \cite{hooker2019benchmark} Without re-training it is not clear if the degrade in performance stems from the distribution shirt or because informative features were removed.
+
+\section{Completeness and Soundness}
+
+\cite{gupta2022new} proposes Soundness and Completeness, two concepts which are required for evaluation metrics which involve using a composition of a heat map and the original input.\\
+Soundness is needed: The masked input method proves that a certain part of the image "caused" the networks output. 
+
+Completeness means, for any composition of an input image of label a with a well functioning saliency mask the model must still be able to identify the correct label.\\
+$ \forall x: f(x\rightarrow a)$\\
+$ x = input(a) \odot mask$\\
+Soundness means, for any composition of an input image of label b with a well functioning saliency mask them model must not return a wrong label.\\
+$ \nexists x: f(x\rightarrow a)$\\
+$ x = input(b) \odot mask$
+
+The AUC metric \cite{petsiuk2018rise} of the insertion game:\\
+For s = [1,dim(x)] take the top s pixels as per saliency map m and plot the probability f(x,a) given by the model. The top s pixels of x are retained and the  remaining pixels are assigned a default value). Return the area under the curve.\\\
+
+The method is $\alpha$ complete on f,x,a if:
+$$ g_{AUC} (x,a,m) >= \alpha f(x,a)$$
+The method is $\beta$ sound on f,x,a if:
+$$ g_{AUC} (x,a,m) <= \frac{1}{beta}\alpha f(x,a)$$
+
+$$\alpha(x,a) = min(\frac{max(g_{AUC}(x,a,n),\epsilon_1)}{f(x,a)},1)$$
+
+$$\alpha(x,a)=min(\frac{max(f(x,a),\epsilon_2)}{g_{AUC}(x,a,n)},1)$$
+
+Then $\alpha(m) = E_x[min_a(\alpha(x,a))]$\\
+Then $\beta(m) = E_x[min_a(\beta(x,a))]$\\
+
+If alpha is close to 1: The blocked input predicts correctly. \\ If beta is close to 1: The blocked input mimics the behavior and is not overconfident.
+
+x: input to the model \\
+a: true label \\
+f: model\\
+m : saliency method.\\
+$\epsilon$ = term if x is very small\\
+
+Older evaluation methods only try to maximize the $g_{AUC}$ curve. This completely ignores if the method is overconfident.
 
 
-\section{A benchmark for interpretability methods in deep neural networks}
+Critics to the method: No human interpretability is included. Furthermore, the masked images do suffer from not having the same distribution as in the original trained maps. This could cause a unwanted drop in performance.
 
-RoaR is a algorithm which estimates the effectiveness of saliency maps. This is done, by removing supposedly informative features from the input and observing the reaction of the neural network.
+\section{Perturbation based \cite{7552539}}
 
-As shown in the paper, KAR seems to be a bad method to evaluate the efficiency.
+% TODO
 
+\section{A benchmark for interpretability methods in deep neural networks \cite{hooker2019benchmark}}
 
-\section{New Definitions and Evaluations for Saliency Methods: Staying intrinsic, complete and sound \cite{gupta2022new}}
+In this paper two methods to estimate the effectiveness of saliency maps are presented. "RemOve And Retrain (ROAR)" and "Keep And Retrain (KAR)". 
 
-
-
-Explaining Completeness:
-
-Logical reasoning: All correct statements are proveable. Example: The dog is responsible for the nets output as 
-dog. 
-
-Soundness: Incorrect statements cannot be proved. Example: The sun is responsible for the nets output as dog.
+ROAR proposes a numerical solution to evaluate attribution maps. It is a algorithm which estimates the effectiveness of saliency maps. This is done, by removing supposedly informative features from the input and observing the reaction of the neural network. ROAR is applicable to any visual domain. In Section \ref{sec:project}, an example for MNIST and Food-101 is done.
 
 
+RoaR  works as follows:
+\begin{enumerate}
+	\item \textbf{ Selection of the most important pixels from an attribution map}\\
+	An attribution map provides a mapping to the most important pixels. Those pixels are ranked based on their importance. Depending on the algorithm, different values differ on the importance. In the case of Integrated Gradient, the pixels with the highest absolute values are considered the most important.
+	\item \textbf{ Replacement of x\% of the pixels with the mean value}\\
+	In the Roar algorithm, 0.1, 0.3, 0.5, 0.7 or 0.9 \% of the most important pixels are identified and replaced by the mean value. Both the training and the testing data undergo this process.
+	\item \textbf{ Retraining the model using the modified dataset}\\
+	To ensure the consistency of the model, retraining is necessary. Afterwards, the model is evaluated using several seed runs on the test set. The same split should be used for all runs.
+	This is crucial, because the training data and the test data must be drawn from the same distribution. Without retraining the model this property is ignored.
+	\item \textbf{ Comparison of the attribution map with a random baseline} \\
+	For each training setup, respectively with 0.1, 0.3, 0.5, 0.7 or 0.9 \% pixels replaced, a random baseline is considered. The random baseline also replaces the same percentage of pixels. The random baseline is expected to perform worse than a sophisticated method.
+	\item \textbf{ Evaluation} \\
+	An attribution method is deemed effective, if it consistently outperforms the random baseline across various setups.
+\end{enumerate}
+
+KAR works similar: Instead of removing the most important pixels, the least important pixels are identified. Because KAR performs worse than ROAR, it is not described further.
+
+The conclusion of \cite{hooker2019benchmark} is that commonly used based estimator, Gradients, Integrated Gradient and Guided BackProp are worse than a random assignment. The effectiveness of Smooth-Grad-Squared and VarGrad was proofed. 
 
 
-\section{Sanity checks for Saliency maps}
+\section{Benchmarking Attribution Methods (BAM) \cite{yang2019benchmarking}}
+
+BAM with relative feature importance explores wether features are important or not. In reality, we do not know how important a feature is. However, we can calculate how important a feature is to model relative to another model. Given the relative feature importance, the metrics compare attributions between pairs of models and pairs of input.\\
+
+The main idea of BAM is: If you paste a grey square to every training image for all classes, it is expected that this square matters less than the original image region being covered. The same expectation should hold if instead an object (which is not represented by the dataset) is pasted in every image. Any explanations that assign higher attribution to the inserted object than to the original pixels are false positives.
+
+BAM solves the problem of an distribution shift by inserting objects by only inserting objects which don't strongly change the distribution of the image. E.g. an object with mean similar to the mean of the dataset is chosen.
+
+The BAM algorithm works as follows:
+\begin{enumerate}
+	\item \textbf{BAM dataset construction}\\
+	The BAM dataset is constructed by pasting object pixels from MSCOCO \cite{lin2015microsoft} into scene images from MiniPlaces \cite{zhou2016places}. An object is re-scaled to between 1/3 to 1/2 of a scene image at a randomly chosen location. Resulting images have an object label and a scene label. Either can be used to train a classifier. Every object class appears in every scene class and vice versa. Scenes which contain original BAM objects are not used.
+	\item \textbf{Common features and commonality}\\
+	Common features are defined as a set of pixels with semantic meaning (e.g. looks like a dog) which commonly appear in all examples of one or more classes. For example, a dog which appears in all bamboo forests is less common than a dog  which appears in all images of bamboo forests, bedroom and corn field.
+	\item \textbf{2 Classifiers are trained and attribution maps are created}\\
+	An object detection classifier and a scene detection classifier are trained. Objects should be significantly more important than the scene to the object detector  than to the scene detector. To verify this intuition, the objects are removed. With this knowledge, attribution maps can be tested by checking if the pixels are assigned noticeably higher attributions.
+	\item \textbf{Relative importance is calculated.}\\
+	With this knowledge, the object pixels should be more important than any other pixels for the detection classifier. Additionally for the scene attribution, the attribution maps should be higher if the object pixels are replaced with the original pixels.
+\end{enumerate}
 
 
+The advantage of BAM over ROAR \cite{hooker2019benchmark} and other methods is the lower computational cost. No retraining or perturbation is required.
+
+
+\section{Sanity Checks for Saliency Maps \cite{adebayo2020sanity}}
+
+In this paper an actionable methodology is proposed, which kinds of explanation a given method can and cannot provide. It shows that visual inspection by humans does not provide good information if the explanation is sensitive to the underlying model and data.
+
+Two instances of the framework are tested:
+
+\begin{enumerate}
+	\item \textbf{Model Parameter randomization test}\\
+		The model parameter randomization test compares the output of a salinecy method on a trained model with the output of a randomly initalized untrrained network of the same architecture. The output should differ, otherwise the saliency map is deemed as not helpful.
+	\item \textbf{Data randomization test}\\
+		The data randomization test randomly shuffles the labels of the data and the model is trained on this method. If the saliency maps does not differ to a normally trained model, then the method does not depend on the relationship of the images and labels.
+
+If any of the 2 hypothesis is failed, then the method can safely be rejected. This is a so called sanity check.
+
+Extensive experiments on several explanation methods are done across data sets and model architectures. 
+
+On the tested methods, Gradients \& GradCam pass the Sanity checks, while Guided BackProp \& Guided GradCAM fail.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/Sanity}
+	\caption{Cascading Randomization on Image Net. The figure shows the original explanations. Progression from left to right indicate complete randomization of network weights up to that block inclusive. The last block corresponds to a network with completely reinitialized weights.\cite{adebayo2020sanity}}
+	\label{fig:Sanity}
+\end{figure}
+
+
+\end{enumerate}
 
 \section{Comparison of the Evaluation Methods \& critique}
 
@@ -283,7 +402,7 @@ While the described methods both offer a numerical evaluation method, they do st
 
 %%%%%%%%%%%%%%%%
 \chapter{Project work} % 4 pages
-
+\label{sec:project}
 
 \section{Project Goal}
 In RoaR\cite{hooker2019benchmark} the paper does not list the standard deviation of the trained nets. We expect to validate the results by achieving similar results.

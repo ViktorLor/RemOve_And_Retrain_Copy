@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  27 AUG 2023 12:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  28 AUG 2023 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**./MAIN.tex
+(MAIN.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2023-06-30>
 (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrbook.cls
@@ -1150,8 +1150,8 @@ LaTeX Font Info:    Trying to load font information for T1+ppl on input line 15
 (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
-(main.aux (cover/coversheet.aux))
-\openout1 = `main.aux'.
+(MAIN.aux (cover/coversheet.aux))
+\openout1 = `MAIN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
 LaTeX Font Info:    ... okay on input line 150.
@@ -1248,11 +1248,11 @@ File: german.lbx 2022/07/12 v3.18b biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout3 = `main.bcf'.
+\openout3 = `MAIN.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
-(main.bbl)
+Package biblatex Info: ... file 'MAIN.bbl' found.
+(MAIN.bbl)
 Package biblatex Info: Reference section=0 on input line 150.
 Package biblatex Info: Reference segment=0 on input line 150.
 
@@ -1305,9 +1305,9 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
 Package hyperref Info: Link coloring OFF on input line 150.
 
-(main.out) (main.out)
+(MAIN.out) (MAIN.out)
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `MAIN.out'.
 
 Class scrbook Info: loading recommended package `bookmark'.
 (scrbook)           Using `bookmark' together with `hyperref' is recommended,
@@ -1482,14 +1482,14 @@ Package pdftex.def Info: cover/jkuen.png  used on input line 164.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
  [2
 
-] (main.toc
+] (MAIN.toc
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 11.40997pt on input line 2.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 11.40997pt on input line 2.
 )
 \tf@toc=\write5
-\openout5 = `main.toc'.
+\openout5 = `MAIN.toc'.
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
@@ -1497,9 +1497,15 @@ Package pdftex.def Info: cover/jkuen.png  used on input line 165.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
  [3
 
-] (main.lof)
+] (MAIN.lof
+Overfull \hbox (210.14641pt too wide) in paragraph at lines 3--3
+ [][] [][]\T1/ppl/m/n/10.95 Decision Tree Ex-am-ple: By Gilgo-ldm - Own work, C
+C BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=90405437[] [][]  
+ []
+
+)
 \tf@lof=\write6
-\openout6 = `main.lof'.
+\openout6 = `MAIN.lof'.
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
@@ -1565,140 +1571,273 @@ l.37 \chapter
              {Machine Learning and their Interpretability} [2]
 chapter 2.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
-(Font)              `T1/Roboto-LF/bold/n' on input line 48.
+(Font)              `T1/Roboto-LF/bold/n' on input line 50.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
-(Font)              scaled to size 12.0pt on input line 48.
+(Font)              scaled to size 12.0pt on input line 50.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 57.
+Package pdftex.def Info: cover/jkuen.png  used on input line 58.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 [3
 
 ]
-Overfull \hbox (1.21136pt too wide) in paragraph at lines 82--83
+Overfull \hbox (1.21136pt too wide) in paragraph at lines 75--76
 \T1/ppl/m/n/10.95 K-Nearest Neigh-bors is used for clas-si-fi-ca-tion and uses 
 the near-est neigh-bars as clas-si-fi-ca-tion. KNN
  []
 
 
-Overfull \hbox (6.34969pt too wide) in paragraph at lines 90--91
-\T1/ppl/m/n/10.95 gles with big datasets. There-fore also SVM is not ap-pli-ca-
-ble for im-age datasets. 
+Overfull \hbox (44.1488pt too wide) in paragraph at lines 83--84
+\T1/ppl/m/n/10.95 gles with big datasets. There-fore also SVM is not a good cho
+ice for im-age clas-si-fi-ca-tion. 
  []
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 97.
+Package pdftex.def Info: cover/jkuen.png  used on input line 86.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 [4]
-Overfull \hbox (91.87961pt too wide) in paragraph at lines 101--102
+<figs/Decision_Tree.jpg, id=175, 458.71375pt x 474.77374pt>
+File: figs/Decision_Tree.jpg Graphic file (type jpg)
+<use figs/Decision_Tree.jpg>
+Package pdftex.def Info: figs/Decision_Tree.jpg  used on input line 92.
+(pdftex.def)             Requested size: 227.62204pt x 235.58966pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[][][]\T1/ppl/m/n/10 Decision Tree Ex-am-ple: By Gilgo-ldm - Own work, CC BY-SA
+ 4.0,
+ []
+
+
+Overfull \hbox (91.87961pt too wide) in paragraph at lines 102--103
 []\T1/ppl/m/n/10.95 While de-ci-sion tree-based meth-ods can be ap-plied for im
 -age clas-si-fi-ca-tion, their ac-cu-racy is poor. 
  []
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 127.
+Package pdftex.def Info: cover/jkuen.png  used on input line 111.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[5]
+[5 <./figs/Decision_Tree.jpg>]
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 113.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+ [6]
 chapter 3.
 
-Overfull \hbox (28.1076pt too wide) in paragraph at lines 133--134
+Overfull \hbox (28.1076pt too wide) in paragraph at lines 119--120
 \T1/ppl/m/n/10.95 They can show a cor-re-la-tion be-tween sin-gu-lar or mul-ti-
 ple fea-tures and an out-come. 
  []
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 154.
+Package pdftex.def Info: cover/jkuen.png  used on input line 138.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[6
+[7
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 167--174
+Underfull \hbox (badness 10000) in paragraph at lines 151--158
 
  []
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 174.
+Package pdftex.def Info: cover/jkuen.png  used on input line 158.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[7]
+[8]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 176.
+(hyperref)                removing `\cite' on input line 160.
 
-<figs/FeatureVisualization.png, id=178, 1030.60031pt x 320.69812pt>
+<figs/FeatureVisualization.png, id=217, 1030.60031pt x 320.69812pt>
 File: figs/FeatureVisualization.png Graphic file (type png)
 <use figs/FeatureVisualization.png>
-Package pdftex.def Info: figs/FeatureVisualization.png  used on input line 184.
+Package pdftex.def Info: figs/FeatureVisualization.png  used on input line 168.
 
 (pdftex.def)             Requested size: 426.79134pt x 132.8034pt.
-File: cover/jkuen.png Graphic file (type png)
-<use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 192.
-(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[8 <./figs/FeatureVisualization.png>]
-<figs/ab.png, id=187, 251.7405pt x 50.8299pt>
+<figs/ab.png, id=220, 251.7405pt x 50.8299pt>
 File: figs/ab.png Graphic file (type png)
 <use figs/ab.png>
-Package pdftex.def Info: figs/ab.png  used on input line 195.
+Package pdftex.def Info: figs/ab.png  used on input line 179.
 (pdftex.def)             Requested size: 426.79134pt x 86.18163pt.
-<figs/SaliencyExample.png, id=190, 429.10312pt x 235.63031pt>
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 182.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[9 <./figs/FeatureVisualization.png>]
+<figs/SaliencyExample.png, id=228, 429.10312pt x 235.63031pt>
 File: figs/SaliencyExample.png Graphic file (type png)
 <use figs/SaliencyExample.png>
-Package pdftex.def Info: figs/SaliencyExample.png  used on input line 221.
+Package pdftex.def Info: figs/SaliencyExample.png  used on input line 205.
 (pdftex.def)             Requested size: 426.79134pt x 234.36414pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.63087pt too wide) in paragraph at lines 226--227
+Overfull \hbox (0.63087pt too wide) in paragraph at lines 210--211
 \T1/ppl/m/n/10.95 vide a di-rect and in-tu-itive way to un-der-stand which part
 s of an in-put data are in-flu-enc-ing a model's
  []
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 229.
+Package pdftex.def Info: cover/jkuen.png  used on input line 223.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[9 <./figs/ab.png>]
+[10 <./figs/ab.png>]
+<figs/TopDown.png, id=244, 613.54219pt x 137.7647pt>
+File: figs/TopDown.png Graphic file (type png)
+<use figs/TopDown.png>
+Package pdftex.def Info: figs/TopDown.png  used on input line 248.
+(pdftex.def)             Requested size: 426.79134pt x 95.8313pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (32.30089pt too wide) in paragraph at lines 253--255
+\T1/ppl/m/n/10.95 for-mu-la-tion pro-duce well-normalized at-ten-tion maps that
+ en-able di-rect sub-trac-tion. 
+ []
+
+<figs/DeterministicWTA.png, id=247, 630.10406pt x 161.85469pt>
+File: figs/DeterministicWTA.png Graphic file (type png)
+<use figs/DeterministicWTA.png>
+Package pdftex.def Info: figs/DeterministicWTA.png  used on input line 259.
+(pdftex.def)             Requested size: 426.79134pt x 109.62999pt.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 247.
+Package pdftex.def Info: cover/jkuen.png  used on input line 262.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
- [10 <./figs/SaliencyExample.png>]
+[11 <./figs/SaliencyExample.png>]
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 265.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+ [12 <./figs/TopDown.png> <./figs/DeterministicWTA.png>]
 chapter 4.
 
-Overfull \hbox (12.60207pt too wide) in paragraph at lines 256--257
-[]\T1/ppl/m/n/10.95 As shown in the pa-per, KAR seems to be a bad method to eva
-l-u-ate the ef-fi-ciency. 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 269.
+
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 284.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 285--287
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--299
+
+ []
+
+
+Overfull \hbox (29.88126pt too wide) in paragraph at lines 300--301
+\T1/ppl/m/n/10.95 If beta is close to 1: The blocked in-put mim-ics the be-hav-
+ior and is not over-con-fi-dent. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--307
+
+ []
+
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 313.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[14]
+
+LaTeX Warning: Citation '7552539' on page 15 undefined on input line 313.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 313.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 317.
+
+
+Overfull \hbox (0.89352pt too wide) in paragraph at lines 326--328
+\T1/ppl/m/n/10.95 An at-tri-bu-tion map pro-vides a map-ping to the most im-por
+-tant pix-els. Those pix-els are ranked
+ []
+
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 337.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[15]
+Overfull \hbox (11.8026pt too wide) in paragraph at lines 339--340
+\T1/ppl/m/n/10.95 iden-ti-fied. Be-cause KAR per-forms worse than ROAR, it is n
+ot de-scribed fur-ther. 
+ []
+
+
+Overfull \hbox (1.77052pt too wide) in paragraph at lines 341--342
+\T1/ppl/m/n/10.95 Guided Back-Prop are worse than a ran-dom as-sign-ment. The e
+f-fec-tive-ness of Smooth-Grad-Squared
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 259.
+(hyperref)                removing `\cite' on input line 344.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+
+ []
+
+
+LaTeX Warning: Citation 'lin2015microsoft' on page 16 undefined on input line 3
+55.
+
+
+LaTeX Warning: Citation 'zhou2016places' on page 16 undefined on input line 355
+.
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 285.
+Package pdftex.def Info: cover/jkuen.png  used on input line 358.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[11
+[16]
 
-]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 368.
+
+<figs/Sanity.png, id=307, 712.16063pt x 384.6872pt>
+File: figs/Sanity.png Graphic file (type png)
+<use figs/Sanity.png>
+Package pdftex.def Info: figs/Sanity.png  used on input line 388.
+(pdftex.def)             Requested size: 426.79134pt x 230.53821pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 285.
+Package pdftex.def Info: cover/jkuen.png  used on input line 396.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
- [12]
+[17]
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 404.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+ [18 <./figs/Sanity.png>]
 chapter 5.
 )
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 177.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
- [13
+ [19
 
 ]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
@@ -1725,42 +1864,40 @@ d Ap-proach to In-ter-pret-ing Model Pre-dic-tions\T1/ppl/m/n/10.95 . 2017. arX
 iv:
  []
 
-
-Overfull \hbox (6.01077pt too wide) in paragraph at lines 180--180
-\T1/ppl/m/it/10.95 works: Vi-su-al-is-ing Im-age Clas-si-fi-ca-tion Mod-els and
- Saliency Maps\T1/ppl/m/n/10.95 . 2014. arXiv: []$\T1/cmtt/m/n/10.95 1312 . 603
-4$ [cs.CV][]\T1/ppl/m/n/10.95 . 
- []
-
-
-Overfull \hbox (1.96364pt too wide) in paragraph at lines 180--180
-[]\T1/ppl/m/n/10.95 Matthew D Zeiler and Rob Fer-gus. \T1/ppl/m/it/10.95 Vi-su-
-al-iz-ing and Un-der-stand-ing Con-vo-lu-tional Net-works\T1/ppl/m/n/10.95 . 20
-13.
- []
+File: cover/jkuen.png Graphic file (type png)
+<use cover/jkuen.png>
+Package pdftex.def Info: cover/jkuen.png  used on input line 179.
+(pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
+[20
 
 
+] 
 AED: lastpage setting LastPage
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 183.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
-[14
+[21] (MAIN.aux (cover/coversheet.aux))
 
+LaTeX Warning: There were undefined references.
 
-] (main.aux (cover/coversheet.aux))
-Package rerunfilecheck Info: File `main.out' has not changed.
+Package rerunfilecheck Info: File `MAIN.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'main.run.xml'.
-\openout1 = `main.run.xml'.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                MAIN
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'MAIN.run.xml'.
+\openout1 = `MAIN.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32545 strings out of 475891
- 680509 string characters out of 5772857
- 1933222 words of memory out of 5000000
- 52824 multiletter control sequences out of 15000+600000
- 646080 words of font info for 118 fonts, out of 8000000 for 9000
+ 32658 strings out of 475891
+ 682898 string characters out of 5772857
+ 1934222 words of memory out of 5000000
+ 52901 multiletter control sequences out of 15000+600000
+ 648460 words of font info for 121 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,24n,106p,10902b,2457s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Vik\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt10
@@ -1769,16 +1906,19 @@ oto-Black.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/google/ro
 boto/Roboto-Bold.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/go
 ogle/roboto/Roboto-Regular.pfb><C:/Users/Vik/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Vik/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Vik/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Vik/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/Vik/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/Vik/AppData
-/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Vik/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Vik/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (19 pages, 2188860 bytes).
+eX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Vik/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Vik/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Vik/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/Vik/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/Vik/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C
+:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><
+C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb>
+<C:/Users/Vik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pf
+b>
+Output written on MAIN.pdf (26 pages, 2970419 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 85 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 577 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
+ 278 words of extra memory for PDF output out of 10000 (max. 10000000)
 

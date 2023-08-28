@@ -102,6 +102,37 @@
       \field{title}{Food-101 -- Mining Discriminative Components with Random Forests}
       \field{year}{2014}
     \endentry
+    \entry{dabkowski2017real}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=74cc76df6cb24c1cbd71aee2c7442226}{%
+           family={Dabkowski},
+           familyi={D\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d4f394bd4030e20e7b1399e0abe7dc6a}{%
+           family={Gal},
+           familyi={G\bibinitperiod},
+           given={Yarin},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \strng{fullhash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \strng{bibnamehash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \strng{authorbibnamehash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \strng{authornamehash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \strng{authorfullhash}{7b6bb3f4ffbbdf0248bb8b93dc84e11e}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ML}
+      \field{eprinttype}{arXiv}
+      \field{title}{Real Time Image Saliency for Black Box Classifiers}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1705.07857
+      \endverb
+    \endentry
     \entry{deng2012mnist}{article}{}
       \name{author}{1}{}{%
         {{hash=2f5fbdc5c3cf91f62a64663cd72397b3}{%
@@ -130,6 +161,51 @@
       \field{year}{2012}
       \field{pages}{141\bibrangedash 142}
       \range{pages}{2}
+    \endentry
+    \entry{jerome2010}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ce884cc144616c39e723a8fe2eb3c879}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome\bibnamedelima H.},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8ea2d5234e48983e0a1b875dd71e6ca4}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \strng{fullhash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \strng{bibnamehash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \strng{authorbibnamehash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \strng{authornamehash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \strng{authorfullhash}{d8926d7fbe1c523b2710a25e34059bf4}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{number}{1}
+      \field{title}{Regularization Paths for Generalized Linear Models via Coordinate Descent}
+      \field{volume}{33}
+      \field{year}{2010}
+      \field{pages}{1\bibrangedash 22}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.18637/jss.v033.i01
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
+      \endverb
+      \verb{url}
+      \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
+      \endverb
     \endentry
     \entry{gupta2022new}{misc}{}
       \name{author}{5}{}{%
@@ -288,6 +364,35 @@
       \verb 1705.07874
       \endverb
     \endentry
+    \entry{molnar2022}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1519de263bd388a2ce312e7171b96d0d}{%
+           family={Molnar},
+           familyi={M\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{1519de263bd388a2ce312e7171b96d0d}
+      \strng{fullhash}{1519de263bd388a2ce312e7171b96d0d}
+      \strng{bibnamehash}{1519de263bd388a2ce312e7171b96d0d}
+      \strng{authorbibnamehash}{1519de263bd388a2ce312e7171b96d0d}
+      \strng{authornamehash}{1519de263bd388a2ce312e7171b96d0d}
+      \strng{authorfullhash}{1519de263bd388a2ce312e7171b96d0d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{subtitle}{A Guide for Making Black Box Models Explainable}
+      \field{title}{Interpretable Machine Learning}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://christophm.github.io/interpretable-ml-book
+      \endverb
+      \verb{url}
+      \verb https://christophm.github.io/interpretable-ml-book
+      \endverb
+    \endentry
     \entry{olah2017feature}{article}{}
       \name{author}{3}{}{%
         {{hash=78be47e08348476a254b1217fd9041ca}{%
@@ -324,71 +429,163 @@
       \verb 10.23915/distill.00007
       \endverb
     \endentry
-    \entry{simonyan2014deep}{misc}{}
+    \entry{petsiuk2018rise}{misc}{}
       \name{author}{3}{}{%
-        {{hash=9d16b7284df92c9adaee86c37ab992df}{%
-           family={Simonyan},
+        {{hash=b4510a79c11487cc29e33b891a62b0a2}{%
+           family={Petsiuk},
+           familyi={P\bibinitperiod},
+           given={Vitali},
+           giveni={V\bibinitperiod}}}%
+        {{hash=aa74b3d21ccb440940dc019c5e01aaf4}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Abir},
+           giveni={A\bibinitperiod}}}%
+        {{hash=df6dd5c482f41a42e672eecaa779020c}{%
+           family={Saenko},
            familyi={S\bibinitperiod},
-           given={Karen},
+           given={Kate},
            giveni={K\bibinitperiod}}}%
-        {{hash=85ab53268da1006b51b453d57d3566f2}{%
-           family={Vedaldi},
-           familyi={V\bibinitperiod},
-           given={Andrea},
-           giveni={A\bibinitperiod}}}%
-        {{hash=c72fc39e94030f67717052309266a44d}{%
-           family={Zisserman},
-           familyi={Z\bibinitperiod},
-           given={Andrew},
-           giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \strng{fullhash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \strng{bibnamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \strng{authorbibnamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \strng{authornamehash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \strng{authorfullhash}{400aa4a24354d63b49a6b7b6275bf2a4}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \strng{namehash}{31785624a213234ec886411d2a15aaf4}
+      \strng{fullhash}{31785624a213234ec886411d2a15aaf4}
+      \strng{bibnamehash}{31785624a213234ec886411d2a15aaf4}
+      \strng{authorbibnamehash}{31785624a213234ec886411d2a15aaf4}
+      \strng{authornamehash}{31785624a213234ec886411d2a15aaf4}
+      \strng{authorfullhash}{31785624a213234ec886411d2a15aaf4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprintclass}{cs.CV}
       \field{eprinttype}{arXiv}
-      \field{title}{Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps}
-      \field{year}{2014}
+      \field{title}{RISE: Randomized Input Sampling for Explanation of Black-box Models}
+      \field{year}{2018}
       \verb{eprint}
-      \verb 1312.6034
+      \verb 1806.07421
       \endverb
     \endentry
-    \entry{zeiler2013visualizing}{misc}{}
+    \entry{yang2019benchmarking}{misc}{}
       \name{author}{2}{}{%
+        {{hash=ece2772cc354477642ab3bf025e29752}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Mengjiao},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a11a6718c039f3e3f3f31167e5094c10}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Been},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{462da7ac0c71dd876e36484139b48151}
+      \strng{fullhash}{462da7ac0c71dd876e36484139b48151}
+      \strng{bibnamehash}{462da7ac0c71dd876e36484139b48151}
+      \strng{authorbibnamehash}{462da7ac0c71dd876e36484139b48151}
+      \strng{authornamehash}{462da7ac0c71dd876e36484139b48151}
+      \strng{authorfullhash}{462da7ac0c71dd876e36484139b48151}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Benchmarking Attribution Methods with Relative Feature Importance}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1907.09701
+      \endverb
+    \endentry
+    \entry{Zeiler2011AdaptiveDN}{article}{}
+      \name{author}{3}{}{%
         {{hash=90d345b65e166a9cfc0c6ddec4ddc3d6}{%
            family={Zeiler},
            familyi={Z\bibinitperiod},
-           given={Matthew\bibnamedelima D},
+           given={Matthew\bibnamedelima D.},
            giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=8c57b78bacc3da92f8aa3623167ea5de}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={Graham\bibnamedelima W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
         {{hash=a6784304d1cc890b2cb6c6c7f2f3fd76}{%
            family={Fergus},
            familyi={F\bibinitperiod},
            given={Rob},
            giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
-      \strng{fullhash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
-      \strng{bibnamehash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
-      \strng{authorbibnamehash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
-      \strng{authornamehash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
-      \strng{authorfullhash}{85ff4f1b7cd8e8f00fa953ed2f69136a}
+      \strng{namehash}{17b0c06299db03cb5ab99bd90ae4666a}
+      \strng{fullhash}{17b0c06299db03cb5ab99bd90ae4666a}
+      \strng{bibnamehash}{17b0c06299db03cb5ab99bd90ae4666a}
+      \strng{authorbibnamehash}{17b0c06299db03cb5ab99bd90ae4666a}
+      \strng{authornamehash}{17b0c06299db03cb5ab99bd90ae4666a}
+      \strng{authorfullhash}{17b0c06299db03cb5ab99bd90ae4666a}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{eprintclass}{cs.CV}
-      \field{eprinttype}{arXiv}
-      \field{title}{Visualizing and Understanding Convolutional Networks}
-      \field{year}{2013}
-      \verb{eprint}
-      \verb 1311.2901
+      \field{journaltitle}{2011 International Conference on Computer Vision}
+      \field{title}{Adaptive deconvolutional networks for mid and high level feature learning}
+      \field{year}{2011}
+      \field{pages}{2018\bibrangedash 2025}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:975170
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:975170
+      \endverb
+    \endentry
+    \entry{article}{article}{}
+      \name{author}{6}{}{%
+        {{hash=ac94487142bcc73ec00646f41c277977}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jianming},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ece53df38ae7b0276481fcd15a4f7b53}{%
+           family={Bargal},
+           familyi={B\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1576e7b81fbcc0350eff6ab2cac23be4}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Zhe},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=ed82d2f9b3d19b5ae7a7843e1eee75bc}{%
+           family={Brandt},
+           familyi={B\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e86c851adc8c73970dc5012aab3fb3a}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={Xiaohui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=0fb2301a846eadeb3162268b0f0d52cb}{%
+           family={Sclaroff},
+           familyi={S\bibinitperiod},
+           given={Stan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{f114c0102416c1209e4a899bd442dc31}
+      \strng{fullhash}{035f9b91ab3340a92d5a28c255bd6122}
+      \strng{bibnamehash}{f114c0102416c1209e4a899bd442dc31}
+      \strng{authorbibnamehash}{f114c0102416c1209e4a899bd442dc31}
+      \strng{authornamehash}{f114c0102416c1209e4a899bd442dc31}
+      \strng{authorfullhash}{035f9b91ab3340a92d5a28c255bd6122}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Computer Vision}
+      \field{month}{10}
+      \field{title}{Top-Down Neural Attention by Excitation Backprop}
+      \field{volume}{126}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1007/s11263-017-1059-x
       \endverb
     \endentry
   \enddatalist
