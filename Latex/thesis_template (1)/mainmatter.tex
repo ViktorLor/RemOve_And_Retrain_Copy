@@ -101,9 +101,6 @@ Gradient boosting like XGBoost, LightGBM and CatBoost are similar to random fore
 
 While decision tree-based methods can be applied for image classification, their accuracy is poor.
 
-\subsection{LDA, QDA}
-
-% TODO, Add LDA and QDA
 
 \subsection{Neural Networks}
 
@@ -288,7 +285,7 @@ For s = [1,dim(x)] take the top s pixels as per saliency map m and plot the prob
 The method is $\alpha$ complete on f,x,a if:
 $$ g_{AUC} (x,a,m) >= \alpha f(x,a)$$
 The method is $\beta$ sound on f,x,a if:
-$$ g_{AUC} (x,a,m) <= \frac{1}{beta}\alpha f(x,a)$$
+$$ g_{AUC} (x,a,m) <= \frac{1}{\beta}\alpha f(x,a)$$
 
 $$\alpha(x,a) = min(\frac{max(g_{AUC}(x,a,n),\epsilon_1)}{f(x,a)},1)$$
 
@@ -312,7 +309,11 @@ Critics to the method: No human interpretability is included. Furthermore, the m
 
 \section{Perturbation based \cite{7552539}}
 
-% TODO
+A heatmap is an array of pixel-wise scores that indicate which pixels are relevant.
+
+This paper describes a method, where the most important pixels are replaced by randomly sampled values. IT then is measured how the values f(x) the label value goes down. Depending on the method used, the method works superior or worse. If the edges are the most important in a saliency map, then deleting them results in a steep decrease.
+
+This method has high computational costs.
 
 \section{A benchmark for interpretability methods in deep neural networks \cite{hooker2019benchmark}}
 
@@ -395,7 +396,6 @@ On the tested methods, Gradients \& GradCam pass the Sanity checks, while Guided
 
 \section{Comparison of the Evaluation Methods \& critique}
 
-While the described methods both offer a numerical evaluation method, they do still lack a clear evaluation structure. They show, that some evaluation methods are indeed correct, but they still suffer ambuigity from different datasets.
 
 
 

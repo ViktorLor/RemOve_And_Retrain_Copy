@@ -1,15 +1,17 @@
 [0] Config.pm:306> INFO - This is Biber 2.18
 [0] Config.pm:309> INFO - Logfile is 'MAIN.blg'
-[174] biber-MSWIN64:340> INFO - === 
-[229] Biber.pm:418> INFO - Reading 'MAIN.bcf'
-[353] Biber.pm:978> INFO - Found 15 citekeys in bib section 0
-[370] Biber.pm:4401> INFO - Processing section 0
-[392] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
-[439] bibtex.pm:1713> INFO - LaTeX decoding ...
-[475] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
-[628] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[628] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[628] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[628] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
-[668] bbl.pm:654> INFO - Writing 'MAIN.bbl' with encoding 'UTF-8'
-[677] bbl.pm:757> INFO - Output to MAIN.bbl
+[111] biber-MSWIN64:340> INFO - === 
+[143] Biber.pm:418> INFO - Reading 'MAIN.bcf'
+[268] Biber.pm:978> INFO - Found 18 citekeys in bib section 0
+[285] Biber.pm:4401> INFO - Processing section 0
+[297] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
+[342] bibtex.pm:1713> INFO - LaTeX decoding ...
+[380] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
+[543] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[543] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[543] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[543] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
+[566] bbl.pm:654> INFO - Writing 'MAIN.bbl' with encoding 'UTF-8'
+[578] bbl.pm:757> INFO - Output to MAIN.bbl
+[578] Biber.pm:130> WARN - Duplicate entry key: '7552539' in file 'literature.bib', skipping ...
+[578] Biber.pm:132> INFO - WARNINGS: 1
