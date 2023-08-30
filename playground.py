@@ -7,13 +7,24 @@ from PIL import Image
 import torch
 import matplotlib.pyplot as plt
 
-path = '/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/indices_to_block/integrated_gradient/tiramisu/1412012.png'
+# calaculate std and mean
 
-#load image
-img = Image.open(path)
-#display image on terminal
-plt.imshow(img)
-plt.show()
+path =r'C:\Users\Vik\Documents\4. Private\01. University\2023_Sem6\Intepretable_AI\models\food101\runs_original\original_ResNet50_lr_0_7_'
 
-while(True):
-	pass
+list=  []
+for i in range(5):
+	path2 = path + str(i) + '.csv'
+	#load file
+	data = np.genfromtxt(path2, delimiter=',')
+	# only use last row
+	data = data[-1]
+	# only use last value of last row
+	data = data[-1]
+	list.append(data)
+
+# calculate mean and std
+mean = np.mean(list)
+std = np.std(list)
+
+print(mean)
+print(std)

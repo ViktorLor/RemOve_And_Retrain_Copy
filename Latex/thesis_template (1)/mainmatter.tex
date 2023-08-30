@@ -37,9 +37,43 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \chapter{Machine Learning and their Interpretability}
 
 
+Before going into detail into the different methods of interpretability an overview of current supervised machine learning is given. Unsupervised machine learning is argueable intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, it should be explained why interpretability is necessary.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=100mm]{figs/Overview}
+	\caption{Feature Visualization \cite{allen2023interpretable}}
+	\label{fig:IML_Overview}
+\end{figure}
+
+Interpretability methods can be defined in different categories:
+
+Intrinsic vs Post-hoc: Intrinsic methods) are understandable by nature. Pos-hoc interpretations however are done by an analysis of the model afterwards. 
+
+Global Interpretations vs Local Interpretations\cite{molnar2022}: Global Interpretations regard the entire fitted model. A global interpretation explains the whole model. Local Interpretations only explain a small part of the model landscape. For example the boundary between two classes.
+
+Model-Specific Interpretations vs Model-Agnostic Intepretations \cite{molnar2022}: 
+Model Specific interpretations can only be used by a single class. For example gradient-methods for Neural networks. Model-agnostic interpretations can be applied to any method. For example LIME or SHAP.
+
+A broad definition is given by \cite{allen2023interpretable}: "Interpretable machine learning (IML) is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output."
+
+Interpretability is needed for various reasons. Many have proposed a number of reasons and uses for IML. \cite{murdoch2019definitions} \cite{Roscher2020explainable} \cite{molnar2022} \cite{guidotti2018survey} \cite{lipton2017mythos} \cite{du2019techniques} \cite{carvalho2019machine} \cite{doshivelez2017rigorous}:
+
+Model Validation: Does the learned model makes sense and behave in consistent behavior matching with my prior expectations and knowledge about the system? Validation by humans require interpretable machine learning models.
+
+Model Debugging: When unexpected behavior occurs, how can one diagnose the problem in the machine learning system? Interpreting and understanding machine learning systems is critical for diagnosing, debugging and fixing systems.\cite{koh2020understanding}
+
+Transparency, Accountability \& Trust: IML makes black-box and other machine learning systems easier for human to understand and more transparent. The utilization in high-stakes societal applications requires accountability and trust of machine learning systems \cite{rudin2019stop} \cite{Samek_2019} \cite{xu2019inbook}.
+
+Ethics: Machine learning algorithms can possibly be trained on biased data lead to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms understandable techniques need to be deployed. \cite{guidotti2018survey}
+
+Data Exploration: Insights into major patterns, trends, groups, or artifacts of the data can be gained by applying human-interpretable techniques. This data exploration insights are used to adjust the data preprocessing and model influence decisions. \cite{murdoch2019definitions} \cite{berkhin2006} \cite{tukey1981}
+
+Discovery: IML can help making data-driven discoveries in the realm of data analytic.
 
 
-Before going into detail into the different methods of interpretability an overview of current supervised machine learning is given. With those examples, it should be explained why interpretability is necessary.
+
+
 
 \section{Supervised Machine Learning}
 
@@ -72,6 +106,7 @@ $$
 Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships and small datasets. One can use advanced techniques like L1 and L2 regularization \cite{jerome2010} to achieve regularization against outliers and in case of correlation between factors. In the domain of image recognition it is not applicable.
 
 \subsection{Distance-Based methods}
+
 K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. However KNN is inherently easy to understand, as it simply looks for the most similar samples. One is able to visualize fewer features or use clustering algorithms to reduce the dimensionality, but the relationship between input and output is unclear. KNN also struggles with many features, therefore it is not recommended.
 
 Support Vector Machines (SVM) aim to find a hyperplane that maximizes the margin between different classes of data points.
@@ -84,7 +119,7 @@ By using the kernel trick, SVM can be used for non-linear data. In higher dimens
 
 
 \subsection{Decision Tree-Based Methods}
-
+\label{decision_tree}
 Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. An example for the titanic dataset is visible in \ref{fig:decision_tree} Their bad generalization method gave rise to ensemble methods.
 
 \begin{figure}[h!]
@@ -143,7 +178,7 @@ To explain individual predictions, Local model-agnostic methods are used. A sing
 
 
 
-\section{Neural Network Interpretation}
+\section{Neural Network Interpretation: Model specific Interpretations}
 \label{sec:nni}
 In the domain of Natural Language Processing (NLP) and Computer Vision, Deep Learning has proven very successful. By passing the input data through a sequence of layers, characterized by matrix-multiplications with kernel weights and nonlinear transformations functions, a prediction is computed. Depending on the specific task, additional elements like Long Short-Time Memory(LSTM) layers and Convolutional layers (CNN) are utilized. Given the immense amount of mathematical operations underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
 Recognizing that it's impossible for humans to grasp millions of weights, the demand for evaluation methods is high. To assess the behavior and predictions of Deep Neural networks, specific interpretation methods were developed. These methods calculate the likelihood of an input entry being responsible for the result.
@@ -193,7 +228,7 @@ Disadvantages of Feature Visualization:
 \end{enumerate}
 
 
-\subsection{Saliency Maps}
+\section{Saliency Maps}
 
 Saliency maps are visualizations that highlight the regions of an input image that have the most significant impact on a model's output. By revealing the areas that strongly influence a prediction, saliency maps bridge the gap between the model's "black-box" nature and human understanding.
 
@@ -207,38 +242,44 @@ Saliency maps are visualizations that highlight the regions of an input image th
 Saliency maps are commonly calculated using SHAP \cite{lundberg2017unified} or gradient methods. Saliency maps provide a direct and intuitive way to understand which parts of an input data are influencing a model's decision. The main difficulty is the generation of reliable saliency maps.
 
 
-\subsection{Gradient-focused methods}
+\subsection{Vanilla Gradient \& Deconv Net}
 \label{IG}
 
 
-Vanilla Gradient focuses on computing the gradients of the network. A forward pass of an image is generated. The gradients of the class score is computed. Then the gradients are visualized.
+Vanilla Gradient\cite{simonyan2014deep} focuses on computing the gradients of the network. A forward pass of an image is generated. The gradients of the class score is computed. Then the gradients are visualized. It is the same process as neural network backpropogation.
 This method has 2 problems: When ReLU is used and the gradients are negative, then information is lost. Furthermore, in pooling layers, there are no gradients and the information is lost. 
 \\
-Deconv Net \cite{Zeiler2011AdaptiveDN} takes care of the gradient problem of Pooling and Convolutional Layers. Unpooling is done by recording the maxima in a set of switch variables. This preserves the initial structure of the stimulus. 
-To obtain valid feature reconstructions, the reconstructed signal is passed through a relu non-linearity.
-The filtering using learned weights is done using transposed version of the same filter, applied to the rectified maps. This is similar to flipping the filter vertically and horizontally.
+Deconv Net \cite{zeiler2013visualizing} takes care of the gradient problem of Pooling and Convolutional Layers. 
 
-% TODO add maths from original paper? Add Pictures to make clear?
+A standard convolutional network with convolutional layers and fully connected layers and a activation funtion is chosen. An image input image $x_i$ maps to a probability layer $y_i$. 
+A deconvnet \cite{Zeiler2011AdaptiveDN} is attached to each of it's layers proving a path back to the image pixels. Unpooling, Rectifying and filtering is done to reconstruct the activity in the layers.\\
 
+Unpooling: The pooling operation is non-invertible. By recording the original locations of the maxima using a set of switch variables, the reconstructions can be created.\\
 
+Rectification: Each layer passes  through a relu non-linearity. Each layer backwards also passes through a relu non-linearity to keep all signals positive.\\
 
-Option 2: Grad-CAM \& Guided Grad-CAM
-
-Grad-CAM provides visual explanations for CNN decisions. The goal is to understand at which parts of an image a convolutional layer looks for a certain classification. Grad-CAM analyzes which regions are activated in the feature maps of the last convolutional layer. The main problem of grad-CAM is that it's not very exact. Through the CNN's it's unclear which pixels are exactly responsible.
-
-Guided Grad-CAM computes Grad-CAM with another method to have a better localization. It's basically multiplied with another method to achieve stable results.
-
-% TODO Explain Grad Cam and Guided Grad CAM, add mathematical example if needed
-
-% TODO add Guided Backprop
-
-% Add SmoothGrad
+Filtering: Filtering is done by using inverted original filters. The devoncnet uses transposed versions of the same filters. This means flipping each filter vertically and horizontally. 
 
 
-Option 3: Top-Down Neural Attention by Excitation Backprop \cite{article}
+\subsection{Grad-CAM, Guided Grad-CAM and Smooth Gradient}
+
+Gradient-weighted Class Activation Map (Grad-CAM) provides visual explanations for CNN decisions. The goal is to understand at which parts of an image a convolutional layer looks for a certain classification. 
+
+$$\alpha^c_k = \frac{1}{Z} \sum_{i}\sum_{j} \frac{\delta y^c}{\delta A^k_{ij}}$$
+
+c = class of interest
+$A^k$ = feature map
+i,j = width and height dimension
+Z = average term
+
+GRAD-CAM sets all classes which are not interesting to 0. Then it backpropogates the gradients of the main class. Then the gradients are scaled between [0,1] and displayed. GRAD-CAM does take all convolutional feature maps but the last. This is done, because the last features are responsible for all classes and are therefore not informative. A main problem of GRAD-Cam is that it is very coarse.
+\\
+\textbf{Guided Grad-CAM} computes Grad-CAM with another method to have a better localization. It's basically multiplied with another method to achieve stable results. GRAD-Cam works as a lenses to focus on specific parts of the pixel-wise attribution map.
+\\
+\text{SmoothGrad} \cite{smilkov2017smoothgrad} is a smoothing method for other gradient calculation methods. By adding noise to the input image and calculating several input images and taking the gradient, noise should cancel out and be removed.
 
 
-
+\subsection{Top-Down Neural Attention by Excitation Backprop \cite{article}}
 
 \begin{figure}[h!]
 	\centering
@@ -258,14 +299,28 @@ The probabilistic WTA formulation produce well-normalized attention maps that en
 	\label{fig:taskrelevant}
 \end{figure}
 
+\subsection{Advantages and Disadvantages of Saliency Maps}
+
+The advantage of saliency maps is that they are fast to compute and easy to interpret. The explanations are visual and can immediately be recognized. Furthermore, there are many methods to choose from.
+\\
+The main disadvantage is that it is unclear whether an explanation is correct or not. In the next chapter possible evaluation methods are explained.
+
+
 
 \chapter{Evaluation of post-hoc interpretability methods}
 
 Gradient-methods which generate saliency maps are hard to measure. While humans can evaluate the maps by giving a general statement, this can not be applied to thousands of images. Despite many significant recent contributions to saliency maps, the valuable effort of explaning machine learning models face this methodological challenge: the difficulty of assessing the scope and quality of model explanations \cite{adebayo2020sanity}.
 
+
+
+
+
 \section{Evaluation metrics, ground truths \cite{gupta2022new}}
 
 Different evaluation methods exist to evaluate saliency methods. Evaluations can be extrinsic \cite{gupta2022new}, involving human evaluations and comparing the results to certain ground truth explanations \cite{article}. Intrinsic methods use computations involving the net itself and the saliency map, without human evaluation or retraining a net. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using the original trained model.  E.g.\cite{dabkowski2017real} These methods suffer from violating one key assumption in machine learning: the training and evaluation data must come from the same distribution. \cite{hooker2019benchmark} Without re-training it is not clear if the degrade in performance stems from the distribution shirt or because informative features were removed.
+
+\cite{neely2021order} states that comparing the rank correlation between attention weights and feature-additive methods is not appropriate. This means, using agreement as evaluation (using a method as standard to compare to) should not be used. In the paper a low empirical evidence was found, that models are similar. This means that just evaluating similar methods and taking the common results is not applicable. More rigorous defined metrics need be considered.
+
 
 \section{Completeness and Soundness}
 
@@ -394,34 +449,123 @@ On the tested methods, Gradients \& GradCam pass the Sanity checks, while Guided
 
 \end{enumerate}
 
-\section{Comparison of the Evaluation Methods \& critique}
 
+
+\section{Validating the research}
+
+After understanding common machine learning algorithms, one common problem is identified: validating the research \cite{allen2023interpretable}.
+
+1. Replicability, Reliability and Trust. Evaluation methods need to be replicable to some degree. Predictions and finding should be robust to sensitivity tests like small changes in the data or the model, out-of-sample prediction tests and consistency with domain knowledge \cite{Meng2020Reproducibility}.
+
+2. Why do machine learning interpretations fail?
+
+a. The machine learning model could be a poor fit for the model and any resulting interpretation approach would poorly reflect the signal in the data.
+
+b. The interpretation approach could be a poor fit for the model. Especially when fitting a second model to generate the interpretation, like LIME.
+
+c. There can be a mismatch to the employed interpretation technique and the desired discovery task. For example trying to find out why a model predicts wrongly can't be understood using a poor saliency  map.
+
+For prediction tasks well established techniques for validation were developed: Using a split for train, test and validation data. Using this the predictive model should generalize well to new, unseen data. Knowing this, can't one simply employ a training and test set to validate interpretations? \cite{allen2023interpretable} This prospect is way more complicated for interpretations. There exists no fair metric that determines which interpretation is the best. Using human evaluation or domain experts could also be an option, but this also struggles from having no good evaluation method. And even experts do not have a common consensus for each dataset.
+
+Validating discoveries from interpretable machine learning is still a challenge and more research is needed to promote trustworthy and reliable data science.
+
+\section{Research findings: Which evaluation method to use, how to control the result?}
+
+Several saliency maps and possible evaluation methods were introduced. Now which one should a data scientist use?
+\\
+The unsatisfactory answer is: There is no clear right and wrong. Depending on the model and dataset used, different evaluation methods give different results. In \cite{adebayo2020sanity} and \cite{hooker2019benchmark}  various methods were seen as unsuitable.
+
+Using a SG - GRAD or a VAR-GRAD approach results in a good results for ROAR and  SG-Grad also has good results for Sanity Check for saliency maps. Excitation Backprop has not been analyzed yet with this methods, but could also be trustworthy. 
+After all, there is not enough reliable research to say one method is clearly better than another. This can seen as recommendation, but not as clear instruction.
+
+It remains difficult to evaluate visual explanations and there is no clear truth yet, on which evaluation method is the best. More research is needed to be able to give clear guidelines.
 
 
 
 
 %%%%%%%%%%%%%%%%
-\chapter{Project work} % 4 pages
+\chapter{Reconstructing ROAR} % 4 pages
 \label{sec:project}
 
-\section{Project Goal}
+
+
+\section{Scientific Motivation and Goal}
 In RoaR\cite{hooker2019benchmark} the paper does not list the standard deviation of the trained nets. We expect to validate the results by achieving similar results.
 
 As training 25 image nets requires high computational power we do not have right now, we limited our research to evaluating food-101 \cite{bossard14} using only 2 interpretation methods and comparing it to the baseline.
 
 
-Additionally, we also add a mini evaluation using the MNIST dataset.
+Additionally, I also add a proof-of-concept evaluation using the MNIST dataset.
 
 
 
-\subsection{Project Setup}
+\subsection{Project Setup MNIST}
+
+The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because calculating the gradients and judging if a mask is meaningful is easier here, it should give a reliable baseline for the results. Only integrated gradients is tested, as is it only an example.
+
+A. Training the model
+
+The model used in this report is a simple convolution neural network architecture consisting of two convolution layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and a SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of 97.4\% with a standard deviation of 0.4\% on the test data.
+
+B. Dataset preparation and Splitting
+
+The MNIST data set consists of 10 classes and 70.000 different images. It was chosen, because it is easy to evaluate the effectiveness of integrated gradients and ROAR: a) The importance of the pixels is clear from a human perspective. b) The model required to achieve a solid performance is very modest and speeds up the retraining. c) The information loss in retraining is clearly visible in the pictures. Furthermore, it is a small, usable data set. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in gray-scale. The data set used in this report was normalized using the mean and standard deviation, and was split using the PyTorch library’s default splitting method (60.000 images for the training data, 10.000 images for the test data). The training data was shuffled randomly using the inbuilt functions. The Cross entropy loss was selected for training runs. The same data set split was used for all training runs to ensure consistency in the results.
+
+C. Example of the new dataset
+
+In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Random Baseline is visible. In the first row the random baseline is visible, in the second row Integrated Gradients is shown. [0.1,0.3,0.5,0.7,0.9\%] of the pixels are blacked out (left to right).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=120mm]{figs/IGvsRandom}
+	\caption{Integrated Gradients and Random Baseline Comparison}
+	\label{fig:IGvsRandom}
+\end{figure}
+
+Judging by human intuition, Integrated Gradients is appearing to perform better over all thresholds. The model is expected to perform worse following retraining.
+
+D. Retraining upon the new datasets
+
+To ensure that the model learns consistently, the same split and learning parameters were utilized as in the standard case to retrain the model on the new data set. An untrained network was created and then retrained for each training run. In order to validate the results and minimize the impact of random seed initialization, the training was performed with 5 different seeds and 5 models were created. In the Appendix, the exact results can be found.
+
+E. Advantages and Disadvantages of the setup
+
+Because of the small size of the data set and the limited amount of classes, training a model is fast and effective. One disadvantage is the limited generalization of this setup for other datasets and models. The majority of use cases primarily involve working with images in the RGB color space, utilizing deep learning models that are often more complex, and dealing with a larger number of distinct classes. Furthermore, the pixels itself are blurred on their importance. In RGB images 3 channels are combined, which make attribution maps more difficult to compute and understand.
+
+F. Results
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/mean_accuracy_vs_threshold}
+	\caption{Accuracy: Random Baseline vs Integrated Gradient}
+	\label{fig:Accuracy}
+	
+\end{figure}
+
+Integrated Gradient is performing better than the random baseline.
+
+
+\subsection{Project Setup Food-101}
+
+The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because calculating the gradients and judging if a mask is meaningful is easier here, it should give a reliable baseline for the results. Only integrated gradients is tested, as is it only an example. 
+
+A. Training the model
+
+The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. Learning rate was adjusted to 0.175, batchsize of 64. Using an SGD optimizer with momentum =0.9 and weight decay = 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of averagely 70.5\% with standard deviation of 0.01  was achieved over 5 separate training runs on the test score. In total 31 epochs were done. 
+
+In the original paper an accuracy of 84.54\% was achieved on the Food-101 dataset.  A smaller accuracy was achieved, as the training was noticeably shorter because only a NVIDIA GTX 1080 was available.
+
+The data was resized with center-crop to make all images 3x224x224. Afterwards they were normalized. No data augmentation like flips and mirroring was applied. The standard split 75:25 was applied. The altered datasets were calculated with all using the same model.
+
+B. Results
 
 
 
 
-\subsection{Results and Plots}
+\subsection{Interpretation of the results}
 
-\subsection{Discussion of results}
+The results from the original paper were confirmed. Integrated Gradients preforms as good as a random baseline for the Food-101 setup. While the MNIST result shows that Integrated Gradient indeed seems to find important pixels, in the Food-101 setup Integrated Gradient fails. Therefore we can say that Integrated Gradient seems to fail for bigger networks.
+
 
 
 

@@ -37,6 +37,9 @@ image = transformer(image)
 #convert mask to tensor
 mask = transforms.ToTensor()(mask)
 
+# print mask distribution
+print(torch.unique(mask, return_counts=True)[0]*255)
+
 mean_1, mean_2, mean_3 = 0.485, 0.456, 0.406
 
 for threshold in [4.5,3.5,2.5,1.5,0.5]:

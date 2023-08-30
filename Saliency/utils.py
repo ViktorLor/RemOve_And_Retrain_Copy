@@ -221,21 +221,19 @@ def generate_saliency_masks_3D(model, method, path_to_dataset, image_size=224, t
 
 def generate_singular_saliency_3D_mask(img, label, model, method, path_to_dataset, folder, img_name, image_size=224,
                                        test=True, saveaspng=False):
+	# if test==False:
 	
-	if test==False:
-		
-		get_saliency_image(model,label,img.unsqueeze)
-		ig = IntegratedGradients(model)
-		# get the ig_attr for the image
-		ig_attr = get_saliency_image(model, label, img.unsqueeze(0), method)
-		# flatten ig_attr to 1D array = 244*224*3
-		ig_attr_flat = torch.abs(ig_attr).flatten()
-		mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
+	get_saliency_image(model, label, img.unsqueeze)
+	ig = IntegratedGradients(model)
+	# get the ig_attr for the image
+	ig_attr = get_saliency_image(model, label, img.unsqueeze(0), method)
+	# flatten ig_attr to 1D array = 244*224*3
+	ig_attr_flat = torch.abs(ig_attr).flatten()
+	mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
 	
-	else:
-		
-		ig_attr_flat = torch.abs(torch.rand((image_size * image_size * 3)))
-		mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
+	# else:
+	#   ig_attr_flat = torch.abs(torch.rand((image_size * image_size * 3)))
+	#   mask = np.zeros((3, image_size, image_size), dtype=np.uint8)
 	
 	# find topk indices of most important pixels of ig_attr_flat
 	indices = torch.topk(ig_attr_flat, int(len(ig_attr_flat)))[1]

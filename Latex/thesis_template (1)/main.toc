@@ -1,30 +1,33 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Structure of the thesis}{2}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Machine Learning and their Interpretability}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Supervised Machine Learning}{3}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Linear Models}{3}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Distance-Based methods}{4}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Decision Tree-Based Methods}{5}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}LDA, QDA}{6}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}Neural Networks}{6}{subsection.2.1.5}%
-\contentsline {chapter}{\numberline {3}Interpretation of Image Recognition Neural Networks}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Global Model-Agnostic Methods}{7}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Local Model-Agnostic Methods}{8}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Neural Network Interpretation}{8}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Feature visualization and Network Dissection \blx@tocontentsinit {0}\cite {olah2017feature}}{9}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Saliency Maps}{10}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Gradient-focused methods}{11}{subsection.3.3.3}%
-\contentsline {chapter}{\numberline {4}Evaluation of post-hoc interpretability methods}{13}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Evaluation metrics, ground truths \blx@tocontentsinit {0}\cite {gupta2022new}}{13}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Completeness and Soundness}{13}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Perturbation based \blx@tocontentsinit {0}\cite {7552539}}{15}{section.4.3}%
-\contentsline {section}{\numberline {4.4}A benchmark for interpretability methods in deep neural networks \blx@tocontentsinit {0}\cite {hooker2019benchmark}}{15}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{16}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{17}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Comparison of the Evaluation Methods \& critique}{18}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Project work}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Project Goal}{19}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Project Setup}{19}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Results and Plots}{19}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Discussion of results}{19}{subsection.5.1.3}%
+\contentsline {section}{\numberline {2.1}Supervised Machine Learning}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Linear Models}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Distance-Based methods}{6}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Decision Tree-Based Methods}{6}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Neural Networks}{7}{subsection.2.1.4}%
+\contentsline {chapter}{\numberline {3}Interpretation of Image Recognition Neural Networks}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Global Model-Agnostic Methods}{8}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Local Model-Agnostic Methods}{9}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Neural Network Interpretation: Model specific Interpretations}{9}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Feature visualization and Network Dissection \blx@tocontentsinit {0}\cite {olah2017feature}}{10}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Saliency Maps}{11}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Vanilla Gradient \& Deconv Net}{12}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Grad-CAM, Guided Grad-CAM and Smooth Gradient}{13}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Top-Down Neural Attention by Excitation Backprop \blx@tocontentsinit {0}\cite {article}}{13}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Advantages and Disadvantages of Saliency Maps}{14}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Evaluation of post-hoc interpretability methods}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Evaluation metrics, ground truths \blx@tocontentsinit {0}\cite {gupta2022new}}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Completeness and Soundness}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Perturbation based \blx@tocontentsinit {0}\cite {7552539}}{17}{section.4.3}%
+\contentsline {section}{\numberline {4.4}A benchmark for interpretability methods in deep neural networks \blx@tocontentsinit {0}\cite {hooker2019benchmark}}{17}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{18}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{19}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Validating the research}{20}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Research findings: Which evaluation method to use, how to control the result?}{21}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Reconstructing ROAR}{23}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Scientific Motivation and Goal}{23}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Project Setup MNIST}{23}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Project Setup Food-101}{25}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Interpretation of the results}{26}{subsection.5.1.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
