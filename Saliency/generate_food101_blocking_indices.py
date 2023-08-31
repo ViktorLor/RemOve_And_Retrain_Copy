@@ -18,10 +18,10 @@ from PIL import Image
 import utils as utils
 
 # LINUX PATH
-#path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/'
+path = r'/home/viktorl/Intepretable_AI_PR_Loreth/Data/food-101/'
 
 # WINDOWS PATH
-path = f'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\data\\food-101\\'
+#path = f'C:\\Users\\Vik\\Documents\\4. Private\\01. University\\2023_Sem6\\Intepretable_AI\\data\\food-101\\'
 
 if not os.path.exists(path + 'indices_to_block/'):
 	os.makedirs(path + '/indices_to_block/', exist_ok=True)
@@ -54,7 +54,7 @@ if param1 == 'integrated_gradient':
 	num_ftrs = model.fc.in_features
 	model.fc = nn.Linear(num_ftrs, 101)
 	# load weights from file
-	model.load_state_dict(torch.load(r'/home/viktorl/Intepretable_AI_PR_Loreth/models/food101/runs_original/original_ResNet50_lr_0_7_1.pth'))
+	model.load_state_dict(torch.load(r'/home/viktorl/Intepretable_AI_PR_Loreth/models/food101/runs_original/original_ResNet50_lr_0_7_0.pth'))
 	
 	model.eval()
 	utils.generate_saliency_masks_3D(model, 'integrated_gradient', path, 224, test=False, saveaspng=True)
