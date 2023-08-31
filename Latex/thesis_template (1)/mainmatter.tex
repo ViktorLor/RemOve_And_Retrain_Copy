@@ -13,7 +13,7 @@ Efforts to address this issue have given rise to gradient methods, aiming to ass
 \\
 Another alternative option to mitigate the black-box nature of  algorithms involves employing model-agnostic methods. These methods offer an computational linkage between inputs and outputs, irrespective which model is used. Although highly effective for smaller datasets, they begin to struggle as the data size and their complexity increases. Because of this, they do not offer a reliable way to quickly make Neural Networks interpretable.
 \\\\
-In light of these prevalent problems, the object of this thesis is to recapitulate interpretation algorithms Neural networks in computer vision.  Emphasis is placed on the evaluation of post-hoc interpretability techniques, forecasting potential future developments and focusing on the strengths and weaknesses of distinct  techniques. Concluding the theoretical segment, a practical demonstration showcasing the application of ROAR is shown. 
+In light of these prevalent problems, the object of this thesis is to recapitulate interpretation algorithms for neural networks in computer vision.  Emphasis is placed on the evaluation of post-hoc interpretability techniques, forecasting potential future developments and focusing on the strengths and weaknesses of distinct  techniques. Concluding the theoretical segment, a practical demonstration showcasing the application of ROAR is shown. 
 
 
 
@@ -28,16 +28,29 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 	\item Subsequent sections delve into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behavior, regardless of algorithm specifics.   
 	\item Additionally, in the domain of interpretability techniques for Neural Networks, the paper explores ad-hoc methods for Neural Networks. Features visualization and Gradient-focused methods are explained.
 	\item After introducing existing interpretation methods, the paper's focus transitions to evaluating post-hoc interpretation methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
-	\item To exemplify the discussed concepts, the practical application of the ROAR methodology using the food101 data set \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented. This real-world instance illustrates the current state of art of interpretability techniques in image recognition.
+	\item To exemplify the discussed concepts, the practical application of the ROAR methodology using the Food-101 data set \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented. This real-world instance illustrates the current state of art of interpretability techniques in image recognition.
 \end{enumerate}
-
-
 
 %%%%%%%%%%%%%%%%
 \chapter{Machine Learning and their Interpretability}
 
+In the rapidly evolving landscape of machine learning, interpretability has emerged as important concept. Before going in-depth into various algorithms and methods, the fundamental question of: "What is interpretable Machine Learning (IML) and why do we need it?" should be answered.
+\\
+A broad definition of IML given by \cite{allen2023interpretable}: "Interpretable machine learning  is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output." This definition underscores the important role of understanding complex models and allowing humans to understand the computation.
+\\
+Interpretability is important for various reasons, ranging from model validation and debugging to fostering validation and trust. Following key objectives have been identified: \cite{murdoch2019definitions} \cite{Roscher2020explainable} \cite{molnar2022} \cite{guidotti2018survey} \cite{lipton2017mythos} \cite{du2019techniques} \cite{carvalho2019machine} \cite{doshivelez2017rigorous}
+\\\\
+\textbf{Model Validation}: Interpretable models are essential for validating (by a human) whether a learned model behaves as expected and consistently aligns with prior expectations and knowledge about the system.
+\\\\
+\textbf{Model Debugging}: When unexpected behavior occurs, finding the reasons for fault is impossible without understanding the system. Interpreting and understanding machine learning systems is critical for diagnosing, debugging and fixing systems. \cite{koh2020understanding}
+\\\\
+\textbf{Transparency, Accountability \& Trust}: IML transforms black-box machine learning systems into understandable systems. The utilization in high-stakes societal applications requires accountability and trust of machine learning systems. \cite{rudin2019stop} \cite{Samek_2019} \cite{xu2019inbook}
+\\\\
+\textbf{Ethics}: Machine learning algorithms can possibly be trained on biased data leading to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms intepretable methods need to be deployed. \cite{guidotti2018survey}
+\\\\
+\textbf{Data Exploration and Discovery}: Insights into major patterns, trends, groups, or artifacts of the data are achieved by applying human-interpretable techniques. This data exploration insights influence the data pre-processing and model decisions. \cite{murdoch2019definitions} \cite{berkhin2006} \cite{tukey1981}
 
-Before going into detail into the different methods of interpretability an overview of current supervised machine learning is given. Unsupervised machine learning is argueable intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, it should be explained why interpretability is necessary.
+
 
 \begin{figure}[h!]
 	\centering
@@ -46,53 +59,37 @@ Before going into detail into the different methods of interpretability an overv
 	\label{fig:IML_Overview}
 \end{figure}
 
-Interpretability methods can be defined in different categories:
+Interpretability methods can be assigned to different categories:
 
-Intrinsic vs Post-hoc: Intrinsic methods) are understandable by nature. Pos-hoc interpretations however are done by an analysis of the model afterwards. 
-
-Global Interpretations vs Local Interpretations\cite{molnar2022}: Global Interpretations regard the entire fitted model. A global interpretation explains the whole model. Local Interpretations only explain a small part of the model landscape. For example the boundary between two classes.
-
-Model-Specific Interpretations vs Model-Agnostic Intepretations \cite{molnar2022}: 
-Model Specific interpretations can only be used by a single class. For example gradient-methods for Neural networks. Model-agnostic interpretations can be applied to any method. For example LIME or SHAP.
-
-A broad definition is given by \cite{allen2023interpretable}: "Interpretable machine learning (IML) is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output."
-
-Interpretability is needed for various reasons. Many have proposed a number of reasons and uses for IML. \cite{murdoch2019definitions} \cite{Roscher2020explainable} \cite{molnar2022} \cite{guidotti2018survey} \cite{lipton2017mythos} \cite{du2019techniques} \cite{carvalho2019machine} \cite{doshivelez2017rigorous}:
-
-Model Validation: Does the learned model makes sense and behave in consistent behavior matching with my prior expectations and knowledge about the system? Validation by humans require interpretable machine learning models.
-
-Model Debugging: When unexpected behavior occurs, how can one diagnose the problem in the machine learning system? Interpreting and understanding machine learning systems is critical for diagnosing, debugging and fixing systems.\cite{koh2020understanding}
-
-Transparency, Accountability \& Trust: IML makes black-box and other machine learning systems easier for human to understand and more transparent. The utilization in high-stakes societal applications requires accountability and trust of machine learning systems \cite{rudin2019stop} \cite{Samek_2019} \cite{xu2019inbook}.
-
-Ethics: Machine learning algorithms can possibly be trained on biased data lead to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms understandable techniques need to be deployed. \cite{guidotti2018survey}
-
-Data Exploration: Insights into major patterns, trends, groups, or artifacts of the data can be gained by applying human-interpretable techniques. This data exploration insights are used to adjust the data preprocessing and model influence decisions. \cite{murdoch2019definitions} \cite{berkhin2006} \cite{tukey1981}
-
-Discovery: IML can help making data-driven discoveries in the realm of data analytic.
+\textbf{Intrinsic vs Post-hoc}: Interpretability methods can be broadly classified into intrinsic and post-hoc techniques. Intrinsic methods are inherently understandable by design, while post-hoc interpretations involve analyzing the model's behavior after its creation.
+\\
+\textbf{Global Interpretations vs Local Interpretations}\cite{molnar2022}: Global Interpretations encompass the entirety of a fitted model. In contrast, local interpretations zoom in on specific portions of the model landscape, such as class boundaries
+\\
+\textbf{Model-Specific Interpretations vs Model-Agnostic Interpretations} \cite{molnar2022}: 
+Model-specific interpretations are tailored to a particular class of algorithms, like gradient methods for neural networks. In contrast, model-agnostic interpretations, such as LIME or SHAP, can be applied across any classification algorithm.
 
 
-
-
+Before going into detail into the different methods of interpretability an overview of current supervised machine learning is given. Unsupervised machine learning is arguable intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, the necessity of intepretations for neural networks should be made evident.
 
 \section{Supervised Machine Learning}
 
-In supervised machine learning, there are several base methods of classification. They are shortly introduced and analyzed for their interpretability. This should give readers a simply structure on why this research is needed. This section analyzes the base functionality of each singular model. Furthermore, an analysis of the interpretability from a human perspective is made. Methods are developing rapidly, therefore only the most common methods are included.
+In supervised machine learning, there are a range of foundational classification methods. They are briefly introduced and analyzed for their interpretability. This section analyzes the base functionality of each algorithm. Furthermore, an analysis of the interpretability from a human perspective is made. Due to the rapid development of methods, only the most prevalent algorithms are covered.
 \\
-There are several methods on how algorithms can be classified in their interpretability: Algorithm Transparency: How does the algorithm learn the model from the data? What relationships can it learn? \cite{molnar2022} A linear regression model using least squares method is easier to understand than a deep learning model. Pushing a gradient through a network with millions of weights is less well understood and considered less transparent.
+The interpretability of algorithms depends on two dimensions: Algorithm Transparency, how does the model learn the underlying structure of the data? Is it possible for a human to understand the implications of the mathematical operations? \cite{molnar2022} The second dimension are the model weights: The parameters of a linear regression models are understood easily. Understanding millions of kernel-weights in a neural network is impossible.
 
 \subsection{Linear Models}
-When it comes to predicting outcomes, a simple method is to use a linear regression model. This model predicts by adding up different features, each multiplied by a weight. The linear nature of this model makes it easy to understand. Mathematically, the predictive output, denoted as $\hat{y}$, is  captured in the equation:
+
+When predicting outcomes, one of the simplest methods is to use a linear regression model. This model predicts by adding up features multiplied by an individual weight. The predictive output $\hat{y}$ is calculated:
 
 $$ \hat{y}= \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 +... +\alpha_n x_{n} + \epsilon$$
 
-The alphas $\alpha_i$ indicate the significance of each feature. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline.  The noise $\epsilon$ encapsulates the inevitable errors stemming from inherent non-linearity in real-world dynamics or measurement inaccuracies.
+The alphas $\alpha_i$ indicate the significance of each feature. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline. The noise $\epsilon$ describes the inevitable errors from inherent non-linearity in real-world dynamics or measurement inaccuracies.
 \\
-To train model, the MSE-Loss or the absolute loss can be applied. When using regularization methods, the absolute loss is taken to be more resilient to outliers.
+To train the model, the MSE-Loss or the absolute loss can be applied. When using regularization methods, the absolute loss is more resilient to outliers.
 $$ \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 $$ \text{ABS} = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i$$
 \\
-The interpretability of the model is very simple. The factors are given through the coefficient matrix. Each feature has a distinctive importance to the model and it can be seen easily how important each factor is, when the data is normalized. 
+The interpretability of the model is simple. The factors are described through the coefficient matrix. Each feature is distinctive to the model and the weighting is visible in the factors $\alpha_{i-n}$ (assuming normalization).
 
 $$ \alpha = \begin{bmatrix}
 	\alpha_0 & \\
@@ -103,24 +100,25 @@ $$ \alpha = \begin{bmatrix}
 $$
 
 
-Although linear models possess comprehensibility and provide a straightforward method for prediction and are inherent understandable, their application is limited to linear relationships and small datasets. One can use advanced techniques like L1 and L2 regularization \cite{jerome2010} to achieve regularization against outliers and in case of correlation between factors. In the domain of image recognition it is not applicable.
+Although linear models possess comprehensibility, provide a straightforward method for prediction and are inherently understandable, their application is limited to linear relationships and small datasets. One can use advanced techniques like L1 and L2 regularization \cite{jerome2010} to achieve regularization against outliers and in case of correlation between factors. However, in the domain of image recognition, it is not applicable.
 
 \subsection{Distance-Based methods}
 
-K-Nearest Neighbors is used for classification and uses the nearest neighbars as classification. KNN is not interpretable by default, as there are no parameters to learn and analyze. However KNN is inherently easy to understand, as it simply looks for the most similar samples. One is able to visualize fewer features or use clustering algorithms to reduce the dimensionality, but the relationship between input and output is unclear. KNN also struggles with many features, therefore it is not recommended.
-
-Support Vector Machines (SVM) aim to find a hyperplane that maximizes the margin between different classes of data points.
+K-Nearest Neighbors server as a classification method by considering the nearest neighbors. Although KNN is not interpretable by default due to the absence of parameters for learning and analysis, its underlying concept is straightforward. While on is able to visualize fewer features or use clustering algorithms to reduce the dimensionality, the relationship between input and output remains unclear. KNN also encounter difficulties when dealing with many features and larger datasets, therefore using it for image recognition is not recommended.
+\\
+Support Vector Machines (SVM) aim to identify a hyperplane which maximizes the margin between different classes of data points. The optimization problem SVM solves can be summarized as:
 
 $$\text{Minimize } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i$$
 
 $$\text{Subject to } y_i (w \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
 
-By using the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable. SVM also struggles with big datasets. Therefore also SVM is not a good choice for image classification.
+Through the use of the kernel trick, SVM can be used for non-linear data. In higher dimensionality, SVM becomes non-interpretable, as displaying the weight matrix is not understandable. SVM also struggles with bigger datasets and growing feature sizes, contributing to its limited suitability for image classification.
 
 
 \subsection{Decision Tree-Based Methods}
 \label{decision_tree}
-Decision Trees based on minimizing the gini-index are inherently interpretable. As the depth increases, the models become less understandable. An example for the titanic dataset is visible in \ref{fig:decision_tree} Their bad generalization method gave rise to ensemble methods.
+
+Decision Trees are inherently interpretable due to their transparent structure. However, as the depth increases, the models become less understandable. An illustrative  example of the titanic dataset can be seen in \ref{fig:decision_tree}. Their limited generalization method gave rise to ensemble methods.
 
 \begin{figure}[h!]
 	\centering
@@ -130,33 +128,32 @@ Decision Trees based on minimizing the gini-index are inherently interpretable. 
 \end{figure}
  
 
-Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. But it suffers from being less interpretable. Using special techniques like SHAP values \cite{lundberg2017unified} or partial dependence trees can make them more understandable.
+Random forests are an ensemble of multiple decision trees. Their advantage is a smoother predictive power. However, by combing various algorithms the interpretability shrinks. Techniques such as SHAP values \cite{lundberg2017unified} or partial dependence trees can be employed to make them more understandable.
+\\
+Gradient boosting like XGBoost \cite{Chen_2016}, LightGBM \cite{Ke2017} and CatBoost \cite{prokhorenkova2019catboost} share similarities with random forests and decision trees, but they assign differential learned weights to each decision. They suffer from the same interpretability issues as random forests.
 
-Gradient boosting like XGBoost, LightGBM and CatBoost are similar to random forest and decision trees, but with differential learned weights for each decision. They suffer from the same interpretability issues as random  forests.
-
-While decision tree-based methods can be applied for image classification, their accuracy is poor.
+While decision tree-based methods can be applied for image classification, their accuracy tends to be worse than in neural networks.
 
 
 \subsection{Neural Networks}
 
-The rise of neural networks and their strong predictive power makes them a common choice for classification task. But as they increase in size, understandability by taking a look at the weights becomes impossible. With the rise of CNN in 2012  \cite{krizhevsky2012nn} Neural Networks have become state of art for image prediction. Special interpretability methods considering the learned weights are looked in detail in \ref{sec:nni}.
+The rise of neural networks and their strong predictive power makes them a common choice for classification task. But as they grow in complexity, the traditional approach of comprehending through weight examination becomes impossible. With the rise of CNN in 2012  \cite{krizhevsky2012nn} Neural Networks have become state-of art-for image prediction. Special interpretability methods which consider the learned weights are explored in detail in section \ref{sec:nni}.
 
+\chapter{Interpretation of Neural Networks}
 
-\chapter{Interpretation of Image Recognition Neural Networks}
-
-In this chapter, evaluation method are described to analyze the behavior of not inherently interpretable models. Only evaluation methods which are commonly used for neural networks are introduced.
+In this chapter, evaluation method are described to analyze the behavior of neural networks. 
 
 \section{Global Model-Agnostic Methods}
 
 Global model-agnostic methods describe expected outcomes based on the distribution of the data. They can show a correlation between singular or multiple features and an outcome.
 
 \begin{enumerate}
-	\item \textbf{Partial Dependency Plots:} Partial Dependency Plots (PDP) are easy to interpret but using it with several features becomes increasingly difficult. Therefore, using a PDP is not possible in Neural Networks.
-	\item \textbf{Accumulated Local Effects:} Accumulated Local Effects (ALE) are an an advancement of PDP. While it solves some problems PDP suffers from, it can't be applied to a Neural Network because of the complexity of the datasets.
-	\item \textbf{Feature Interaction:} Feature Interaction also analyzes how features correlate. Doesn't work due to the same problem of the complexity of the dataset.
-	\item \textbf{Functional Decomposition:} Functional Decomposition is commonly used in Neural Networks. See Chapter \ref{sec:network_dissection}.
-	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is regularly used in visual machine learning tasks.
-	\item \textbf{Prototype and Criticism:} Prototype and Criticism is used as adversarial attacks in Neural Networks.
+	\item \textbf{Partial Dependency Plots:} Partial Dependency Plots (PDPs) are a straightforward method to display the relationship between individual or multiple features and an outcome. However, when dealing with a bigger feature size, there are too many plots to make sense out of the data. Therefore they are not feasible for Neural Networks and image recognition tasks.
+	\item \textbf{Accumulated Local Effects:} Accumulated Local Effects (ALE) are an an advancement of PDP. While it overcomes certain difficulties from PDPs, they struggle from the same problem when it comes to a bigger feature size.
+	\item \textbf{Feature Interaction:} Feature Interaction analyzes the interaction between features inside the model. The underlying Friedman's H-statistic offers a method to evaluate the correlation and variance. Because of the complexity of image tasks and the high computational costs, this method is not applicable to Neural Networks in a meaningful matter.
+	\item \textbf{Functional Decomposition:} Functional Decomposition is commonly used in Neural Networks. In Chapter \ref{sec:network_dissection} a method to disassemble networks is presented.
+	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is regularly used in visual machine learning tasks. In section \ref{pertubation} an example for a perturbation method is shown.
+	\item \textbf{Prototype and Criticism:} Prototype and Criticism can be used as adversarial attacks in Neural Networks. \cite{xu2019adversarial} Evaluation methods use the underlying idea of prototype and criticism to evaluate saliency maps.
 	
 \end{enumerate}
 
@@ -363,6 +360,7 @@ Older evaluation methods only try to maximize the $g_{AUC}$ curve. This complete
 Critics to the method: No human interpretability is included. Furthermore, the masked images do suffer from not having the same distribution as in the original trained maps. This could cause a unwanted drop in performance.
 
 \section{Perturbation based \cite{7552539}}
+\label{pertubation}
 
 A heatmap is an array of pixel-wise scores that indicate which pixels are relevant.
 

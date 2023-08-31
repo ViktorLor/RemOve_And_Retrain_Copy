@@ -1,15 +1,17 @@
 [0] Config.pm:306> INFO - This is Biber 2.18
 [0] Config.pm:309> INFO - Logfile is 'MAIN.blg'
-[115] biber-MSWIN64:340> INFO - === 
-[146] Biber.pm:418> INFO - Reading 'MAIN.bcf'
-[277] Biber.pm:978> INFO - Found 37 citekeys in bib section 0
-[295] Biber.pm:4401> INFO - Processing section 0
-[308] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
-[354] bibtex.pm:1713> INFO - LaTeX decoding ...
-[413] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
-[699] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[699] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[699] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[699] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
-[744] bbl.pm:654> INFO - Writing 'MAIN.bbl' with encoding 'UTF-8'
-[767] bbl.pm:757> INFO - Output to MAIN.bbl
+[199] biber-MSWIN64:340> INFO - === 
+[265] Biber.pm:418> INFO - Reading 'MAIN.bcf'
+[398] Biber.pm:978> INFO - Found 42 citekeys in bib section 0
+[416] Biber.pm:4401> INFO - Processing section 0
+[440] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
+[482] bibtex.pm:1713> INFO - LaTeX decoding ...
+[548] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
+[928] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[928] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[928] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[928] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
+[1000] bbl.pm:654> INFO - Writing 'MAIN.bbl' with encoding 'UTF-8'
+[1026] bbl.pm:757> INFO - Output to MAIN.bbl
+[1027] Biber.pm:130> WARN - legacy month field 'aug' in entry 'Chen_2016' is not an integer - this will probably not sort properly.
+[1027] Biber.pm:132> INFO - WARNINGS: 1
