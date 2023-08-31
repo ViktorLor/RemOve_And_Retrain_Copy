@@ -223,7 +223,7 @@ def generate_singular_saliency_3D_mask(img, label, model, method, path_to_datase
                                        test=True, saveaspng=False):
 	# if test==False:
 	
-	get_saliency_image(model, label, img.unsqueeze)
+	
 	ig = IntegratedGradients(model)
 	# get the ig_attr for the image
 	ig_attr = get_saliency_image(model, label, img.unsqueeze(0), method)
