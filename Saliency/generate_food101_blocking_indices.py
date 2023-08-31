@@ -73,7 +73,7 @@ if param1 == 'guided_backprop':
 	model.fc = nn.Linear(num_ftrs, 101)
 	# load weights from file
 	model.load_state_dict(torch.load(
-		r'/home/viktorl/Intepretable_AI_PR_Loreth/models/food101/runs_original/original_ResNet50_lr_0_7_1.pth'))
+		r'/home/viktorl/Intepretable_AI_PR_Loreth/models/food101/runs_original/original_ResNet50_lr_0_7_0.pth'))
 	
 	model.eval()
 	utils.generate_saliency_masks_3D(model, 'guided_backprop', path, 224, test=False, saveaspng=True)
