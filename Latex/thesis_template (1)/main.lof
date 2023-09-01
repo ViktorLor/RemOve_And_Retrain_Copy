@@ -1,16 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Feature Visualization \blx@tocontentsinit {0}\cite {allen2023interpretable}}}{4}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Decision Tree Example: By Gilgoldm - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=90405437}}{7}{figure.2.2}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Interpretability categorization}}{4}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Decision Tree Example}}{7}{figure.2.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Feature Visualization \blx@tocontentsinit {0}\cite {olah2017feature}}}{10}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Activation Maximization \blx@tocontentsinit {0}\cite {olah2017feature}}}{11}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Saliency Map - Source: https://captum.ai/tutorials/Resnet\_TorchVision\_Interpret}}{12}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces CNN classifier's top-down attention map \blx@tocontentsinit {0}\cite {article}}}{13}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Identifying task-relevant neurons in the network. The red shading of a dot indicates its relative likelihood of winning against the other ones in the same layer. \blx@tocontentsinit {0}\cite {article}}}{14}{figure.3.5}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Network Dissection: Feature Visualization}}{10}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Activation Maximization}}{11}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Saliency Map \blx@tocontentsinit {0}\cite {captum}}}{12}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces CNN classifier's top-down attention map}}{15}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Identifying task-relevant neurons in the network.}}{16}{figure.3.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net. The figure shows the original explanations. Progression from left to right indicate complete randomization of network weights up to that block inclusive. The last block corresponds to a network with completely reinitialized weights.\blx@tocontentsinit {0}\cite {adebayo2020sanity}}}{20}{figure.4.1}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net.}}{23}{figure.4.1}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{24}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Accuracy: Random Baseline vs Integrated Gradient}}{25}{figure.5.2}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{26}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Accuracy: Random Baseline vs Integrated Gradient}}{27}{figure.5.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -19,6 +19,17 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{captum}{online}{}
+      \field{sortinit}{}
+      \field{sortinithash}{495dc9894017a8b12cafa9c619d10c0c}
+      \field{note}{Captum Library}
+      \verb{urlraw}
+      \verb Source: https://captum.ai/tutorials/Resnet\_TorchVision\_Interpret
+      \endverb
+      \verb{url}
+      \verb Source:%20https://captum.ai/tutorials/Resnet%5C_TorchVision%5C_Interpret
+      \endverb
+    \endentry
     \entry{adebayo2020sanity}{misc}{}
       \name{author}{6}{}{%
         {{hash=13c8415286093e947788ee180780fd7a}{%
@@ -104,6 +115,63 @@
       \field{year}{2023}
       \verb{eprint}
       \verb 2308.01475
+      \endverb
+    \endentry
+    \entry{baehrens2010}{article}{}
+      \name{author}{6}{}{%
+        {{hash=34e90d4491e89ee01ef4984ec630d329}{%
+           family={Baehrens},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6c23f3a76958ebcbc8b927eb7c72dcc9}{%
+           family={Schroeter},
+           familyi={S\bibinitperiod},
+           given={Timon},
+           giveni={T\bibinitperiod}}}%
+        {{hash=b89ff3ea3d3957658253d2b707e09867}{%
+           family={Harmeling},
+           familyi={H\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4ce73c3b459de570323c2342b6f2e80a}{%
+           family={Kawanabe},
+           familyi={K\bibinitperiod},
+           given={Motoaki},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e2813fc823192a6af9df8b99c7e2598c}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+        {{hash=9f1b6144a45b1967e989e74552e37ada}{%
+           family={M{ü}ller},
+           familyi={M\bibinitperiod},
+           given={Klaus-Robert},
+           giveni={K\bibinithyphendelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{631952f48b8c1ad37b2e810e5f9e9874}
+      \strng{fullhash}{5fd2faf91c0b875ea1c4f2e145be5372}
+      \strng{bibnamehash}{631952f48b8c1ad37b2e810e5f9e9874}
+      \strng{authorbibnamehash}{631952f48b8c1ad37b2e810e5f9e9874}
+      \strng{authornamehash}{631952f48b8c1ad37b2e810e5f9e9874}
+      \strng{authorfullhash}{5fd2faf91c0b875ea1c4f2e145be5372}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{61}
+      \field{title}{How to Explain Individual Classification Decisions}
+      \field{volume}{11}
+      \field{year}{2010}
+      \field{pages}{1803\bibrangedash 1831}
+      \range{pages}{29}
+      \verb{urlraw}
+      \verb http://jmlr.org/papers/v11/baehrens10a.html
+      \endverb
+      \verb{url}
+      \verb http://jmlr.org/papers/v11/baehrens10a.html
       \endverb
     \endentry
     \entry{berkhin2006}{article}{}
@@ -459,6 +527,72 @@
       \endverb
       \verb{url}
       \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
+      \endverb
+    \endentry
+    \entry{decisiontree}{online}{}
+      \name{author}{1}{}{%
+        {{hash=315a527f608db23c3cd4f511ba2e8edc}{%
+           family={Gilgoldm},
+           familyi={G\bibinitperiod},
+           given={By},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{315a527f608db23c3cd4f511ba2e8edc}
+      \strng{fullhash}{315a527f608db23c3cd4f511ba2e8edc}
+      \strng{bibnamehash}{315a527f608db23c3cd4f511ba2e8edc}
+      \strng{authorbibnamehash}{315a527f608db23c3cd4f511ba2e8edc}
+      \strng{authornamehash}{315a527f608db23c3cd4f511ba2e8edc}
+      \strng{authorfullhash}{315a527f608db23c3cd4f511ba2e8edc}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{note}{Image source: wikimedia}
+      \verb{urlraw}
+      \verb https://commons.wikimedia.org/w/index.php?curid=90405437
+      \endverb
+      \verb{url}
+      \verb https://commons.wikimedia.org/w/index.php?curid=90405437
+      \endverb
+    \endentry
+    \entry{goldstein2014peeking}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=7b82bca87a794cd9a15787f225a55879}{%
+           family={Goldstein},
+           familyi={G\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3b3f726a6be6e8564e55061d2821afce}{%
+           family={Kapelner},
+           familyi={K\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=89343d3ac70c8a178c104d814c55981b}{%
+           family={Bleich},
+           familyi={B\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5fc0598e7fbaf10e2c853be291b54bfb}{%
+           family={Pitkin},
+           familyi={P\bibinitperiod},
+           given={Emil},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{c362264dfcc16c26364315892c92bff2}
+      \strng{fullhash}{2415088326280dc53f7dda688eeb64f9}
+      \strng{bibnamehash}{c362264dfcc16c26364315892c92bff2}
+      \strng{authorbibnamehash}{c362264dfcc16c26364315892c92bff2}
+      \strng{authornamehash}{c362264dfcc16c26364315892c92bff2}
+      \strng{authorfullhash}{2415088326280dc53f7dda688eeb64f9}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.AP}
+      \field{eprinttype}{arXiv}
+      \field{title}{Peeking Inside the Black Box: Visualizing Statistical Learning with Plots of Individual Conditional Expectation}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1309.6392
       \endverb
     \endentry
     \entry{guidotti2018survey}{misc}{}
@@ -1176,6 +1310,43 @@
       \verb 1706.09516
       \endverb
     \endentry
+    \entry{ribeiro2018}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4b3b8bd5413d7402df83790eb6e0f53a}{%
+           family={Ribeiro},
+           familyi={R\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0b9694812f0dc77974d99bb875a76d48}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Sameer},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c9ab8ac486d7f85ac914b1a8e51e512b}{%
+           family={Guestrin},
+           familyi={G\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{c7fb13336260705c353d0f4e6a247453}
+      \strng{fullhash}{c7fb13336260705c353d0f4e6a247453}
+      \strng{bibnamehash}{c7fb13336260705c353d0f4e6a247453}
+      \strng{authorbibnamehash}{c7fb13336260705c353d0f4e6a247453}
+      \strng{authornamehash}{c7fb13336260705c353d0f4e6a247453}
+      \strng{authorfullhash}{c7fb13336260705c353d0f4e6a247453}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the AAAI Conference on Artificial Intelligence}
+      \field{month}{04}
+      \field{title}{Anchors: High-Precision Model-Agnostic Explanations}
+      \field{volume}{32}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1609/aaai.v32i1.11491
+      \endverb
+    \endentry
     \entry{Roscher2020explainable}{article}{}
       \name{author}{4}{}{%
         {{hash=dfa9d61dde3c7fc246f107f4f9786186}{%
@@ -1286,7 +1457,7 @@
       \verb https://doi.org/10.1007%2F978-3-030-28954-6_1
       \endverb
     \endentry
-    \entry{7552539}{article}{}
+    \entry{samek2017}{article}{}
       \name{author}{5}{}{%
         {{hash=7f49b6382ab4ca917a2aa2249f875f79}{%
            family={Samek},
@@ -1415,6 +1586,83 @@
       \field{year}{2017}
       \verb{eprint}
       \verb 1706.03825
+      \endverb
+    \endentry
+    \entry{springenberg2015striving}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=d52162d1c5497f647e12128f74d58da4}{%
+           family={Springenberg},
+           familyi={S\bibinitperiod},
+           given={Jost\bibnamedelima Tobias},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b452a32296958371572717940f900884}{%
+           family={Brox},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9449802bcb467309c0ebced658096818}{%
+           family={Riedmiller},
+           familyi={R\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{fullhash}{d2993abc70637a519fc98ab098853067}
+      \strng{bibnamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authorbibnamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authornamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authorfullhash}{d2993abc70637a519fc98ab098853067}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Striving for Simplicity: The All Convolutional Net}
+      \field{year}{2015}
+      \verb{eprint}
+      \verb 1412.6806
+      \endverb
+    \endentry
+    \entry{sundararajan2017axiomatic}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=3f6ba1bd9765787e3ba110f061162d7c}{%
+           family={Sundararajan},
+           familyi={S\bibinitperiod},
+           given={Mukund},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5f28201da8e96ae3f9aa7adc9226783c}{%
+           family={Taly},
+           familyi={T\bibinitperiod},
+           given={Ankur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8149779d3dadb5bd0565f064daca2a68}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Qiqi},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{cfa971fb443a5de12f00ef01d3107382}
+      \strng{fullhash}{cfa971fb443a5de12f00ef01d3107382}
+      \strng{bibnamehash}{cfa971fb443a5de12f00ef01d3107382}
+      \strng{authorbibnamehash}{cfa971fb443a5de12f00ef01d3107382}
+      \strng{authornamehash}{cfa971fb443a5de12f00ef01d3107382}
+      \strng{authorfullhash}{cfa971fb443a5de12f00ef01d3107382}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Axiomatic Attribution for Deep Networks}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1703.01365
       \endverb
     \endentry
     \entry{xu2019inbook}{inbook}{}
@@ -1630,7 +1878,7 @@
       \verb https://api.semanticscholar.org/CorpusID:975170
       \endverb
     \endentry
-    \entry{article}{article}{}
+    \entry{zhang2018}{article}{}
       \name{author}{6}{}{%
         {{hash=ac94487142bcc73ec00646f41c277977}{%
            family={Zhang},

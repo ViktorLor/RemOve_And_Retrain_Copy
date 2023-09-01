@@ -12,22 +12,23 @@
 \contentsline {section}{\numberline {3.3}Neural Network Interpretation: Model specific Interpretations}{9}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Feature visualization and Network Dissection \blx@tocontentsinit {0}\cite {olah2017feature}}{10}{subsection.3.3.1}%
 \contentsline {section}{\numberline {3.4}Saliency Maps}{11}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Vanilla Gradient \& Deconv Net}{12}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Grad-CAM, Guided Grad-CAM and Smooth Gradient}{13}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Top-Down Neural Attention by Excitation Backprop \blx@tocontentsinit {0}\cite {article}}{13}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Advantages and Disadvantages of Saliency Maps}{14}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Evaluation of post-hoc interpretability methods}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Evaluation metrics, ground truths \blx@tocontentsinit {0}\cite {gupta2022new}}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Completeness and Soundness}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Perturbation based \blx@tocontentsinit {0}\cite {7552539}}{17}{section.4.3}%
-\contentsline {section}{\numberline {4.4}A benchmark for interpretability methods in deep neural networks \blx@tocontentsinit {0}\cite {hooker2019benchmark}}{17}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{18}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{19}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Validating the research}{20}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Research findings: Which evaluation method to use, how to control the result?}{21}{section.4.8}%
-\contentsline {chapter}{\numberline {5}Reconstructing ROAR}{23}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Scientific Motivation and Goal}{23}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Project Setup MNIST}{23}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Project Setup Food-101}{25}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Interpretation of the results}{26}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {3.4.1}Vanilla Gradient\& Deconv Net}{12}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Grad-CAM, Guided Backprop and Integrated Gradient}{13}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Ensembling Methods: Smooth Gradient, Smooth Grad² and VarGrad}{14}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Excitation Backprop \blx@tocontentsinit {0}\cite {zhang2018}}{15}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Advantages and Disadvantages of Saliency Maps \blx@tocontentsinit {0}\cite {molnar2022}}{16}{subsection.3.4.5}%
+\contentsline {chapter}{\numberline {4}Evaluation of post-hoc interpretability methods}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Evaluation metrics \blx@tocontentsinit {0}\cite {gupta2022new}}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Completeness and Soundness}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Perturbation based}{19}{section.4.3}%
+\contentsline {section}{\numberline {4.4}A benchmark for interpretability methods in deep neural networks}{19}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{21}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{22}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Validating the research}{23}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Research findings: Which evaluation method to use, how to control the result?}{24}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Reconstructing ROAR}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Scientific Motivation and Goal}{25}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Project Setup MNIST}{25}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Project Setup Food-101}{27}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Interpretation of the results}{28}{subsection.5.1.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
