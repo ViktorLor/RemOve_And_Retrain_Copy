@@ -15,7 +15,7 @@ Given the accuracy files of the models, this file creates a report with the foll
 
 import numpy as np
 
-filepath = f'C:/Users/Vik/Documents/4. Private/01. University/2023_Sem6/Intepretable_AI/models/mnist'
+filepath = f'/models/mnist'
 # choose: random_baseline, integrated_gradients
 config = 'random_baseline'
 filepath = filepath + f'/{config}/'
