@@ -63,3 +63,5 @@ models/mnist/*
 .bak
 .mtc
 build/
+
+models/food101/logs/*
