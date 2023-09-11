@@ -502,14 +502,13 @@ However, it is important to state there is not enough reliable research to state
 
 
 \section{Scientific Motivation and Goal}
-In ROAR \cite{hooker2019benchmark} the paper does not list the standard deviation of the trained nets. We expect to validate the results by achieving similar results.
+In the ROAR benchmark study \cite{hooker2019benchmark} the paper omits the standard deviation of the trained nets. A validation of the results is expected by achieving similar results.
 
-As training 25 image nets requires high computational power we do not have right now, we limited our research to evaluating food-101 \cite{bossard14} using only two interpretation methods and the baseline. Additionally, instead of five control runs, only three were made.
-
-Additionally, a proof-of-concept evaluation using the MNIST dataset is added.
-
+Due to resource constraint, the research was limited to evaluating food-101 \cite{bossard14} using 2 interpretation methods along a baseline model. Instead of five control runs, only four were made. Additionally, an evaluation using the MNIST dataset is added.
 
 \subsection{Project Setup MNIST}
+
+% TODO Reword;
 
 The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because calculating the gradients and judging if a mask is meaningful is easier here, it should give a reliable baseline for the results. Only integrated gradients is tested, as is it only an example.
 
@@ -523,7 +522,7 @@ The MNIST data set consists of 10 classes and 70.000 different images. It was ch
 
 C. Example of the new dataset
 
-In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Random Baseline is visible. In the first row the random baseline is visible, in the second row Integrated Gradients is shown. [0.1,0.3,0.5,0.7,0.9\%] of the pixels are blacked out (left to right).
+In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Random Baseline is visible. In the first row the random baseline is visible, in the second row Integrated Gradients is shown. [10, 30, 50, 70, 90\%] of the pixels are blacked out (left to right).
 
 \begin{figure}[h!]
 	\centering
@@ -562,6 +561,7 @@ The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because c
 A. Training the model
 
 The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. Learning rate was adjusted to 0.175, batchsize of 64. Using an SGD optimizer with momentum =0.9 and weight decay 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of averagely 70.5\% with standard deviation of 0.01  was achieved over 5 separate training runs on the test score. In total 31 epochs were done. 
+By using this particular training setup, at the last epoch the model learns more to the specific data. In the last epoch a accuracy of 95\% on the training data was achieved.
 
 In the original paper an accuracy of 84.54\% was achieved on the Food-101 dataset.  A smaller accuracy was achieved, as the training was noticeably shorter because only a NVIDIA GTX 1080 was available.
 
@@ -569,21 +569,59 @@ The data was resized with center-crop to make all images 3x224x224. Afterwards t
 
 B. Results
 
-% TODO INSERT RESULTS;
+% TODO INSERT RESULTS: Plot of paper_results and Plots of my results;
+
+\begin{enumerate}
+	\item In the random baseline the results of the original paper are confirmed. A drop in performance can be explained by the loss of information.
+	\item In Integrated Gradient the results are also confirmed. But an unexpected behavior occurs: The performance gets better by removing pixels. 
+	\item The Guided Backprop result is also confirmed. But the behavior is also unexpected. The performance is getting better by removing pixels.
+\end{enumerate}
 
 
 
-The results do not have a higher standard deviance as expected. The std is close to 2\% which is similar to the original paper.
+\subsection{Theoretical Implications}
 
 
-\subsection{Interpretation of the results}
+Due to the fact, that the accuracy declines so slowly, it is unclear if the results given are really meaningful. Furthermore, there is no shared threshold when enough pixels are removed.
+To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors should be considered:
 
-The results from the original paper were confirmed. Integrated Gradients preforms as good as a random baseline for the Food-101 setup. While the MNIST result shows that Integrated Gradient indeed seems to find important pixels, in the Food-101 setup Integrated Gradient fails. Generally, the network still is able to find structure in the model and the results of the original paper is confirmed.
+\begin{enumerate}
+	\item Input dimensions are removed and the accuracy drops:\\ The removed input were informative for the model and
+	their absence reduces the ability of the model to identify the right class.
+	
+	\item We remove inputs and the accuracy does not drop.\\ (a) It is possible that the removed input dimensions	were not important for the model’s decision-making	process. The attribution map failed to identify important features, such as background pixels. (b) The input could be redundant and the information can be reconstructed using other available inputs. 
+	
+	\item We remove inputs and the accuracy increases:\\ The network removed consistent information which is available in the training set. By removing this pattern, over-fitting is reduced and the generalization improves.
+\end{enumerate}
+
+
+\subsection{Interpretation of results}
+
+The main idea of RoaR was confirmed using the MNIST example. For simple data sets like MNIST, the concept can clearly be shown as meaningful.
+
+The retraining performance of Food101 was partially confirmed, with an rise in accuracy by removing pixels contrary to the original runs.
+
+Following questions are open:
+
+- Is ROAR depending on the trained data and the data set? Example: Using a dataset which does identify the species of animals. The face of the animal is clearly important. But even more important are the eyes? What is the relation of how important they are? How much is the zoom important? Depending on the labels existing, the network learns different weights. In data sets like Birdsnap where the images are very common, only a small percentage of pixels are important and therefore blocking them out results in a lower accuracy.
+
+
+- Does removing background pixels improve the accuracy because then the model focuses only on important patterns?
+Well, this depends on the data set.
+
+- By removing information which is important through the correct label, maybe a pattern of recognition emerges?
+All cakes have removed pixels at a position x. This could be the case for standardized pictures.
+
+- Maybe removing the correct pixels to some degree makes it easier to recognize a pattern? For example removing 50\% of the face and 50\% of the ears which are distinct to the species, more weight is given to the ears.
 
 
 
+Knowing this -> Does ROAR still make sense?
 
-% finding the parameters was done by a grid search and looking at the overfitting chart.
+While ROAR underlying logic makes sense, it is impossible to know whether the relation of a pixel makes sense and which patterns are learned. It does indeed offer an evaluation method, but the evaluation method in itself is not understandable. We do not know if the evaluation method does make sense, which simply moves the problem to a higher layer.
+
+
+
 
 %%%%%
 

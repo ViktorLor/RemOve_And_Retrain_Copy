@@ -180,4 +180,63 @@
 
 \appendix
 
+\chapter{Appendix}
+
+\section{MNIST-Computation}
+
+
+
+
+Precision and standard deviation of the retrained models per threshold.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		
+		Pixels blocked & 10\% & 30\% & 50\% & 70\% & 90\% \\
+		\hline
+		Random Baseline & 98.64\% & 97.76\% & 96.4\% & 90.9\% & 75.5\% \\
+		std & 0.42 & 0.28 & 0.39 & 0.58 & 0.65  \\
+		\hline
+		Integrated Gradient& 95.4\% & 91.48\% & 86.64\% & 55.52\% & 10\%  \\
+		std & 0.44 & 0.83 & 2.1 & 31.64 & 0  \\
+		\hline
+	\end{tabular} \newline
+	
+	\caption{Precision and standard deviation}
+	\label{tab:sclass_precision_ig}
+\end{table}
+
+
+\section{Food101-Computation}
+
+Precision and standard deviation of the retrained models per threshold.
+
+% TODO, insert results
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		
+		Pixels blocked & 10\% & 30\% & 50\% & 70\% & 90\% \\
+		\hline
+		Random Baseline & \% & \% & \% & \% & \% \\
+		std & & & & &  \\
+		\hline
+		Integrated Gradient& \% & \% & \% & \% & \%  \\
+		std & & & & &  \\
+		\hline
+		Guided Backprop & \% & \% & \% & \% & \%  \\
+		std & & & & &  \\
+		\hline
+	\end{tabular} \newline
+	
+	\caption{Precision and standard deviation}
+	\label{tab:sclass_precision_ig}
+\end{table}
+
+
+
+
 \end{document}
