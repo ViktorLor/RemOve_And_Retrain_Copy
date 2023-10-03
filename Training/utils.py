@@ -211,13 +211,11 @@ def training_food101(train_dataset, test_dataset, save_file, device, shuffle=Tru
 			accuracies_test.append(total_correct / len(test_dataset))
 		model.train()
 	
-
 	
 	# save tensorboard file
 	writer.close()
 	
 	print('Finished Training')
-	
 	
 	# save the model
 	

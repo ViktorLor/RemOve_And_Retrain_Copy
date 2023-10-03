@@ -1,17 +1,17 @@
 [0] Config.pm:306> INFO - This is Biber 2.18
-[0] Config.pm:309> INFO - Logfile is 'main.blg'
-[144] biber-MSWIN64:340> INFO - === 
-[595] Biber.pm:418> INFO - Reading './main.bcf'
-[751] Biber.pm:978> INFO - Found 49 citekeys in bib section 0
-[770] Biber.pm:4401> INFO - Processing section 0
-[782] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
-[824] bibtex.pm:1713> INFO - LaTeX decoding ...
-[899] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
-[1304] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1305] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1305] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1305] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
-[1364] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[1397] bbl.pm:757> INFO - Output to main.bbl
-[1397] Biber.pm:130> WARN - legacy month field 'aug' in entry 'Chen_2016' is not an integer - this will probably not sort properly.
-[1397] Biber.pm:132> INFO - WARNINGS: 1
+[0] Config.pm:309> INFO - Logfile is 'MAIN.blg'
+[110] biber-MSWIN64:340> INFO - === 
+[141] Biber.pm:418> INFO - Reading 'MAIN.bcf'
+[275] Biber.pm:978> INFO - Found 51 citekeys in bib section 0
+[292] Biber.pm:4401> INFO - Processing section 0
+[304] Biber.pm:4592> INFO - Looking for bibtex file 'literature.bib' for section 0
+[350] bibtex.pm:1713> INFO - LaTeX decoding ...
+[421] bibtex.pm:1518> INFO - Found BibTeX data source 'literature.bib'
+[799] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[799] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[799] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[799] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
+[857] bbl.pm:654> INFO - Writing 'MAIN.bbl' with encoding 'UTF-8'
+[890] bbl.pm:757> INFO - Output to MAIN.bbl
+[890] Biber.pm:130> WARN - legacy month field 'aug' in entry 'Chen_2016' is not an integer - this will probably not sort properly.
+[890] Biber.pm:132> INFO - WARNINGS: 1

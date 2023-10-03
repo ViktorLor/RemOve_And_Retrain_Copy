@@ -244,6 +244,40 @@
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/bimj.4710230408
       \endverb
     \endentry
+    \entry{boser1992training}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=5144f9b0b0cb5276c5c4e682227daba7}{%
+           family={Boser},
+           familyi={B\bibinitperiod},
+           given={Bernhard\bibnamedelima E},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=155e742c828c3b75d1350f80e7effc5f}{%
+           family={Guyon},
+           familyi={G\bibinitperiod},
+           given={Isabelle\bibnamedelima M},
+           giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=9784300f2e702140e22af8c494322778}{%
+           family={Vapnik},
+           familyi={V\bibinitperiod},
+           given={Vladimir\bibnamedelima N},
+           giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{43a202e2370836464c00e0c1c03f378b}
+      \strng{fullhash}{43a202e2370836464c00e0c1c03f378b}
+      \strng{bibnamehash}{43a202e2370836464c00e0c1c03f378b}
+      \strng{authorbibnamehash}{43a202e2370836464c00e0c1c03f378b}
+      \strng{authornamehash}{43a202e2370836464c00e0c1c03f378b}
+      \strng{authorfullhash}{43a202e2370836464c00e0c1c03f378b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the fifth annual workshop on Computational learning theory}
+      \field{title}{A training algorithm for optimal margin classifiers}
+      \field{year}{1992}
+      \field{pages}{144\bibrangedash 152}
+      \range{pages}{9}
+    \endentry
     \entry{bossard14}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=52ed4a657c18f54ae23a0c02cb79a9aa}{%
@@ -529,31 +563,6 @@
       \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
       \endverb
     \endentry
-    \entry{decisiontree}{online}{}
-      \name{author}{1}{}{%
-        {{hash=315a527f608db23c3cd4f511ba2e8edc}{%
-           family={Gilgoldm},
-           familyi={G\bibinitperiod},
-           given={By},
-           giveni={B\bibinitperiod}}}%
-      }
-      \strng{namehash}{315a527f608db23c3cd4f511ba2e8edc}
-      \strng{fullhash}{315a527f608db23c3cd4f511ba2e8edc}
-      \strng{bibnamehash}{315a527f608db23c3cd4f511ba2e8edc}
-      \strng{authorbibnamehash}{315a527f608db23c3cd4f511ba2e8edc}
-      \strng{authornamehash}{315a527f608db23c3cd4f511ba2e8edc}
-      \strng{authorfullhash}{315a527f608db23c3cd4f511ba2e8edc}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{labelnamesource}{author}
-      \field{note}{Image source: wikimedia}
-      \verb{urlraw}
-      \verb https://commons.wikimedia.org/w/index.php?curid=90405437
-      \endverb
-      \verb{url}
-      \verb https://commons.wikimedia.org/w/index.php?curid=90405437
-      \endverb
-    \endentry
     \entry{goldstein2014peeking}{misc}{}
       \name{author}{4}{}{%
         {{hash=7b82bca87a794cd9a15787f225a55879}{%
@@ -593,6 +602,42 @@
       \field{year}{2014}
       \verb{eprint}
       \verb 1309.6392
+      \endverb
+    \endentry
+    \entry{PDP}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=8f2353d8bd52671f86aa78fc7988dace}{%
+           family={Greenwell},
+           familyi={G\bibinitperiod},
+           given={Brandon\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=875fd7d9d59f22eedd281afda2214154}{%
+           family={Boehmke},
+           familyi={B\bibinitperiod},
+           given={Bradley\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=f99b712d266219ffc1f96515c3c469ca}{%
+           family={McCarthy},
+           familyi={M\bibinitperiod},
+           given={Andrew\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{fullhash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{bibnamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authorbibnamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authornamehash}{b9763a04ab15138c35e1fce714255f23}
+      \strng{authorfullhash}{b9763a04ab15138c35e1fce714255f23}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ML}
+      \field{eprinttype}{arXiv}
+      \field{title}{A Simple and Effective Model-Based Variable Importance Measure}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1805.04755
       \endverb
     \endentry
     \entry{guidotti2018survey}{misc}{}
@@ -1084,7 +1129,7 @@
       \field{labeltitlesource}{title}
       \field{edition}{2}
       \field{subtitle}{A Guide for Making Black Box Models Explainable}
-      \field{title}{Interpretable Machine Learning}
+      \field{title}{Interpable Machine Learning}
       \field{year}{2022}
       \verb{urlraw}
       \verb https://christophm.github.io/interpretable-ml-book
@@ -1878,6 +1923,93 @@
       \verb https://api.semanticscholar.org/CorpusID:975170
       \endverb
     \endentry
+    \entry{zhang2022ai}{misc}{}
+      \name{author}{13}{}{%
+        {{hash=b48f4b3efffa9842e785d9b8414e08a1}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=dacbab9402b1d1443ef072a5d43b292c}{%
+           family={Maslej},
+           familyi={M\bibinitperiod},
+           given={Nestor},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7bd9f54569cb8c0301da00ed49b5a752}{%
+           family={Brynjolfsson},
+           familyi={B\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+        {{hash=60b817775846213e2bec953071cfba95}{%
+           family={Etchemendy},
+           familyi={E\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=93a0edcd69f15c36b34b8f0b796de0f5}{%
+           family={Lyons},
+           familyi={L\bibinitperiod},
+           given={Terah},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e456d570ec236cee82b8cf83a29db39f}{%
+           family={Manyika},
+           familyi={M\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1fbc16be33b1ae00e5a95549111ca768}{%
+           family={Ngo},
+           familyi={N\bibinitperiod},
+           given={Helen},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0e3d5d93aebbb520ce0d66f1493e3182}{%
+           family={Niebles},
+           familyi={N\bibinitperiod},
+           given={Juan\bibnamedelima Carlos},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=ae00073a67d4b264c542ca7f6788d39e}{%
+           family={Sellitto},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f82304f8c2daa014c0d41ae7405a0ee5}{%
+           family={Sakhaee},
+           familyi={S\bibinitperiod},
+           given={Ellie},
+           giveni={E\bibinitperiod}}}%
+        {{hash=774e2e16526f33f383bed004b13bf326}{%
+           family={Shoham},
+           familyi={S\bibinitperiod},
+           given={Yoav},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1480c861b1a73e1d1de1b227e985b179}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4f9d6cf6dbdadd15078ad1a9d22804b4}{%
+           family={Perrault},
+           familyi={P\bibinitperiod},
+           given={Raymond},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{eed09720b43ab7888e4ac97cae0d3073}
+      \strng{fullhash}{9a52cca4fb4ef5843cd915a061a3a94c}
+      \strng{bibnamehash}{eed09720b43ab7888e4ac97cae0d3073}
+      \strng{authorbibnamehash}{eed09720b43ab7888e4ac97cae0d3073}
+      \strng{authornamehash}{eed09720b43ab7888e4ac97cae0d3073}
+      \strng{authorfullhash}{9a52cca4fb4ef5843cd915a061a3a94c}
+      \field{extraname}{1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.AI}
+      \field{eprinttype}{arXiv}
+      \field{title}{The AI Index 2022 Annual Report}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2205.03468
+      \endverb
+    \endentry
     \entry{zhang2018}{article}{}
       \name{author}{6}{}{%
         {{hash=ac94487142bcc73ec00646f41c277977}{%
@@ -1917,6 +2049,7 @@
       \strng{authorbibnamehash}{f114c0102416c1209e4a899bd442dc31}
       \strng{authornamehash}{f114c0102416c1209e4a899bd442dc31}
       \strng{authorfullhash}{035f9b91ab3340a92d5a28c255bd6122}
+      \field{extraname}{2}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{labelnamesource}{author}
