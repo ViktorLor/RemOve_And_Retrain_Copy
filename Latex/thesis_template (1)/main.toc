@@ -6,34 +6,34 @@
 \contentsline {subsection}{\numberline {2.1.2}Distance-based Methods}{5}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Support Vector Machines}{6}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}Decision Trees}{6}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}Neural Networks}{6}{subsection.2.1.5}%
-\contentsline {chapter}{\numberline {3}Interpretability of Supervised Machine Learning Algorithms}{8}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Global Model-Agnostic Methods}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Local Model-Agnostic Methods}{10}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Neural Network specific Interpretability Methods}{10}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Feature Visualization and Network Dissection}{11}{subsection.3.3.1}%
-\contentsline {section}{\numberline {3.4}Attribution Maps}{12}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Vanilla Gradient \& Deconv-Net}{13}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Grad-CAM, Guided Backprop and Integrated Gradient}{14}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Ensembling Methods: Smooth Gradient, Smooth Grad² and VarGrad}{15}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Excitation Backprop \blx@tocontentsinit {0}\cite {zhang2018}}{16}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Advantages and Disadvantages of Saliency Maps \blx@tocontentsinit {0}\cite {molnar2022}}{17}{subsection.3.4.5}%
-\contentsline {chapter}{\numberline {4}Evaluation of post-hoc Interpretability Methods}{18}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Evaluation Metrics}{18}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Completeness and Soundness}{19}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Perturbation based Methods}{20}{section.4.3}%
-\contentsline {section}{\numberline {4.4}A Benchmark for Interpretability Methods in Deep Neural Networks}{20}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{21}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{23}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Validating the Research}{24}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Research Findings: Which evaluation method should be used?}{25}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Reconstructing ROAR}{26}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Scientific Motivation and Goal}{26}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Project Setup MNIST}{26}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Project Setup Food-101}{28}{subsection.6.1.2}%
-\contentsline {subsection}{\numberline {6.1.3}Theoretical Implications}{29}{subsection.6.1.3}%
-\contentsline {subsection}{\numberline {6.1.4}Interpretation of the Results}{30}{subsection.6.1.4}%
-\contentsline {chapter}{\nonumberline Appendix}{35}{chapter*.6}%
-\contentsline {section}{\numberline {1}MNIST-Computation}{35}{section.Alph0.1}%
-\contentsline {section}{\numberline {2}Food101-Computation}{35}{section.Alph0.2}%
+\contentsline {subsection}{\numberline {2.1.5}Neural Networks}{8}{subsection.2.1.5}%
+\contentsline {chapter}{\numberline {3}Interpretability of Supervised Machine Learning Algorithms}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Global Model-Agnostic Methods}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Local Model-Agnostic Methods}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Neural Network specific Interpretability Methods}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Feature Visualization and Network Dissection}{12}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Attribution Maps}{13}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Vanilla Gradient \& Deconv-Net}{14}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Grad-CAM, Guided Backprop and Integrated Gradient}{15}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Ensembling Methods: Smooth Gradient, Smooth Grad² and VarGrad}{16}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Excitation Backprop \blx@tocontentsinit {0}\cite {zhang2018}}{17}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Advantages and Disadvantages of Saliency Maps \blx@tocontentsinit {0}\cite {molnar2022}}{18}{subsection.3.4.5}%
+\contentsline {chapter}{\numberline {4}Evaluation of post-hoc Interpretability Methods}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Evaluation Metrics}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Completeness and Soundness}{20}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Perturbation based Methods}{21}{section.4.3}%
+\contentsline {section}{\numberline {4.4}A Benchmark for Interpretability Methods in Deep Neural Networks}{21}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Benchmarking Attribution Methods (BAM) \blx@tocontentsinit {0}\cite {yang2019benchmarking}}{22}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Sanity Checks for Saliency Maps \blx@tocontentsinit {0}\cite {adebayo2020sanity}}{24}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Validating the Research}{25}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Research Findings: Which evaluation method should be used?}{26}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Reconstructing ROAR}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Scientific Motivation and Goal}{27}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Project Setup MNIST}{27}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Project Setup Food-101}{29}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Theoretical Implications}{30}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}Interpretation of the Results}{31}{subsection.6.1.4}%
+\contentsline {chapter}{\nonumberline Appendix}{36}{chapter*.6}%
+\contentsline {section}{\numberline {1}MNIST-Computation}{36}{section.Alph0.1}%
+\contentsline {section}{\numberline {2}Food101-Computation}{36}{section.Alph0.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

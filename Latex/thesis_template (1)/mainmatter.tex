@@ -54,7 +54,7 @@ Interpretability is important for various reasons, ranging from model validation
 
 Before going into detail about the different methods of interpretability an overview of current supervised machine learning is given. Unsupervised machine learning is arguably intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, the necessity of interpretability for neural networks should be made evident.
 
-\section{Supervised Machine Learning}
+\chapter{Supervised Machine Learning}
 
 In supervised machine learning, there are a range of foundational classification methods. They are briefly introduced and analyzed for their interpretability. This section analyzes the base functionality of each algorithm. Furthermore, an analysis of the interpretability from a human perspective is made.
 \\
@@ -104,48 +104,56 @@ Although KNN's parameters are not interpretable by default, the underlying conce
 
 \subsection{Support Vector Machines}
 
-% TODO: Make this section sound better:
-%- SVMs: w is normally a vector (?) (hence the vector norm), it could be a bit clearer to denote that by a lower-case bold letter (but it definitely should be introduced as a variable); also, w might needs to be transposed when being multiplied with x_i, depending on how it's defined exactly
+Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector $\vec{w}$, and the closest data points $x_i$ from each class. This is done to ensure that the data sets are separated as much as possible. Because there may be classification errors and noise in the data set, it is possible to set an initial regularization parameter $C$ to handle outliers.
 
-Support Vector Machines (SVM's) \cite{boser1992training} aim to identify a hyperplane which maximizes the margin between different classes of data points. The optimization problem SVM solves can be summarized as:
+The optimization problem SVM in mathematical notion:
 
-$$\text{Minimize } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i$$
+$$\text{Minimize } \frac{1}{2} \|\vec{w}\|^2 + C \sum_{i=1}^{n} \xi_i$$
 
-$$\text{Subject to } y_i (w \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
+$$\text{Subject to } y_i (\vec{w} \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
 
-Through the use of the kernel trick, SVM's can be used for non-linear data. In higher dimensionality, SVM's become non-interpretable, as displaying the weight matrix is not understandable. SVM's also struggle with bigger datasets and growing feature sizes, contributing to its limited suitability for image classification.
+$\sum_{i=1}^{n} \xi_i$ represents the sum of slack variables ($\xi_i$), which measure how much a data point violates the margin constraint. While maximising the margin, Support Vector Machines (SVM) seeks to reduce this sum, minimizing the violations.\\
+$ b $ is the bias term, which shifts the hyperplane away from the origin.
+
+SVMs can handle non-linear data through the kernel trick, in which a kernel is applied to the data, transforming it to a different space before computing the hyperplane. However, as the dimensionality increases, SVMs become non-interpretable, making it challenging to visualize and understand the weight matrix. Moreover, SVMs struggle with larger datasets and high-dimensional feature spaces, making them less effective for image classification.
 
 
 \subsection{Decision Trees}
 \label{decision_tree}
 
-Decision Trees are inherently interpretable due to their transparent structure. However, as the depth increases, the models become less understandable. Their limited ability to generalize gave rise to ensemble methods.
 
-% TODO: Create a graphic to explain decision trees or display it mathematically;
+Decision trees are a commonly used machine learning algorithm that proves effective in both classification and regression tasks. The reason for their popularity can be attributed to their user-friendly structure, which has the capacity to handle both categorical and continuous data. A decision tree is made up of three main types of nodes: root, internal, and leaf nodes, which combine to form a representation often depicted as a tree (see Figure 1).
 
- 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=150mm]{figs/decision_tree}
+	\caption[Decision Tree Example]{Decision Tree Example (created by Viktor Loreth)} 
+	\label{fig:Decision_tree}
+\end{figure}
 
-Random forests are an ensemble of multiple decision trees. Their advantage is avoiding over-fitting. However, by combing various algorithms, the interpretability shrinks. Techniques such as SHAP values \cite{lundberg2017unified} or partial dependence plots \cite{PDP} can be employed to make them more understandable.
+The classes are separated in each root node by a decision criterion: $F_i$ <= criterion. The Gini impurity is commonly used for calculating the splitting criterion, which aims to best separate the data in the leaf. New nodes and are defined until the dataset is perfectly separated. However, this makes decision trees prone to overfitting as the model becomes overly complex and captures noise or random fluctuations in the training data, rather than the underlying patterns or relationships. Consequently, the resulting tree fits the training data exceptionally, but does not generalize well to new or unseen data. 
+
+The depth of the tree can be restricted to avoid overfitting. Then, the majority is utilised to assign a label to the leaf. The depth of the tree can be restricted to avoid overfitting. Nevertheless, as the dimensionality grows, determining the depth becomes more and more challenging.
+
+Random forests, comprise many decision trees and are known to prevent overfitting. However, they tend to be more challenging to interpret because of the use of multiple algorithms. Techniques like as SHAP values \cite{lundberg2017unified} or partial dependence plots \cite{PDP} can be employed to make them more understandable.
 \\
-Gradient boosting like XGBoost \cite{Chen_2016}, LightGBM \cite{Ke2017} and CatBoost \cite{prokhorenkova2019catboost} share similarities with random forests and decision trees, but they assign differential learned weights to each decision. They suffer from the same interpretability issues as random forests.
-
-While decision tree-based methods can be applied for image classification, their accuracy tends to be worse than in neural networks.
+Gradient boosting like XGBoost \cite{Chen_2016}, LightGBM \cite{Ke2017} and CatBoost \cite{prokhorenkova2019catboost} share similarities with random forests and decision trees, but they assign differential learned weights to each decision. They suffer from the same interpretability issues as random forests. While decision tree-based methods can be applied for image classification, their accuracy tends to be worse than in neural networks.
 
 
 \subsection{Neural Networks}
-
-% TODO: Maybe redo this section entirely?
 
 The rise of neural networks and their strong predictive power makes them a common choice for classification tasks. But as they grow in complexity, the traditional approach of comprehending through weight examination becomes impossible. With the rise of CNN in 2012 \cite{krizhevsky2012nn} Neural Networks have become state-of-the-art for image prediction. 
 
 In a neural network, an neuron calculates a weighted sum of its inputs and applies an activation function to yield an output. This output then serves as the input for the subsequent layer. While various neuron types exist, including convolutional and recurrent neurons, the foundational neurons can be found in nearly all neural network architectures. 
 
-$x_j = f(\sum_{i=1}^{n} w_{ji} \ast x_i)$
+$y_i = f(\sum_{i=1}^{n} w_{ji} \ast x_i)$
 
 \textbullet$x_i$ input of a layer\\
 \textbullet $w_{ji}$ weights of the layer\\
 \textbullet f activation function (e.g. sigmoid or ReLu)\\
 \textbullet $x_j$ output and furthermore the input of the next layer
+
+% TODO add a new graph
 
 Modern neural networks, such as ResNet50 \cite{he2015deep} comprise over 50 layers and utilize more than thousand kernels. Although they produce the greatest results, they lack an intuitive explanation of the learned parameters, unlike other types of supervised machine learning algorithms.  Nonetheless, interpreting them to some degree is a necessity. Therefore, methods were developed which attempt to make any supervised machine learning algorithm interpretable.
 
@@ -369,7 +377,7 @@ Gradient methods which generate saliency maps are hard to measure. While humans 
 
 
 
-\section{Evaluation Metrics}
+\chapter{Evaluation Metrics}
 
 Various evaluation methods exist to assess the performance of saliency methods. They can be broadly categorized into two approaches: \cite{gupta2022new}
 
@@ -530,6 +538,7 @@ However, it is important to state there is not enough reliable research to state
 
 
 %%%%%%%%%%%%%%%%
+
 \chapter{Reconstructing ROAR} % 4 pages
 \label{sec:project}
 
