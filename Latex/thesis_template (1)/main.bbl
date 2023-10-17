@@ -518,51 +518,6 @@
       \verb 1808.00033
       \endverb
     \endentry
-    \entry{jerome2010}{article}{}
-      \name{author}{3}{}{%
-        {{hash=ce884cc144616c39e723a8fe2eb3c879}{%
-           family={Friedman},
-           familyi={F\bibinitperiod},
-           given={Jerome\bibnamedelima H.},
-           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
-           family={Hastie},
-           familyi={H\bibinitperiod},
-           given={Trevor},
-           giveni={T\bibinitperiod}}}%
-        {{hash=8ea2d5234e48983e0a1b875dd71e6ca4}{%
-           family={Tibshirani},
-           familyi={T\bibinitperiod},
-           given={Rob},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \strng{fullhash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \strng{bibnamehash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \strng{authorbibnamehash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \strng{authornamehash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \strng{authorfullhash}{d8926d7fbe1c523b2710a25e34059bf4}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Statistical Software}
-      \field{number}{1}
-      \field{title}{Regularization Paths for Generalized Linear Models via Coordinate Descent}
-      \field{volume}{33}
-      \field{year}{2010}
-      \field{pages}{1\bibrangedash 22}
-      \range{pages}{22}
-      \verb{doi}
-      \verb 10.18637/jss.v033.i01
-      \endverb
-      \verb{urlraw}
-      \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
-      \endverb
-      \verb{url}
-      \verb https://www.jstatsoft.org/index.php/jss/article/view/v033i01
-      \endverb
-    \endentry
     \entry{goldstein2014peeking}{misc}{}
       \name{author}{4}{}{%
         {{hash=7b82bca87a794cd9a15787f225a55879}{%
@@ -1273,6 +1228,62 @@
       \verb 10.23915/distill.00007
       \endverb
     \endentry
+    \entry{olah2018the}{article}{}
+      \name{author}{7}{}{%
+        {{hash=78be47e08348476a254b1217fd9041ca}{%
+           family={Olah},
+           familyi={O\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ec2a9922637069508ab584ad1018d42b}{%
+           family={Satyanarayan},
+           familyi={S\bibinitperiod},
+           given={Arvind},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7201a73ba867797477903e1eec2b65e4}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=21e186e707ee8b7df883fdc389699ca1}{%
+           family={Carter},
+           familyi={C\bibinitperiod},
+           given={Shan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1fad333f9d77349d65c03a477e27c0dd}{%
+           family={Schubert},
+           familyi={S\bibinitperiod},
+           given={Ludwig},
+           giveni={L\bibinitperiod}}}%
+        {{hash=2854d1d82307a554dd81b9d7143f8c75}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Katherine},
+           giveni={K\bibinitperiod}}}%
+        {{hash=227f3a2edcf8a761ddd01d28ab6f2302}{%
+           family={Mordvintsev},
+           familyi={M\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf69a5e61eaa0b31f97d786de7bf5591}
+      \strng{fullhash}{587da9e622149be7bf968cfe02e1bcd0}
+      \strng{bibnamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
+      \strng{authorbibnamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
+      \strng{authornamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
+      \strng{authorfullhash}{587da9e622149be7bf968cfe02e1bcd0}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Distill}
+      \field{note}{https://distill.pub/2018/building-blocks}
+      \field{title}{The Building Blocks of Interpretability}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.23915/distill.00010
+      \endverb
+    \endentry
     \entry{petsiuk2018rise}{misc}{}
       \name{author}{3}{}{%
         {{hash=b4510a79c11487cc29e33b891a62b0a2}{%
@@ -1749,7 +1760,6 @@
       \strng{authorbibnamehash}{780128456dc0fcff29d99928501e0cea}
       \strng{authornamehash}{780128456dc0fcff29d99928501e0cea}
       \strng{authorfullhash}{c7b185fd20d541df42967bbef620dbf6}
-      \field{extraname}{1}
       \field{sortinit}{X}
       \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
       \field{labelnamesource}{author}
@@ -1762,63 +1772,6 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.1007/978-3-030-32236-6_51
-      \endverb
-    \endentry
-    \entry{xu2019adversarial}{misc}{}
-      \name{author}{7}{}{%
-        {{hash=03e19c58a92aef9decaa2c65c1b7bae8}{%
-           family={Xu},
-           familyi={X\bibinitperiod},
-           given={Han},
-           giveni={H\bibinitperiod}}}%
-        {{hash=b9495c8a5a2c9489e8af928b6f0eed6b}{%
-           family={Ma},
-           familyi={M\bibinitperiod},
-           given={Yao},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=33e2ef7b3c7168b3bb4c04ead213c28c}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Haochen},
-           giveni={H\bibinitperiod}}}%
-        {{hash=68f30d8f787880e56da9f97193849345}{%
-           family={Deb},
-           familyi={D\bibinitperiod},
-           given={Debayan},
-           giveni={D\bibinitperiod}}}%
-        {{hash=c2969289c79bfb5f2bd68129932f963b}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Hui},
-           giveni={H\bibinitperiod}}}%
-        {{hash=854278958e1021c53ca312cc8316e2a6}{%
-           family={Tang},
-           familyi={T\bibinitperiod},
-           given={Jiliang},
-           giveni={J\bibinitperiod}}}%
-        {{hash=cd01587a47d1084d2adebe55a57d1c5c}{%
-           family={Jain},
-           familyi={J\bibinitperiod},
-           given={Anil\bibnamedelima K.},
-           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-      }
-      \strng{namehash}{b48659b05fe2368492c661e48653a2cb}
-      \strng{fullhash}{91d16047f99a35bb419de658003862bb}
-      \strng{bibnamehash}{b48659b05fe2368492c661e48653a2cb}
-      \strng{authorbibnamehash}{b48659b05fe2368492c661e48653a2cb}
-      \strng{authornamehash}{b48659b05fe2368492c661e48653a2cb}
-      \strng{authorfullhash}{91d16047f99a35bb419de658003862bb}
-      \field{extraname}{2}
-      \field{sortinit}{X}
-      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{eprintclass}{cs.LG}
-      \field{eprinttype}{arXiv}
-      \field{title}{Adversarial Attacks and Defenses in Images, Graphs and Text: A Review}
-      \field{year}{2019}
-      \verb{eprint}
-      \verb 1909.08072
       \endverb
     \endentry
     \entry{yang2019benchmarking}{misc}{}

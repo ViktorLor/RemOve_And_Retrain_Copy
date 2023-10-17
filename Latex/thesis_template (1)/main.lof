@@ -1,15 +1,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Decision Tree Example}}{7}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Neural Network}}{8}{figure.2.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Interpretability categorization}}{9}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Network Dissection: Feature Visualization}}{12}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Activation Maximization}}{13}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Attribution Map \blx@tocontentsinit {0}\cite {captum}}}{14}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces CNN classifiers top-down attention map}}{17}{figure.3.5}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Identifying task-relevant neurons in the network.}}{18}{figure.3.6}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Image Classification}}{10}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Interpretability categorization \blx@tocontentsinit {0}\cite {allen2023interpretable}}}{11}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Network Dissection: Feature Visualization \blx@tocontentsinit {0}\cite {olah2017feature}}}{15}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Activation Maximization\blx@tocontentsinit {0}\cite {olah2017feature}}}{15}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Attribution Map \blx@tocontentsinit {0}\cite {captum}}}{16}{figure.3.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net.}}{24}{figure.4.1}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net\blx@tocontentsinit {0}\cite {adebayo2020sanity}}}{25}{figure.4.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{28}{figure.6.1}%
