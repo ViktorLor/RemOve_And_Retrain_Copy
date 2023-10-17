@@ -470,7 +470,7 @@ The unsatisfactory answer is: We do not know the answer yet. Depending on the mo
 
 % todo: rephrase
 
-After looking at various methods in theory, we look at an approach ourselves in detail. A decided to look into ROAR\cite{hooker2019benchmark}, because it a relatively recently published study. We try to reproduce some experiments. Not all are looked into, Because of the computational complexity. Additionally, we also want to look into the fluctuations between the different runs.
+After looking at various methods in theory, we look at an approach ourselves in detail. A decided to look into ROAR\cite{hooker2019benchmark}, because it a relatively recently published study. We try to reproduce some experiments. Not all are looked into, because of the computational complexity. Additionally, we also want to look into the fluctuations between the different runs.
 
 
 Due to resource constraints, the research was limited to evaluating food-101 \cite{bossard14} using two interpretability methods along a baseline model. Instead of five control runs, only four were made. As an initial proof-of-concept experiment the evaluation was done on the MNIST dataset\cite{deng2012mnist}.
@@ -480,17 +480,21 @@ Due to resource constraints, the research was limited to evaluating food-101 \ci
 Before starting a big computation on the food-101 dataset, the method was tested on a smaller dataset (MNIST) and only with one interpretability method. Integrated Gradient was chosen. The advantage of this setup is that the information loss is predictable by humans. By looking at the images with gray pixels, the information loss can be seen by human inspection. This information loss is visible as completely blank images and images with only very few white pixels. Those few pixels are the same for every image and therefore humans can make the assumption, that there exists no difference between the classes.
 
 
-
+% Reframe the whole method to include the methodolgy in ROAR
 A. Training the model
 
 The model used in this report is a simple convolution neural network architecture consisting of two convolution layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of 97.4\% with a standard deviation of 0.4\% on the test data. 
 
 B. Dataset preparation and Splitting
 
-The MNIST dataset consists of 10 classes and 70.000 different images. It was chosen, because it is a small sized dataset and the computational costs were low. a) The importance of the pixels is clear from a human perspective. b) The model required to achieve a solid performance is very modest and speeds up the retraining. c) The information loss in retraining is visible in the pictures. Furthermore, it is a small, usable   dataset. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in gray-scale. The dataset used in this report was normalized using the mean and standard deviation and was split using the PyTorch library’s default splitting method (60.000 images for the training data, 10.000 images for the test data). The training data was shuffled randomly using the inbuilt functions. The Cross entropy loss was selected for training runs. The same dataset split was used for all training runs to ensure consistency in the results.
+% stopped here, redefine why MNIST was chosen
+The MNIST dataset consists of 10 classes and 70.000 different images. It was chosen, because it is a small sized dataset and reconstructing the method is achieved easily. a) The importance of the pixels is clear from a human perspective. b) The model required to achieve a solid performance is very modest and speeds up the retraining. c) The information loss in retraining is visible in the pictures.\\
 
-C. Example of the new dataset
+Furthermore, it is a small, simple dataset. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in gray-scale. The dataset used in this report was normalized using the mean and standard deviation and was split using the PyTorch library’s default splitting method (60.000 images for the training data, 10.000 images for the test data). This split has a fixed test and train set which include a homogeneous distribution of the classes. The training data was shuffled randomly using the inbuilt functions. The Cross entropy loss was selected for training runs. The same dataset split was used for all training runs to ensure consistency in the results.
 
+C. Example of the modified dataset
+
+The modified dataset is the result of combining the attribution map with the original image pixels $A \circ p$. In this operation the most x\% most important pixels are replaced with the mean value of the dataset.
 In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Random Baseline is visible. In the first row, the random baseline is visible, in the second row the Integrated Gradient evaluation is shown. [10, 30, 50, 70, 90\%] of the pixels are blacked out (left to right).
 
 \begin{figure}[h!]
@@ -573,6 +577,7 @@ To provide a theoretical explanation for the implications of removing input dime
 The main idea of ROAR was confirmed using the MNIST example. For simple datasets like MNIST, the concept can clearly be shown as meaningful.
 
 The retraining performance of Food101 was partially confirmed, with a rise in accuracy by removing pixels contrary to the original runs.
+
 
 The following questions are open:
 
