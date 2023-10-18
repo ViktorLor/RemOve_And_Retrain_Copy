@@ -533,10 +533,11 @@ The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because c
 
 A. Training the model
 
-The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. The learning rate was adjusted to 0.175 and the batch size was chosen as 64. Using an SGD optimizer with momentum =0.9 and weight decay 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of average 70.5\% with a standard deviation of 0.01 was achieved over 5 separate training runs on the test score. In total 31 epochs were done. 
+% todo: Rephrase
+The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. The learning rate was adjusted to 0.175 and the batch size was chosen as 64. Using an SGD optimizer with momentum of 0.9 and weight decay 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of average 70.5\% with a standard deviation of 0.01 was achieved over 5 separate training runs on the test score (No validation split was employed). In total 31 epochs were done. 
 By using this particular training setup, at the last epoch, the model learns more about the specific data. In the last epoch, an accuracy of 95\% on the training data was achieved.
 
-In the original paper, an accuracy of 84.54\% was achieved on the Food-101 dataset. A smaller accuracy was achieved, as the training was noticeably shorter because only an NVIDIA GTX 1080 was available.
+In the original paper, an accuracy of 84.54\% was achieved on the Food-101 dataset. A smaller accuracy was achieved, as different training parameters were used in our experiment. A smaller batch size of 64 instead of 256 and less epochs, 31 instead of 90 were used. More finetuning could have been done to achieve a better test score, but the results were deemed as good enough for our experiments.
 
 The data was resized with center-crop to make all images 3x224x224. Afterwards, they were normalized. No data augmentation like flips and mirroring was applied. The standard split 75:25 was applied. The saliency maps to generate the datasets were computed using the same models.
 
@@ -570,7 +571,6 @@ To provide a theoretical explanation for the implications of removing input dime
 	
 	\item We remove inputs and the accuracy increases:\\ The network removed consistent information which is available in the training set. By removing this pattern, over-fitting is reduced and the generalization improves.
 \end{enumerate}
-
 
 \section{Interpretation of the Results}
 
