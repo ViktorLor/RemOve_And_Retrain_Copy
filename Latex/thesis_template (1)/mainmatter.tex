@@ -19,10 +19,8 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \section{Structure of the Thesis}
 
 \begin{enumerate}
-	
-	% TODO: - The structure could be slightly improved by stating about which section we currently talk about (e.g. In section X, we present...)
-	\item In chapter \ref{sec:MLandI} "Machine Learning and their Interpretability", an overview of contemporary machine learning algorithms, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition tasks.
-	\item In chapter \ref{sec:IoNN} "Interpretability of Supervised Machine Learning Algorithms" we delve into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behaviour, regardless of algorithm specifics. 
+	\item In the first chapter \ref{sec:MLandI} "Machine Learning and their Interpretability", an overview of contemporary machine learning algorithms is made, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition tasks.
+	\item In chapter \ref{sec:IoNN} "Interpretability of Supervised Machine Learning Algorithms in Image Recognition" we dig into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behaviour, regardless of algorithm specifics. 
 	\item In subsequent sections \ref{sec:saliency} "Neural Network specific Interpretability Methods", model-specific post-hoc methods for Neural Networks are introduced. Feature visualization and gradient-based methods are explained.
 	\item In chapter \ref{sec:evaluation} "Evaluation of post-hoc Interpretability methods", we focus on evaluating post-hoc interpretability methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
 	\item In chapter \ref{sec:summary} "Which evaluation method and attribution method to use?", a conclusion is presented and an advice on which evaluation method to use is given. 
@@ -128,7 +126,7 @@ Decision trees are a commonly used machine learning algorithm that proves effect
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/decision_tree}
-	\caption[Decision Tree Example]{Decision Tree Example (created by Viktor Loreth)} 
+	\caption[Decision Tree Example]{Decision Tree Example} 
 	\label{fig:Decision_tree}
 \end{figure}
 
@@ -150,7 +148,7 @@ n a neural network, each neuron calculates a weighted sum of its inputs and appl
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/NeuralNetwork}
-	\caption[Neural Network]{Neural Network (created by Viktor Loreth)} 
+	\caption[Neural Network]{Neural Network} 
 	\label{fig:Neural_Network}
 \end{figure}
 
@@ -166,11 +164,11 @@ Modern neural networks, such as ResNet50 \cite{he2015deep} comprise over 50 laye
 Before going into detail of the chapter, the primary challenge of image recognition is explained:
 
 Consider an image with dimensions of 3x224x224. The key objective in achieving model interpretability is to discern which elements of the image are responsible for influencing the model's output. This task is effectively illustrated as a simple version in figure \ref{fig:Task}. Some seemingly correlated data fields are creating a classification.
-
+% todo Remove image and reframe section
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/TasktobeSolved}
-	\caption[Image Classification]{Image Classification (created by Viktor Loreth)}
+	\caption[Image Classification]{Image Classification}
 	\label{fig:Task}
 \end{figure}
 
@@ -185,6 +183,7 @@ Before going into details of interpretability methods for this problem, a framew
 	\label{fig:IML_Overview}
 \end{figure}
 
+% todo Restructure again? Let's thik about it.
 \textbf{Intrinsic vs Post-hoc}: Interpretability methods can be broadly classified into intrinsic and post-hoc techniques. Intrinsic methods are inherently understandable by design, while post-hoc interpretations involve analyzing the model's behaviour after its creation. Typical intrinsic understandable methods are Decision Trees \ref{decision_tree} and KNNs \ref{KNN}. 
 \\
 \textbf{Global Interpretations vs Local Interpretations}: Global Interpretations encompass the entirety of a fitted model. In contrast, local interpretations zoom in on specific portions of the model landscape, such as class boundaries.
@@ -192,12 +191,12 @@ Before going into details of interpretability methods for this problem, a framew
 \textbf{Model-Specific Interpretations vs Model-Agnostic Interpretations}: 
 Model-specific interpretations are tailored to a particular class of algorithms, like gradient methods for neural networks. In contrast, model-agnostic interpretations, such as LIME or SHAP, can be applied across any classification algorithm.
 
-The goal of this section is to present several commonly used interpretability methods and evaluate their suitability for image classifications. As Neural Networks are the best performing methods for image recognition, the focus lies on the suitability of the interpretability methods for Neural networks. After going over different model-agnostic interpretability methods in the next section, we go in-depth about model-specific interpretations for neural networks in \ref{sec:nni}. 
+The goal of this section is to present several commonly used interpretability methods and evaluate their suitability for image classifications. As Neural Networks are the best performing methods for image recognition, the focus lies on the suitability of the interpretability methods for Neural networks. After going over different model-agnostic interpretability methods in the next sections, we go in-depth about model-specific interpretations for neural networks in \ref{sec:nni}. 
 
 
-\section{Global versus Local Model-Agnostic Methods}
+\section{Model-Agnostic Methods}
 
-When it comes to interpretability in image recognition, two broad categories of methods are commonly used: global model-agnostic methods and local model-agnostic methods. These methods are used to uncover the inner workings of complex models and provide a deeper understanding of the relationships between inputs and outputs. However, both global and local interpretability techniques face challenges, particularly in image recognition, which involves diverse and data-rich inputs, making interpretation a computationally demanding task. In the following subsection commonly used global and local model-agnostic methods are shortly explained and their suitability for image recognition is discussed.
+Model-agnostic methods can be applied to any method. However, it does not make sense to use the same method for every algorithm. In this section, global and local agnostic methods are summarized and their applicability to image classification is discussed.
 
 \subsection{Global Model-Agnostic Methods}
 
@@ -355,7 +354,7 @@ There exist many more attribution maps but there exists one major problem: There
 \newpage
 
 
-\chapter{Evaluation of post-hoc Interpretability Methods \& Evaluation metrics}
+\chapter{Evaluation of post-hoc Interpretability Methods}
 \label{sec:evaluation}
 
 
@@ -416,27 +415,15 @@ The conclusion of \cite{hooker2019benchmark} is that some commonly used attribut
 
 \section{Benchmarking Attribution Methods (BAM)}
 \label{sec:bam}
-In practice, it is often challenging to determine the absolute importance of a feature. However, it is possible to calculate the relative importance of one feature concerning one model compared to another\cite{yang2019benchmarking}.\\
 
-Given that one can calculate the relative importance, BAM\cite{yang2019benchmarking} comes to following assumption:
-Consider an object which is described by $p_o$ pixels and a background described by the remaining pixels $p_s$. Each image has one object, and the remaining pixels are the background. If we train two classifiers, one to detect the objects and one to detect the scenes, then the relative feature importance of the $p_o$ pixels should be higher for the object classifier than for the scene classifier. Conversely, the $p_s$ pixels should be higher for the scene classifier than for the object classifier. To address the challenge of distribution shift, BAM carefully selects objects to insert that do not significantly alter the overall image distribution. For instance, objects with means similar to the dataset's mean are chosen. 
+% todo rethink this passage -> Does it need a overhaul?
+As already mentioned before, determining the ground truth of an attribution map is impossible. However, it is possible to compute the relative importance of specific features when comparing it between two different models\cite{yang2019benchmarking}.
 
-%todo Explain the BAM algorithm again;
+In BAM\cite{yang2019benchmarking}, this leads to essential assumption:
 
-
-%The BAM algorithm works as follows:
-%\begin{enumerate}
-%	\item \textbf{BAM dataset construction}\\
-%	The BAM dataset is constructed by pasting object pixels from MSCOCO \cite{lin2015microsoft} into scene images from MiniPlaces \cite{zhou2016places}. An object is re-scaled to between 1/3 to 1/2 of a scene image at a randomly chosen location. The resulting images have an object label and a scene label. Either can be used to train a classifier. Every object class appears in every scene class and vice versa. Scenes which contain original BAM objects are not used.
-%	\item \textbf{Common features and commonality}\\
-%	Common features are defined as a set of pixels with semantic meaning (e.g. looks like a dog) which commonly appear in all examples of one or more classes. For example, a dog which appears in all bamboo forests is less common than a dog which appears in all images of bamboo forests, bedrooms and corn fields.
-%	\item \textbf{Two Classifiers are trained and attribution maps are created}\\
-%	An object detection classifier and a scene detection classifier are trained. Objects should be significantly more important than the scene to the object detector than to the scene detector. To verify this intuition, the objects are removed. With this knowledge, attribution maps can be tested by checking if the pixels are assigned noticeably higher attributions.
-%	\item \textbf{Relative importance is calculated.}\\
-%	With this knowledge, the object pixels should be more important than any other pixels for the detection classifier. Additionally, for the scene attribution, the attribution maps should be higher if the object pixels are replaced with the original pixels.
-%\end{enumerate}
-
-
+Imagine an image that consists of two sets of pixels:\\ 
+$p_o$ pixels that represent an object, and the remaining pixels, called $p_s$, that represent the scene in the background. Each image contains one object, and the remaining pixels make up the background. By training two separate classifiers, one designed to detects objects and other to identify scenes, then the relative feature importance of the $p_o$ pixels should be significantly higher for the object classifier than for the scene classifier. The same holds true for the $p_s$ pixels for the scene classifier. To address the distribution shift problem objects with a mean similar to the mean of the dataset are chosen so that they do not significantly alter the image distribution. \\
+In BAM, such image-scene pairs are created systematically and attribution maps are calculated for each image and both trained classifiers. Those attribution maps are then compared using different metrics. However, the results show different results for various metrics and no clear result can be given to any method.\\
 The advantage of BAM over ROAR \cite{hooker2019benchmark} and other methods is the lower computational cost. No retraining or perturbation is required. However, the method has the usual problems of evaluation algorithms: sensitivity to the dataset and model and not offering a universal truth.
 
 
@@ -476,7 +463,7 @@ After looking at various methods in theory, we look at an approach ourselves in 
 Due to resource constraints, the research was limited to evaluating food-101 \cite{bossard14} using two interpretability methods along a baseline model. Instead of five control runs, only four were made. As an initial proof-of-concept experiment the evaluation was done on the MNIST dataset\cite{deng2012mnist}.
 
 \section{Project Setup MNIST}
-
+%todo: - 5.1.1:   C. In "Figure 5.1"; Quickly repeat what you are doing here and why, before showing this example. A lot has happened since the description of ROAR in Sec. 4.4. It is also not really a difference between IG and the random baseline, but removing / masking out pixels based on IG. Also, make sure to make the reader aware that solely judging this by "human intuition" could be problematic / faulty here, which is why we look at ROAR in the first place. D. Repeat here how the retraining is done / on what you retrain exactly (e.g. also what a "training run" is in this context). After explaining the (re-) training setup, follow up with the results (F.), and actually show and describe your findings ). Finish with what is now part E. In E.: What does it mean that pixels are blurred on their importance? And is this an issue of this particular setup? Finally, does Figure 5.2 belong to this section? What does it show? If this is the result of your experiments on MNIST, make sure to indicate this accordingly, refer to the figure and describe it. Also add the standard deviation in the plot.
 Before starting a big computation on the food-101 dataset, the method was tested on a smaller dataset (MNIST) and only with one interpretability method. Integrated Gradient was chosen. The advantage of this setup is that the information loss is predictable by humans. By looking at the images with gray pixels, the information loss can be seen by human inspection. This information loss is visible as completely blank images and images with only very few white pixels. Those few pixels are the same for every image and therefore humans can make the assumption, that there exists no difference between the classes.
 
 
@@ -515,7 +502,7 @@ E. Advantages and Disadvantages of the setup
 Because of the small size of the dataset and the limited amount of classes, training a model is fast and effective. One disadvantage is the limited generalization of this setup for other datasets and models. The majority of use cases primarily involve working with images in the RGB colour space, utilizing deep learning models that are often more complex, and dealing with a larger number of distinct classes. Furthermore, the pixels themselves are blurred in their importance. In RGB images 3 channels are combined, which makes attribution maps more difficult to compute and understand.
 
 F. Results
-
+%todo: Discuss and show the reuslts! include a standard deviation; Make it clear!
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/mean_accuracy_vs_threshold}
@@ -528,12 +515,12 @@ Integrated Gradient is performing better than the random baseline.
 
 
 \section{Project Setup Food-101}
+% todo: Rephrase, make a proper coherent introduction text to tell what happens!
 
 The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because calculating the gradients and judging if a mask is meaningful is easier here, it should give a reliable baseline for the results. Only integrated gradients is tested, as is it only an example. 
 
 A. Training the model
 
-% todo: Rephrase
 The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. The learning rate was adjusted to 0.175 and the batch size was chosen as 64. Using an SGD optimizer with momentum of 0.9 and weight decay 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of average 70.5\% with a standard deviation of 0.01 was achieved over 5 separate training runs on the test score (No validation split was employed). In total 31 epochs were done. 
 By using this particular training setup, at the last epoch, the model learns more about the specific data. In the last epoch, an accuracy of 95\% on the training data was achieved.
 
@@ -543,22 +530,19 @@ The data was resized with center-crop to make all images 3x224x224. Afterwards, 
 
 B. Results
 
+% todo: Add a standard deviation plot;
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=160mm]{figs/Acurracy Plots}
 	\caption {Comparison of the accuracy behaviour of the original model vs the modified model.}
 	\label{fig:Sanity}
 \end{figure}
-
+%todo: Discuss the reuslts more!
 \begin{enumerate}
 	\item In the random baseline the results of the original paper are confirmed. A drop in performance can be explained by the loss of information.
 	\item In Integrated Gradient the results are also confirmed. But an unexpected behaviour occurs: The performance gets better by removing pixels. 
 	\item The Guided Backprop result is also confirmed. But the behaviour is also unexpected. The performance is getting better by removing pixels.
 \end{enumerate}
-
-
-
-\section{Theoretical Implications}
 
 Due to the fact, that the accuracy declines so slowly, it is unclear if the results given are really meaningful. Furthermore, there is no shared threshold when enough pixels are removed.
 To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors should be considered:
@@ -572,8 +556,10 @@ To provide a theoretical explanation for the implications of removing input dime
 	\item We remove inputs and the accuracy increases:\\ The network removed consistent information which is available in the training set. By removing this pattern, over-fitting is reduced and the generalization improves.
 \end{enumerate}
 
-\section{Interpretation of the Results}
 
+\section{Summary and Interpretation}
+
+%Rephrase
 The main idea of ROAR was confirmed using the MNIST example. For simple datasets like MNIST, the concept can clearly be shown as meaningful.
 
 The retraining performance of Food101 was partially confirmed, with a rise in accuracy by removing pixels contrary to the original runs.

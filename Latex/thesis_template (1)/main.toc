@@ -19,21 +19,20 @@
 \contentsline {subsection}{\numberline {3.2.5}Gradient-weighted Class Activation Map (Grad-CAM)}{17}{subsection.3.2.5}%
 \contentsline {subsection}{\numberline {3.2.6}Guided Grad-CAM}{17}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Integrated Gradient}{18}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Ensembling Methods: Smooth Gradient, Smooth Grad² and VarGrad}{18}{subsection.3.2.8}%
+\contentsline {subsection}{\numberline {3.2.8}Ensemble Methods: Smooth Gradient, Smooth Grad² and VarGrad}{18}{subsection.3.2.8}%
 \contentsline {subsection}{\numberline {3.2.9}Summarizing Attribution Maps}{19}{subsection.3.2.9}%
 \contentsline {chapter}{\numberline {4}Evaluation of post-hoc Interpretability Methods \& Evaluation metrics}{20}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Completeness and Soundness}{21}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Evaluating the Visualization of What a Deep Neural Network has learned}{21}{section.4.2}%
 \contentsline {section}{\numberline {4.3}A Benchmark for Interpretability Methods in Deep Neural Networks}{22}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Benchmarking Attribution Methods (BAM)}{23}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Sanity Checks for Saliency Maps}{24}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Which evaluation methods and attribution methods to use?}{26}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Reconstructing ROAR}{27}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Scientific Motivation and Goal}{27}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Project Setup MNIST}{27}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Project Setup Food-101}{29}{subsection.6.1.2}%
-\contentsline {subsection}{\numberline {6.1.3}Theoretical Implications}{30}{subsection.6.1.3}%
-\contentsline {subsection}{\numberline {6.1.4}Interpretation of the Results}{31}{subsection.6.1.4}%
+\contentsline {section}{\numberline {4.5}Sanity Checks for Saliency Maps}{23}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Which evaluation method and attribution method to use?}{25}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Reconstructing ROAR}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Scientific Motivation and Goal}{26}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Project Setup MNIST}{26}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Project Setup Food-101}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Summary and Interpretation}{30}{section.6.4}%
 \contentsline {chapter}{\nonumberline Appendix}{36}{chapter*.6}%
 \contentsline {section}{\numberline {1}MNIST-Computation}{36}{section.Alph0.1}%
 \contentsline {section}{\numberline {2}Food101-Computation}{36}{section.Alph0.2}%

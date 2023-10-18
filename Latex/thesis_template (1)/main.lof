@@ -9,11 +9,11 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Activation Maximization\blx@tocontentsinit {0}\cite {olah2017feature}}}{15}{figure.3.4}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Attribution Map \blx@tocontentsinit {0}\cite {captum}}}{16}{figure.3.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net\blx@tocontentsinit {0}\cite {adebayo2020sanity}}}{25}{figure.4.1}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net\blx@tocontentsinit {0}\cite {adebayo2020sanity}}}{24}{figure.4.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{28}{figure.6.1}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Accuracy: Random Baseline vs Integrated Gradient}}{29}{figure.6.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparison of the accuracy behaviour of the original model vs the modified model.}}{30}{figure.6.3}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{27}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Accuracy: Random Baseline vs Integrated Gradient}}{28}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparison of the accuracy behaviour of the original model vs the modified model.}}{29}{figure.6.3}%
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
