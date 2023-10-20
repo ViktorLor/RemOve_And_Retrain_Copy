@@ -35,18 +35,18 @@ In the rapidly evolving landscape of machine learning, interpretability has emer
 \\
 A broad definition of IML given by \cite{allen2023interpretable}: "Interpretable machine learning is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output." This definition underscores the important role of understanding complex models and allowing humans to understand the computation.
 \\
-% todo:Wait for feedback from Katarina;
+
 Interpretability is important for various reasons, ranging from model validation and debugging to fostering validation and trust. Allen\cite{allen2023interpretable} summarizes a number of objectives for interpretable machine learning: 
 \\\\
 \textbf{Model Validation}: Interpretable models are essential for validating (by a human) whether a learned model behaves as expected and consistently aligns with prior expectations and knowledge about the system.
 \\\\
-\textbf{Model Debugging}: When unexpected behaviour occurs, finding the reasons for fault is impossible without understanding the system. Interpreting and understanding machine learning systems is critical for diagnosing, debugging and fixing systems \cite{koh2020understanding}. 
+\textbf{Model Debugging}: When unexpected behaviour occurs, finding the reasons for fault is impossible without understanding the system. To debug system and debugging them, an inner understanding of the machine learning system is necessary.
 \\\\
-\textbf{Transparency, Accountability \& Trust}: IML transforms black-box machine learning systems into understandable systems. The utilization of high-stakes societal applications requires accountability and trust in machine learning systems \cite{rudin2019stop,Samek_2019, xu2019inbook, doshivelez2017rigorous}.
+\textbf{Transparency, Accountability \& Trust}: IML transforms black-box machine learning systems into understandable systems. Without trust and accountability, using them in high-stakes societal applications is not recommendable.
 \\\\
-\textbf{Ethics}: Machine learning algorithms can be trained on biased data leading to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms intepretable methods need to be deployed \cite{guidotti2018survey}. 
+\textbf{Ethics}: Machine learning algorithms can be trained on biased data leading to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms interpretable methods need to be deployed to assess the fairness. 
 \\\\
-\textbf{Data Exploration and Discovery}: Insights into major patterns, trends, groups, or artefacts of the data are achieved by applying human-interpretable techniques. These data exploration insights influence the data pre-processing and model decisions \cite{murdoch2019definitions, berkhin2006, tukey1981}. 
+\textbf{Data Exploration and Discovery}: Insights into major patterns, trends, groups, or artefacts of the data are achieved by applying human-interpretable techniques. These data exploration insights influence the data pre-processing and model decisions. 
 
 Before going into detail about the different methods of interpretability an overview of current supervised machine learning is given. Unsupervised machine learning is arguably intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, the necessity of interpretability for neural networks should be made evident.
 
@@ -310,7 +310,7 @@ $$ A = Var(g(x+\theta))$$
 %
 %Excitation backpropagation\cite{zhang2018} focuses on a set of neurons within a neural network during the computational process. By doing so, it enables the combination of gradient information with the attribution maps, leading to precise object localization.
 %
-%The key feature of excitation backpropagation is the use of a probabilistic Winner-Takes-All (WTA) formulation. This formulation produces normalized attention maps, allowing for direct subtraction of these attention maps. This subtraction operation is crucial for highlighting the regions of interest within the neural network's activation, making it easier to understand which parts of the input data contribute most to a particular decision or classification.
+%The key feature of excitation backpropagation is the use of a probabilistic Winner-Takes-All (WTA) formulation. This formulation produces normalised attention maps, allowing for direct subtraction of these attention maps. This subtraction operation is crucial for highlighting the regions of interest within the neural network's activation, making it easier to understand which parts of the input data contribute most to a particular decision or classification.
 %
 %\begin{figure}[h!]
 %	\centering
@@ -350,20 +350,20 @@ The evaluation is compared against predefined ground truths explanations, establ
 Intrinsic methods rely on computational analyses within the neural network itself, without requiring human judgments. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using either the same model\cite{dabkowski2017real} or new model is trained and evaluated\cite{hooker2019benchmark}. While both these methods generate meaningful results, they both do not offer an objective evaluation method. Without re-training it is not clear if the degrade in performance stems from the distribution shift or the removal of informative features \cite{hooker2019benchmark}. By re-training, a different model is evaluated.
 \\
 
-Many interpretable AI-methods exist and there is a question: Can I compare the effectiviness between them? Can I combine the results and the one which seemingly has the most correlation is good? Neely, \cite{neely2021order} has tested several explainable AI methods in the domain of NLP and can only find little correlation. Additionally, the correlation is model and task dependent, which furthermore weakens this assumption. It is unclear however, if this result is the same in the task of image classification.
+Many interpretable AI-methods exist and there is a question: Can I compare the effectiveness between them? Can I combine the results and the one which seemingly has the most correlation is good? Neely, \cite{neely2021order} has tested several explainable AI methods in the domain of NLP and can only find little correlation. Additionally, the correlation is model and task dependent, which furthermore weakens this assumption. It is unclear however, if this result is the same in the task of image classification.
 \\
 
 After considering all these facts, it is not possible to meaningfully evaluate saliency methods by comparison or without violating fundamental assumptions. In the upcoming sections, potential evaluation metrics and methodologies are introduced to provide a more meaningful assessment. These metrics and methods do not fundamentally solve the problems, but they offer some guidance for evaluation.
 
 \section{Completeness and Soundness}
 
-In evaluation the composite input of the image $x \circ A$ describes an image with x\% (depending on the type of evaluation) of the pixels replaced by a grey value or the mean value. The pixels are chosen according to the highest or lowest values in the attribution map. Those inputs are then measured using intrinsic methods. The hypothesis is: If the not removed pixels are not important and the original net outputs the same labels, then the removed pixels are not important. This hypothesis is wrong, because the position of gray pixels can also be informative.
+In evaluation the composite input of the image $x \circ A$ describes an image with x\% (depending on the type of evaluation) of the pixels replaced by a gray value or the mean value. The pixels are chosen according to the highest or lowest values in the attribution map. Those inputs are then measured using intrinsic methods. The hypothesis is: If the not removed pixels are not important and the original net outputs the same labels, then the removed pixels are not important. This hypothesis is wrong, because the position of gray pixels can also be informative.
 Gupta, 2022 \cite{gupta2022new} proposes Soundness and Completeness, which formalizes this problem and creates a numerical framework to evaluate the effectiveness of evaluating composition methods.
 
-Soundness means: A certain portion of the image caused the net's output. x\% pixels are responsible for the classification of the label.\\
-Completeness means: No matter which mask is chosen, as long as the x\% most important pixels are visible, the classification is correct.
+Soundness means: A certain part of the image the output of the classifier. x\% pixels are responsible for the classification of the label. In practice, this means that if you apply any mask to the image that still makes the x\% of the most important pixels visible, then the classification will be the same. This also means that if some of the pixels are not visible, then the confidence of this classification will decrease. \\
+Completeness means: No matter what mask is chosen, as long as the x\% most important pixels are visible, the classification is correct. In practice, this means that if the important pixels are visible, no matter what mask is chosen, then the classification is correct.\\
 
-This two metrics are useful to evaluate the correctness of masking. However, it is only a metric for other evaluation frameworks and is dependent on model and dataset. It is important to note however, because this metric was created in 2022 and is not included in any of the older papers. This information should give some background for the correctness of other older methods.
+These two metrics are useful for evaluating the correctness of masking. However, it is only one metric for other evaluation frameworks. Gupta suggests that intrinsic evaluation methods should test for both completeness and soundness.
 
 \section{Evaluating the Visualization of What a Deep Neural Network has learned}
 \label{pertubation}
@@ -383,7 +383,7 @@ After retraining for each set of removed pixels and attribution maps, the result
 
 KAR works in a similar way to ROAR, but instead of removing the most important pixels, it removes the least important pixels. As KAR performs worse than ROAR, it is not described further.
 \\
-The conclusion of \cite{hooker2019benchmark} is that some commonly used attribution estimators like Gradient\cite{simonyan2014deep} , Integrated Gradient\cite{sundararajan2017axiomatic} and Guided Backpropagation\cite{springenberg2015striving} are worse than random assignments. On the other hand, the effectiveness of Smooth-Grad-Squared and VarGrad was confirmed. However, ROAR is sensitive to the   dataset used. While it does provide a numerical evaluation, it is sensitive to the model and   dataset used and therefore cannot independently and universally evaluate an algorithm.
+The conclusion of \cite{hooker2019benchmark} is that some commonly used attribution estimators like Gradient\cite{simonyan2014deep}, Integrated Gradient\cite{sundararajan2017axiomatic} and Guided Backpropagation\cite{springenberg2015striving} are worse than random assignments. On the other hand, the effectiveness of Smooth-Grad-Squared and VarGrad was confirmed. However, ROAR is sensitive to the   dataset used. While it does provide a numerical evaluation, it is sensitive to the model and   dataset used and therefore cannot independently and universally evaluate an algorithm.
 
 \section{Benchmarking Attribution Methods (BAM)}
 \label{sec:bam}
@@ -419,40 +419,49 @@ Numerous attribution maps and possible evaluation methods have been looked at an
 The unsatisfactory answer is: We do not know the answer yet. Depending on the model and dataset used, different evaluation methods give varying outcomes. In Sanity check by Adebayo \cite{adebayo2020sanity} and ROAR by Hooker\cite{hooker2019benchmark} some methods were seen as unsuitable for the task considered. However, this was dependent on the model and the dataset. Considering there exists no ground truth for an evaluation method, there also is no ground truth for the attribution method. Opting for a SG - GRAD or a VAR-GRAD approach might result in favorable results for ROAR and Sanity checks. However, it remains difficult to evaluate visual explanations and there is no established ground truth to determine which evaluation method is the best. Consequently, further research is required to provide clearer guidance in this area.
 
 %%%%%%%%%%%%%%%%
-
 \chapter{Reconstructing ROAR} % 4 pages
 \label{sec:project}
 
 \section{Scientific Motivation and Goal}
 
-% todo: rephrase
-
-After looking at various methods in theory, we look at an approach in detail. We decided to look into ROAR\cite{hooker2019benchmark}, because it a relatively recently published study. We try to reproduce some experiments. Not all are looked into, because of the computational complexity. Additionally, we also want to look into the fluctuations between the different runs.
+After looking at different methods in theory, we look at one approach in detail. We decided to look at ROAR\cite{hooker2019benchmark} because it is a relatively recently published study. We try to reproduce some of the experiments. Only a small part of the original experiment was reconstructed because the complexity and the required computing power were not available. In addition, we also want to look at the fluctuations between the different runs, as these were not included in the original paper.
 
 
-Due to resource constraints, the research was limited to evaluating food-101 \cite{bossard14} using two interpretability methods along a baseline model. Instead of five control runs, only four were made. As an initial proof-of-concept experiment the evaluation was done on the MNIST dataset\cite{deng2012mnist}.
+Due to resource constraints, the research was limited to evaluating food-101 \cite{bossard14} using two interpretability methods along a baseline model. Instead of five control runs, only four were performed. As an initial proof of concept, the evaluation was performed on the MNIST dataset\cite{deng2012mnist}.
+
+
+\section{Graying out Pixels}
+\label{gray}
+In ROAR pixels are grayed out to hide potentially informative pixels. However, graying out pixels does not necessarily mean that the information is completely hidden. To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors\cite{hooker2019benchmark} should be considered:
+
+\begin{enumerate}
+	\item Input dimensions are removed and the accuracy drops:\\ The removed input was informative for the model and their absence reduces the ability of the model to identify the correct class.
+	
+	\item We remove inputs and the accuracy does not drop.\\ (a) It is possible that the removed input dimensions were not important for the model’s decision-making	process. The attribution map failed to identify important features, such as background pixels. (b) The input could be redundant and the information can be reconstructed using other available inputs. 
+\end{enumerate}
+
+Because images in 3D space are very complex it is very difficult to make a human evaluation if the removal of pixels is correct. Therefore, human intuition should be handled carefully.
+
 
 \section{Project Setup MNIST}
-%todo: - 5.1.1:   C. In "Figure 5.1"; Quickly repeat what you are doing here and why, before showing this example. A lot has happened since the description of ROAR in Sec. 4.4. It is also not really a difference between IG and the random baseline, but removing / masking out pixels based on IG. Also, make sure to make the reader aware that solely judging this by "human intuition" could be problematic / faulty here, which is why we look at ROAR in the first place. D. Repeat here how the retraining is done / on what you retrain exactly (e.g. also what a "training run" is in this context). After explaining the (re-) training setup, follow up with the results (F.), and actually show and describe your findings ). Finish with what is now part E. In E.: What does it mean that pixels are blurred on their importance? And is this an issue of this particular setup? Finally, does Figure 5.2 belong to this section? What does it show? If this is the result of your experiments on MNIST, make sure to indicate this accordingly, refer to the figure and describe it. Also add the standard deviation in the plot.
-Before starting a big computation on the food-101 dataset, the method was tested on a smaller dataset (MNIST) and only with one interpretability method. Integrated Gradient was chosen. The advantage of this setup is that the information loss is predictable by humans. By looking at the images with gray pixels, the information loss can be seen by human inspection. This information loss is visible as completely blank images and images with only very few white pixels. Those few pixels are the same for every image and therefore humans can make the assumption, that there exists no difference between the classes.
+\label{sec:MNIST}
 
+A. Choice of the MNIST dataset
 
-% Reframe the whole method to include the methodolgy in ROAR
-A. Training the model
+Before starting a big computation on the food-101 dataset, the method was tested on a smaller dataset (MNIST) and only with one interpretability method to test the programmed pipeline.The MNIST dataset consists of 10 classes and 70.000 different images. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in gray-scale. It was chosen because it is a small-sized dataset and reconstructing the method can be achieved easily. Furthermore, the dataset is only 50 MB in size, and a model can be trained without significant computational effort. For the proof-of-concept, only integrated gradient and a random baseline were computed.
 
-The model used in this report is a simple convolution neural network architecture consisting of two convolution layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of 97.4\% with a standard deviation of 0.4\% on the test data. 
+B. Training the model
 
-B. Dataset preparation and Splitting
+The model used in this report is a convolutional neural network architecture consisting of two convolutional layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of $97.4\%\pm0.4\%$ on the test data.
 
-% stopped here, redefine why MNIST was chosen
-The MNIST dataset consists of 10 classes and 70.000 different images. It was chosen, because it is a small sized dataset and reconstructing the method is achieved easily. a) The importance of the pixels is clear from a human perspective. b) The model required to achieve a solid performance is very modest and speeds up the retraining. c) The information loss in retraining is visible in the pictures.\\
+C. Dataset preparation and Splitting
 
-Furthermore, it is a small, simple dataset. The images are 28x28 pixels big and one pixel has a value ranging from [0,1] in gray-scale. The dataset used in this report was normalized using the mean and standard deviation and was split using the PyTorch library’s default splitting method (60.000 images for the training data, 10.000 images for the test data). This split has a fixed test and train set which include a homogeneous distribution of the classes. The training data was shuffled randomly using the inbuilt functions. The Cross entropy loss was selected for training runs. The same dataset split was used for all training runs to ensure consistency in the results.
+The dataset used in this report was normalised using the mean and standard deviation and was split using the PyTorch library's default splitting method (60,000 images for the training data, 10,000 images for the test data). This split has a fixed test and train set which include a homogeneous distribution of the classes. The training data was shuffled randomly for the training runs. The cross-entropy loss was selected for training runs. The same dataset split was used for all training runs to ensure consistency in the results.
 
-C. Example of the modified dataset
+D. Example of the modified dataset
 
-The modified dataset is the result of combining the attribution map with the original image pixels $A \circ p$. In this operation the most x\% most important pixels are replaced with the mean value of the dataset.
-In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Random Baseline is visible. In the first row, the random baseline is visible, in the second row the Integrated Gradient evaluation is shown. [10, 30, 50, 70, 90\%] of the pixels are blacked out (left to right).
+The modified dataset is the result of combining the attribution map with the original image pixels $A \circ p$. In this operation the most x\% most important pixels are replaced with the mean value of the dataset. This means, that the information of the pixel is unclear. However, in this setup it does not necessarily mean that the pixel value cannot predicted by others.
+In \ref{fig:IGvsRandom} the difference between the two altered datasets is visible. In the first row, the random baseline is visible, and in the second row the Integrated Gradient evaluation is shown. 10, 30, 50, 70 and 90\% of the pixels are grayed out (left to right).
 
 \begin{figure}[h!]
 	\centering
@@ -461,103 +470,69 @@ In \ref{fig:IGvsRandom} the difference between Integrated Gradients and the Rand
 	\label{fig:IGvsRandom}
 \end{figure}
 
-Judging by human intuition, Integrated Gradients appear to perform better overall thresholds. The model is expected to perform worse following retraining.
+Judging by human intuition, Integrated Gradients\cite{sundararajan2017axiomatic} seems to block out information more reliably. The model is expected to perform worse after retraining. However, human intuition can be problematic in neural networks as mentioned in section \ref{gray}.
 
-D. Retraining upon the new datasets
+E. Retraining on the new datasets
 
-To ensure that the model learns consistently, the same split and learning parameters were utilized as in the standard case to retrain the model on the new dataset. An untrained network was created and then retrained for each training run. To validate the results and minimize the impact of random seed initialization, the training was performed with 5 different seeds and 5 models were created. In the Appendix, the exact results can be found.
+To ensure that the model learns consistently, the same split and learning parameters as in the standard case were used to retrain the model on the newly modified dataset (the dataset with x\% of the pixels greyed out). An untrained network was created and then retrained for each training run. To validate the results and to minimise the effect of random seed initialisation, training was performed with 5 different seeds and 5 models were created. The exact results can be found in the appendix.
 
-E. Advantages and Disadvantages of the setup
+F. Advantages and Disadvantages of the setup
 
-Because of the small size of the dataset and the limited amount of classes, training a model is fast and effective. One disadvantage is the limited generalization of this setup for other datasets and models. The majority of use cases primarily involve working with images in the RGB colour space, utilizing deep learning models that are often more complex, and dealing with a larger number of distinct classes. Furthermore, the pixels themselves are blurred in their importance. In RGB images 3 channels are combined, which makes attribution maps more difficult to compute and understand.
+Due to the small size of the dataset and the limited number of classes, training a model is fast and effective. A disadvantage is the limited generalisability of this setup to other datasets and models. The majority of use cases primarily involve working with images in the RGB colour space, using deep learning models that are often more complex, and dealing with a larger number of distinct classes. In addition, the meaning of the pixels themselves is blurred. RGB images combine 3 channels, making attribution maps more difficult to compute and understand.
 
-F. Results
-%todo: Discuss and show the reuslts! include a standard deviation; Make it clear!
-\begin{figure}[h!]
+G. Results
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=100mm]{figs/mean_accuracy_vs_threshold}
-	\caption{Accuracy: Random Baseline vs Integrated Gradient}
+	\caption{Accuracy: Random Baseline and Integrated Gradient}
 	\label{fig:Accuracy}
 	
 \end{figure}
 
-Integrated Gradient is performing better than the random baseline.
+Figure 6.2 shows the decay in accuracy of the random baseline and the integrated gradient.
+
+
+
+Integrated Gradient seems to have a faster information decay, and at 90\% of the grayed out pixels the classification is 10\%, which is the same as a random classification. Note that Integrated Gradient has a very high standard deviation at 70\%. This is because two control runs happened to learn a random classification, while the other three still managed to learn a classification.  In this experiment, Integrated Gradient seems to identify more informative pixels than the random baseline for the MNIST dataset, and this assumption is supported by ROAR.
+
 
 
 \section{Project Setup Food-101}
-% todo: Rephrase, make a proper coherent introduction text to tell what happens!
 
-The MNIST dataset \cite{deng2012mnist} was chosen as proof-of-concept. Because calculating the gradients and judging if a mask is meaningful is easier here, it should give a reliable baseline for the results. Only integrated gradients is tested, as is it only an example. 
+After building a functional, fast pipeline for the ROAR algorithm, some of the experiments from the original paper were reconstructed. Originally, the goal of the thesis was to reconstruct Image Net. However, the computation time was too long with the available setup, so food101, which has only 5 GB, was chosen.
+
 
 A. Training the model
 
-The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen to replicate. The learning rate was adjusted to 0.175 and the batch size was chosen as 64. Using an SGD optimizer with momentum of 0.9 and weight decay 0.0001 and a scheduler at epoch 30 with gamma=0.1, an accuracy of average 70.5\% with a standard deviation of 0.01 was achieved over 5 separate training runs on the test score (No validation split was employed). In total 31 epochs were done. 
-By using this particular training setup, at the last epoch, the model learns more about the specific data. In the last epoch, an accuracy of 95\% on the training data was achieved.
+The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen for replication. The learning rate was set to 0.175 and the batch size was set to 64. Using an SGD optimiser with momentum of 0.9 and weight decay of 0.0001 and a scheduler at epoch 30 with gamma=0.1, an average accuracy of $70.5\% \pm 0.01$ was achieved over 5 separate training runs on the test score (no validation split was used). Cross-entropy loss was used. A total of 31 epochs were run. By using this particular training setup, the model learns more about the specific data in the last epoch. In the last epoch, an accuracy of 95\% was achieved on the training data.\\
+In the original paper, an accuracy of 84.54\% was achieved on the Food-101 dataset. A lower accuracy was achieved because different training parameters were used in our experiment. We used a smaller batch size of 64 instead of 256 and fewer epochs, 31 instead of 90. More fine-tuning could have been done to achieve a better test score, but the results were considered good enough for our experiments.
 
-In the original paper, an accuracy of 84.54\% was achieved on the Food-101 dataset. A smaller accuracy was achieved, as different training parameters were used in our experiment. A smaller batch size of 64 instead of 256 and less epochs, 31 instead of 90 were used. More finetuning could have been done to achieve a better test score, but the results were deemed as good enough for our experiments.
+B. Dataset preparation and splitting
 
-The data was resized with center-crop to make all images 3x224x224. Afterwards, they were normalized. No data augmentation like flips and mirroring was applied. The standard split 75:25 was applied. The saliency maps to generate the datasets were computed using the same models.
+The data was resized using centre-crop to make all images 3x224x224. They were then normalised. No data enhancement such as flipping and mirroring was applied. The standard 75:25 split was used. In the original dataset, the training and test data have a fixed split, which we also used for this report. The saliency maps used to generate the datasets were computed using a single model.
+
+C. Retraining the models
+
+The same procedure was followed as in the MNIST section \ref{sec:MNIST}. However, only 4 control runs were performed instead of 5.
 
 B. Results
 
-% todo: Add a standard deviation plot;
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=160mm]{figs/Acurracy Plots}
 	\caption {Comparison of the accuracy behaviour of the original model vs the modified model.}
-	\label{fig:Sanity}
+	\label{fig:food101Res}
 \end{figure}
 
-
-%todo: Discuss the reuslts more!
-\begin{enumerate}
-	\item In the random baseline the results of the original paper are confirmed. A drop in performance can be explained by the loss of information.
-	\item In Integrated Gradient the results are also confirmed. But an unexpected behaviour occurs: The performance gets better by removing pixels. 
-	\item The Guided Backprop result is also confirmed. But the behaviour is also unexpected. The performance is getting better by removing pixels.
-\end{enumerate}
-
-Due to the fact, that the accuracy declines so slowly, it is unclear if the results given are really meaningful. Furthermore, there is no shared threshold when enough pixels are removed.
-To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors should be considered:
-
-\begin{enumerate}
-	\item Input dimensions are removed and the accuracy drops:\\ The removed input was informative for the model and
-	their absence reduces the ability of the model to identify the right class.
-	
-	\item We remove inputs and the accuracy does not drop.\\ (a) It is possible that the removed input dimensions	were not important for the model’s decision-making	process. The attribution map failed to identify important features, such as background pixels. (b) The input could be redundant and the information can be reconstructed using other available inputs. 
-	
-	\item We remove inputs and the accuracy increases:\\ The network removed consistent information which is available in the training set. By removing this pattern, over-fitting is reduced and the generalization improves.
-\end{enumerate}
-
+Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. The random baseline confirms the results of the original paper. A drop in performance can be explained by the loss of information. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the results are really meaningful. Furthermore, there is no common threshold when enough pixels are removed.
 
 \section{Summary and Interpretation}
 
-%Rephrase
-The main idea of ROAR was confirmed using the MNIST example. For simple datasets like MNIST, the concept can clearly be shown as meaningful.
+The main idea of ROAR was confirmed using the example of MNIST. For simple datasets such as MNIST, the concept can clearly be shown to be meaningful.
 
-The retraining performance of Food101 was partially confirmed, with a rise in accuracy by removing pixels contrary to the original runs.
+However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to dataset and model makes it difficult to judge whether the results are due to the method being correct or to other effects.
 
+While the underlying logic of ROAR makes sense, it is impossible to know if the relationship of a pixel makes sense and what patterns are being learned. It does provide an evaluation method, but the evaluation method itself is not generally applicable. Nevertheless, it shows how little we know about machine learning models.
 
-The following questions are open:
-
-- Is ROAR depending on the trained data and the dataset? Example: Using a dataset which does identify the species of animals. The face of the animal is clearly important. The eyes of the animals are also important. What is the relation of how important they are? How important is the zoom? Depending on the labels existing, the network learns different weights. In datasets like Birdsnap where the images are very common, only a small percentage of pixels are important and therefore blocking them out results in a lower accuracy.
-
-
-- Does removing background pixels improve the accuracy because then the model focuses only on important patterns?
-Well, this depends on the dataset.
-
-- By removing information which is important through the correct label, maybe a pattern of recognition emerges.
-All cakes have removed pixels at a position x. This could be the case for standardized pictures.
-
-- Maybe removing the correct pixels to some degree makes it easier to recognize a pattern? For example, removing 50\% of the face and 50\% of the ears which are distinct to the species, more weight is given to the ears.
-
-
-
-Knowing this -> Does ROAR still make sense?
-
-While ROAR underlying logic makes sense, it is impossible to know whether the relation of a pixel makes sense and which patterns are learned. It does indeed offer an evaluation method, but the evaluation method in itself is not understandable. We do not know if the evaluation method does make sense, which simply moves the problem to a higher layer.
-
-
-
-
-%%%%%
 

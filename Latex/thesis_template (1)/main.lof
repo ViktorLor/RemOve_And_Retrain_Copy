@@ -11,8 +11,8 @@
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Cascading Randomization on Image Net}}{24}{figure.4.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{27}{figure.6.1}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Accuracy: Random Baseline vs Integrated Gradient}}{28}{figure.6.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparison of the accuracy behaviour of the original model vs the modified model.}}{29}{figure.6.3}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Integrated Gradients and Random Baseline Comparison}}{28}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Accuracy: Random Baseline and Integrated Gradient}}{28}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparison of the accuracy behaviour of the original model vs the modified model.}}{30}{figure.6.3}%
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
