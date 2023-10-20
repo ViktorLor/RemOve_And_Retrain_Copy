@@ -754,6 +754,57 @@
       \verb https://christophm.github.io/interpretable-ml-book
       \endverb
     \endentry
+    \entry{Mucherino2009}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=5f32dfe07560d2e9cbdeb3bf02e38a1e}{%
+           family={Mucherino},
+           familyi={M\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6587542edf0ec7af3b5add961bfb7b08}{%
+           family={Papajorgji},
+           familyi={P\bibinitperiod},
+           given={Petraq\bibnamedelima J.},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=d2d3f2408d645df2cf4e8142841c3647}{%
+           family={Pardalos},
+           familyi={P\bibinitperiod},
+           given={Panos\bibnamedelima M.},
+           giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY}%
+      }
+      \list{publisher}{1}{%
+        {Springer New York}%
+      }
+      \strng{namehash}{67af11eafcd1227df1e874d3191a5974}
+      \strng{fullhash}{67af11eafcd1227df1e874d3191a5974}
+      \strng{bibnamehash}{67af11eafcd1227df1e874d3191a5974}
+      \strng{authorbibnamehash}{67af11eafcd1227df1e874d3191a5974}
+      \strng{authornamehash}{67af11eafcd1227df1e874d3191a5974}
+      \strng{authorfullhash}{67af11eafcd1227df1e874d3191a5974}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The k-nearest neighbor (k-NN) method is one of the data mining techniques considered to be among the top 10 techniques for data mining [237]. The k-NN method uses the well-known principle of Cicero pares cum paribus facillime congregantur (birds of a feather flock together or literally equals with equals easily associate). It tries to classify an unknown sample based on the known classification of its neighbors. Let us suppose that a set of samples with known classification is available, the so-called training set. Intuitively, each sample should be classified similarly to its surrounding samples. Therefore, if the classification of a sample is unknown, then it could be predicted by considering the classification of its nearest neighbor samples. Given an unknown sample and a training set, all the distances between the unknown sample and all the samples in the training set can be computed. The distance with the smallest value corresponds to the sample in the training set closest to the unknown sample. Therefore, the unknown sample may be classified based on the classification of this nearest neighbor.}
+      \field{booktitle}{Data Mining in Agriculture}
+      \field{isbn}{978-0-387-88615-2}
+      \field{title}{k-Nearest Neighbor Classification}
+      \field{year}{2009}
+      \field{pages}{83\bibrangedash 106}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/978-0-387-88615-2_4
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-0-387-88615-2_4
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-0-387-88615-2_4
+      \endverb
+    \endentry
     \entry{neely2021order}{article}{}
       \name{author}{4}{}{%
         {{hash=dd42665840236818af1fe8705358fccb}{%
@@ -978,6 +1029,35 @@
       \verb{url}
       \verb https://proceedings.neurips.cc/paper/2018/hash/14491b756b3a51daac41c24863285549-Abstract.html
       \endverb
+    \endentry
+    \entry{puntanen2013methods}{article}{}
+      \name{author}{1}{}{%
+        {{hash=379c8eaf771e9f01de4c0bcfb50252f4}{%
+           family={Puntanen},
+           familyi={P\bibinitperiod},
+           given={Simo},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \strng{fullhash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \strng{bibnamehash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \strng{authorbibnamehash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \strng{authornamehash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \strng{authorfullhash}{379c8eaf771e9f01de4c0bcfb50252f4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Statistical Review}
+      \field{number}{2}
+      \field{title}{Methods of multivariate analysis, by alvin c. rencher, william f. christensen}
+      \field{volume}{81}
+      \field{year}{2013}
+      \field{pages}{328\bibrangedash 329}
+      \range{pages}{2}
     \endentry
     \entry{ribeiro2018}{article}{}
       \name{author}{3}{}{%

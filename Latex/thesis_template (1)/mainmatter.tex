@@ -31,11 +31,9 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \chapter{Machine Learning and its Interpretability}
 \label{sec:MLandI}
 
-In the rapidly evolving landscape of machine learning, interpretability has emerged as an important concept. Before going in-depth into various algorithms and methods, the fundamental question of: "What is interpretable Machine Learning (IML) and why do we need it?" is answered.
+In the rapidly evolving landscape of machine learning, interpretability has emerged as an important concept. Before going in-depth into various algorithms and methods, the fundamental question of: "What is interpretable Machine Learning (IML) and why do we need it?" is answered .
 \\
-A broad definition of IML given by \cite{allen2023interpretable}: "Interpretable machine learning is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output." This definition underscores the important role of understanding complex models and allowing humans to understand the computation.
-\\
-
+A broad definition of IML given by \cite{allen2023interpretable}: "Interpretable machine learning is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output." \\
 Interpretability is important for various reasons, ranging from model validation and debugging to fostering validation and trust. Allen\cite{allen2023interpretable} summarizes a number of objectives for interpretable machine learning: 
 \\\\
 \textbf{Model Validation}: Interpretable models are essential for validating (by a human) whether a learned model behaves as expected and consistently aligns with prior expectations and knowledge about the system.
@@ -54,13 +52,13 @@ Before going into detail about the different methods of interpretability an over
 
 In supervised machine learning, there are a range of foundational classification methods. They are briefly introduced and analyzed for their interpretability. This section analyzes the base functionality of each algorithm. Furthermore, an analysis of the interpretability from a human perspective is made.
 \\
-The interpretability of algorithms depends on two factors, \cite{molnar2022}. When determining the transparency of an algorithm, we evaluate the human interpretability of how the model learns from the underlying structure of the data. Is it possible for a human to understand the implications of the mathematical operations? The second factor is the interpretability of the learned parameters. Understanding the factors of a linear regression model is easy. Grasping the millions of weights in a neural network is impossible.
+The interpretability of algorithms depends on two factors \cite{molnar2022}. When determining the transparency of an algorithm, we evaluate the human interpretability of how the model learns from the underlying structure of the data. Is it possible for a human to understand the implications of the mathematical operations? The second factor is the interpretability of the learned parameters. Understanding the factors of a linear regression model is easy. Grasping the millions of weights in a neural network is impossible.
 
 In this section, we present a selection of frequently employed supervised machine learning techniques. As will become clear in the following subsections, interpretability was predominantly achieved through the methods' inherent interpretability.
 
 \subsection{Linear Models}
 
-When predicting outcomes, one of the simplest methods is to use a linear regression model. This model predicts by adding up n features ($x_n$) multiplied by an respective individual weight ($\alpha_n$). The predictive output $\hat{y}_i$ is calculated:
+When predicting outcomes, one of the simplest methods is to use a linear regression model \cite{puntanen2013methods}. This model predicts by adding up n features ($x_n$) multiplied by an respective individual weight ($\alpha_n$). The predictive output $\hat{y}_i$ is calculated:
 
 $$ \hat{y}_i= \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 +... +\alpha_n x_{n} + \epsilon$$
 
@@ -85,7 +83,7 @@ Although linear models possess comprehensibility, provide a straightforward meth
 
 \subsection{Distance-based Methods}
 \label{KNN}
-K-Nearest Neighbors serves as a classification method by considering the nearest neighbours. 
+K-Nearest Neighbors\cite{Mucherino2009} serves as a classification method by considering the nearest neighbours. 
 
 
 Assume you have a dataset $D={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$ where $x_i$ represents the feature vectors, and $y_i$ represents the corresponding class labels. Each $x_i$ is a point in a multidimensional feature space, and $y_i$ belongs to one of the classes (e.g., $y_i \in 0,1$) for binary classification). 
