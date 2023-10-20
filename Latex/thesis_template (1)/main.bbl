@@ -124,6 +124,40 @@
       \verb https://doi.org/10.48550/arXiv.2308.01475
       \endverb
     \endentry
+    \entry{apley2019visualizing}{article}{}
+      \name{author}{2}{}{%
+        {{hash=30a40196e25005697515f35d84dc7f7c}{%
+           family={Apley},
+           familyi={A\bibinitperiod},
+           given={Daniel\bibnamedelima W},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=1c6c475d2747a6f8212d083ea1306a75}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Jingyu},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{fullhash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{bibnamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authorbibnamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authornamehash}{413798db00a1ae1fe2ab08260ee163d9}
+      \strng{authorfullhash}{413798db00a1ae1fe2ab08260ee163d9}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Royal Statistical Society Series B: Statistical Methodology}
+      \field{number}{4}
+      \field{title}{Visualizing the effects of predictor variables in black box supervised learning models}
+      \field{volume}{82}
+      \field{year}{2020}
+      \field{pages}{1059\bibrangedash 1086}
+      \range{pages}{28}
+    \endentry
     \entry{boser1992training}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=5144f9b0b0cb5276c5c4e682227daba7}{%
@@ -341,6 +375,32 @@
       \field{pages}{141\bibrangedash 142}
       \range{pages}{2}
     \endentry
+    \entry{friedman2008predictive}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ce884cc144616c39e723a8fe2eb3c879}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome\bibnamedelima H},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=595461cebb57ede5d60b584053e013a5}{%
+           family={Popescu},
+           familyi={P\bibinitperiod},
+           given={Bogdan\bibnamedelima E},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \strng{fullhash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \strng{bibnamehash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \strng{authorbibnamehash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \strng{authornamehash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \strng{authorfullhash}{06b22d2d89eef94cc5ae4939a3026ebe}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Predictive learning via rule ensembles}
+      \field{year}{2008}
+    \endentry
     \entry{goldstein2014peeking}{article}{}
       \name{author}{4}{}{%
         {{hash=7b82bca87a794cd9a15787f225a55879}{%
@@ -384,6 +444,65 @@
       \field{year}{2015}
       \field{pages}{44\bibrangedash 65}
       \range{pages}{22}
+    \endentry
+    \entry{goodfellow2014generative}{inproceedings}{}
+      \name{author}{8}{}{%
+        {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=a341d25f80a8118cdbb90b272adc8b4f}{%
+           family={Pouget-Abadie},
+           familyi={P\bibinithyphendelim A\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9e80f4779b032f68a6106e1424345450}{%
+           family={Mirza},
+           familyi={M\bibinitperiod},
+           given={Mehdi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=743dd6cdaa6639320289d219d351d7b7}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Bing},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e8151f1b8f85a048cacb34f374ec922b}{%
+           family={Warde-Farley},
+           familyi={W\bibinithyphendelim F\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=9ca00ffd7cc35f7cfb8f698aa9239c76}{%
+           family={Ozair},
+           familyi={O\bibinitperiod},
+           given={Sherjil},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ccec1ccd2e1aa86960eb2e872c6b7020}{%
+           family={Courville},
+           familyi={C\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{fullhash}{fa2b4fb373e75fcf07b4b987e4507545}
+      \strng{bibnamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authorbibnamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authornamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authorfullhash}{fa2b4fb373e75fcf07b4b987e4507545}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in neural information processing systems}
+      \field{title}{Generative adversarial nets}
+      \field{year}{2014}
+      \field{pages}{2672\bibrangedash 2680}
+      \range{pages}{9}
     \endentry
     \entry{PDP}{article}{}
       \name{author}{3}{}{%
@@ -523,6 +642,34 @@
       \verb{url}
       \verb https://doi.org/10.1109/CVPR.2016.90
       \endverb
+    \endentry
+    \entry{ho1995random}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=bd8f33685f26fc02be5f9e5ffb9fe0ed}{%
+           family={Ho},
+           familyi={H\bibinitperiod},
+           given={Tin\bibnamedelima Kam},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{fullhash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{bibnamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authorbibnamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authornamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authorfullhash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of 3rd international conference on document analysis and recognition}
+      \field{title}{Random decision forests}
+      \field{volume}{1}
+      \field{year}{1995}
+      \field{pages}{278\bibrangedash 282}
+      \range{pages}{5}
     \endentry
     \entry{hooker2019benchmark}{article}{}
       \name{author}{4}{}{%
@@ -1083,6 +1230,7 @@
       \strng{authorbibnamehash}{c7fb13336260705c353d0f4e6a247453}
       \strng{authornamehash}{c7fb13336260705c353d0f4e6a247453}
       \strng{authorfullhash}{c7fb13336260705c353d0f4e6a247453}
+      \field{extraname}{1}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
       \field{labelnamesource}{author}
@@ -1095,6 +1243,41 @@
       \verb{doi}
       \verb 10.1609/aaai.v32i1.11491
       \endverb
+    \endentry
+    \entry{ribeiro2016should}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=9203dc724f298030e81ba470feb309af}{%
+           family={Ribeiro},
+           familyi={R\bibinitperiod},
+           given={Marco\bibnamedelima Tulio},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=0b9694812f0dc77974d99bb875a76d48}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Sameer},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c9ab8ac486d7f85ac914b1a8e51e512b}{%
+           family={Guestrin},
+           familyi={G\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{70906198418f30a779bc9bda0f6ae1f1}
+      \strng{fullhash}{70906198418f30a779bc9bda0f6ae1f1}
+      \strng{bibnamehash}{70906198418f30a779bc9bda0f6ae1f1}
+      \strng{authorbibnamehash}{70906198418f30a779bc9bda0f6ae1f1}
+      \strng{authornamehash}{70906198418f30a779bc9bda0f6ae1f1}
+      \strng{authorfullhash}{70906198418f30a779bc9bda0f6ae1f1}
+      \field{extraname}{2}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining}
+      \field{title}{" Why should i trust you?" Explaining the predictions of any classifier}
+      \field{year}{2016}
+      \field{pages}{1135\bibrangedash 1144}
+      \range{pages}{10}
     \endentry
     \entry{Samek_2019}{incollection}{}
       \name{author}{2}{}{%
@@ -1410,6 +1593,44 @@
       \verb http://proceedings.mlr.press/v70/sundararajan17a.html
       \endverb
     \endentry
+    \entry{wachter2017counterfactual}{article}{}
+      \name{author}{3}{}{%
+        {{hash=59ac5c27b9899cd85e028b00eb90b236}{%
+           family={Wachter},
+           familyi={W\bibinitperiod},
+           given={Sandra},
+           giveni={S\bibinitperiod}}}%
+        {{hash=679ae40882b0f242219bac2316e5b296}{%
+           family={Mittelstadt},
+           familyi={M\bibinitperiod},
+           given={Brent},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c40407f768dd3e8b296a11750ad77f41}{%
+           family={Russell},
+           familyi={R\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {HeinOnline}%
+      }
+      \strng{namehash}{584603fb415d7e6a18195803c5ad6676}
+      \strng{fullhash}{584603fb415d7e6a18195803c5ad6676}
+      \strng{bibnamehash}{584603fb415d7e6a18195803c5ad6676}
+      \strng{authorbibnamehash}{584603fb415d7e6a18195803c5ad6676}
+      \strng{authornamehash}{584603fb415d7e6a18195803c5ad6676}
+      \strng{authorfullhash}{584603fb415d7e6a18195803c5ad6676}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Harv. JL \& Tech.}
+      \field{title}{Counterfactual explanations without opening the black box: Automated decisions and the GDPR}
+      \field{volume}{31}
+      \field{year}{2017}
+      \field{pages}{841}
+      \range{pages}{1}
+    \endentry
     \entry{yang2019benchmarking}{article}{}
       \name{author}{2}{}{%
         {{hash=ece2772cc354477642ab3bf025e29752}{%
@@ -1628,6 +1849,49 @@
       \field{year}{2018}
       \field{pages}{1084\bibrangedash 1102}
       \range{pages}{19}
+    \endentry
+    \entry{zhang2023survey}{article}{}
+      \name{author}{5}{}{%
+        {{hash=733e3732b7e3ce5cf2b04cf5e9bd9cf1}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Tianyi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c92fb4d761d5c067a9eb42b2a2cf1521}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zheng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=dc6a25244d65d1c3b76b8da8ba84b54c}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod}}}%
+        {{hash=899beb3970d098d4fe8b984bb3d18905}{%
+           family={Tasnim},
+           familyi={T\bibinitperiod},
+           given={Mohiuddin\bibnamedelima Muhammad},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=b4e22f2196e5fdf40a8499f2d3f8bf02}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7341c276394125587ea24e5ba844df4}
+      \strng{fullhash}{6c97decfdf12d116e303c07e0bad6935}
+      \strng{bibnamehash}{b7341c276394125587ea24e5ba844df4}
+      \strng{authorbibnamehash}{b7341c276394125587ea24e5ba844df4}
+      \strng{authornamehash}{b7341c276394125587ea24e5ba844df4}
+      \strng{authorfullhash}{6c97decfdf12d116e303c07e0bad6935}
+      \field{extraname}{3}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2308.13142}
+      \field{title}{A Survey of Diffusion Based Image Generation Models: Issues and Their Solutions}
+      \field{year}{2023}
     \endentry
   \enddatalist
 \endrefsection
