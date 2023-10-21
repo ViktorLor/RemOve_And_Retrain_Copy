@@ -424,15 +424,15 @@ Due to resource constraints, the research was limited to evaluating Food-101 \ci
 
 \section{Graying out Pixels}
 \label{gray}
-In ROAR, pixels are grayed out to hide potentially informative pixels. Graying out pixels does not necessarily mean that the information is completely hidden. To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following factors\cite{hooker2019benchmark} should be considered:
+In ROAR, pixels are grayed out to hide potentially informative pixels. Graying out pixels does not necessarily mean that the information is completely hidden. To provide a theoretical explanation for the implications of removing input dimensions on the resulting accuracy, the following two factors\cite{hooker2019benchmark} should be considered:
 
 \begin{enumerate}
 	\item Input dimensions are removed and the accuracy of the model drops:\\ The removed input was informative for the model and their absence reduces the ability of the model to identify the correct class.
 	
-	\item We remove inputs and the accuracy of the model does not drop.\\ (a) It is possible that the removed input dimensions were not important for the model’s decision-making	process. The attribution map failed to identify important features, such as background pixels. (b) The input could be redundant and the information can be reconstructed using other available inputs. 
+	\item We remove inputs and the accuracy of the model does not drop.\\ (a) It is possible that the removed input dimensions were not important for the model’s decision-making process. The attribution map failed to identify important features, such as background pixels. (b) The input could be redundant and the information can be reconstructed using other available inputs. 
 \end{enumerate}
 
-Because images in 3D space are very complex it is very difficult to make a human evaluation if the removal of pixels is correct. Therefore, human intuition can prove wrong.
+Removing pixels in RGB images can create new patterns for models to predict. Therefore, human assumptions about the effect of removing pixels should be made only after careful consideration.
 
 
 \section{Project Setup MNIST}
@@ -481,7 +481,8 @@ G. Results
 	
 \end{figure}
 
-Figure 6.2 shows the decay in the accuracy of the random baseline and the integrated gradient. Integrated Gradient seems to have a faster information decay, and at 90\% of the grayed-out pixels, the classification is 10\%, which is the same as a random classification. Note that Integrated Gradient has a very high standard deviation at 70\%. This is because two control runs happened to learn a random classification, while the other three still managed to learn a classification. In this experiment, Integrated Gradient seems to identify more informative pixels than the random baseline for the MNIST dataset, and this assumption is supported by ROAR.
+Figure 6.2 shows the decay in the accuracy of the random baseline and the integrated gradient. Integrated Gradient seems to have a faster information decay, and at 90\% of the grayed-out pixels, the classification is 10\%, which is the same as a random classification. Note that Integrated Gradient has a very high standard deviation at 70\%. This is because two control runs happened to learn a random classification, while the other three still managed to learn a classification. In this experiment, Integrated Gradient seems to identify more informative pixels than the random baseline for the MNIST dataset. \\
+One possible explanation for this result, which differs from that of the ROAR experiments, is that for simple models, such as the one used in this experiment, and for simple data sets, such as the MNIST data set, it is easier for attribution methods to find informative pixels. Furthermore, the structure of a gray-scale image is easier than a RGB image.
 
 \section{Project Setup Food-101}
 
@@ -509,12 +510,12 @@ B. Results
 	\label{fig:food101Res}
 \end{figure}
 
-Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. Our experiments confirm the results of the original paper. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the method can be used to reliably test attribution methods. While our accuracy drops faster, this is likely due to the different training setups.
+Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. Our experiments confirm the results of the original paper. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the method can be used to reliably test attribution methods. While our accuracy drops more quickly, this is probably due to the different training setups. The standard deviations are small and it appears that the results can be replicated consistently.
 
 \section{Summary and Interpretation}
 
-The main idea of ROAR was confirmed using the example of MNIST. For simple datasets such as MNIST, the concept can clearly be shown to be meaningful. However, the performance of interpretability methods appears to vary for different datasets and models. This sensitivity to the dataset and model makes it difficult to judge whether the results stem from the method or other effects.
+The main idea of ROAR was confirmed using MNIST as an example. For simple datasets such as MNIST, the concept can clearly be shown to be meaningful. However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to dataset and model makes it difficult to judge whether the results are due to the method or the training parameters.
 
-While the underlying logic of ROAR makes sense, it seems to prove difficult to be employed in practice. Nevertheless, it shows how little we know about evaluating interpretability methods for deep neural networks.
+Although the underlying logic of ROAR makes sense, it appears to be difficult to apply in practice. Different results are obtained depending on the training setup. Nevertheless, it shows how little we know about evaluating interpretability methods for deep neural networks.
 
 

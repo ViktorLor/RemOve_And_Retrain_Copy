@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  20 OCT 2023 23:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.8.11)  21 OCT 2023 12:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1963,7 +1963,7 @@ re not im-por-tant for the model's decision-
 
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 443.
+Package pdftex.def Info: cover/jkuen.png  used on input line 438.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
 [26
 
@@ -1991,25 +1991,19 @@ Package pdftex.def Info: cover/jkuen.png  used on input line 483.
  [28 <./figs/IGvsRandom.png>]
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
-Package pdftex.def Info: cover/jkuen.png  used on input line 494.
+Package pdftex.def Info: cover/jkuen.png  used on input line 495.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
  [29 <./figs/mean_accuracy_vs_threshold.png>]
 <figs/Acurracy Plots.png, id=484, 903.375pt x 376.40625pt>
 File: figs/Acurracy Plots.png Graphic file (type png)
 <use figs/Acurracy Plots.png>
-Package pdftex.def Info: figs/Acurracy Plots.png  used on input line 507.
+Package pdftex.def Info: figs/Acurracy Plots.png  used on input line 508.
 (pdftex.def)             Requested size: 455.24408pt x 189.69022pt.
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 514.
 (pdftex.def)             Requested size: 85.35826pt x 41.9339pt.
- [30 <./figs/Acurracy Plots.png>]
-Overfull \hbox (33.11142pt too wide) in paragraph at lines 518--519
-\T1/ppl/m/n/10.95 prac-tice. Nev-er-the-less, it shows how lit-tle we know abou
-t ma-chine learn-ing mod-els. 
- []
-
-)
+ [30 <./figs/Acurracy Plots.png>])
 File: cover/jkuen.png Graphic file (type png)
 <use cover/jkuen.png>
 Package pdftex.def Info: cover/jkuen.png  used on input line 177.
@@ -2017,7 +2011,8 @@ Package pdftex.def Info: cover/jkuen.png  used on input line 177.
  [31]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 79.
- (C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+
+(C:\Users\Vik\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 Overfull \hbox (2.3373pt too wide) in paragraph at lines 180--180
@@ -2140,7 +2135,7 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/Vik/
 AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Vik
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Vi
 k/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on MAIN.pdf (42 pages, 3065631 bytes).
+Output written on MAIN.pdf (42 pages, 3066022 bytes).
 PDF statistics:
  832 PDF objects out of 1000 (max. 8388607)
  158 named destinations out of 1000 (max. 500000)
