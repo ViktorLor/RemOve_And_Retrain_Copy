@@ -6,7 +6,7 @@
 
 Artificial Intelligence (AI) has undergone rapid development in the last few years. In today's modern era of mobile phones and computers, algorithms are used on a daily basis to have quick access to information and improve the efficiency of daily life. To ensure optimal performance of these algorithms, it is necessary to interpret their inner workings and functionality \cite{allen2023interpretable}. Several inherently interpretable algorithms exist (e.g.: Decision Trees, Linear Regression, Support Vector Machines, etc.), but deep neural networks (DNNs) achieve better performance in various tasks.
 
-This transition in DNNs is attributed to the increase in computational power and the exponential increase in accessible data. Despite their remarkable accuracy, a major challenge is that deep neural networks remain opaque black boxes that we struggle to understand \cite{Samek_2019}. Nevertheless, the immense improvement in performance and their ability to handle massive datasets have led to widespread adoption in various sectors \cite{zhang2022ai}. It is predicted that algorithms based on neural networks will become increasingly popular in the next few years \cite{zhang2022ai}.
+This transition in DNNs is attributed to the increase in computational power and the exponential increase in accessible data. Despite their remarkable accuracy, a major challenge is that deep neural networks remain opaque black boxes which we struggle to understand \cite{Samek_2019}. Nevertheless, the immense improvement in performance and their ability to handle massive datasets have led to widespread adoption in various sectors \cite{zhang2022ai}. It is predicted that algorithms based on neural networks will become increasingly popular in the next few years \cite{zhang2022ai}.
 
 However, one of the main difficulties with neural networks is the lack of reliable interpretation techniques. Understanding the models is required for several reasons. Regulatory laws require the data to be understandable. Additionally, the lack of interpretability in machine learning models leads to the presence of biases, such as gender discrimination and racial disparities \cite{allen2023interpretable}. Without a thorough understanding of how a model works, it becomes extremely difficult to confirm its functionality. This leads users to distrust and avoid machine learning systems \cite{allen2023interpretable}. In addition to these user-centric benefits, it also supports the model development process and allows experts to extract valuable insights \cite{Samek_2019}.
  
@@ -59,31 +59,31 @@ When predicting outcomes, one of the simplest methods is to use a linear regress
 
 $$ \hat{y}_i= \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 +... +\alpha_n x_{n} + \epsilon$$
 
-The alphas $\alpha_i$ indicate the correlation of each feature. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline. The noise $\epsilon$ describes the inevitable errors from inherent non-linearity in real-world dynamics or measurement inaccuracies.
+The alphas $\alpha_i$ indicate the correlation of a feature with the target. The initial coefficient $\alpha_0$ is known as the intercept, signifying the baseline. The noise $\epsilon$ describes the inevitable errors from inherent non-linearity in real-world dynamics or measurement inaccuracies.
 \\
 To train the model, the MSE-Loss (Mean Squared Error) or the ABS-Loss (Absolute Loss) is applied between the true label $y_i$ and the predicted label $\hat{y}_i$. The goal is to minimize this loss function. 
 
 $$ \text{MSE-Loss} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 $$ \text{ABS-Loss} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 \\
-The interpretation of the model is simple. The factors are described through the coefficient matrix. Each feature is distinctive to the model and the weighting is visible in the factors $\alpha_{i}$ (assuming normalization).
+The interpretation of the model is simple. The factors are described through the coefficient matrix. Each feature is distinctive to the model and the weighting is visible in the vector $\alpha$ (assuming normalization).
 
 $$ \alpha = \begin{bmatrix}
 	\alpha_0 & \\
 	\alpha_1 & \\
 	... & \\
-	\alpha_i &
+	\alpha_n &
 \end{bmatrix}
 $$
 
-Although linear models possess comprehensibility, provide a straightforward method for prediction and are inherently understandable, their application is limited to linear relationships and small datasets. In the domain of image recognition, it is not applicable because the features are not linearly correlated.
+While linear models offer comprehensibility and a simple method of prediction, their application is restricted to data sets where there is a linear relationship between one or more variables and the target. In the domain of image recognition, it is not applicable because the features and the target are not linearly correlated.
 
 \subsection{Distance-based Methods}
 \label{KNN}
-K-Nearest Neighbours (KNN)\cite{Mucherino2009} serves as a classification method by considering the nearest neighbours. 
+K-Nearest Neighbours (KNN) \cite{Mucherino2009} serves as a classification method by considering the nearest neighbours. 
 
 
-Assume you have a dataset $D={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$ where $x_i$ represents the feature vectors, and $y_i$ represents the corresponding class labels. Each $x_i$ is a point in a multidimensional feature space, and $y_i$ belongs to one of the classes (e.g., $y_i \in [0,1]$ for binary classification). 
+Assume you have a dataset $D={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$ where $x_i$ represents the feature vectors, and $y_i$ represents the corresponding class labels. Each $x_i$ is a point in a multidimensional feature space, and $y_i$ belongs to one of the classes (e.g., $y_i \in \{0,1\}$ for binary classification). 
 Given a new data point $x_{new}$ that you want to classify, KNN works as follows:\\
 
 1. Calculate the distance between $x_{new}$ and all other data points in the training dataset.\\
@@ -91,21 +91,21 @@ Given a new data point $x_{new}$ that you want to classify, KNN works as follows
 3. Count the number of data points in each class among the selected KK neighbours.\\
 4. Assign $x_{new}$ to the class that has the majority of neighbours.\\
 
-Although KNN's parameters are not interpretable by default, the underlying concept is straightforward: A sample has the same class as samples with similar features. This makes KNN inherently interpretable and makes it a common choice when interpretability is needed. However, KNN encounter difficulties when dealing with many features and larger datasets, therefore using it for image recognition is not recommended.
+During training, KNN does not store any parameters but rather constructs an underlying data structure which is interpretable, for example, a ball tree or k-d tree. This makes KNN a widely used technique when interpretability is needed. However, when it comes to dealing with large datasets and many features, KNN faces considerable challenges. Therefore, it is not recommended to use KNN for image recognition purposes.
 
 \subsection{Support Vector Machines}
 
-Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector $\vec{w}$, and the closest data points $x_i$ from each class. This is done to ensure that the datasets are separated as much as possible. Because there may be classification errors and noise in the dataset, it is possible to set an initial regularization parameter $C$ to handle outliers.
+Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector ${w}$, and the closest data points $x_i$ from each class. This is done to ensure that the datasets are separated as much as possible. Because there may be classification errors and noise in the dataset, it is possible to set an initial regularization parameter $C$ to handle outliers.
 
-The optimization problem SVM in mathematical notion:
+The optimization problem SVM (for binary classification) in mathematical notion:
 
-$$\text{Minimize } \frac{1}{2} \|\vec{w}\|^2 + C \sum_{i=1}^{n} \xi_i$$
+$$\text{Minimize } \frac{1}{2} \|{w}\|^2 + C \sum_{i=1}^{n} \xi_i$$
 
-$$\text{Subject to } y_i (\vec{w} \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
+$$\text{Subject to } y_i (c{w} \cdot x_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0 \text{ for } i = 1, \ldots, n$$
 
-$\sum_{i=1}^{n} \xi_i$ represents the sum of slack variables ($\xi_i$), which measure how much a data point violates the margin constraint. While maximising the margin, Support Vector Machines (SVM) seek to reduce this sum, minimizing the violations. $ b $ is the bias term, which shifts the hyperplane away from the origin.
+$\sum_{i=1}^{n} \xi_i$ represents the sum of slack variables ($\xi_i$), which measure how much a data point violates the margin constraint. While maximising the margin, Support Vector Machines (SVM) seek to reduce this sum, minimizing the violations. $ b $ is the bias term, which shifts the hyperplane away from the origin. For multiclass classification, a "One vs One" or "One vs Rest" approach can be used, in which multiple SVMs are trained.
 
-SVMs can handle non-linear data through the kernel trick, in which a kernel is applied to the data, transforming it to a different space before computing the hyperplane. However, as the dimensionality increases, SVMs become non-interpretable, making it challenging to visualize and understand the weight matrix. Moreover, SVMs struggle with larger datasets and high-dimensional feature spaces, making them less effective for image classification.
+SVMs can handle non-linear data through the kernel trick, in which a kernel is applied to the data, transforming it to a different space before computing the hyperplane.  However, as the dimensionality increases, SVMs become non-interpretable, making it challenging to visualize and understand the weight matrix. Moreover, SVMs struggle with larger datasets and high-dimensional feature spaces, making them less effective for image classification.
 
 
 \subsection{Decision Trees}
@@ -123,7 +123,7 @@ Decision trees are a commonly used machine learning algorithm that proves effect
 
 The classes are separated in each root node by a decision criterion: $F_i$ <= criterion. The Gini impurity is commonly used for calculating the splitting criterion, which aims to best separate the data in the leaf. New nodes are defined until the dataset is perfectly separated. However, this makes decision trees prone to overfitting as the model becomes overly complex and captures noise or random fluctuations in the training data, rather than the underlying patterns or relationships. Consequently, the resulting tree fits the training data exceptionally but does not generalize well to new or unseen data. 
 
-The depth of the tree can be restricted to avoid overfitting. Then, the majority is utilised to assign a label to the leaf. The depth of the tree can be restricted to avoid overfitting. Nevertheless, as the dimensionality grows, determining the depth becomes more and more challenging.
+The depth of the tree can be restricted to avoid overfitting. Then, the majority is utilised to assign a label to the leaf. Nevertheless, as the dimensionality grows, determining the depth becomes more and more challenging.
 
 Random forests\cite{ho1995random}, comprise many decision trees and are known to prevent overfitting. However, they tend to be more challenging to interpret because of the use of multiple algorithms. Techniques like SHAP values \cite{lundberg2017unified} or partial dependence plots \cite{PDP} can be employed to make them more understandable.
 \\
@@ -218,7 +218,7 @@ In the pursuit of comprehending the complexity of Deep Neural Networks, it makes
 \subsection{Feature Visualization}
 \label{sec:network_dissection}
 
-Feature Visualization aims to make parameters in singular layers in neural networks understandable. The goal is to give an understanding of a deep neural network by dissecting each layer and understanding the underlying parameters through visualization.
+Feature Visualization aims to make parameters in single layers in neural networks understandable. The goal is to give an understanding of a deep neural network by dissecting each layer and understanding the underlying parameters through visualization.
 
 The higher-level features in these networks relate to clear concepts, shown in Figure \ref{fig:feature-visualization}. As the features (image-pixels) pass through the layers, the resembled structure changes at each layer. In each convolutional layer, the network gains new and more complex features. The joining of fully connected layers then converts image-based data into predictions.
 \\
@@ -264,7 +264,7 @@ Attribution maps are typically calculated using SHAP\cite{lundberg2017unified} o
 
 \subsection{Visualizing Image Classification Models and \& Deconv-Net}
 
-Visualizing image classification models (Vanilla Gradient) \cite{simonyan2014deep} focuses on computing gradients within neural networks. It involves generating a forward pass of an image and then computing gradients for the class scores. These gradients are then visualized. However, this method faces two challenges. First, when Rectified Linear Units (ReLU) are used, negative gradients are seen as unimportant and are set to zero. This leads to an information loss in the gradients. Second, in pooling layers, gradients are absent.
+Visualizing image classification models (Vanilla Gradient) \cite{simonyan2014deep} focuses on computing gradients within neural networks. It involves generating a forward pass of an image and then computing gradients for the class scores. These gradients are then visualized. However, this method faces two challenges. First, when Rectified Linear Units (ReLU) are used, negative gradients are set to zero. This leads to an information loss in the gradients. Second, in pooling layers, gradients are absent.
 \\
 The Devonc-Net from Zeiler \cite{zeiler2013visualizing} addresses these problems:
 A Deconv-Net-layer \cite{Zeiler2011AdaptiveDN} is attached to each convolutional layer providing a path back to the image pixels. The Devonc-Net learns weights to reverse the process from input to the last convolutional layer. Unpooling in Deconv-Net addresses the non-invertibility of pooling operations by preserving the original maxima locations through switch variables, which are used to reconstruct the activations. To maintain positive signals during reconstruction, a reverse ReLU non-linearity is applied in each layer, similar to the forward pass. Additionally, Deconv-Net utilizes transposed filters, effectively mirroring each filter both vertically and horizontally to achieve filtering in the reverse direction.
@@ -336,7 +336,7 @@ There exist many more attribution maps but there exists one major problem: There
 This chapter discusses the evaluation of attribution maps and the underlying gradient methods. Finding appropriate evaluation methods for attribution maps is difficult. A significant challenge is the lack of ground truths in attribution maps. Nevertheless, several evaluation methods have been developed that attempt to assess the performance of saliency methods. While they do not provide an objective truth as to whether one saliency method outperforms another in all tests, they can provide some indication of the effectiveness of saliency methods. Gupta\cite{gupta2022new} suggests that these evaluation methods can be broadly categorized into two types:
 
 \textbf{Extrinsic Evaluation}: 
-The evaluation is compared against predefined ground truths explanations, established by a human annotator or by another network e.g.(\cite{zhang2018}). However, the sheer amount of images makes the evaluation challenging. Furthermore, the quality of an attribution map is hard to judge. When is an evaluation correct? Also, Adebayo \cite{adebayo2020sanity} underscores the issue of confirmation bias, where an explanation may be considered correct because it highlights the same regions as humans might choose, but it is not sure that the model employs the same learned concepts. 
+The evaluation is compared against predefined ground truths explanations, established by a human annotator or by another network e.g.(\cite{zhang2018}). However, the sheer amount of images makes the evaluation challenging. It is difficult to establish a ground-truth for attribution. Also, Adebayo \cite{adebayo2020sanity} underscores the issue of confirmation bias, where an explanation may be considered correct because it highlights the same regions as humans might choose, but it is not sure that the model employs the same learned concepts. 
 
 \textbf{Intrinsic Evaluation}: 
 Intrinsic methods rely on computational analyses within the neural network itself, without requiring human judgments. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using either the same model\cite{dabkowski2017real} or new models are trained and evaluated\cite{hooker2019benchmark}. While both these methods generate meaningful results, they do not offer an objective evaluation method. Without re-training it is not clear if the degrade in performance stems from the distribution shift or the removal of informative features \cite{hooker2019benchmark}. By re-training the model, a different model is evaluated. 
@@ -362,7 +362,7 @@ These two metrics are useful for evaluating the correctness of masking. However,
 
 In the paper by Samek\cite{samek2017} a method is described, where the most important pixels detected by an attribution method are systematically replaced with randomly sampled values using a greedy algorithm. The objective is to measure the impact on the classification value f(x). The method can be applied by only removing the important pixels or by defining a local neighborhood around the pixel which is replaced as well. This neighborhood is defined because, from the context of the nearby pixels, the same information can be deduced.
 
-While the method produces results which confirm that removing important pixels leads to a performance drop, the models are not retrained. This leads to an evaluation of a different data distribution and violates the assumption of a similar data distribution for the train and test data.
+While the method produces results which confirm that removing important pixels leads to a performance drop, the models are not retrained \cite{hooker2019benchmark}. This leads to an evaluation of a different data distribution and violates the assumption of a similar data distribution for the train and test data.
 
 \section{A Benchmark for Interpretability Methods in Deep Neural Networks }
 
