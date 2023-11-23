@@ -776,6 +776,112 @@
       \field{pages}{3149\bibrangedash 3157}
       \range{pages}{9}
     \endentry
+    \entry{Kindermans2019}{inbook}{}
+      \name{author}{8}{}{%
+        {{hash=7f7e0a5910ade4b14a74f3a61e46f917}{%
+           family={Kindermans},
+           familyi={K\bibinitperiod},
+           given={Pieter-Jan},
+           giveni={P\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=c26c60500cfffd20972310345c0a7a96}{%
+           family={Hooker},
+           familyi={H\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=13c8415286093e947788ee180780fd7a}{%
+           family={Adebayo},
+           familyi={A\bibinitperiod},
+           given={Julius},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c7f51f4349a74237966109fa15718a4d}{%
+           family={Alber},
+           familyi={A\bibinitperiod},
+           given={Maximilian},
+           giveni={M\bibinitperiod}}}%
+        {{hash=81311ad4426e968e8d85d88fd54a0e58}{%
+           family={Schütt},
+           familyi={S\bibinitperiod},
+           given={Kristof\bibnamedelima T.},
+           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=f5f4caac6e648673c3d098b629a49295}{%
+           family={Dähne},
+           familyi={D\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8bbc4c5d96f205bada839e74e0202146}{%
+           family={Erhan},
+           familyi={E\bibinitperiod},
+           given={Dumitru},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a11a6718c039f3e3f3f31167e5094c10}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Been},
+           giveni={B\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=7f49b6382ab4ca917a2aa2249f875f79}{%
+           family={Samek},
+           familyi={S\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+        {{hash=e0889b25b37f68a2d73747dc5dfcb8a0}{%
+           family={Montavon},
+           familyi={M\bibinitperiod},
+           given={Grégoire},
+           giveni={G\bibinitperiod}}}%
+        {{hash=85ab53268da1006b51b453d57d3566f2}{%
+           family={Vedaldi},
+           familyi={V\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7a7130546e0e77ad18f09ab8062ec764}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={Lars\bibnamedelima Kai},
+           giveni={L\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=9f1b6144a45b1967e989e74552e37ada}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Klaus-Robert},
+           giveni={K\bibinithyphendelim R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{c24793cdb1eb92b2bc17bbb58652f53a}
+      \strng{fullhash}{d624ec6b0d068ca971ca9a87dcdbb60f}
+      \strng{bibnamehash}{c24793cdb1eb92b2bc17bbb58652f53a}
+      \strng{authorbibnamehash}{c24793cdb1eb92b2bc17bbb58652f53a}
+      \strng{authornamehash}{c24793cdb1eb92b2bc17bbb58652f53a}
+      \strng{authorfullhash}{d624ec6b0d068ca971ca9a87dcdbb60f}
+      \strng{editorbibnamehash}{341d993b247c87792776bbde4307294e}
+      \strng{editornamehash}{341d993b247c87792776bbde4307294e}
+      \strng{editorfullhash}{c7d29e58961350a826e01b818b038e8e}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Saliency methods aim to explain the predictions of deep neural networks. These methods lack reliability when the explanation is sensitive to factors that do not contribute to the model prediction. We use a simple and common pre-processing step which can be compensated for easily---adding a constant shift to the input data---to show that a transformation with no effect on how the model makes the decision can cause numerous methods to attribute incorrectly. In order to guarantee reliability, we believe that the explanation should not change when we can guarantee that two networks process the images in identical manners. We show, through several examples, that saliency methods that do not satisfy this requirement result in misleading attribution. The approach can be seen as a type of unit test; we construct a narrow ground truth to measure one stated desirable property. As such, we hope the community will embrace the development of additional tests.}
+      \field{booktitle}{Explainable AI: Interpreting, Explaining and Visualizing Deep Learning}
+      \field{isbn}{978-3-030-28954-6}
+      \field{title}{The (Un)reliability of Saliency Methods}
+      \field{year}{2019}
+      \field{pages}{267\bibrangedash 280}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1007/978-3-030-28954-6_14
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-030-28954-6_14
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-030-28954-6_14
+      \endverb
+    \endentry
     \entry{krizhevsky2012nn}{article}{}
       \name{author}{3}{}{%
         {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%

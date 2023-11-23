@@ -514,13 +514,11 @@ Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the or
 
 \section{Summary and Interpretation}
 
-The main idea of ROAR was confirmed using MNIST as an example. For simple datasets such as MNIST, the concept can be shown to be meaningful. However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to the dataset and the model makes it difficult to judge what is causing the result. It could be the attribution method, the dataset, the model, or the specific training setup of the model. It is difficult to make a clear statement.
-
-Findings and critique:
+The main idea of ROAR was confirmed using MNIST as an example. For simple datasets such as MNIST, the concept can be shown to be meaningful. However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to dataset and model makes it difficult to judge what is causing the result. It could be the attribution method, the dataset, the model, or the specific training setup of the model. It is difficult to make a clear statement. We conclude with two findings that need to be considered when using ROAR
 
 1) Choosing a different model and dataset as well as a different training setup changes the results. 
 
-2) Different results are obtained depending on the attribution method chosen in the original paper. What ROAR does with ensemble methods is to remove patterns that are important to the model. However, this may be due to the facts mentioned in section \ref{grey}. Ensemble methods may be able to remove larger clusters and their neighbours, resulting in a greater loss of patterns. When some important pixels are removed, other neighbouring pixels may improve in performance because they suddenly carry the important information. However, it is still unclear what exactly causes the loss of importance.
+2) Different results are obtained depending on the attribution method chosen in the original paper. Ensemble methods perform best in ROAR. However, this may be due to the facts mentioned in section \ref{gray}. Ensemble methods may be able to remove larger clusters and their neighbours, resulting in a greater loss of patterns. If some important pixels are removed, other neighbouring pixels may replace the lost information. However, it is still unclear what exactly causes the loss of importance.
 
 Although the underlying logic of ROAR makes sense from a human perspective, it seems difficult to apply in practice. Depending on the training setup, different results are obtained. Nevertheless, it shows how little we know about evaluating interpretability methods for deep neural networks.
 
