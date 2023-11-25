@@ -3,34 +3,33 @@
 \contentsline {chapter}{\numberline {2}Objectives of Interpretable Machine Learning}{3}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Interpretability in Supervised Machine learning Methods}{4}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Linear Models}{4}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Distance-based Methods}{5}{subsection.3.1.1}%
-\contentsline {section}{\numberline {3.2}Support Vector Machines}{6}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Decision Trees}{6}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Neural Networks}{8}{section.3.4}%
+\contentsline {section}{\numberline {3.2}Distance-based Methods}{5}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Support Vector Machines}{6}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Decision Trees}{6}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Neural Networks}{8}{section.3.5}%
 \contentsline {chapter}{\numberline {4}Interpretability of Supervised Machine Learning Algorithms in Image Recognition}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Model-Agnostic Methods and their applicability to Neural Networks}{12}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Global Model-Agnostic Methods}{12}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Local Model-Agnostic Methods}{13}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Model-Specific methods for Neural Networks}{14}{section.4.2}%
+\contentsline {section}{\numberline {4.1}Model-Agnostic Methods and their applicability to Neural Networks}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Global Model-Agnostic Methods}{11}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Local Model-Agnostic Methods}{12}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Model-Specific methods for Neural Networks}{13}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Feature Visualization}{14}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Network Dissection}{16}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.2}Network Dissection}{15}{subsection.4.2.2}%
 \contentsline {section}{\numberline {4.3}Attribution Maps}{16}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Vanilla Gradient and Deconv-Net}{17}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Gradient-weighted Class Activation Map: Grad-CAM}{18}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Integrated Gradient}{18}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Ensemble Methods: Smooth Gradient, Smooth Grad² and VarGrad}{18}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Summarizing Attribution Maps}{19}{subsection.4.3.5}%
-\contentsline {chapter}{\numberline {5}Evaluation of post-hoc Interpretability Methods}{20}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Completeness and Soundness}{21}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Evaluating the Visualization of What a Deep Neural Network has learned}{21}{section.5.2}%
-\contentsline {section}{\numberline {5.3}A Benchmark for Interpretability Methods in Deep Neural Networks}{22}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Benchmarking Attribution Methods (BAM)}{22}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Sanity Checks for Saliency Maps}{23}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Concluding Thoughts on Attribution and Evaluation Methods}{25}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Reproduction of RemOve And Retrain (ROAR)}{26}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Scientific Motivation and Goal}{26}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Graying out Pixels}{26}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Project Setup MNIST}{27}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Project Setup Food-101}{29}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Summary and Interpretation}{31}{section.7.5}%
+\contentsline {subsection}{\numberline {4.3.1}Vanilla Gradient and Deconv-Net}{16}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Gradient-weighted Class Activation Map: Grad-CAM}{17}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Integrated Gradient}{17}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Ensemble Methods: Smooth Gradient, Smooth Grad² and VarGrad}{17}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Summarizing Attribution Maps}{18}{subsection.4.3.5}%
+\contentsline {chapter}{\numberline {5}Evaluation of post-hoc Interpretability Methods}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Completeness and Soundness}{19}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Evaluating the Visualization of What a Deep Neural Network has learned}{20}{section.5.2}%
+\contentsline {section}{\numberline {5.3}A Benchmark for Interpretability Methods in Deep Neural Networks}{20}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Benchmarking Attribution Methods (BAM)}{21}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Sanity Checks for Saliency Maps}{22}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Reproduction of RemOve And Retrain (ROAR)}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Scientific Motivation and Goal}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Graying out Pixels}{23}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Project Setup MNIST}{24}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Project Setup Food-101}{26}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Summary and Interpretation}{29}{chapter.7}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

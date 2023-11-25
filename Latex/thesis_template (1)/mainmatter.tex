@@ -79,7 +79,7 @@ $$
 
 While linear models offer comprehensibility and a simple method of prediction, their application is restricted to data sets where there is a linear relationship between one or more variables and the target. In the domain of image recognition, it is not applicable because the features and the target are not linearly correlated.
 
-\subsection{Distance-based Methods}
+\section{Distance-based Methods}
 \label{KNN}
 K-Nearest Neighbours (KNN) \cite{Mucherino2009} serves as a classification method by considering the nearest neighbours. 
 
@@ -95,7 +95,7 @@ Given a new data point $x_{new}$ that you want to classify, KNN works as follows
 During training, KNN does not store any parameters but rather constructs an underlying data structure which is interpretable, for example, a ball tree or k-d tree. This makes KNN a widely used technique when interpretability is needed. However, when it comes to dealing with large datasets and many features, KNN faces considerable challenges. Therefore, it is not recommended to use KNN for image recognition purposes.
 
 \section{Support Vector Machines}
-
+\ref{sec:svm}
 Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector ${w}$, and the closest data points $x_i$ from each class. This is done to ensure that the datasets are separated as much as possible. Because there may be classification errors and noise in the dataset, it is possible to set an initial regularization parameter $C$ to handle outliers.
 
 The optimization problem SVM (for binary classification) in mathematical notion:
@@ -151,9 +151,9 @@ Modern neural networks, such as ResNet50 \cite{he2015deep} comprise over 50 laye
 \chapter{Interpretability of Supervised Machine Learning Algorithms in Image Recognition}
 \label{sec:IoNN}
 
-Before going into detail in the chapter, the primary challenge of image recognition is explained: Consider an image in a digital format. The key objective in achieving model interpretability is to discern which elements of the image are responsible for influencing the model's output. The task is to highlight or establish a clear link between specific regions and/or patters within the image and the output. Representing and calculating this relationship is difficult and is the main reason why many interpretability methods often prove inadequate for image recognition. For instance, when an object within the image transitions from one quadrant to another, different areas of the image become responsible for the classification. Furthermore, challenges such as image blurriness, mirroring or the presence of multiple potential classifications make interpretability difficult. This process of creating a correlation between image features and classification becomes exceedingly complex and non-understandable for neural networks. Furthermore, the high dimensionality makes inherent interpretable methods too computationally expensive. To address these issues, special model-specific interpretability methods have been developed.\\
+Generating interpretability for image recognition poses a challenge due to its high dimensionality. Additionally many interpretable methods are too computationally expensive \cite{molnar2020}. Additionally, intrinsic interpretable methods yield inferior outcomes compared to black-box models \cite{delgado2014}.
 
-Before going into details of interpretability methods for this problem, a framework \cite{allen2023interpretable}, see figure \ref{fig:IML_Overview} is presented for classifying supervised machine learning methods and interpretability methods.
+Before going into the specifics of interpretability methods for image recognition, we present a framework \cite{allen2023interpretable}, which is displayed in figure \ref{fig:IML_Overview}, for categorising supervised machine learning and interpretability methods.
 
 \begin{figure}[H]
 	\centering
@@ -161,15 +161,16 @@ Before going into details of interpretability methods for this problem, a framew
 	\caption[Interpretability categorization ]{Interpretability categorization (Figure from \cite{allen2023interpretable})}
 	\label{fig:IML_Overview}
 \end{figure}
-
-\textbf{Intrinsic vs Post-hoc}: Interpretability methods can be broadly classified into intrinsic and post-hoc techniques. Intrinsic methods are inherently understandable by design, while post-hoc interpretations involve analyzing the model's behaviour after its creation. Typical intrinsic understandable methods are Decision Trees \ref{decision_tree} and KNNs \ref{KNN}. As methods for classifying data become more difficult, the methods themselves become less interpretable and lose their intrinsic interpretability. Therefore, post-hoc methods must be applied to them to make them interpretable again.
+\newpage
+\textbf{Intrinsic vs Post-hoc}: Methods can be broadly classified into intrinsic and post-hoc techniques. Intrinsic supervised methods are inherently understandable by design, while post-hoc methods involve analyzing the model's behaviour after its creation. Typical intrinsic understandable methods are Decision Trees \ref{decision_tree} and KNNs \ref{KNN}. As methods for classifying data become more difficult, the methods themselves become less interpretable and lose their intrinsic interpretability. Therefore, post-hoc methods must be applied to them to make them interpretable again.
 \\
-\textbf{Global Interpretations vs Local Interpretations}: Global Interpretations encompass the entirety of a fitted model. In contrast, local interpretations zoom in on specific portions of the model landscape, such as class boundaries. Local interpretations exist because for some models it becomes too complex to generate a global interpretation. In order to still have some interpretability in the model, local interpretations are used.
+\textbf{Global Interpretations vs Local Interpretations}: Global interpretability methods encompass the entirety of a fitted model. In contrast, local interpretations zoom in on specific portions of the model landscape, such as class boundaries or single interpretations. Local interpretations exist because for some models it becomes too complex to generate a global interpretation. In order to still have some interpretability in the model, local interpretations are used.
 \\
 \textbf{Model-Specific Interpretations vs Model-Agnostic Interpretations}: 
 Model-specific interpretations are tailored to a particular class of algorithms, like gradient methods for neural networks. Model-specific interpretations make use of the inherent information as weights or gradients in a model. In contrast, model-agnostic interpretations, such as LIME or SHAP, can be applied to any classification algorithm because they do not require model-specific knowledge.
 
-% Good, don't change!
+To address the issue of interpretability in a comprehensive manner, a universally applicable interpretability method is necessary. This method must have low computational costs while providing a reliable truth for evaluation. However, such a method does not presently exist.
+
 The goal of this section is to present several commonly used interpretability methods and evaluate their suitability for image classifications. As Neural Networks are the best-performing methods for image recognition, the focus lies on the suitability of the interpretability methods for Neural networks. After going over model-agnostic interpretability methods in the next sections, we go in-depth about model-specific interpretations for neural networks in section \ref{sec:nni}. 
 
 
@@ -341,16 +342,12 @@ This chapter discusses the evaluation of attribution maps and the underlying gra
 The evaluation is compared against predefined ground truths explanations, established by a human annotator or by another network e.g.(\cite{zhang2018}). However, the sheer amount of images makes the evaluation challenging. It is difficult to establish a ground-truth for attribution. Also, Adebayo \cite{adebayo2020sanity} underscores the issue of confirmation bias, where an explanation may be considered correct because it highlights the same regions as humans might choose, but it is not sure that the model employs the same learned concepts. 
 
 \textbf{Intrinsic Evaluation}: 
-Intrinsic methods rely on computational analyses within the neural network itself, without requiring human judgments. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using either the same model\cite{dabkowski2017real} or new models are trained and evaluated\cite{hooker2019benchmark}. While both these methods generate meaningful results, they do not offer an objective evaluation method. Without re-training it is not clear if the degrade in performance stems from the distribution shift or the removal of informative features \cite{hooker2019benchmark}. By re-training the model, a different model is evaluated. 
+Intrinsic methods rely on computational analyses involving the network to evaluate saliency methods, without requiring human judgments. 
+These methods often are based on creating a new composite input using the heat map and the original input. Examples for such methods are Roar \cite{hooker2019benchmark} and the saliency metric \cite{dabkowski2017real}.
 \\
-% link is missing
-Many interpretable AI methods exist and comparing their effectiveness is difficult. Neely, \cite{neely2021order} has tested several explainable AI methods in the domain of NLP and can only find little correlation. Additionally, the correlation is model and task-dependent, which furthermore weakens this assumption. However, it is unclear whether this result holds for image classification.
-\\
-After considering all these facts, it is not possible to meaningfully evaluate saliency methods by comparison or without violating fundamental assumptions. In the upcoming sections, potential evaluation metrics and methodologies are introduced to provide a more meaningful assessment. These metrics and methods do not fundamentally solve the problems, but they offer some guidance for evaluation.
 
-%% Cite or remove, hypothesis?
-It is to note, that in evaluation the composite input of the image $x \circ A$ is often used. It describes an image with some parts of the pixels replaced by a gray value or the mean value, to hide the information of specific pixels. The pixels are chosen according to the highest or lowest values in the attribution map. Those new inputs are then measured using intrinsic methods. The hypothesis is: If the not removed pixels are not important and the original net outputs the same labels, then the removed pixels are not important. This hypothesis proves difficult in the domain of CNN's, as the composite input of various pixels is used.
-
+Many evaluation methods exist, but there is only little correlation\cite{neely2021order} in the results for different datasets. If a correlation exists, it is model and task-dependent, which furthermore weakens this assumption.
+In the upcoming sections, potential evaluation metrics and methodologies are introduced to provide a more meaningful assessment. These metrics and methods do not offer an objective evaluation, but they offer some guidance for evaluation. 
 
 \section{Completeness and Soundness}
 
@@ -405,11 +402,6 @@ The model \textbf{parameter randomization test} involves comparing the output of
 If either of these two hypotheses fails during testing, the method under evaluation can be rejected, indicating that it fails a critical sanity check. On the tested methods, Guided BackProp \& Guided GradCAM fail these sanity checks.
 
 
-\chapter{Concluding Thoughts on Attribution and Evaluation Methods}
-\label{sec:summary}
-Numerous attribution maps and possible evaluation methods have been looked at and it leaves data scientists with one question: Which evaluation method and attribution method should be used?
-\\
-The unsatisfactory answer is: We do not know. Depending on the model and dataset used, different evaluation methods give varying outcomes. In Sanity check by Adebayo \cite{adebayo2020sanity} and ROAR by Hooker\cite{hooker2019benchmark} some methods were seen as unsuitable for the task considered. However, this was dependent on the model and the dataset. Considering there exists no ground truth for an evaluation method, there also is no ground truth for the attribution method. Opting for an SG - GRAD or a VAR-GRAD approach might result in favourable results for ROAR and Sanity checks. However, it remains difficult to evaluate visual explanations and there is no established ground truth to determine which evaluation method is the best. Consequently, further research is required to provide clearer guidance in this area.
 
 %%%%%%%%%%%%%%%%
 \chapter{Reproduction of RemOve And Retrain (ROAR)} % 4 pages
@@ -457,12 +449,12 @@ The modified dataset is the result of combining the attribution map with the ori
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=120mm]{figs/IGvsRandom}
+	\includegraphics[width=150mm]{figs/IGvsRandom}
 	\caption{Integrated Gradients and Random Baseline Comparison}
 	\label{fig:IGvsRandom}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
 		\hline
@@ -500,8 +492,8 @@ G. Results
 	
 \end{figure}
 
-Figure 6.2 shows the decay in the accuracy of the random baseline and the integrated gradient. Integrated Gradient seems to have a faster information decay, and at 90\% of the grayed-out pixels, the classification is 10\%, which is the same as a random classification. Note that Integrated Gradient has a very high standard deviation at 70\%. This is because two control runs happened to learn a random classification, while the other three still managed to learn a classification. In this experiment, Integrated Gradient seems to identify more informative pixels than the random baseline for the MNIST dataset. \\
-One possible explanation for this result, which differs from that of the ROAR experiments, is that for simple models, such as the one used in this experiment, and for simple data sets, such as the MNIST data set, it is easier for attribution methods to find informative pixels. Furthermore, the structure of a gray-scale image is easier than an RGB image.
+Figure 6.2 shows the decay in the accuracy of the random baseline and the models trained on pixels grayed out by integrated gradient. Integrated Gradient seems to have a faster accuracy decay, and at 90\% of the grayed-out pixels, the classification is 10\%, which is the same as a random classification. Note that Integrated Gradient has a very high standard deviation at 70\%. This is because two control runs happened to learn a random classification, while the other three still managed to learn a classification. In this experiment, Integrated Gradient seems to identify more informative pixels than the random baseline for the MNIST dataset. \\
+A possible explanation for this result, which differs from the ROAR experiments in that the integrated gradient identifies more important pixels for the network than the random baseline, is that for simple models, such as the one used in this experiment, and for simple datasets like the MNIST dataset, it is easier for attribution methods to find informative pixels. Additionally, the structure of a greyscale image is less complex than that of an RGB image.
 
 \section{Project Setup Food-101}
 
@@ -531,7 +523,7 @@ B. Results
 
 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|l|c|c|c|c|c|}
 		\hline
@@ -554,16 +546,20 @@ B. Results
 \end{table}
 
 
-Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. Our experiments confirm the results of the original paper for integrated gradient and guided backpropagation. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the method can be used to reliably test attribution methods. While our accuracy drops more quickly, this is probably due to the different training setups. The standard deviations are small and it appears that the results can be replicated consistently.
+Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. Our experiments show similar results as the original paper for integrated gradient and guided backpropagation. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the method can be used to reliably test attribution methods. Our accuracy drops more quickly and this is probably due to the different training setups as well as the center-crop we employed. The standard deviations are small and it appears that the results can be replicated consistently.
 
-\section{Summary and Interpretation}
+\chapter{Summary and Interpretation}
+\label{sec:summary}
 
-The main idea of ROAR was confirmed using MNIST as an example. For simple datasets such as MNIST, the concept can be shown to be meaningful. However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to dataset and model makes it difficult to judge what is causing the result. It could be the attribution method, the dataset, the model, or the specific training setup of the model. It is difficult to make a clear statement. We conclude with two findings that need to be considered when using ROAR
+Numerous attribution maps and possible evaluation methods have been looked at and it leaves data scientists with one question: Which evaluation method and attribution method should be used?
+\\
+The unsatisfactory answer is: We do not know. Depending on the model and dataset used, different evaluation methods give varying outcomes. In Sanity check\cite{adebayo2020sanity} and ROAR \cite{hooker2019benchmark} some methods were seen as unsuitable for the task considered. However, this was dependent on the model and the dataset. Considering there exists no ground truth for an evaluation method, there also is no ground truth for the attribution method. Opting for an SG - GRAD or a VAR-GRAD approach might result in favourable results for ROAR and Sanity checks. However, it remains difficult to evaluate visual explanations and there is no established ground truth to determine which evaluation method is the best. Consequently, further research is required to provide clearer guidance in this area.
 
-1) Choosing a different model and dataset as well as a different training setup changes the results. 
-
-2) Different results are obtained depending on the attribution method chosen in the original paper. Ensemble methods perform best in ROAR. However, this may be due to the facts mentioned in section \ref{gray}. Ensemble methods may be able to remove larger clusters and their neighbours, resulting in a greater loss of patterns. If some important pixels are removed, other neighbouring pixels may replace the lost information. However, it is still unclear what exactly causes the loss of importance.
+Additionally, ROAR has been reproduced on MNIST as an example. Similar trends have been found as in the original paper\cite{hooker2019benchmark}, despite a simplified setup. However, the performance of interpretability methods seems to vary for different datasets and models. This sensitivity to dataset and model makes it difficult to judge what is causing the result. It could be the attribution method, the dataset, the model, or the specific training setup of the model. It is difficult to make a clear statement. We conclude that choosing a different model and dataset leads to different results.
 
 Although the underlying logic of ROAR makes sense from a human perspective, it seems difficult to apply in practice. Depending on the training setup, different results are obtained. Nevertheless, it shows how little we know about evaluating interpretability methods for deep neural networks.
+
+
+
 
 
