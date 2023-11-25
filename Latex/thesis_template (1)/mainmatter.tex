@@ -17,7 +17,8 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \section{Structure of the Thesis}
 
 \begin{enumerate}
-	\item In the first chapter \ref{sec:MLandI} "Machine Learning and their Interpretability", an overview of contemporary machine learning algorithms is made, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition tasks.
+	\item The first chapter \ref{sec:OofIML} "Objectives of Interpretable Machine Learning" provides a definition of interpretable machine learning (IML). It also explains the various reasons why we strive for interpretability in machine learning models.
+	\item In the second chapter \ref{sec:MLandI} "Machine Learning and their Interpretability", an overview of contemporary machine learning algorithms is made, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition.
 	\item In chapter \ref{sec:IoNN} "Interpretability of Supervised Machine Learning Algorithms in Image Recognition" we dig into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behaviour, regardless of algorithm specifics. 
 	\item In subsequent sections \ref{sec:saliency} "Neural Network specific Interpretability Methods", model-specific post-hoc methods for Neural Networks are introduced. Feature visualization and gradient-based methods are explained.
 	\item In chapter \ref{sec:evaluation} "Evaluation of post-hoc Interpretability methods", we focus on evaluating post-hoc interpretability methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
@@ -26,34 +27,34 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%
-\chapter{Machine Learning and its Interpretability}
-\label{sec:MLandI}
 
+\chapter{Objectives of Interpretable Machine Learning}
+\label{sec:OofIML}
 In the rapidly evolving landscape of machine learning, interpretability has emerged as an important concept. Before going in-depth into various algorithms and methods, the fundamental question of: "What is interpretable Machine Learning (IML) and why do we need it?" is answered.
 \\
 A broad definition of IML given by \cite{allen2023interpretable}: "Interpretable machine learning is the use of machine learning techniques to generate human-understandable insights into data, the learned model, or the model output." Interpretability is important for various reasons. Allen\cite{allen2023interpretable} summarizes several objectives for interpretable machine learning: 
 \\\\
 \textbf{Model Validation}: Interpretable models are essential for validating (by a human) whether a learned model behaves as expected and consistently aligns with prior expectations and knowledge about the system.
-\\\\
+\\
 \textbf{Model Debugging}: When unexpected behaviour occurs, finding the reasons for fault is impossible without understanding the system. To debug systems, an inner understanding of the machine learning system is necessary.
-\\\\
+\\
 \textbf{Transparency, Accountability \& Trust}: IML transforms black-box machine learning systems into understandable systems. Without trust and accountability, using them in high-stakes societal applications is not recommendable.
-\\\\
+\\
 \textbf{Ethics}: Machine learning algorithms can be trained on biased data leading to unfair predictions that are discriminatory. To improve the fairness of machine learning algorithms interpretable methods need to be deployed to assess the fairness. 
-\\\\
+\\
 \textbf{Data Exploration and Discovery}: Insights into major patterns, trends, groups, or artefacts of the data are achieved by applying human-interpretable techniques. These data exploration insights influence the data pre-processing and model decisions. 
 
-Before going into detail about the different methods of interpretability an overview of some currently used supervised machine learning methods is given. Unsupervised machine learning is arguably intrinsically understandable, as the goal is to find a structure in the data. \cite{allen2023interpretable} With those examples, the necessity of interpretability for neural networks should be made evident.
+Before going into detail about the different methods of interpretability an overview of some currently used supervised machine learning methods is given in the next chapter. Unsupervised machine learning is arguably intrinsically understandable, as the goal is to find a structure in the data \cite{allen2023interpretable}. With those examples, the necessity of interpretability for neural networks should be made evident.
 
-\section{Supervised Machine Learning}
+\chapter{Interpretability in Supervised Machine learning Methods}
+\label{sec:MLandI}
 
-In supervised machine learning, there are a range of foundational classification methods. They are briefly introduced and analyzed for their interpretability. This section analyzes the base functionality of each algorithm. Furthermore, the interpretability is evaluated from a human perspective.
-\\
+
 The interpretability of algorithms depends on two factors \cite{molnar2022}. When determining the transparency of an algorithm, we evaluate the human interpretability of how the model learns from the underlying structure of the data. Is it possible for a human to understand the implications of the mathematical operations? The second factor is the interpretability of the learned parameters. Understanding the factors of a linear regression model is easy. Grasping the millions of weights in a neural network is impossible.
+\\
+In this section, we present a selection of frequently employed supervised classification methods. They are briefly introduced and analyzed for their interpretability. As will become clear in the following sections, before the rise of Deep Neural Networks, interpretability was predominantly achieved through methods with inherent interpretability.
 
-In this section, we present a selection of frequently employed supervised machine learning techniques. As will become clear in the following subsections, before the rise of Deep Neural Networks, interpretability was predominantly achieved through methods with inherent interpretability.
-
-\subsection{Linear Models}
+\section{Linear Models}
 
 When predicting outcomes, one of the simplest methods is to use a linear regression model \cite{puntanen2013methods}. This model predicts by adding up n features ($x_n$) multiplied by a respective individual weight ($\alpha_n$). The predictive output $\hat{y}_i$ is calculated:
 
@@ -93,7 +94,7 @@ Given a new data point $x_{new}$ that you want to classify, KNN works as follows
 
 During training, KNN does not store any parameters but rather constructs an underlying data structure which is interpretable, for example, a ball tree or k-d tree. This makes KNN a widely used technique when interpretability is needed. However, when it comes to dealing with large datasets and many features, KNN faces considerable challenges. Therefore, it is not recommended to use KNN for image recognition purposes.
 
-\subsection{Support Vector Machines}
+\section{Support Vector Machines}
 
 Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector ${w}$, and the closest data points $x_i$ from each class. This is done to ensure that the datasets are separated as much as possible. Because there may be classification errors and noise in the dataset, it is possible to set an initial regularization parameter $C$ to handle outliers.
 
@@ -108,11 +109,11 @@ $\sum_{i=1}^{n} \xi_i$ represents the sum of slack variables ($\xi_i$), which me
 SVMs can handle non-linear data through the kernel trick, in which a kernel is applied to the data, transforming it to a different space before computing the hyperplane.  However, as the dimensionality increases, SVMs become non-interpretable, making it challenging to visualize and understand the weight matrix. Moreover, SVMs struggle with larger datasets and high-dimensional feature spaces, making them less effective for image classification.
 
 
-\subsection{Decision Trees}
+\section{Decision Trees}
 \label{decision_tree}
 
 
-Decision trees are a commonly used machine learning algorithm that proves effective in both classification and regression tasks. The reason for their popularity can be attributed to their user-friendly structure, which can handle both categorical and continuous data. A decision tree is made up of three main types of nodes: root, internal, and leaf nodes, which combine to form a representation often depicted as a tree. In figure \ref{fig:Decision_tree}, a decision tree is plotted, where the distribution is shown in the 'value' field, and the classification of the node/leaf is presented in the 'class' field.
+Decision trees are a commonly used machine learning algorithm that proves effective in both classification and regression tasks. The reason for their popularity can be attributed to their user-friendly structure, which can handle both categorical and continuous data. A decision tree is made up of three main types of nodes: root, internal, and leaf nodes, which combine to form a representation often depicted as a tree. In figure \ref{fig:Decision_tree}, a decision tree is plotted. 
 
 \begin{figure}[H]
 	\centering
@@ -121,16 +122,14 @@ Decision trees are a commonly used machine learning algorithm that proves effect
 	\label{fig:Decision_tree}
 \end{figure}
 
-The classes are separated in each root node by a decision criterion: $F_i$ <= criterion. The Gini impurity is commonly used for calculating the splitting criterion, which aims to best separate the data in the leaf. New nodes are defined until the dataset is perfectly separated. However, this makes decision trees prone to overfitting as the model becomes overly complex and captures noise or random fluctuations in the training data, rather than the underlying patterns or relationships. Consequently, the resulting tree fits the training data exceptionally but does not generalize well to new or unseen data. 
+An example dataset with 2 features and 2 classes is depicted to explain the behavior of a decision tree. The classes are separated in each root and internal node by a decision criterion: $F_i$ <= criterion. The Gini impurity is commonly used for calculating the splitting criterion, which aims to best separate the data in the node. This process is repeated and new nodes are defined until the dataset is perfectly separated. However, this makes decision trees prone to overfitting as the model becomes overly complex and captures noise or random fluctuations in the training data, rather than the underlying patterns or relationships. Consequently, the resulting tree fits the training data exceptionally but does not generalize well to new or unseen data. 
 
 The depth of the tree can be restricted to avoid overfitting. Then, the majority is utilised to assign a label to the leaf. Nevertheless, as the dimensionality grows, determining the depth becomes more and more challenging.
 
-Random forests\cite{ho1995random}, comprise many decision trees and are known to prevent overfitting. However, they tend to be more challenging to interpret because of the use of multiple algorithms. Techniques like SHAP values \cite{lundberg2017unified} or partial dependence plots \cite{PDP} can be employed to make them more understandable.
-\\
-Gradient boosting like XGBoost \cite{Chen_2016}, LightGBM \cite{Ke2017} and CatBoost \cite{prokhorenkova2019catboost} share similarities with random forests and decision trees, but they assign differential learned weights to each decision. They suffer from the same interpretability issues as random forests. While decision tree-based methods can be applied for image classification, their accuracy tends to be worse than neural networks.
+Random forests\cite{ho1995random}, comprise many decision trees and are known to prevent overfitting. However, they tend to be more challenging to interpret because of the use of multiple algorithms. Techniques like SHAP values \cite{lundberg2017unified} or partial dependence plots \cite{PDP} can be employed to make them more understandable. Gradient boosting like XGBoost \cite{Chen_2016}, LightGBM \cite{Ke2017} and CatBoost \cite{prokhorenkova2019catboost} share similarities with random forests and decision trees, but they assign differential learned weights to each decision. They suffer from the same interpretability issues as random forests. While decision tree-based methods can be applied for image classification, their accuracy tends to be worse than neural networks.
 
 
-\subsection{Neural Networks}
+\section{Neural Networks}
 
 The rise of neural networks and their powerful predictive capabilities has made them a popular choice for classification tasks. However, as these networks become increasingly complex, the traditional approach of understanding them through weight examination becomes challenging. With the emergence of Convolutional Neural Networks (CNN) in 2012 \cite{krizhevsky2012nn}, neural networks have become state-of-the-art for image prediction.
 
@@ -139,11 +138,11 @@ In a neural network, each neuron calculates a weighted sum of its inputs and app
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=150mm]{figs/NeuralNetwork}
-	\caption[Neural Network]{Neural Network} 
+	\caption[Neural Network]{Neural Network Example} 
 	\label{fig:Neural_Network}
 \end{figure}
 
-In this neural network, each circle, except those in the input layer, represents a weight matrix denoted as $w_{j,i}$. Here, 'j' signifies the hidden layer number, and 'i' represents the weight number within that layer. The output of a neuron is determined by summing the products of the inputs $x_{ji}$, their corresponding weights, and a bias term $b_{ji}$, expressed as $y_{(j+1)i} = \sum_{i=1}^{n} w_{ji} \ast x_{ji} + b_{ji}$. If the neuron is not in the output layer, an activation function, such as Sigmoid or ReLU, is applied to $y_{ji}$, transforming it into the new input for the next layer $x_{ji} = f(y_{ji})$. 
+In this neural network, each edge, except those in the input layer, represents a weight matrix denoted as $w$. In this example, 'j' signifies the hidden layer number, and 'i' represents the weight number within that layer. The output of a neuron is determined by summing the products of the inputs $x_{ji}$, their corresponding weights, and a bias term $b_{ji}$, expressed as $y_{(j+1)i} = \sum_{i=1}^{n} w_{ji} \ast x_{ji} + b_{ji}$. Depending on the architecture, an activation function, such as Sigmoid or ReLU, is applied to $y_{ji}$, transforming it into the new input for the next layer $x_{ji} = f(y_{ji})$ or the output $f(y_{ji})$. 
 
 Labeled data is used to train a neural network. The prediction error is minimized by calculating the prediction error and the gradients. This is typically done by backpropagation over several epochs until the network can accurately predict new data.
 
@@ -152,7 +151,7 @@ Modern neural networks, such as ResNet50 \cite{he2015deep} comprise over 50 laye
 \chapter{Interpretability of Supervised Machine Learning Algorithms in Image Recognition}
 \label{sec:IoNN}
 
-Before going into detail in the chapter, the primary challenge of image recognition is explained: Consider an image with dimensions of 3x224x224. The key objective in achieving model interpretability is to discern which elements of the image are responsible for influencing the model's output. The task is to highlight or establish a clear link between specific regions within the image and the output. This complexity explains why many interpretability methods often prove inadequate for image recognition. For instance, when an object within the image transitions from one quadrant to another, different areas of the image become responsible for the classification. Furthermore, challenges such as image blurriness, mirroring or the presence of multiple potential classifications make interpretability difficult. This process of creating a correlation between image features and classification becomes exceedingly complex and non-understandable for neural networks. Furthermore, the high dimensionality makes the brute-force method too computationally expensive. To address these issues, special model-specific interpretability methods have been developed.\\
+Before going into detail in the chapter, the primary challenge of image recognition is explained: Consider an image in a digital format. The key objective in achieving model interpretability is to discern which elements of the image are responsible for influencing the model's output. The task is to highlight or establish a clear link between specific regions and/or patters within the image and the output. Representing and calculating this relationship is difficult and is the main reason why many interpretability methods often prove inadequate for image recognition. For instance, when an object within the image transitions from one quadrant to another, different areas of the image become responsible for the classification. Furthermore, challenges such as image blurriness, mirroring or the presence of multiple potential classifications make interpretability difficult. This process of creating a correlation between image features and classification becomes exceedingly complex and non-understandable for neural networks. Furthermore, the high dimensionality makes inherent interpretable methods too computationally expensive. To address these issues, special model-specific interpretability methods have been developed.\\
 
 Before going into details of interpretability methods for this problem, a framework \cite{allen2023interpretable}, see figure \ref{fig:IML_Overview} is presented for classifying supervised machine learning methods and interpretability methods.
 
@@ -170,12 +169,13 @@ Before going into details of interpretability methods for this problem, a framew
 \textbf{Model-Specific Interpretations vs Model-Agnostic Interpretations}: 
 Model-specific interpretations are tailored to a particular class of algorithms, like gradient methods for neural networks. Model-specific interpretations make use of the inherent information as weights or gradients in a model. In contrast, model-agnostic interpretations, such as LIME or SHAP, can be applied to any classification algorithm because they do not require model-specific knowledge.
 
+% Good, don't change!
 The goal of this section is to present several commonly used interpretability methods and evaluate their suitability for image classifications. As Neural Networks are the best-performing methods for image recognition, the focus lies on the suitability of the interpretability methods for Neural networks. After going over model-agnostic interpretability methods in the next sections, we go in-depth about model-specific interpretations for neural networks in section \ref{sec:nni}. 
 
 
 \section{Model-Agnostic Methods and their applicability to Neural Networks}
 
-Model-agnostic methods can be applied to any method. However, it does not make sense to use the same method for every algorithm. In this section, global and local agnostic methods are summarised and their applicability to neural networks in image classification is discussed. 
+Model-agnostic methods can be applied to any method. However, it does not make sense to use the same method for every algorithm. In this section, examples of global and local agnostic methods are summarised and their applicability to neural networks in image classification is discussed. 
 
 
 \subsection{Global Model-Agnostic Methods}
@@ -186,15 +186,15 @@ Global Methods aim to provide a complete overview of the functioning of a model.
 	\item \textbf{Partial Dependency Plots:} Partial Dependency Plots (PDPs)\cite{PDP} display the relationship between individual or multiple features and an outcome. However, when dealing with a bigger feature size, there are too many plots to make sense of the data. Therefore they are not feasible for Neural Networks and image recognition tasks.
 	\item \textbf{Accumulated Local Effects:} Accumulated Local Effects (ALE)\cite{apley2019visualizing} are an advancement of PDP. While it overcomes certain difficulties from PDPs, they struggle with the same problem when it comes to a bigger feature size.
 	\item \textbf{Feature Interaction:} Feature Interaction analyzes the interaction between features inside the model. The underlying Friedman's H-statistic\cite{friedman2008predictive} is a method to evaluate the correlation and variance. Because of the complexity of image tasks and the high computational costs, this method is not applicable to Neural Networks in a meaningful matter.
-	\item \textbf{Functional Decomposition:} Functional Decomposition is used in Neural Networks. In Chapter \ref{sec:network_dissection} a method to disassemble networks is presented.
-	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is regularly used in visual machine learning tasks. In section \ref{pertubation} an example of a perturbation method is shown.
+	\item \textbf{Functional Decomposition:} Functional Decomposition is used in Neural Networks. In section \ref{sec:network_dissection} Network Dissection a method to disassemble networks is presented.
+	\item \textbf{Permutation Feature Importance:} Permutation Feature Importance is commonly used in visual machine learning tasks. It can be used for the evaluation of a feature importance map constructed by another interpretability method. An example is given in section \ref{pertubation}.
 	\item \textbf{Prototype and Criticism:} The creation of clusters using the prototype and criticism method involves categorizing well-presented data instances as 'prototypes' and sparsely presented ones as 'criticism'. This approach aims to improve the interpretability of these clusters by verifying their classification accuracy. However, a significant challenge with this method arises when applying it to images, as it can be difficult to generate reliable clusters that effectively group the data.
 \end{enumerate}
 
 
 \subsection{Local Model-Agnostic Methods}
 
-The aim of local model-agnostic methods is to reveal knowledge of how individual cases of a model behave. In the field of image classification, where non-linearity and multiple classes contribute to added complexity, achieving accurate interpretability for a single class is already challenging. Although some techniques effectively manage the trade-off between computational efficiency and interpretability in certain scenarios, there is currently no universally accepted model-agnostic method for achieving this. Nevertheless, they can be applied to Neural Networks and potentially give meaningful interpretations.
+The aim of local model-agnostic methods is to reveal knowledge of how individual predictions of a model behave. In the field of image classification, where non-linearity and multiple classes contribute to added complexity, achieving accurate interpretability for a single sample is already challenging. Although some techniques effectively manage the trade-off between computational efficiency and interpretability in certain scenarios, there is currently no universally accepted model-agnostic method for achieving this. Nevertheless, they can be applied to Neural Networks and potentially give meaningful interpretations.
 
 \begin{enumerate}
 	\item \textbf{LIME: Local Interpretable Model-agnostic Explanations:} LIME\cite{ribeiro2016should} generates explanations in a local scope by training interpretable models on the predictions of a model. LIME only covers a single local context of the model. LIME can be applied to various types of data, including image data.
@@ -208,24 +208,24 @@ While the summarized techniques can be applied to neural networks, they do not p
 
 \section{Model-Specific methods for Neural Networks}
 \label{sec:nni}
-In the domain of Natural Language Processing (NLP) and Computer Vision, Deep Learning has proven very successful. By passing the features through a sequence of layers, characterized by matrix multiplications with kernel weights and nonlinear transformation functions, a prediction is computed. Depending on the specific task, additional elements like Long Short-Time Memory(LSTM) layers and Convolutional layers are utilized. Given the immense amount of mathematical operations and the non-linearity underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
+In the domain of Natural Language Processing (NLP) and Computer Vision, Deep Learning has proven very successful \cite{delgado2014}. By passing the features through a sequence of layers, characterized by matrix multiplications with kernel weights and nonlinear transformation functions, a prediction is computed. Depending on the specific task, additional elements like Long Short-Time Memory(LSTM) layers and Convolutional layers are utilized. Given the immense amount of mathematical operations and the non-linearity underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
 Recognizing that humans cannot grasp millions of weights, the demand for interpretability methods is high. To assess the behaviour and predictions of Deep Neural networks, specific interpretability methods were developed. These methods calculate the likelihood of a feature being responsible for the result.
 \\\\
-While model-agnostic methods offer an approach to understanding Neural Networks, the sheer size of the data used to train and test Neural Networks makes this task difficult. For instance, in an image with the dimensions of 3x224x224, as commonly encountered in Food-101, the data features exceed 150.000. In NLP tasks, where vocabularies often encompass around 20,000 words, the computational complexity renders most model-agnostic techniques as too expensive.
+While model-agnostic methods offer an approach to understanding Neural Networks, the high-dimensionality of the features and the high computational effort makes it difficult to use model-agnostic methods \cite{molnar2020}. For instance, in an image with the dimensions of 3x224x224, as commonly encountered in Food-101, the data features exceed 150.000. In NLP tasks, where vocabularies often encompass around 20,000 words, the computational complexity renders most model-agnostic techniques difficult to employ.
 \\
 In the pursuit of comprehending the complexity of Deep Neural Networks, it makes sense to utilize the weights and gradients in the model. The information saved in the hidden layers as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well. In the following subsections, several concepts for understanding Deep Neural Networks are introduced. 
 
 \subsection{Feature Visualization}
-\label{sec:network_dissection}
+
 
 Feature Visualization aims to make parameters in single layers in neural networks understandable. The goal is to give an understanding of a deep neural network by dissecting each layer and understanding the underlying parameters through visualization.
 
-The higher-level features in these networks relate to clear concepts, shown in Figure \ref{fig:feature-visualization}. As the features (image-pixels) pass through the layers, the resembled structure changes at each layer. In each convolutional layer, the network gains new and more complex features. The joining of fully connected layers then converts image-based data into predictions.
+The higher-level features in these networks relate to clear concepts, shown in Figure \ref{fig:feature-visualization}. As the input (image-pixels) passes through the layers, the resembled structure changes at each layer. In each convolutional layer, the network gains new and more complex features. The joining of fully connected layers then converts image-based data into predictions.
 \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=170mm]{figs/FeatureVisualization}
-	\caption[Network Dissection: Feature Visualization ]{Network Dissection: Feature Visualization (Figure from \cite{olah2017feature})}
+	\caption[Feature Visualization]{Feature Visualization (Figure from \cite{olah2017feature})}
 	\label{fig:feature-visualization}
 \end{figure}
 
@@ -243,11 +243,13 @@ Feature visualization is based on activating one kernel in the network. This inv
 Feature visualization provides a first insight into the behaviour of a model, improving the understanding of its inner layers. It also has the potential to enrich domain understanding by aligning learned features with domain-specific knowledge. Furthermore, it can assist in debugging and refining models, contributing to their overall performance improvement. However, interpretation of the visualized features is difficult and decision making is challenging to understand.
 
 \subsection{Network Dissection}
+\label{sec:network_dissection}
 
-Network dissection, a technique introduced by Olah in 2018\cite{olah2018the}, builds on the principles of feature visualization. This method establishes a link between individual kernels and the prediction of specific features by exploiting the concept of visualizing the importance of channels and kernels, as introduced in the previous section. For each kernel, the predicted classifier is displayed in a percentage.
+Network dissection \cite{Bau2017}, builds on the principles of feature visualisation. First, they identify a broad set of human-labelled visual visual concepts. Then, they collect the responses of hidden variables to these known concepts using feature visualization. Finally, they quantify the correspondence between hidden variables and concepts.
 
-Although this method is effective in comprehending low-level features, comprehending high-level features remains a challenge. Furthermore, analyzing a single sample is very time-consuming. However, this interpretability technique holds significant potential for enhancing the transparency of neural networks.
+Network Dissection \cite{Bau2017} operates based on feature visualization. Initially, a broad set of visual concepts labeled by humans is built. Subsequently, the response to these recognized concepts are generated through the utilization of feature visualization techniques. Afterwards, the alignment between hidden variables and concepts is measured, providing a quantitative assessment of their correspondence.
 
+The method establishes a link between the individual concept and the prediction of specific features. Although it is effective at capturing low-level features, capturing high-level features remains a challenge. In addition, the analysis of a single sample is very time consuming. However, this interpretability method has significant potential for improving the transparency of neural networks.
 
 \section{Attribution Maps}
 \label{sec:saliency}
@@ -260,28 +262,28 @@ Attribution maps are visualizations that highlight the regions of an input image
 	\label{fig:saliency}
 \end{figure}
 
-Attribution maps are typically calculated using SHAP\cite{lundberg2017unified} or gradient methods. Attribution maps provide a direct and intuitive way to understand which parts of input data influence a model's decision. The main difficulty is in generating reliable attribution maps. Kindermans \cite{Kindermans2019} shows that attribution methods can be highly unreliable. The remaining subsections introduce some commonly used methods. The key objective for all the following methods is the same: Generating a reliable and easily understood attribution map.
+Attribution maps are typically calculated using SHAP\cite{lundberg2017unified} or gradient methods. Attribution maps provide a direct and intuitive way to understand which parts of input data influence a model's decision. The main difficulty is in generating reliable attribution maps \cite{Kindermans2019}. The remaining subsections introduce some commonly used methods. The key objective for all the following methods is the same: Generating a reliable and easily understood attribution map.
 
-\subsection{Visualizing Image Classification Models and \& Deconv-Net}
+\subsection{Vanilla Gradient and Deconv-Net}
 
-Visualizing image classification models (Vanilla Gradient) \cite{simonyan2014deep} focuses on computing gradients within neural networks. It involves generating a forward pass of an image and then computing gradients for the class scores. These gradients are then visualized. However, this method faces two challenges. First, when Rectified Linear Units (ReLU) are used, negative gradients are set to zero. This leads to an information loss in the gradients. Second, in pooling layers, gradients are absent.
+Vanilla Gradient \cite{simonyan2014deep} focuses on the computation of gradients within neural networks. It involves generating a forward pass of an image and then computing gradients for the class values. These gradients are then visualised. However, there are two challenges with this method. First, when using Rectified Linear Units (ReLU), negative gradients are set to zero. This results in a loss of information in the gradients. Second, there are no gradients in the pooling layers.
 \\
 The Devonc-Net from Zeiler \cite{zeiler2013visualizing} addresses these problems:
 A Deconv-Net-layer \cite{Zeiler2011AdaptiveDN} is attached to each convolutional layer providing a path back to the image pixels. The Devonc-Net learns weights to reverse the process from input to the last convolutional layer. Unpooling in Deconv-Net addresses the non-invertibility of pooling operations by preserving the original maxima locations through switch variables, which are used to reconstruct the activations. To maintain positive signals during reconstruction, a reverse ReLU non-linearity is applied in each layer, similar to the forward pass. Additionally, Deconv-Net utilizes transposed filters, effectively mirroring each filter both vertically and horizontally to achieve filtering in the reverse direction.
 
 This makes it possible to highlight the responsible features for a classification output.
 
-\subsection{Gradient-weighted Class Activation Map (Grad-CAM)}
+\subsection{Gradient-weighted Class Activation Map: Grad-CAM}
 
-Grad-CAM \cite{springenberg2015striving} ignores low-relevancy classes, which means that percentages for predictions below a certain threshold are not taken into account. The method then backpropagates gradients specifically for the classes of interest. These gradients are rescaled to fall within the [0,1] range and visualized. Grad-CAM takes into account all layers except for the convolutional layers. Evaluating the importance of each kernel prior to the convolutional layers provides insight into the importance of each input feature. This leads to a coarse accuracy, as pooling layers and convolutional layers are not handled and the resolution is up-scaled to the required format.
+Grad-CAM \cite{gradcam} ignores low-relevancy classes, which means that percentages for predictions below a certain threshold are not taken into account. The method then backpropagates gradients specifically for the classes of interest. These gradients are rescaled to fall within the [0,1] range and visualized. Grad-CAM takes into account all layers except for the convolutional layers. Evaluating the importance of each kernel prior to the convolutional layers provides insight into the importance of each input feature. This leads to a coarse accuracy, as pooling layers and convolutional layers are not handled and the resolution is up-scaled to the required format.
 
-\subsection{Guided Grad-CAM}
-
-Guided Grad-CAM combines the backpropagation \cite{springenberg2015striving} with another method to have a better localization. The up-sampled attribution map from Grad-Cam is multiplied pixel-wise with another attribution method. This acts as a lens for other attribution methods to focus on specific parts of the attribution map.
+Guided Grad-CAM \cite{gradcam} combines Grad-Cam with guided backpropagation \cite{springenberg2015striving} to have a better localization. The up-sampled attribution map from Grad-Cam is multiplied pixel-wise with another attribution method. This acts as a lens for other attribution methods to focus on specific parts of the attribution map.
 
 \subsection{Integrated Gradient}
 \label{IG}
-Integrated Gradient \cite{sundararajan2017axiomatic} computes the integral of the gradients of the model's prediction with respect to its input variables. By integrating over this path, it quantifies how each feature contributes to the change in the model's prediction. A reference variable, such as a baseline is used to measure how each feature influences changes in each prediction. The method is commonly used because it is applicable to any model and achieves good results.
+
+Integrated Gradient \cite{sundararajan2017axiomatic} calculates the contribution of each feature by integrating the gradients of the model output with respect to the input along a path from a baseline input to the current input. The baseline input (a black image for images) serves as a reference point, and the integral approximates the accumulated effect of each feature on the model output. By considering a path rather than a single point, Integrated Gradient is able to visualise the features of an image more exactly.
+
 
 \subsection{Ensemble Methods: Smooth Gradient, Smooth Grad² and VarGrad}
 
@@ -325,7 +327,7 @@ $$ A = Var(g(x+\theta))$$
 
 \subsection{Summarizing Attribution Maps}
 
-There exist many more attribution maps but there exists one major problem: There is no consensus on which method should be used. While attribution maps have advantages \cite{molnar2022}, such that they are fast to compute and easy to interpret, they are also unreliable and can be insensitive to models and data. Furthermore, it is difficult to know whether an explanation is correct. In the next chapter, the evaluation of interpretability methods is discussed.
+There exist many more attribution maps but there exists one major problem: There is no consensus on which method should be used. While attribution maps have advantages \cite{molnar2022}, such that they are fast to compute and easy to interpret, they are also unreliable \cite{molnar2020} and can be insensitive to models and data. Furthermore, it is difficult to know whether an explanation is correct. In the next chapter, the evaluation of interpretability methods is discussed.
 
 \newpage
 
@@ -341,21 +343,23 @@ The evaluation is compared against predefined ground truths explanations, establ
 \textbf{Intrinsic Evaluation}: 
 Intrinsic methods rely on computational analyses within the neural network itself, without requiring human judgments. These methods are based on creating a new composite input using the heat map and the original input. Then they are evaluated using either the same model\cite{dabkowski2017real} or new models are trained and evaluated\cite{hooker2019benchmark}. While both these methods generate meaningful results, they do not offer an objective evaluation method. Without re-training it is not clear if the degrade in performance stems from the distribution shift or the removal of informative features \cite{hooker2019benchmark}. By re-training the model, a different model is evaluated. 
 \\
-
+% link is missing
 Many interpretable AI methods exist and comparing their effectiveness is difficult. Neely, \cite{neely2021order} has tested several explainable AI methods in the domain of NLP and can only find little correlation. Additionally, the correlation is model and task-dependent, which furthermore weakens this assumption. However, it is unclear whether this result holds for image classification.
 \\
 After considering all these facts, it is not possible to meaningfully evaluate saliency methods by comparison or without violating fundamental assumptions. In the upcoming sections, potential evaluation metrics and methodologies are introduced to provide a more meaningful assessment. These metrics and methods do not fundamentally solve the problems, but they offer some guidance for evaluation.
-\\
-It is to note, that in evaluation the composite input of the image $x \circ A$ is often used. It describes an image with some parts of the pixels replaced by a gray value or the mean value, to hide the information of specific pixels. The pixels are chosen according to the highest or lowest values in the attribution map. Those new inputs are then measured using intrinsic methods. The hypothesis is: If the not removed pixels are not important and the original net outputs the same labels, then the removed pixels are not important. This hypothesis proves difficult in the domain of CNN's, as the composite input of various pixels is used. 
+
+%% Cite or remove, hypothesis?
+It is to note, that in evaluation the composite input of the image $x \circ A$ is often used. It describes an image with some parts of the pixels replaced by a gray value or the mean value, to hide the information of specific pixels. The pixels are chosen according to the highest or lowest values in the attribution map. Those new inputs are then measured using intrinsic methods. The hypothesis is: If the not removed pixels are not important and the original net outputs the same labels, then the removed pixels are not important. This hypothesis proves difficult in the domain of CNN's, as the composite input of various pixels is used.
+
 
 \section{Completeness and Soundness}
 
-Gupta, 2022 \cite{gupta2022new} proposes Soundness and Completeness, which proposes metrics to evaluate the effectiveness of evaluating composition methods.
+The Soundness and Completeness metrics \cite{gupta2022new} are used to evaluate saliency methods.
 
-Soundness: A certain part of the image is responsible for the output of the classifier. Some parts of the pixels are responsible for the classification of the label. In practice, this means that if you apply any mask to the image that still makes the x\% of the most important pixels visible, then the classification will be the same. This also means that if some of these important pixels are not visible, then the confidence of this classification will decrease. \\
-Completeness: No matter what mask is chosen, as long as the x\% most important pixels are visible, the classification is correct. In practice, this means that when the important pixels are visible, the classification remains correct, regardless of the appearance of the other pixels.\\
+\textbf{Soundness}: A certain part of the image is responsible for the output of the classifier. Some parts of the pixels are responsible for the classification of the label. In practice, this means that if you apply any mask to the image that still makes the x\% of the most important pixels visible, then the classification will be the same. This also means that if some of these important pixels are not visible, then the confidence of this classification will decrease. \\
+\textbf{Completeness}: No matter what mask is chosen, as long as the x\% most important pixels are visible, the classification will be correct. In practice, this means that if the important pixels are visible, the classification will remain correct, regardless of the appearance of the other pixels.\\
 
-These two metrics are useful for evaluating the correctness of masking. However, it is only one metric for other evaluation frameworks. Gupta suggests that intrinsic evaluation methods should test for both completeness and soundness.
+These two metrics are useful for assessing the correctness of masking. However, it is only one metric for other evaluation frameworks. Gupta suggests that saliency methods should test for both completeness and soundness.
 
 \section{Evaluating the Visualization of What a Deep Neural Network has learned}
 \label{pertubation}
@@ -366,12 +370,11 @@ While the method produces results which confirm that removing important pixels l
 
 \section{A Benchmark for Interpretability Methods in Deep Neural Networks }
 
-This paper \cite{hooker2019benchmark} presents two methods for numerically evaluating attribution maps. "RemOve And Retrain (ROAR)" and "Keep And Retrain (KAR)". This is done by removing supposedly informative features from the input and observing the response of the neural network. The section \ref{sec:project} gives an example of a practical application for MNIST\cite{deng2012mnist} and Food-101\cite{bossard14}.
-
+This paper \cite{hooker2019benchmark} presents two methods for numerically evaluating attribution maps. "RemOve And Retrain (ROAR)" and "Keep And Retrain (KAR)". This is done by removing or keeping supposedly informative features from the input and observing the response of the neural network. The section \ref{sec:project} gives an example of a practical application for MNIST\cite{deng2012mnist} and Food-101\cite{bossard14}.
 
 ROAR can be applied to any method that produces attribution maps. It identifies 10, 30, 50, 70 or 90 \% of the most important pixels in an attribution map and ranks them according to their numerical importance. In order to have a baseline against which to compare, a random baseline is generated which randomly assigns the importance of the pixels.\\ After the most important pixels have been identified, new datasets are generated for each threshold. In this step, x\% of the most important pixels are replaced by the mean value of the data set.\\
-Once the new data sets have been generated, new uninitialized models with the same architecture and learning parameters are trained on this modified data set. The same train/test split should be used as for the original model. This is done for several runs to ensure consistency of results.
-After retraining for each set of removed pixels and attribution maps, the results are compared. A random baseline should have a slower loss of accuracy than an attribution map.
+Once the new data sets have been generated, new randomly initialized models with the same architecture and learning parameters are trained on this modified data set. The same train/test split should be used as for the original model. This is done for several runs to ensure consistency of results.
+After retraining for each set of removed pixels and attribution maps, the results are compared. A model trained on a dataset with random \% pixels removed should have a slower loss of accuracy than a model with a dataset using an attribution map to remove the pixels. The greater the decrease in accuracy compared to the random baseline, the better the attribution map.
 
 KAR works in a similar way to ROAR, but instead of removing the most important pixels, it removes the least important pixels. As KAR performs worse than ROAR, it is not described further.\\
 \\
@@ -409,7 +412,7 @@ Numerous attribution maps and possible evaluation methods have been looked at an
 The unsatisfactory answer is: We do not know. Depending on the model and dataset used, different evaluation methods give varying outcomes. In Sanity check by Adebayo \cite{adebayo2020sanity} and ROAR by Hooker\cite{hooker2019benchmark} some methods were seen as unsuitable for the task considered. However, this was dependent on the model and the dataset. Considering there exists no ground truth for an evaluation method, there also is no ground truth for the attribution method. Opting for an SG - GRAD or a VAR-GRAD approach might result in favourable results for ROAR and Sanity checks. However, it remains difficult to evaluate visual explanations and there is no established ground truth to determine which evaluation method is the best. Consequently, further research is required to provide clearer guidance in this area.
 
 %%%%%%%%%%%%%%%%
-\chapter{Reconstructing ROAR} % 4 pages
+\chapter{Reproduction of RemOve And Retrain (ROAR)} % 4 pages
 \label{sec:project}
 
 \section{Scientific Motivation and Goal}
@@ -442,15 +445,15 @@ Before starting a large computation on the Food-101 dataset, the method was test
 
 B. Training the model
 
-The model used in this report is a convolutional neural network architecture consisting of two convolutional layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of $97.4\%\pm0.4\%$ on the test data.
+The model used in this thesis is a convolutional neural network architecture consisting of two convolutional layers, two pooling layers, and three linear layers. The model was trained for ten epochs with a learning rate of 1e-3 and an SGD optimizer with a momentum term of 0.9. The batch size was 64. Across five separate runs, the model achieved an average accuracy of $97.4\%\pm0.4\%$ on the test data. The cross-entropy loss was selected for training.
 
 C. Dataset preparation and Splitting
 
-The dataset used in this report was normalized using the mean and standard deviation and was split using the PyTorch library's default splitting method (60,000 images for the training data and 10,000 images for the test data). This split has a fixed test and train set which includes a homogeneous distribution of the classes. The training data was shuffled randomly for the training runs. The cross-entropy loss was selected for training runs. The same dataset split was used for all training runs to ensure consistency in the results.
+The dataset used in this thesis was normalized using the mean and standard deviation and was split using the PyTorch library's default splitting method (60,000 images for the training data and 10,000 images for the test data). This split has a fixed test and train set which includes a homogeneous distribution of the classes. The training data was shuffled randomly for the training runs. The same dataset split was used for all training runs to ensure consistency in the results.
 
 D. Example of the modified dataset
 
-The modified dataset is the result of combining the attribution map with the original image pixels $A \circ p$. In this operation, the most x\% important pixels are replaced with the mean value of the dataset. In figure \ref{fig:IGvsRandom} the difference between the two altered datasets is visible. In the first row, the random baseline is visible, and in the second row, the Integrated Gradient evaluation is shown. 10, 30, 50, 70 and 90\% of the pixels are grayed out (left to right).
+The modified dataset is the result of combining the attribution map with the original image pixels $A \circ p$. In this operation, the most x\% important pixels are replaced with the mean value of the dataset. In figure \ref{fig:IGvsRandom} the difference between the two altered datasets is visible. In the first row, the random baseline is visible, and in the second row, the evaluation of graying out pixels based on the attribution values of integrated gradient is shown. 10, 30, 50, 70 and 90\% of the pixels are grayed out (left to right).
 
 \begin{figure}[H]
 	\centering
@@ -459,7 +462,25 @@ The modified dataset is the result of combining the attribution map with the ori
 	\label{fig:IGvsRandom}
 \end{figure}
 
-Judging by human intuition, Integrated Gradients \cite{sundararajan2017axiomatic} seems to block out information more reliably. The model is expected to perform worse after retraining. However, human intuition can be problematic in neural networks as mentioned in section \ref{gray}.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		Pixels blocked & 10\% & 30\% & 50\% & 70\% & 90\% \\
+		\hline
+		Random Baseline & 98.64\% & 97.76\% & 96.4\% & 90.9\% & 75.5\% \\
+		std & 0.42\% & 0.28\% & 0.39\% & 0.58\% & 0.65\%  \\
+		\hline
+		Integrated Gradient& 95.4\% & 91.48\% & 86.64\% & 55.52\% & 10\%  \\
+		std & 0.44\% & 0.83\% & 2.1\% & 31.64\% & 0\%  \\
+		\hline
+	\end{tabular} \newline
+	\caption{Accuracy and standard deviation of the retrained models per threshold.}
+	\label{tab:sclass_precision_ig}
+\end{table}
+
+
+Judging by human intuition, Integrated Gradients \cite{sundararajan2017axiomatic} seems to identify information more reliably. The model is expected to perform worse after retraining. However, human intuition can be problematic in neural networks as mentioned in section \ref{gray}.
 
 E. Retraining on the new datasets
 
@@ -467,7 +488,7 @@ To ensure that the model learns consistently, the same split and learning parame
 
 F. Advantages and Disadvantages of the setup
 
-Due to the small size of the dataset and the limited number of classes, training a model is fast and effective. A disadvantage is the limited venerability of this setup to other datasets and models. The majority of use cases primarily involve working with images in the RGB colour space, using deep learning models that are often more complex. In addition, RGB images combine 3 channels, making attribution maps more difficult to compute and understand.
+Due to the small size of the dataset and the limited number of classes, training a model is fast and effective. A disadvantage is the limited meaningfulness of this setup for other datasets and models. The majority of use cases primarily involve working with images in the RGB colour space, using deep learning models that are often more complex. In addition, RGB images combine 3 channels, making attribution maps more difficult to compute and understand.
 
 G. Results
 
@@ -488,12 +509,12 @@ After building a functional, fast pipeline for the ROAR algorithm, some of the e
 
 A. Training the model
 
-The model used in this report is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen for replication. The learning rate was set to 0.175 and the batch size was set to 64. Using an SGD optimiser with momentum of 0.9, weight decay of 0.0001 and a scheduler at epoch 30 with gamma=0.1, an average accuracy of $70.5\% \pm 1.6$ was achieved over 5 separate training runs on the test score (no validation split was used). Cross-entropy loss was used. A total of 31 epochs were run. By using this particular training setup, the model learns more about the specific data in the last epoch. In the last epoch, an accuracy of 95\% was achieved on the training data.\\
+The model used in this thesis is ResNet50 \cite{he2015deep}. The Food-101 \cite{bossard14} dataset was chosen for replication. The learning rate was set to 0.175 and the batch size was set to 64. Using an SGD optimiser with momentum of 0.9, weight decay of 0.0001 and a scheduler at epoch 30 with gamma=0.1, an average accuracy of $70.5\% \pm 1.6$ was achieved over 5 separate training runs on the test score (no validation split was used). Cross-entropy loss was used. A total of 31 epochs were run. By using this particular training setup, the model learns more about the specific data in the last epoch. In the last epoch, an accuracy of 95\% was achieved on the training data.\\
 In the original paper, an accuracy of 84.54\% was achieved on the Food-101 dataset. A lower accuracy was achieved because different training parameters were used in our experiment. We used a smaller batch size of 64 instead of 256 and fewer epochs, 31 instead of 90. More fine-tuning could have been done to achieve a better test score, but the results were considered good enough for our experiments.
 
 B. Dataset preparation and splitting
 
-The data was resized using centre-crop to make all images 3x224x224. They were then normalised. No data enhancement such as flipping and mirroring was applied. The standard 75:25 split was used. In the original dataset, the training and test data have a fixed split, which we also used for this report. The saliency maps used to generate the datasets were computed using a single model. The original paper does not clearly state how the pixels are replaced. In these experiments, the input layers were considered as 3x224x224 maps and each channel of a pixel was replaced individually by the mean of that channel.
+The data was resized using centre-crop to make all images 3x224x224. They were then normalised. No data enhancement such as flipping and mirroring was applied. The standard 75:25 split was used. In the original dataset, the training and test data have a fixed split, which we also used for this thesis. The saliency maps used to generate the datasets were computed using a single model. The original paper does not clearly state how the pixels are replaced. In these experiments, the input layers were considered as 3x224x224 maps and each channel of a pixel was replaced individually by the mean of that channel.
 
 C. Retraining the models
 
@@ -507,6 +528,31 @@ B. Results
 	\caption {Comparison of the accuracy behaviour of the original model vs the modified model.}
 	\label{fig:food101Res}
 \end{figure}
+
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|c|c|}
+		\hline
+		Pixels blocked & 10\% & 30\% & 50\% & 70\% & 90\% \\
+		\hline
+		Random Baseline & 68.61\% & 63.63\% & 64.93\% & 62.19\% & 56.56\% \\
+		std & 0.40\% & 1.05\% & 0.10\% & 0.51\% & 0.25\% \\
+		\hline
+		Integrated Gradient & 77.72\% & 76.93\% & 73.97\% & 70.01\% & 62.75\% \\
+		std & 0.37\% & 0.67\% & 0.01\% & 1.56\% & 0.57\% \\
+		\hline
+		Guided Backprop & 73.05\% & 71.75\% & 68.70\% & 64.01\% & 51.56\% \\
+		std & 0.06\% & 0.15\% & 0.14\% & 0.01\% & 0.02\% \\
+		\hline
+		
+	\end{tabular} \newline
+	
+	\caption{Accuracy and standard deviation of the retrained models per threshold}
+	\label{tab:sclass_precision_ig}
+\end{table}
+
 
 Figure \ref{fig:food101Res} shows the accuracy of the retrained models in the original paper and the accuracy of our retrained model. Our experiments confirm the results of the original paper for integrated gradient and guided backpropagation. The random baseline seems to block out more important pixels than the other attribution methods. The fact that the accuracy drops so slowly makes it unclear whether the method can be used to reliably test attribution methods. While our accuracy drops more quickly, this is probably due to the different training setups. The standard deviations are small and it appears that the results can be replicated consistently.
 

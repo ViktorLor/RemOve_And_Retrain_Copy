@@ -158,6 +158,62 @@
       \field{pages}{1059\bibrangedash 1086}
       \range{pages}{28}
     \endentry
+    \entry{Bau2017}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=22ad692c20b3b8f8f6a32384dae0ac10}{%
+           family={Bau},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c7cb7aa044ac5597397cceabad3765a3}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Bolei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c8d6add84efe17681e0d4968ebf47fdc}{%
+           family={Khosla},
+           familyi={K\bibinitperiod},
+           given={Aditya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b7446de83b2320d904225a0730e3389a}{%
+           family={Oliva},
+           familyi={O\bibinitperiod},
+           given={Aude},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2a80dd1cae02059e95bfed2f2715fd0a}{%
+           family={Torralba},
+           familyi={T\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IEEE} Computer Society}%
+      }
+      \strng{namehash}{c1dd8491e98dfa329c7403f289802a4c}
+      \strng{fullhash}{4f4a8d4e217d40eb01f49da370096d1e}
+      \strng{bibnamehash}{c1dd8491e98dfa329c7403f289802a4c}
+      \strng{authorbibnamehash}{c1dd8491e98dfa329c7403f289802a4c}
+      \strng{authornamehash}{c1dd8491e98dfa329c7403f289802a4c}
+      \strng{authorfullhash}{4f4a8d4e217d40eb01f49da370096d1e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 {IEEE} Conference on Computer Vision and Pattern Recognition, {CVPR} 2017, Honolulu, HI, USA, July 21-26, 2017}
+      \field{title}{Network Dissection: Quantifying Interpretability of Deep Visual Representations}
+      \field{year}{2017}
+      \field{pages}{3319\bibrangedash 3327}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/CVPR.2017.354
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/CVPR.2017.354
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/CVPR.2017.354
+      \endverb
+    \endentry
     \entry{boser1992training}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=5144f9b0b0cb5276c5c4e682227daba7}{%
@@ -344,6 +400,56 @@
       \endverb
       \verb{url}
       \verb https://proceedings.neurips.cc/paper/2017/hash/0060ef47b12160b9198302ebdb144dcf-Abstract.html
+      \endverb
+    \endentry
+    \entry{delgado2014}{article}{}
+      \name{author}{4}{}{%
+        {{hash=6ef91b00a0be20be9fad1682cc10f911}{%
+           family={Delgado},
+           familyi={D\bibinitperiod},
+           given={Manuel\bibnamedelima Fernández},
+           giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=157010816738c8cbc5ee5a5052d42df9}{%
+           family={Cernadas},
+           familyi={C\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod}}}%
+        {{hash=f79f6c3fdeb99a2fd83cf4e18b5dbd74}{%
+           family={Barro},
+           familyi={B\bibinitperiod},
+           given={Senén},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5c0abec132fec3c06000917521286f1c}{%
+           family={Amorim},
+           familyi={A\bibinitperiod},
+           given={Dinani\bibnamedelima Gomes},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c4099a031ed0fc2ff6f02823564135d}
+      \strng{fullhash}{58e35bb21b9647e0d312dcb2a510cd9d}
+      \strng{bibnamehash}{7c4099a031ed0fc2ff6f02823564135d}
+      \strng{authorbibnamehash}{7c4099a031ed0fc2ff6f02823564135d}
+      \strng{authornamehash}{7c4099a031ed0fc2ff6f02823564135d}
+      \strng{authorfullhash}{58e35bb21b9647e0d312dcb2a510cd9d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Mach. Learn. Res.}
+      \field{number}{1}
+      \field{title}{Do we need hundreds of classifiers to solve real world classification problems?}
+      \field{volume}{15}
+      \field{year}{2014}
+      \field{pages}{3133\bibrangedash 3181}
+      \range{pages}{49}
+      \verb{doi}
+      \verb 10.5555/2627435.2697065
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.5555/2627435.2697065
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.5555/2627435.2697065
       \endverb
     \endentry
     \entry{deng2012mnist}{article}{}
@@ -1007,6 +1113,119 @@
       \verb https://christophm.github.io/interpretable-ml-book
       \endverb
     \endentry
+    \entry{molnar2020}{inproceedings}{}
+      \name{author}{9}{}{%
+        {{hash=1519de263bd388a2ce312e7171b96d0d}{%
+           family={Molnar},
+           familyi={M\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=395f666b9da3024af430c9f67656e0a0}{%
+           family={König},
+           familyi={K\bibinitperiod},
+           given={Gunnar},
+           giveni={G\bibinitperiod}}}%
+        {{hash=d3e1e2f8ca91319dda8534f286f3f047}{%
+           family={Herbinger},
+           familyi={H\bibinitperiod},
+           given={Julia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=49eda7f274d26942f9a8541738ead52d}{%
+           family={Freiesleben},
+           familyi={F\bibinitperiod},
+           given={Timo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=53c70c0f750cd64ace1de84e3cfca7e8}{%
+           family={Dandl},
+           familyi={D\bibinitperiod},
+           given={Susanne},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0ae9fb619c0f9d13c1d1438dedd46a48}{%
+           family={Scholbeck},
+           familyi={S\bibinitperiod},
+           given={Christian\bibnamedelima A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=c00b6938329435f93bc66d0617ea7481}{%
+           family={Casalicchio},
+           familyi={C\bibinitperiod},
+           given={Giuseppe},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4eee9ff4886fc2e6f7eef0ab954fc6ba}{%
+           family={Grosse{-}Wentrup},
+           familyi={G\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c5695b464b6059e7047553d017275f65}{%
+           family={Bischl},
+           familyi={B\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=3f4842b3f24d20f809775dbf780810ab}{%
+           family={Holzinger},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=67d0e7c2f3249b72cf5c5efc1a6c8fbd}{%
+           family={Goebel},
+           familyi={G\bibinitperiod},
+           given={Randy},
+           giveni={R\bibinitperiod}}}%
+        {{hash=68863d44ca413f278c0bdf0cf1aa096a}{%
+           family={Fong},
+           familyi={F\bibinitperiod},
+           given={Ruth},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5af6d4a3072af3ffed619eac87fc7a80}{%
+           family={Moon},
+           familyi={M\bibinitperiod},
+           given={Taesup},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9f1b6144a45b1967e989e74552e37ada}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Klaus{-}Robert},
+           giveni={K\bibinitperiod}}}%
+        {{hash=7f49b6382ab4ca917a2aa2249f875f79}{%
+           family={Samek},
+           familyi={S\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{79745f5bcd9197a6190d4c4c5cf57de6}
+      \strng{fullhash}{fe550c72f7e93f4f39fb1a6a5c48df78}
+      \strng{bibnamehash}{79745f5bcd9197a6190d4c4c5cf57de6}
+      \strng{authorbibnamehash}{79745f5bcd9197a6190d4c4c5cf57de6}
+      \strng{authornamehash}{79745f5bcd9197a6190d4c4c5cf57de6}
+      \strng{authorfullhash}{fe550c72f7e93f4f39fb1a6a5c48df78}
+      \strng{editorbibnamehash}{24c8392c3e894cc00d04bfd3c472917e}
+      \strng{editornamehash}{24c8392c3e894cc00d04bfd3c472917e}
+      \strng{editorfullhash}{232716a8903bf664a6e79cf511a69008}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{xxAI - Beyond Explainable {AI} - International Workshop, Held in Conjunction with {ICML} 2020, July 18, 2020, Vienna, Austria, Revised and Extended Papers}
+      \field{series}{Lecture Notes in Computer Science}
+      \field{title}{General Pitfalls of Model-Agnostic Interpretation Methods for Machine Learning Models}
+      \field{volume}{13200}
+      \field{year}{2020}
+      \field{pages}{39\bibrangedash 68}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1007/978-3-031-04083-2\_4
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-031-04083-2\_4
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-031-04083-2%5C_4
+      \endverb
+    \endentry
     \entry{Mucherino2009}{inbook}{}
       \name{author}{3}{}{%
         {{hash=5f32dfe07560d2e9cbdeb3bf02e38a1e}{%
@@ -1140,62 +1359,6 @@
       \field{volume}{2}
       \field{year}{2017}
       \field{pages}{e7}
-      \range{pages}{-1}
-    \endentry
-    \entry{olah2018the}{article}{}
-      \name{author}{7}{}{%
-        {{hash=78be47e08348476a254b1217fd9041ca}{%
-           family={Olah},
-           familyi={O\bibinitperiod},
-           given={Chris},
-           giveni={C\bibinitperiod}}}%
-        {{hash=ec2a9922637069508ab584ad1018d42b}{%
-           family={Satyanarayan},
-           familyi={S\bibinitperiod},
-           given={Arvind},
-           giveni={A\bibinitperiod}}}%
-        {{hash=7201a73ba867797477903e1eec2b65e4}{%
-           family={Johnson},
-           familyi={J\bibinitperiod},
-           given={Ian},
-           giveni={I\bibinitperiod}}}%
-        {{hash=21e186e707ee8b7df883fdc389699ca1}{%
-           family={Carter},
-           familyi={C\bibinitperiod},
-           given={Shan},
-           giveni={S\bibinitperiod}}}%
-        {{hash=1fad333f9d77349d65c03a477e27c0dd}{%
-           family={Schubert},
-           familyi={S\bibinitperiod},
-           given={Ludwig},
-           giveni={L\bibinitperiod}}}%
-        {{hash=2854d1d82307a554dd81b9d7143f8c75}{%
-           family={Ye},
-           familyi={Y\bibinitperiod},
-           given={Katherine},
-           giveni={K\bibinitperiod}}}%
-        {{hash=227f3a2edcf8a761ddd01d28ab6f2302}{%
-           family={Mordvintsev},
-           familyi={M\bibinitperiod},
-           given={Alexander},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{bf69a5e61eaa0b31f97d786de7bf5591}
-      \strng{fullhash}{587da9e622149be7bf968cfe02e1bcd0}
-      \strng{bibnamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
-      \strng{authorbibnamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
-      \strng{authornamehash}{bf69a5e61eaa0b31f97d786de7bf5591}
-      \strng{authorfullhash}{587da9e622149be7bf968cfe02e1bcd0}
-      \field{sortinit}{O}
-      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Distill}
-      \field{number}{3}
-      \field{title}{The building blocks of interpretability}
-      \field{volume}{3}
-      \field{year}{2018}
-      \field{pages}{e10}
       \range{pages}{-1}
     \endentry
     \entry{prokhorenkova2019catboost}{inproceedings}{}
@@ -1473,6 +1636,67 @@
       \range{pages}{14}
       \verb{doi}
       \verb 10.1109/TNNLS.2016.2599820
+      \endverb
+    \endentry
+    \entry{gradcam}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=2bb65ae1ae492d8a5f0410b495e608cf}{%
+           family={Selvaraju},
+           familyi={S\bibinitperiod},
+           given={Ramprasaath\bibnamedelima R.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=615d55ccf6f32ec74ad65001e3a4ebbb}{%
+           family={Cogswell},
+           familyi={C\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=95fdc805087b8b7c1bb60f09d4ee2641}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Abhishek},
+           giveni={A\bibinitperiod}}}%
+        {{hash=485265d172ca1779fa9691a5b6091cc8}{%
+           family={Vedantam},
+           familyi={V\bibinitperiod},
+           given={Ramakrishna},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d0ab7a4601951a0c59352f1dcb531afb}{%
+           family={Parikh},
+           familyi={P\bibinitperiod},
+           given={Devi},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d0a408119272ca1bd49b625e3b927d05}{%
+           family={Batra},
+           familyi={B\bibinitperiod},
+           given={Dhruv},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IEEE} Computer Society}%
+      }
+      \strng{namehash}{44b36a9d8aed667d91631e9717a56509}
+      \strng{fullhash}{aa15df90de6a99f6dc73b935fda62089}
+      \strng{bibnamehash}{44b36a9d8aed667d91631e9717a56509}
+      \strng{authorbibnamehash}{44b36a9d8aed667d91631e9717a56509}
+      \strng{authornamehash}{44b36a9d8aed667d91631e9717a56509}
+      \strng{authorfullhash}{aa15df90de6a99f6dc73b935fda62089}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{IEEE} International Conference on Computer Vision, {ICCV} 2017, Venice, Italy, October 22-29, 2017}
+      \field{title}{Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization}
+      \field{year}{2017}
+      \field{pages}{618\bibrangedash 626}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/ICCV.2017.74
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/ICCV.2017.74
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/ICCV.2017.74
       \endverb
     \endentry
     \entry{simonyan2014deep}{inproceedings}{}
