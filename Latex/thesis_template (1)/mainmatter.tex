@@ -21,9 +21,9 @@ In light of these prevalent problems, the object of this thesis is to recapitula
 	\item In the second chapter \ref{sec:MLandI} "Machine Learning and their Interpretability", an overview of contemporary machine learning algorithms is made, categorizing them into two main groups: algorithms with inherent interpretability and those without. The goal is to make clear how supervised methods can be applied to image recognition.
 	\item In chapter \ref{sec:IoNN} "Interpretability of Supervised Machine Learning Algorithms in Image Recognition" we dig into interpretability, emphasizing global and local model-agnostic techniques. These methods offer insights into overall model behaviour, regardless of algorithm specifics. 
 	\item In subsequent sections \ref{sec:saliency} "Neural Network specific Interpretability Methods", model-specific post-hoc methods for Neural Networks are introduced. Feature visualization and gradient-based methods are explained.
-	\item In chapter \ref{sec:evaluation} "Evaluation of post-hoc Interpretability methods", we focus on evaluating post-hoc interpretability methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
-	\item In chapter \ref{sec:summary} "Which evaluation method and attribution method to use?", a conclusion is presented and advice on which evaluation method to use is given. 
-	\item In the last chapter \ref{sec:project} "Reconstructing ROAR", the practical application of the ROAR methodology using the Food-101 dataset \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented to exemplify the discussed concepts. This real-world instance illustrates the current state of art of evaluation techniques in image recognition.
+	\item In section \ref{sec:evaluation} "Evaluation of post-hoc Interpretability methods", we focus on evaluating post-hoc interpretability methods. Various approaches to assess the effectiveness and dependability of these methods in offering meaningful insights into intricate models are introduced and discussed. Additionally, the advantages and disadvantages of these approaches are carefully examined to provide a comprehensive understanding of their applicability.
+	\item In section \ref{sec:project} "Reproduction of RemOve And Retrain", the practical application of the ROAR methodology using the Food-101 dataset \cite{bossard14} and MNIST dataset \cite{deng2012mnist} is presented to exemplify the discussed concepts. This real-world instance illustrates the current state of art of evaluation techniques in image recognition.
+	\item In chapter \ref{sec:summary} "Summary and Interpretation", a conclusion is presented and advice on which evaluation method to use is given. 
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%
@@ -95,7 +95,8 @@ Given a new data point $x_{new}$ that you want to classify, KNN works as follows
 During training, KNN does not store any parameters but rather constructs an underlying data structure which is interpretable, for example, a ball tree or k-d tree. This makes KNN a widely used technique when interpretability is needed. However, when it comes to dealing with large datasets and many features, KNN faces considerable challenges. Therefore, it is not recommended to use KNN for image recognition purposes.
 
 \section{Support Vector Machines}
-\ref{sec:svm}
+\label{sec:svm}
+
 Support Vector Machines (SVMs) \cite{boser1992training} are used to find a hyperplane that best separates different classes $y_i$ of data points. The primary objective is to maximise the distance between the hyperplane, defined by the weight vector ${w}$, and the closest data points $x_i$ from each class. This is done to ensure that the datasets are separated as much as possible. Because there may be classification errors and noise in the dataset, it is possible to set an initial regularization parameter $C$ to handle outliers.
 
 The optimization problem SVM (for binary classification) in mathematical notion:
@@ -113,13 +114,13 @@ SVMs can handle non-linear data through the kernel trick, in which a kernel is a
 \label{decision_tree}
 
 
-Decision trees are a commonly used machine learning algorithm that proves effective in both classification and regression tasks. The reason for their popularity can be attributed to their user-friendly structure, which can handle both categorical and continuous data. A decision tree is made up of three main types of nodes: root, internal, and leaf nodes, which combine to form a representation often depicted as a tree. In figure \ref{fig:Decision_tree}, a decision tree is plotted. 
+Decision trees are a commonly used machine learning algorithm that proves effective in both classification and regression tasks. The reason for their popularity can be attributed to their user-friendly structure, which can handle both categorical and continuous data. A decision tree is made up of three main types of nodes: root, internal, and leaf nodes, which combine to form a representation often depicted as a tree. In figure \ref{fig:decision_tree}, a decision tree is plotted. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=150mm]{figs/decision_tree}
 	\caption[Decision Tree Example]{Decision Tree Example} 
-	\label{fig:Decision_tree}
+	\label{fig:decision_tree}
 \end{figure}
 
 An example dataset with 2 features and 2 classes is depicted to explain the behavior of a decision tree. The classes are separated in each root and internal node by a decision criterion: $F_i$ <= criterion. The Gini impurity is commonly used for calculating the splitting criterion, which aims to best separate the data in the node. This process is repeated and new nodes are defined until the dataset is perfectly separated. However, this makes decision trees prone to overfitting as the model becomes overly complex and captures noise or random fluctuations in the training data, rather than the underlying patterns or relationships. Consequently, the resulting tree fits the training data exceptionally but does not generalize well to new or unseen data. 
@@ -205,16 +206,16 @@ The aim of local model-agnostic methods is to reveal knowledge of how individual
 	\item \textbf{SHAP (SHapley Additive exPlanations):} SHAP values \cite{lundberg2017unified} calculate how much each feature contributes to the difference between a models prediction for a specific instance and the average prediction across all instances. Positive SHAP values indicate features that increase the predicted likelihood for a particular class, while negative values indicate features that decrease it. It is used commonly in neural networks.
 \end{enumerate}
 
-While the summarized techniques can be applied to neural networks, they do not provide a universal solution for interpretability. For this reason, Model-specific methods for neural Networks were developed which make use of the inherent parameters of neural networks.
+While the summarized techniques can be applied to neural networks, they do not provide a universal solution for interpretability. For this reason, model-specific methods for neural networks were developed which make use of the inherent parameters of neural networks.
 
 \section{Model-Specific methods for Neural Networks}
 \label{sec:nni}
-In the domain of Natural Language Processing (NLP) and Computer Vision, Deep Learning has proven very successful \cite{delgado2014}. By passing the features through a sequence of layers, characterized by matrix multiplications with kernel weights and nonlinear transformation functions, a prediction is computed. Depending on the specific task, additional elements like Long Short-Time Memory(LSTM) layers and Convolutional layers are utilized. Given the immense amount of mathematical operations and the non-linearity underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
-Recognizing that humans cannot grasp millions of weights, the demand for interpretability methods is high. To assess the behaviour and predictions of Deep Neural networks, specific interpretability methods were developed. These methods calculate the likelihood of a feature being responsible for the result.
+In the domain of natural language processing (NLP) and Computer Vision, Deep Learning has proven very successful \cite{delgado2014}. By passing the features through a sequence of layers, characterized by matrix multiplications with kernel weights and nonlinear transformation functions, a prediction is computed. Depending on the specific task, additional elements like long short-time memory(LSTM) layers and convolutional layers are utilized. Given the immense amount of mathematical operations and the non-linearity underlying a single prediction, humans are not fit to apprehend the mapping. To interpret predictions, we would have to decipher the intricate learned knowledge of numerous different kernels and weights.
+Recognizing that humans cannot grasp millions of weights, the demand for interpretability methods is high. To assess the behaviour and predictions of deep neural networks, specific interpretability methods were developed. These methods calculate the likelihood of a feature being responsible for the result.
 \\\\
-While model-agnostic methods offer an approach to understanding Neural Networks, the high-dimensionality of the features and the high computational effort makes it difficult to use model-agnostic methods \cite{molnar2020}. For instance, in an image with the dimensions of 3x224x224, as commonly encountered in Food-101, the data features exceed 150.000. In NLP tasks, where vocabularies often encompass around 20,000 words, the computational complexity renders most model-agnostic techniques difficult to employ.
+While model-agnostic methods offer an approach to understanding neural networks, the high-dimensionality of the features and the high computational effort makes it difficult to use model-agnostic methods \cite{molnar2020}. For instance, in an image with the dimensions of 3x224x224, as commonly encountered in Food-101, the data features exceed 150.000. In NLP tasks, where vocabularies often encompass around 20,000 words, the computational complexity renders most model-agnostic techniques difficult to employ.
 \\
-In the pursuit of comprehending the complexity of Deep Neural Networks, it makes sense to utilize the weights and gradients in the model. The information saved in the hidden layers as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well. In the following subsections, several concepts for understanding Deep Neural Networks are introduced. 
+In the pursuit of comprehending the complexity of deep neural networks, it makes sense to utilize the weights and gradients in the model. The information saved in the hidden layers as learned weights can be used to evaluate the network. Moreover, the gradients can be taken into consideration as well. In the following subsections, several concepts for understanding deep neural networks are introduced. 
 
 \subsection{Feature Visualization}
 
@@ -375,12 +376,12 @@ After retraining for each set of removed pixels and attribution maps, the result
 
 KAR works in a similar way to ROAR, but instead of removing the most important pixels, it removes the least important pixels. As KAR performs worse than ROAR, it is not described further.\\
 \\
-The conclusion of Hooker \cite{hooker2019benchmark} is that some commonly used attribution estimators like Gradient\cite{simonyan2014deep}, Integrated Gradient\cite{sundararajan2017axiomatic} and Guided Backpropagation\cite{springenberg2015striving} perform worse than random assignments in ROAR. On the other hand, the effectiveness of Smooth-Grad-Squared and VarGrad was confirmed. However, ROAR is sensitive to the dataset used. While it does provide a numerical evaluation, it is sensitive to the model and dataset used and therefore cannot universally evaluate an algorithm.
+The conclusion of Hooker \cite{hooker2019benchmark} is that some commonly used attribution estimators like Gradient \cite{simonyan2014deep}, Integrated Gradient \cite{sundararajan2017axiomatic} and Guided Backpropagation \cite{springenberg2015striving} perform worse than random assignments in ROAR. On the other hand, the effectiveness of Smooth-Grad-Squared and VarGrad was confirmed. While it does provide a numerical evaluation, it is sensitive to the model and dataset used and therefore cannot universally evaluate an algorithm.
 
 \section{Benchmarking Attribution Methods (BAM)}
 \label{sec:bam}
 
-As already mentioned before, determining the ground truth of an attribution map is impossible. However, it is possible to compute the relative importance of specific features when comparing it between two different models\cite{yang2019benchmarking}. BAM\cite{yang2019benchmarking} uses this to evaluate different attribution methods.
+As already mentioned before, determining the ground truth of an attribution map is impossible. However, it is possible to compute the relative importance of specific features when comparing it between two different models \cite{yang2019benchmarking}. BAM \cite{yang2019benchmarking} uses this to evaluate different attribution methods.
 \\
 Visualize an image consisting of two distinct pixel sets:\\ 
 Each image contains one object, represented by the $p_o$ pixels, and the remaining pixels $p_s$ make up the background scene. By training two distinct classifiers, one trained to detect objects and the other trained for scene identification, we expect that the relative feature importance for the $p_o$ pixels should be higher for the object classifier than for the scene classifier. Conversely, the same holds for the $p_s$ pixels for the scene classifier.\\
