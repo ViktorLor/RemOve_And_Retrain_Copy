@@ -1,4 +1,7 @@
-# Interpretable AI 
+# RemOve_And_Retrain_Copy
+
+This program is based on the original paper of:
+A Benchmark for Interpretability Methods in Deep Neural Networks (https://arxiv.org/abs/1806.10758)
 
 To use this notebook you need to have the following installed:
 - numpy
@@ -8,10 +11,6 @@ To use this notebook you need to have the following installed:
 
 Download some images to test saliency maps. I personally used following images:
 - https://github.com/EliSchwartz/imagenet-sample-images
-
-# Papers used in this notebook:
-A Benchmark for Interpretability Methods in Deep Neural Networks (https://arxiv.org/abs/1806.10758)
-
 
 # Roar Implementation
 
