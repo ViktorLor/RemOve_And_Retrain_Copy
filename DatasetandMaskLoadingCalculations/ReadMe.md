@@ -11,7 +11,7 @@ File to generate masks and evaluate the computational speed of the dataset.
 File containing more sophisticated methods for mask generation and special data loaders.
 
 
-# Result explanation:
+# Results explanation:
 
 Memmaps are the fastest way to load the dataset.
 Singular files are the most memory efficient way to store the dataset, but is a little bit slower.

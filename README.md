@@ -18,14 +18,14 @@ The implementation varies from the original paper as I am using pytorch and capt
 
 ## Architecture:
 
-The architecture was chosen to be the ResNet50 model because it is easier.
+The architecture was chosen to be the ResNet50 model because it is easy to train.
 
 - Model: ResNet50, https://arxiv.org/abs/1512.03385
 - Dataset: Food101
 
 Roar consists of 3 steps:
 
-1. Train a classification model on original dataset. -> Done using the ResNET 50 weights.
+1. Train a classification model on original dataset.
 2. Use the trained model to extract attribution maps for each image.
 3. Retrain the model on the original dataset with the attribution maps as additional features. 
 
