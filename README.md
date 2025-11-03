@@ -1,33 +1,37 @@
-# RemOve_And_Retrain_Copy
+# RemOve_And_Retrain Library 
 
-This program is based on the original paper of:
-A Benchmark for Interpretability Methods in Deep Neural Networks (https://arxiv.org/abs/1806.10758)
+This repository implements the ROAR method, based on the paper:
+"A Benchmark for Interpretability Methods in Deep Neural Networks"
+https://arxiv.org/abs/1806.10758
 
-To use this notebook you need to have the following installed:
-- numpy
-- pytorch
-- torchvision
-- matplotlib
+# Requirements
 
-Download some images to test saliency maps. I personally used following images:
-- https://github.com/EliSchwartz/imagenet-sample-images
+Install the following dependencies before running the notebooks:
+
+numpy
+torch
+torchvision
+matplotlib
+
+To test saliency maps, download example images such as:
+https://github.com/EliSchwartz/imagenet-sample-images
 
 # Roar Implementation
 
-The implementation varies from the original paper as I am using pytorch and captum instead of tensorflow and saliency.
+This implementation reproduces the ROAR approach using PyTorch and Captum instead of TensorFlow and Saliency.
 
 ## Architecture:
 
 The architecture was chosen to be the ResNet50 model because it is easy to train.
 
 - Model: ResNet50, https://arxiv.org/abs/1512.03385
-- Dataset: Food101
+- Dataset: Food101, MNIST Numbers
 
-Roar consists of 3 steps:
+## ROAR Workflow
 
-1. Train a classification model on original dataset.
-2. Use the trained model to extract attribution maps for each image.
-3. Retrain the model on the original dataset with the attribution maps as additional features. 
+1. Train a classification model on the original dataset.
+2. Generate attribution maps (saliency maps) for each image using the trained model.
+3. Retrain the model on datasets where the most important pixels (according to the attribution maps) have been removed.
 
 ## Model Parameters for Food 101:
     food_101_params = {
@@ -44,44 +48,59 @@ Roar consists of 3 steps:
     }
 
 
-The project is saved in following structure:
+# Project Structure
 
-1. archive
-    - contains deprecated code and playgrounds
-2. data
-    - contains the datasets for the project
-    - the datasets are not included in the repository, they need to be downloaded
-    - the altered datasets are saved in the respective folder
-    - data/mnist
-      - mod_imagestest: modified mnist test dataset. saved with 0.1, 0,3, 0.5, 0.7, 0.9
-      - mod_imagestrain: modified mnist training dataset
-      - mod_randomtest: randomly modified mnist test dataset
-      - mod_randomtrain: randomly modified mnist training dataset
-      - raw: original data downloaded
-3. DatasetandMaskLoadingCalculatinons
-    - Contains scripts to load the datasets and applying the mask on the fly and calculations
-4. Feedback
-    - contains the feedback for the project report
-5. Latex
-    - contains the latex files for the project report
-6. models
-    - contains the models and the respective accuracy and loss plots
-7. Papers
-    - contains the papers used for the project
-8. Reporting
-   - contains additional scripts to generate plots and accuracy tables
-9. Saliency
-    - Is used to create the saliency blocked images for the datasets -> Old Approach which saves all images 
-10. Training
-    - contains the training scripts for the models
+```graphql
+archive/                      # Deprecated code and experiments
+data/                         # Dataset folder
+  └── mnist/
+      ├── mod_imagestest/     # Modified MNIST test datasets (0.1–0.9 thresholds)
+      ├── mod_imagestrain/    # Modified MNIST training datasets
+      ├── mod_randomtest/     # Randomly modified test datasets
+      ├── mod_randomtrain/    # Randomly modified training datasets
+      └── raw/                # Original dataset
+DatasetandMaskLoadingCalculations/  # Scripts for dataset loading and masking
+Latex/                        # LaTeX report files
+models/                       # Trained models and accuracy/loss plots
+Papers/                       # Reference papers
+Reporting/                    # Plot and report generation scripts
+Saliency/                     # Saliency map generation 
+Training/                     # Model training scripts
+```
 
 
 # Using the project to generate the models:
 
-1. Train the ResNET50 model on the original dataset. Training/Train_{dataset}_{model}_original_Dataset
-2. Check the generated accuracy in models/{dataset}/original_accuracy.png
-3. Generate the saliency maps for the dataset. Saliency/saliency_{dataset}.
-4. Check if the files are generated correctly in data/{dataset}/mod_images{train_test}/{0-0.9}
-5. Train the model on the modified dataset. Training/Train_{dataset}_{model}_5times_thresholdblock
-6. Check the generated accuracy in models/{dataset}/{method}/{0.1-0.9}_accuracy.txt
-7. Generate Plots and Reports as needed in Reporting
+Workflow: Generating and Evaluating Models
+
+1. Train the base ResNet50 model. This is required to have the original model and create the original attribution maps.
+ ```bash
+Training/Train_{dataset}_{model}_original_Dataset
+ ```
+2. Evaluate and verify accuracy:
+```bash
+models/{dataset}/original_accuracy.txt
+ ```
+
+3. Build the saliency image data for the dataset.
+```bash
+Saliency/saliency_{dataset}
+```
+4. Control if the modified dataset are correct
+```bash
+data/{dataset}/mod_images{train,test}/{0.1–0.9}
+```
+5. Retrain the dataset 5 times on the various thresholds.
+```bash
+Training/Train_{dataset}_{model}_5times_thresholdblock
+```
+
+6. Check the performance Metrics
+```bash
+models/{dataset}/{method}/{0.1–0.9}_accuracy.txt
+```
+
+7. Generate plots and reports:
+```bash
+Use scripts in Reporting/
+```
